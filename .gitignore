@@ -1,0 +1,64 @@
+# Environment Files #
+#####################
+.env
+
+# Ignore Auto-Generated Files #
+###############################
+composer.lock
+package-lock.json
+yarn.lock
+
+# Ignore Folders #
+##################
+/vendor/*
+/node_modules/*
+/build/*
+/dist/*
+.phpunit.cache
+.idea/
+
+# Ignore Coveralls #
+####################
+cobertura.xml
+coveralls
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# CodeKit Cache #
+#################
+.codekit-cache
+.sass-cache
