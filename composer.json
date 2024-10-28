@@ -1,0 +1,42 @@
+{
+	"name": "badasswp/sql-to-cpt",
+	"description": "Add AI Capabilities to the WP Block Editor.",
+	"type": "package",
+	"license": "GPL-2.0-or-later",
+	"autoload": {
+		"psr-4": {
+			"AiPlusBlockEditor\\": "inc/",
+			"AiPlusBlockEditor\\Tests\\": "tests/"
+		}
+	},
+	"authors": [
+		{
+			"name": "badasswp",
+			"email": "badasswpdev@gmail.com"
+		}
+	],
+	"require-dev": {
+		"phpunit/phpunit": "^9.6",
+		"mockery/mockery": "^1.6",
+		"10up/wp_mock": "^1.0",
+		"wp-coding-standards/wpcs": "^3.0",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"php-coveralls/php-coveralls": "^2.5",
+		"phpunit/phpcov": "^8.2",
+		"phpstan/phpstan": "^1.10",
+		"szepeviktor/phpstan-wordpress": "^1.3",
+		"phpstan/extension-installer": "^1.3"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"phpstan/extension-installer": true
+		}
+	},
+	"scripts": {
+		"lint": "vendor/bin/phpcs -v",
+		"lint:fix": "vendor/bin/phpcbf -v",
+		"test": "vendor/bin/phpunit --testdox",
+		"analyse": "vendor/bin/phpstan analyse --memory-limit=2048M"
+	}
+}
