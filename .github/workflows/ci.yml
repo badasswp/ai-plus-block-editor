@@ -1,0 +1,45 @@
+name: AiPlusBlockEditor CI
+
+on:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js 18.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+
+    - name: Install NPM
+      run: |
+        yarn install
+
+    - name: Run JS Tests
+      run: |
+        yarn test
+
+    - name: Set up PHP v8.2
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+
+    - name: Validate Composer
+      run: |
+        composer validate --strict
+
+    - name: Install Composer
+      run: |
+        composer install --prefer-dist --no-progress
+
+    - name: Run Linting
+      run: |
+        composer run lint
