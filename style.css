@@ -1,0 +1,136 @@
+.badasswp-form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+
+.badasswp-form-main {
+	width: calc(70% - 10px);
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.badasswp-form-submit {
+	width: calc(30% - 10px);
+}
+
+.badasswp-form-group {
+	background: #FFF;
+	border: 1px solid #c3c4c7;
+	display: block;
+	width: 100%;
+}
+
+.badasswp-form-group-heading {
+	margin: 0 !important;
+	padding: 12.5px;
+	box-sizing: border-box;
+	width: 100%;
+	line-height: 1.25;
+	border-bottom: 1px solid #e2e4e7;
+}
+
+.badasswp-form-group-body {
+	width: 100%;
+}
+
+.badasswp-form-group-block {
+	margin: 0 !important;
+	padding: 12.5px;
+	box-sizing: border-box;
+	width: 50%;
+	display: inline-block;
+}
+
+.badasswp-form-group-block label {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 7.5px;
+}
+
+.badasswp-form-group-block em {
+	display: block;
+	margin-top: 7.5px;
+	color: #888;
+}
+
+/* FORM CONTROLS */
+
+.badasswp-form-group-block input[type=text] {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.badasswp-form-group-block select {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
+.badasswp-form-group-block input[type=checkbox] {
+	width: 60px;
+	height: 30px;
+	border-radius: 100px;
+	display: inline-block;
+	border: 1px solid #8c8f94;
+	position: relative;
+	box-shadow: none;
+}
+
+.badasswp-form-group-block input[type=checkbox]::before {
+	width: 20px;
+	height: 20px;
+	background: #D0D1D7;
+	border-radius: 100%;
+	display: block;
+	content: '';
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	margin: 0;
+	transition: all 0.3s;
+}
+
+.badasswp-form-group-block input[type=checkbox]:checked {
+	background: #005AE0;
+	border: 1px solid #005AE0;
+}
+
+.badasswp-form-group-block input[type=checkbox]:checked::before {
+	background: #FFF;
+	border-radius: 100%;
+	display: block;
+	content: '';
+	position: absolute;
+	top: 4px;
+	left: 34px;
+	margin: 0;
+}
+
+.badasswp-form-notice {
+	width: 100%;
+	border: 1px solid #c3c4c7;
+	border-left: 4px solid #00a32a;
+	background: #FFF;
+	padding: 12.5px;
+	font-weight: bold;
+	box-sizing: border-box;
+}
+
+@media only screen and (max-width: 786px) {
+	.badasswp-form {
+		gap: 15px;
+	}
+
+	.badasswp-form-main,
+	.badasswp-form-submit {
+		width: 100%;
+	}
+
+	.badasswp-form-group-block {
+		width: 100% !important;
+		border-right: none !important;
+	}
+}
