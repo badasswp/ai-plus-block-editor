@@ -231,6 +231,10 @@ class Form {
 				$control = $this->get_text_control( $arg, $name );
 				break;
 
+			case 'password':
+				$control = $this->get_password_control( $arg, $name );
+				break;
+
 			case 'select':
 				$control = $this->get_select_control( $arg, $name );
 				break;
@@ -259,6 +263,28 @@ class Form {
 	protected function get_text_control( $arg, $name ): string {
 		return sprintf(
 			'<input type="text" placeholder="%1$s" value="%2$s" name="%3$s"/>',
+			$arg['placeholder'] ?? '',
+			$this->get_setting( $name ),
+			$name,
+		);
+	}
+
+	/**
+	 * Get Password Control.
+	 *
+	 * This method is responsible for getting
+	 * Password controls.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param mixed[] $arg  Password args.
+	 * @param string  $name Control name.
+	 *
+	 * @return string
+	 */
+	protected function get_password_control( $arg, $name ): string {
+		return sprintf(
+			'<input type="password" placeholder="%1$s" value="%2$s" name="%3$s"/>',
 			$arg['placeholder'] ?? '',
 			$this->get_setting( $name ),
 			$name,
