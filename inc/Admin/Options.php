@@ -147,7 +147,7 @@ class Options {
 						'summary' => esc_html__( 'Use Chat GPT capabilities in Block Editor', 'ai-plus-block-editor' ),
 					],
 					'open_ai_token'  => [
-						'control'     => esc_attr( 'text' ),
+						'control'     => esc_attr( 'password' ),
 						'placeholder' => esc_attr( '' ),
 						'label'       => esc_html__( 'Token', 'ai-plus-block-editor' ),
 						'summary'     => esc_html__( 'e.g. ae2kgch7i', 'ai-plus-block-editor' ),
