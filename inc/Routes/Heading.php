@@ -85,7 +85,7 @@ class Heading extends Route implements Router {
 		return rest_ensure_response(
 			$ai->get_ai_response(
 				[
-					'content' => "Using the following text, generate a causal tone: $article",
+					'content' => "Using the following text, generate a casual tone: $article",
 				]
 			)
 		);
