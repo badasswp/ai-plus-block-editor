@@ -49,10 +49,21 @@ export const filterBlockTypesWithAI = (settings: any) => {
 
   settings.edit = (props: any) => {
     const [tone, setTone] = useState('');
+    const menu = [];
+
+    Object.keys(options).forEach(key => {
+      menu.push(
+        {
+          icon: 'superhero',
+          title: options[key],
+          onClick: () => {setTone(key)},
+        }
+      )
+    });
 
     useEffect(() => {
       if (tone) {
-        getTone();
+        getTone(tone);
       }
     }, [tone]);
 
@@ -63,35 +74,7 @@ export const filterBlockTypesWithAI = (settings: any) => {
             <ToolbarDropdownMenu
               icon="superhero"
               label={ __( 'AI + Block Editor' ) }
-              controls={
-                [
-                  {
-                    icon: 'superhero',
-                    title: 'Use Casual Tone',
-                    onClick: () => {setTone('casual')},
-                  },
-                  {
-                    icon: 'superhero',
-                    title: 'Use Official Tone',
-                    onClick: () => { },
-                  },
-                  {
-                    icon: 'superhero',
-                    title: 'Use Descriptive Tone',
-                    onClick: () => { },
-                  },
-                  {
-                    icon: 'superhero',
-                    title: 'Use Calm Tone',
-                    onClick: () => { },
-                  },
-                  {
-                    icon: 'superhero',
-                    title: 'Use Aggressive Tone',
-                    onClick: () => { },
-                  }
-                ]
-              }
+              controls={menu}
             />
           </ToolbarGroup>
         </BlockControls>
