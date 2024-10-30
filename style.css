@@ -58,7 +58,8 @@
 
 /* FORM CONTROLS */
 
-.badasswp-form-group-block input[type=text] {
+.badasswp-form-group-block input[type=text],
+.badasswp-form-group-block input[type=password] {
 	width: 100%;
 	box-sizing: border-box;
 }
