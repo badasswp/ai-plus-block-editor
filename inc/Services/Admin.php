@@ -45,7 +45,7 @@ class Admin extends Service implements Kernel {
 			'manage_options',
 			Options::get_page_slug(),
 			[ $this, 'register_options_page' ],
-			'dashicons-awards',
+			'dashicons-superhero',
 			100
 		);
 	}
@@ -129,11 +129,18 @@ class Admin extends Service implements Kernel {
 	 * @return void
 	 */
 	public function register_options_styles(): void {
+		$screen = get_current_screen();
+
+		// Bail out, if not plugin Admin page.
+		if ( ! is_object( $screen ) || 'toplevel_page_ai-plus-block-editor' !== $screen->id ) {
+			return;
+		}
+
 		wp_enqueue_style(
 			Options::get_page_slug(),
 			plugins_url( 'ai-plus-block-editor/styles.css' ),
 			[],
-			true,
+			'1.0.0',
 			'all'
 		);
 	}
