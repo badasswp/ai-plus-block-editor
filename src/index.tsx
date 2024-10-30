@@ -21,7 +21,8 @@ const getTone = async (tone: string) => {
     method: 'POST',
     data: {
       id: getCurrentPostId(),
-      content: getSelectedBlock().attributes.content.text
+      content: getSelectedBlock().attributes.content.text,
+      tone: tone
     },
   };
 
@@ -33,7 +34,7 @@ const getTone = async (tone: string) => {
       content: data,
     }
   );
-}
+};
 
 /**
  * Filter Blocks with AI.
