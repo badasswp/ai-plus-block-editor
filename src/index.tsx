@@ -6,7 +6,7 @@ import { Fragment, useState, useEffect } from '@wordpress/element';
 import { ToolbarGroup, ToolbarDropdownMenu } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
-const getCasualTone = async () => {
+const getTone = async () => {
   const { getCurrentPostId } = select('core/editor');
   const { updateBlockAttributes } = dispatch('core/block-editor') as any;
   const {
@@ -49,7 +49,7 @@ export const filterBlockTypesWithAI = (settings: any) => {
 
     useEffect(() => {
       if (tone) {
-        getCasualTone();
+        getTone();
       }
     }, [tone]);
 
@@ -65,7 +65,7 @@ export const filterBlockTypesWithAI = (settings: any) => {
                   {
                     icon: 'superhero',
                     title: 'Use Casual Tone',
-                    onClick: () => {setTone('causal')},
+                    onClick: () => {setTone('casual')},
                   },
                   {
                     icon: 'superhero',
