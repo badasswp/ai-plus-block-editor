@@ -6,7 +6,9 @@ import { Fragment, useState, useEffect } from '@wordpress/element';
 import { ToolbarGroup, ToolbarDropdownMenu } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
-const getTone = async () => {
+import options from './options';
+
+const getTone = async (tone: string) => {
   const { getCurrentPostId } = select('core/editor');
   const { updateBlockAttributes } = dispatch('core/block-editor') as any;
   const {
