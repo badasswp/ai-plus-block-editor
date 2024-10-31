@@ -79,7 +79,7 @@ class Tone extends Route implements Router {
 	 * @return \WP_REST_Response|\WP_Error
 	 */
 	protected function get_response() {
-		$ai      = new AI();
+		$ai = new AI();
 
 		// Get Args.
 		$tone    = $this->args['tone'] ?? '';
