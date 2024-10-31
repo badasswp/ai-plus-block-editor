@@ -11,7 +11,7 @@
 
 namespace AiPlusBlockEditor\Services;
 
-use AiPlusBlockEditor\Routes\Heading;
+use AiPlusBlockEditor\Routes\Tone;
 use AiPlusBlockEditor\Abstracts\Service;
 use AiPlusBlockEditor\Interfaces\Kernel;
 
@@ -34,7 +34,7 @@ class Routes extends Service implements Kernel {
 	 */
 	public function __construct() {
 		$this->routes = [
-			Heading::class,
+			Tone::class,
 		];
 	}
 
