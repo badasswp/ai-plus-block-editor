@@ -17,7 +17,7 @@ const getTone = async (tone: string) => {
   } = select('core/block-editor');
 
   const payload = {
-    path: '/ai-plus-block-editor/v1/heading',
+    path: '/ai-plus-block-editor/v1/tone',
     method: 'POST',
     data: {
       id: getCurrentPostId(),
