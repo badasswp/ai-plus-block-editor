@@ -80,12 +80,15 @@ class Tone extends Route implements Router {
 	 */
 	protected function get_response() {
 		$ai      = new AI();
-		$article = $this->args['content'];
+
+		// Get Args.
+		$tone    = $this->args['tone'] ?? '';
+		$article = $this->args['content'] ?? '';
 
 		return rest_ensure_response(
 			$ai->get_ai_response(
 				[
-					'content' => "Using the following text, generate a casual tone: $article",
+					'content' => "Using the following text, generate a $tone tone: $article",
 				]
 			)
 		);
