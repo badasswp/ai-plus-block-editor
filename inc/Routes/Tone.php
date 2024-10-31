@@ -1,8 +1,8 @@
 <?php
 /**
- * Heading Route.
+ * Tone Route.
  *
- * This route is responsible for Heading
+ * This route is responsible for Tone
  * endpoint.
  *
  * @package AiPlusBlockEditor
@@ -15,9 +15,9 @@ use AiPlusBlockEditor\Abstracts\Route;
 use AiPlusBlockEditor\Interfaces\Router;
 
 /**
- * Heading class.
+ * Tone class.
  */
-class Heading extends Route implements Router {
+class Tone extends Route implements Router {
 	/**
 	 * Get, Post, Put, Patch, Delete.
 	 *
@@ -28,13 +28,13 @@ class Heading extends Route implements Router {
 	public string $method = 'POST';
 
 	/**
-	 * WP REST Endpoint e.g. /wp-json/ai-plus-block-editor/v1/heading.
+	 * WP REST Endpoint e.g. /wp-json/ai-plus-block-editor/v1/tone.
 	 *
 	 * @since 1.0.0
 	 *
 	 * @var string
 	 */
-	public string $endpoint = '/heading';
+	public string $endpoint = '/tone';
 
 	/**
 	 * WP_REST_Request object.
