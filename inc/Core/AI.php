@@ -2,80 +2,69 @@
 /**
  * AI Class.
  *
- * This services is responsible for generating
- * AI questions for each quiz.
+ * This class is responsible for handling
+ * the AI calls.
  *
  * @package AiPlusBlockEditor
  */
 
 namespace AiPlusBlockEditor\Core;
 
-use Orhanerday\OpenAi\OpenAi;
+use AiPlusBlockEditor\Providers\OpenAI;
+use AiPlusBlockEditor\Interfaces\Provider;
 
-class AI {
+class AI implements Provider {
 	/**
-	 * Open AI.
+	 * AI Provider.
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var OpenAi
+	 * @var Provider
 	 */
-	public OpenAi $ai;
+	protected Provider $provider;
 
 	/**
-	 * Setup AI Client.
+	 * Set Up.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @return OpenAi
 	 */
 	public function __construct() {
-		$ai_token = get_option( 'ai_plus_block_editor', [] )['open_ai_token'] ?? '';
-		$this->ai = new OpenAi( $ai_token );
+		$ai = $this->get_provider();
+
+		// Establish AI Provider.
+		$this->provider = new $ai();
 	}
 
 	/**
-	 * Get Default Args.
+	 * Get Provider.
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return mixed[]
+	 * @return string
 	 */
-	public function get_default_args(): array {
-		$args = [
-			'model'             => 'gpt-3.5-turbo',
-			'temperature'       => 1.0,
-			'max_tokens'        => 4000,
-			'frequency_penalty' => 0,
-			'presence_penalty'  => 0,
-		];
+	protected function get_provider(): string {
+		$ai_provider = get_option( 'ai_plus_block_editor', [] )['ai_provider'] ?? '';
 
-		$filtered_args = (array) apply_filters( 'apbe_init_args', $args );
-
-		return wp_parse_args( $filtered_args, $args );
+		/**
+		 * Filter AI Provider.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param string $ai_provider AI Provider.
+		 * @return string
+		 */
+		return apply_filters( 'apbe_ai_provider', $ai_provider );
 	}
 
 	/**
-	 * Get AI Response.
+	 * Run AI Provider.
 	 *
 	 * @since 1.0.0
 	 *
 	 * @param mixed[] $payload JSON Payload.
 	 * @return string
 	 */
-	public function get_ai_response( $payload ) {
-		$payload = wp_parse_args( [ 'role' => 'user' ], $payload );
-
-		$response = json_decode(
-			$this->ai->chat(
-				wp_parse_args(
-					[ 'messages' => [ $payload ] ],
-					$this->get_default_args()
-				)
-			),
-			true
-		);
-
-		return $response['choices'][0]['message']['content'] ?? '';
+	public function run( $payload ): string {
+		return $this->provider->run( $payload );
 	}
 }
