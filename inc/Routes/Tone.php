@@ -55,7 +55,7 @@ class Tone extends Route implements Router {
 	public function response() {
 		$this->args = $this->request->get_json_params();
 
-		//Bail out, if it does NOT exists.
+		// Bail out, if it does NOT exists.
 		if ( empty( $this->args['content'] ?? '' ) ) {
 			return $this->get_400_response(
 				sprintf(

@@ -24,11 +24,9 @@ class OpenAI implements Provider {
 	protected OpenAi $ai;
 
 	/**
-	 * Setup AI Client.
+	 * Set up.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @return OpenAi
 	 */
 	public function __construct() {
 		$ai_token = get_option( 'ai_plus_block_editor', [] )['open_ai_token'] ?? '';
