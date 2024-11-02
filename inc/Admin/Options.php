@@ -127,13 +127,15 @@ class Options {
 			'general_options'       => [
 				'heading'  => esc_html__( 'General Options', 'ai-plus-block-editor' ),
 				'controls' => [
-					'ai_client' => [
+					'ai_provider' => [
 						'control' => esc_attr( 'select' ),
-						'label'   => esc_html__( 'AI Client', 'ai-plus-block-editor' ),
+						'label'   => esc_html__( 'AI Provider', 'ai-plus-block-editor' ),
 						'summary' => 'e.g. Open AI (Chat GPT)',
 						'options' => [
-							'open_ai'       => 'Chat GPT',
-							'google_gemini' => 'Gemini',
+							'OpenAI'    => 'Open AI',
+							'Google'    => 'Google',
+							'Microsoft' => 'Microsoft',
+							'Facebook'  => 'Facebook',
 						],
 					],
 				],
