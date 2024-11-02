@@ -31,8 +31,12 @@ class AI implements Provider {
 	public function __construct() {
 		$ai = $this->get_provider();
 
-		// Establish AI Provider.
-		$this->provider = new $ai();
+		// Register AI Provider.
+		switch( $ai ) {
+			case 'OpenAI':
+				$this->provider = new OpenAI();
+				break;
+		}
 	}
 
 	/**
