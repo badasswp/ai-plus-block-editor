@@ -10,7 +10,7 @@
 
 namespace AiPlusBlockEditor\Providers;
 
-use Orhanerday\OpenAi\OpenAi;
+use Orhanerday\OpenAi\OpenAi as ChatGPT;
 use AiPlusBlockEditor\Interfaces\Provider;
 
 class OpenAI implements Provider {
@@ -19,9 +19,9 @@ class OpenAI implements Provider {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var OpenAi
+	 * @var ChatGPT
 	 */
-	protected OpenAi $ai;
+	protected ChatGPT $ai;
 
 	/**
 	 * Set up.
@@ -30,7 +30,7 @@ class OpenAI implements Provider {
 	 */
 	public function __construct() {
 		$ai_token = get_option( 'ai_plus_block_editor', [] )['open_ai_token'] ?? '';
-		$this->ai = new OpenAi( $ai_token );
+		$this->ai = new ChatGPT( $ai_token );
 	}
 
 	/**
