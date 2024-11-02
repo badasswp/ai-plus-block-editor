@@ -44,12 +44,14 @@ export const filterBlockTypesWithAI = (settings: any) => {
         getSelectedBlockClientId,
       } = select('core/block-editor');
 
+      const { content } = getSelectedBlock().attributes;
+
       const payload = {
         path: '/ai-plus-block-editor/v1/tone',
         method: 'POST',
         data: {
           id: getCurrentPostId(),
-          content: getSelectedBlock().attributes.content.text,
+          content: content.text || content,
           tone: tone
         },
       };
