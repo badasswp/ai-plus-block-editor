@@ -88,7 +88,7 @@ class Tone extends Route implements Router {
 		return rest_ensure_response(
 			$ai->run(
 				[
-					'content' => "Using the following text, generate a $tone tone: $article",
+					'content' => "Please generate a $tone tone all in one paragraph using the following text: $article",
 				]
 			)
 		);

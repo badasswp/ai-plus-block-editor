@@ -32,7 +32,7 @@ class AI implements Provider {
 		$ai = $this->get_provider();
 
 		// Register AI Provider.
-		switch( $ai ) {
+		switch ( $ai ) {
 			case 'OpenAI':
 				$this->provider = new OpenAI();
 				break;
