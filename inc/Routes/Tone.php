@@ -59,7 +59,7 @@ class Tone extends Route implements Router {
 		if ( empty( $this->args['text'] ?? '' ) ) {
 			return $this->get_400_response(
 				sprintf(
-					'POST Request does not contain a text: %s',
+					'API Request does not contain a text. Post ID: %s',
 					$this->args['id'] ?? ''
 				)
 			);
@@ -85,7 +85,7 @@ class Tone extends Route implements Router {
 		$tone = $this->args['tone'] ?? '';
 		$text = $this->args['text'] ?? '';
 
-		// Prompt.
+		// Get Prompt.
 		$prompt = sprintf(
 			'Using the following text: %s, generate a %s tone that I could use to substitue for this and please ensure the generated text is all in one line.',
 			$text,
