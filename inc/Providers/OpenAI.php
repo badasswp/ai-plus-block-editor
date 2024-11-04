@@ -49,7 +49,15 @@ class OpenAI implements Provider {
 			'presence_penalty'  => 0,
 		];
 
-		$filtered_args = (array) apply_filters( 'apbe_init_args', $args );
+		/**
+		 * Filter OpenAI default args.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param mixed[] $args Default args.
+		 * @return mixed[]
+		 */
+		$filtered_args = (array) apply_filters( 'apbe_open_ai_args', $args );
 
 		return wp_parse_args( $filtered_args, $args );
 	}
