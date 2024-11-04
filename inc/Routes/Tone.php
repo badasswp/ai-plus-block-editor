@@ -59,7 +59,7 @@ class Tone extends Route implements Router {
 		if ( empty( $this->args['text'] ?? '' ) ) {
 			return $this->get_400_response(
 				sprintf(
-					'Post Article does not contain a body: %s',
+					'POST Request does not contain a text: %s',
 					$this->args['id'] ?? ''
 				)
 			);
