@@ -56,7 +56,7 @@ class Tone extends Route implements Router {
 		$this->args = $this->request->get_json_params();
 
 		// Bail out, if it does NOT exists.
-		if ( empty( $this->args['content'] ?? '' ) ) {
+		if ( empty( $this->args['text'] ?? '' ) ) {
 			return $this->get_400_response(
 				sprintf(
 					'Post Article does not contain a body: %s',
