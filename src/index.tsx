@@ -51,7 +51,7 @@ export const filterBlockTypesWithAI = (settings: any) => {
         method: 'POST',
         data: {
           id: getCurrentPostId(),
-          content: content.text || content,
+          text: content.text || content,
           tone: tone
         },
       };
