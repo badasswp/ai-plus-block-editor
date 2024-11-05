@@ -12,3 +12,5 @@ phpcs.xml
 phpunit.xml
 phpstan.neon
 src
+assets
+tests
