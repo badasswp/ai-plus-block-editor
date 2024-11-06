@@ -17,7 +17,11 @@ import options from './options';
  * @returns {Object}         Filtered block settings
  */
 export const filterBlockTypesWithAI = (settings: any) => {
-  const { edit } = settings;
+  const { name, edit } = settings;
+
+  if ('core/paragraph' !== name) {
+    return settings;
+  }
 
   settings.edit = (props: any) => {
     const [icon, setIcon] = useState<IconType>('superhero');
