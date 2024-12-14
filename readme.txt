@@ -22,7 +22,11 @@ Add AI Capabilities to the Block Editor.
 
 == Changelog ==
 
-= TBD =
+= 1.0.0 =
+* Add AI tone capabilities to toolbar.
+* Add custom plugin options page.
+* Add Unit Tests.
+* Update README notes.
 * Tested up to WP 6.6.2.
 
 == Contribute ==
