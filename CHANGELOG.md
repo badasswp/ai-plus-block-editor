@@ -5,4 +5,4 @@
 * Add custom plugin options page.
 * Add Unit Tests.
 * Update README notes.
-* Tested up to WP 6.6.2.
+* Tested up to WP 6.7.1.
