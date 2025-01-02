@@ -36,7 +36,7 @@ class Boot extends Service implements Kernel {
 	public function register_scripts() {
 		wp_enqueue_script(
 			'ai-plus-block-editor',
-			plugins_url( 'ai-plus-block-editor' ) . '/dist/app.js',
+			plugin_dir_url( __FILE__ ) . '../../dist/app.js',
 			[
 				'wp-i18n',
 				'wp-element',
