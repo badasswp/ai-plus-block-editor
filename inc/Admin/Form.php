@@ -117,7 +117,7 @@ class Form {
 		 * @param mixed[] $fields Form Fields.
 		 * @return mixed[]
 		 */
-		$fields = (array) apply_filters( 'ai_plus_block_editor_form_fields', $this->options['fields'] ?? [] );
+		$fields = (array) apply_filters( 'apbe_form_fields', $this->options['fields'] ?? [] );
 
 		foreach ( $fields as $option ) {
 			$form_fields .= $this->get_form_group( $option );
