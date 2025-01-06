@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import { verse } from '@wordpress/icons';
 import { addFilter } from '@wordpress/hooks';
 import { select, dispatch } from '@wordpress/data';
 import { BlockControls } from '@wordpress/block-editor';
@@ -31,7 +32,7 @@ export const filterBlockTypesWithAI = (settings: any) => {
     Object.keys(options).forEach(key => {
       menu.push(
         {
-          icon: 'superhero',
+          icon: verse,
           title: options[key],
           onClick: () => {
             setTone(key);
@@ -85,7 +86,7 @@ export const filterBlockTypesWithAI = (settings: any) => {
         <BlockControls>
           <ToolbarGroup>
             <ToolbarDropdownMenu
-              icon={icon}
+              icon={verse}
               label={ __( 'AI + Block Editor' ) }
               controls={menu}
             />
