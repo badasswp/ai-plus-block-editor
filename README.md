@@ -37,7 +37,7 @@ public function custom_tone( $prompt, $prompt_tone, $prompt_text ): string {
 
 **Parameters**
 
-- prompt _`{string}`_ By default this will be a string that contains the prompt sent to the AI LLM endpoint.
-- prompt_tone _`{string}`_ By default this will be a string that contains the tone sent to the AI LLM endpoint.
-- prompt_text _`{string}`_ By default this will be a string that contains the text sent to the AI LLM endpoint.
+- prompt _`{string}`_ By default this will be a string that contains the __prompt__ sent to the AI LLM endpoint.
+- prompt_tone _`{string}`_ By default this will be a string that contains the __tone__ sent to the AI LLM endpoint.
+- prompt_text _`{string}`_ By default this will be a string that contains the __text__ sent to the AI LLM endpoint.
 <br/>
