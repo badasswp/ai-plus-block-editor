@@ -1,0 +1,23 @@
+.apbe {
+	&-toast {
+		position: fixed;
+		background: #000;
+		color: #FFF;
+		bottom: -50px;
+		opacity: 0;
+		left: 15px;
+		padding: 20px;
+		border-radius: 5px;
+		font-size: 13px;
+		z-index: 1;
+		box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  		animation: slideUp 0.5s ease-out forwards;
+	}
+}
+
+@keyframes slideUp {
+  to {
+	bottom: 40px;
+    opacity: 1;
+  }
+}
