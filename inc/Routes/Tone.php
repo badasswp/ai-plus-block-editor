@@ -87,9 +87,9 @@ class Tone extends Route implements Router {
 
 		// Get Prompt.
 		$prompt = sprintf(
-			'Using the following text: %s, generate a %s tone that I could use to substitue for this and please ensure the generated text is all in one line.',
-			$text,
-			$tone
+			'Using a % tone, generate a text I can use to substitute the following text: %s',
+			$tone,
+			$text
 		);
 
 		/**
