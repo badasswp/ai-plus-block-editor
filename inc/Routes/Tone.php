@@ -82,25 +82,25 @@ class Tone extends Route implements Router {
 		$ai = new AI();
 
 		// Get Args.
-		$tone   = $this->args['tone'] ?? '';
-		$text   = $this->args['text'] ?? '';
-		$prompt = 'Using a % tone, generate a text I can use to substitute the following text: %s';
+		$prompt_tone = $this->args['tone'] ?? '';
+		$prompt_text = $this->args['text'] ?? '';
+		$placeholder = 'Using a %s tone, generate a text I can use to substitute the following text: %s';
 
 		// Get Prompt.
-		$prompt = sprintf( $prompt, $tone, $text );
+		$prompt = sprintf( $placeholder, $prompt_tone, $prompt_text );
 
 		/**
 		 * Filter Tone prompt.
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param string $prompt Prompt sent to AI LLM endpoint.
-		 * @param string $tone   Tone sent.
-		 * @param string $text   Text sent.
+		 * @param string $prompt      Prompt sent to AI LLM endpoint.
+		 * @param string $prompt_tone Tone sent.
+		 * @param string $prompt_text Text sent.
 		 *
 		 * @return string
 		 */
-		$prompt = apply_filters( 'apbe_tone_prompt', $prompt, $tone, $text );
+		$prompt = apply_filters( 'apbe_tone_prompt', $prompt, $prompt_tone, $prompt_text );
 
 		return rest_ensure_response(
 			$ai->run(
