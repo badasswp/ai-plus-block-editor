@@ -7,7 +7,9 @@ import { Fragment, useState, useEffect } from '@wordpress/element';
 import { ToolbarGroup, ToolbarDropdownMenu } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
+import AiToast from '../components/Toast';
 import options from '../utils/options';
+import '../styles/app.scss';
 
 /**
  * Filter Blocks with AI.
@@ -27,6 +29,7 @@ export const filterBlockTypesWithAI = (settings: any) => {
   settings.edit = (props: any) => {
     const [icon, setIcon] = useState( verse );
     const [tone, setTone] = useState( '' );
+    const [isLoading, setIsLoading] = useState( false );
     const menu = [];
 
     Object.keys(options).forEach(key => {
@@ -47,7 +50,8 @@ export const filterBlockTypesWithAI = (settings: any) => {
       const { getSelectedBlock, getSelectedBlockClientId } = select('core/block-editor');
       const { content } = getSelectedBlock().attributes;
 
-      setIcon( rotateRight );
+      // Display Toast.
+      setIsLoading( true );
 
       const { data } = await apiFetch(
         {
@@ -68,7 +72,8 @@ export const filterBlockTypesWithAI = (settings: any) => {
         }
       );
 
-      setIcon( verse );
+      // Hide Toast.
+      setIsLoading( false );
     };
 
     useEffect(() => {
@@ -79,6 +84,10 @@ export const filterBlockTypesWithAI = (settings: any) => {
 
     return (
       <Fragment>
+        <AiToast
+          message={ __( 'AI is generating text, please hold on for a bit...' ) }
+          isLoading={ isLoading }
+        />
         <BlockControls>
           <ToolbarGroup>
             <ToolbarDropdownMenu
