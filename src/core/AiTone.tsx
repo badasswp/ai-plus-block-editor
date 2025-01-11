@@ -42,10 +42,18 @@ export const filterBlockTypesWithAI = (settings: any) => {
       )
     });
 
+    /**
+     * Get AI generated tone.
+     *
+     * @since 1.0.0
+     *
+     * @param {string} tone  AI tone sent to LLM endpoint.
+     * @returns {void}
+     */
     const getTone = async (tone: string) => {
-      const { getCurrentPostId } = select('core/editor');
-      const { updateBlockAttributes } = dispatch('core/block-editor') as any;
-      const { getSelectedBlock, getSelectedBlockClientId } = select('core/block-editor');
+      const { getCurrentPostId } = select( 'core/editor' );
+      const { updateBlockAttributes } = dispatch( 'core/block-editor' ) as any;
+      const { getSelectedBlock, getSelectedBlockClientId } = select( 'core/block-editor' );
       const { content } = getSelectedBlock().attributes;
 
       // Display Toast.
@@ -63,12 +71,8 @@ export const filterBlockTypesWithAI = (settings: any) => {
         }
       );
 
-      updateBlockAttributes(
-        getSelectedBlockClientId(),
-        {
-          content: data,
-        }
-      );
+      // Update Block Editor.
+      updateBlockAttributes( getSelectedBlockClientId(), { content: data } );
 
       // Hide Toast.
       setIsLoading( false );
