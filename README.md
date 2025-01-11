@@ -41,3 +41,24 @@ public function custom_tone( $prompt, $prompt_tone, $prompt_text ): string {
 - prompt_tone _`{string}`_ By default this will be a string that contains the __tone__ sent to the AI LLM endpoint.
 - prompt_text _`{string}`_ By default this will be a string that contains the __text__ sent to the AI LLM endpoint.
 <br/>
+
+#### `apbe_rest_routes`
+
+This custom hook (filter) provides the ability to add and modify the default REST routes in the plugin.
+
+```php
+add_filter( 'apbe_rest_routes', [ $this, 'custom_route' ], 10, 3 );
+
+public function custom_rest_routes( $rest_routes ) {
+    if ( ! in_array( AiPostTitle::class, $rest_routes, true ) ) {
+        $rest_routes[] = AiPostTitle::class;
+    }
+
+    return (array) $rest_routes;
+}
+```
+
+**Parameters**
+
+- rest_routes _`{array}`_ By default this will be an array containing the plugin's REST routes.
+<br/>
