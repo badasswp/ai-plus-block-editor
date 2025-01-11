@@ -15,12 +15,12 @@ https://github.com/user-attachments/assets/93856ac3-602d-4f3d-b769-777ef27d5725
 
 ### Hooks
 
-#### `abpe_tone_prompt`
+#### `apbe_tone_prompt`
 
 This custom hook provides a simple way to filter the tone used by the AI LLM endpoint.
 
 ```php
-add_filter( 'abpe_tone_prompt', [ $this, 'custom_tone' ], 10, 3 );
+add_filter( 'apbe_tone_prompt', [ $this, 'custom_tone' ], 10, 3 );
 
 public function custom_tone( $prompt, $prompt_tone, $prompt_text ): string {
     if ( 'aggressive' === $prompt_tone ) {
