@@ -7,8 +7,9 @@ import { Fragment, useState, useEffect } from '@wordpress/element';
 import { ToolbarGroup, ToolbarDropdownMenu } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
-import AiToast from '../components/Toast';
-import options from '../utils/options';
+import Toast from '../components/Toast';
+import { getBlockControlOptions } from '../utils';
+
 import '../styles/app.scss';
 
 /**
@@ -29,18 +30,6 @@ export const filterBlockTypesWithAI = (settings: any) => {
   settings.edit = (props: any) => {
     const [tone, setTone] = useState( '' );
     const [isLoading, setIsLoading] = useState( false );
-    const menu = [];
-
-    Object.keys(options).forEach(key => {
-      menu.push(
-        {
-          title: options[key],
-          onClick: () => {
-            setTone( key );
-          },
-        }
-      )
-    });
 
     /**
      * Get AI generated tone.
@@ -86,7 +75,7 @@ export const filterBlockTypesWithAI = (settings: any) => {
 
     return (
       <Fragment>
-        <AiToast
+        <Toast
           message={ __( 'AI is generating text, please hold on for a bit...' ) }
           isLoading={ isLoading }
         />
@@ -95,7 +84,7 @@ export const filterBlockTypesWithAI = (settings: any) => {
             <ToolbarDropdownMenu
               icon={ verse }
               label={ __( 'AI + Block Editor' ) }
-              controls={ menu }
+              controls={ getBlockControlOptions( setTone ) }
             />
           </ToolbarGroup>
         </BlockControls>
