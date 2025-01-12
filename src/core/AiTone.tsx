@@ -60,8 +60,18 @@ export const filterBlockTypesWithAI = (settings: any) => {
         }
       );
 
-      // Update Block Editor.
-      updateBlockAttributes( getSelectedBlockClientId(), { content: data } );
+      let limit = 1;
+
+      const displayWithEffect = setInterval( () => {
+        // Clear Interval.
+        if ( limit === data.length ) {
+          clearInterval( displayWithEffect );
+        }
+
+        // Update Block Editor.
+        updateBlockAttributes( getSelectedBlockClientId(), { content: data.substring( 0, limit ) } );
+        limit++;
+      }, 5 )
 
       // Hide Toast.
       setIsLoading( false );
