@@ -11,7 +11,7 @@
 const Toast = ({ isLoading, message }): JSX.Element => {
   return (
     isLoading && (
-      <div className="apbe-toast">
+      <div className="apbe-toast" role="alert">
         <span>{ message }</span>
       </div>
     )
