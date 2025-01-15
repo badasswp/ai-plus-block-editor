@@ -79,8 +79,6 @@ class Tone extends Route implements Router {
 	 * @return \WP_REST_Response|\WP_Error
 	 */
 	protected function get_response() {
-		$ai = new AI();
-
 		// Get Args.
 		$prompt_tone = $this->args['tone'] ?? '';
 		$prompt_text = $this->args['text'] ?? '';
@@ -103,7 +101,7 @@ class Tone extends Route implements Router {
 		$prompt = apply_filters( 'apbe_tone_prompt', $prompt, $prompt_tone, $prompt_text );
 
 		return rest_ensure_response(
-			$ai->run(
+			$this->ai->run(
 				[
 					'content' => $prompt,
 				]

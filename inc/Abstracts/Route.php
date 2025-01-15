@@ -11,11 +11,28 @@
 namespace AiPlusBlockEditor\Abstracts;
 
 use AiPlusBlockEditor\Interfaces\Router;
+use AiPlusBlockEditor\Core\AI;
 
 /**
  * Route class.
  */
 abstract class Route implements Router {
+	/**
+	 * AI.
+	 *
+	 * @var AI
+	 */
+	public AI $ai;
+
+	/**
+	 * JSON args.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var array
+	 */
+	public array $args;
+
 	/**
 	 * Get, Post, Put, Patch, Delete.
 	 *
@@ -68,6 +85,7 @@ abstract class Route implements Router {
 	 * @return \WP_REST_Response|\WP_Error
 	 */
 	public function request( $request ) {
+		$this->ai      = new AI();
 		$this->request = $request;
 
 		return $this->response();
