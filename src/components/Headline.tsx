@@ -16,7 +16,7 @@ import Toast from '../components/Toast';
  *
  * @returns {JSX.Element}
  */
-const Headline = () => {
+const Headline = (): JSX.Element => {
   const[ headline, setHeadline ] = useState( '' );
   const[ isLoading, setIsLoading ] = useState( false );
   const { getCurrentPostId, getEditedPostContent } = select('core/editor');
@@ -26,7 +26,7 @@ const Headline = () => {
     // Display Toast.
     setIsLoading( true );
 
-    const { data } = await apiFetch(
+    const response = await apiFetch(
       {
         path: '/ai-plus-block-editor/v1/sidebar',
         method: 'POST',
@@ -37,6 +37,8 @@ const Headline = () => {
         },
       }
     );
+
+    const { data } = response as any;
 
     let limit = 1;
 

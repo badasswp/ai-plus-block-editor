@@ -48,7 +48,7 @@ export const filterBlockTypesWithAI = (settings: any) => {
       // Display Toast.
       setIsLoading( true );
 
-      const { data } = await apiFetch(
+      const response = await apiFetch(
         {
           path: '/ai-plus-block-editor/v1/tone',
           method: 'POST',
@@ -59,6 +59,8 @@ export const filterBlockTypesWithAI = (settings: any) => {
           },
         }
       );
+
+    const { data } = response as any;
 
       let limit = 1;
 
