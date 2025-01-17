@@ -20,7 +20,7 @@ import '../styles/app.scss';
  * @param {Object} settings  Original block settings
  * @returns {Object}         Filtered block settings
  */
-export const filterBlockTypesWithAI = (settings: any) => {
+export const filterBlockTypesWithAI = (settings: any): object => {
   const { name, edit } = settings;
 
   if ( 'core/paragraph' !== name ) {
