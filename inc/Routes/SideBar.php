@@ -21,7 +21,7 @@ class SideBar extends Route implements Router {
 	/**
 	 * Get, Post, Put, Patch, Delete.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @var string
 	 */
@@ -30,7 +30,7 @@ class SideBar extends Route implements Router {
 	/**
 	 * WP REST Endpoint e.g. /wp-json/ai-plus-block-editor/v1/sidebar.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @var string
 	 */
@@ -39,7 +39,7 @@ class SideBar extends Route implements Router {
 	/**
 	 * WP_REST_Request object.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @var \WP_REST_Request
 	 */
@@ -48,7 +48,7 @@ class SideBar extends Route implements Router {
 	/**
 	 * Response Callback.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @return \WP_REST_Response|\WP_Error
 	 */
@@ -74,7 +74,7 @@ class SideBar extends Route implements Router {
 	 * This method obtains the REST response using
 	 * the custom prompt.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1.0
 	 *
 	 * @return \WP_REST_Response|\WP_Error
 	 */
@@ -109,7 +109,7 @@ class SideBar extends Route implements Router {
 		/**
 		 * Filter SideBar prompt.
 		 *
-		 * @since 1.0.0
+		 * @since 1.1.0
 		 *
 		 * @param string $prompt         Prompt sent to AI LLM endpoint.
 		 * @param string $prompt_feature Feature sent.

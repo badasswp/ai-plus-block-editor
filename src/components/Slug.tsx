@@ -12,7 +12,7 @@ import Toast from '../components/Toast';
  * This Component returns the Slug
  * label and button.
  *
- * @since 1.0.0
+ * @since 1.1.0
  *
  * @returns {JSX.Element}
  */

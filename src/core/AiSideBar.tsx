@@ -16,7 +16,7 @@ import '../styles/app.scss';
  * This function returns a JSX component that comprises
  * the Plugin's Sidebar and controls.
  *
- * @since 1.0.0
+ * @since 1.1.0
  *
  * @returns {JSX.Element}
  */
