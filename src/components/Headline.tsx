@@ -30,7 +30,7 @@ const Headline = (): JSX.Element => {
   const content = getEditedPostContent();
 
   useEffect( () => {
-    setHeadline( getEditedPostAttribute( 'title' ) );
+    setHeadline( getEditedPostAttribute( 'meta' )['apbe_headline'] );
   }, [] )
 
   /**
