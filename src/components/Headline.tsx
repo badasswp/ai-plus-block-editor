@@ -76,6 +76,30 @@ const Headline = (): JSX.Element => {
     setIsLoading( false );
   }
 
+  /**
+   * This function fires when the user selects
+   * the AI generated result.
+   *
+   * @since 1.1.0
+   *
+   * @returns { void }
+   */
+  const handleSelection = (): void => {
+    let limit = 1;
+
+    const showAnimatedText = setInterval( () => {
+      if ( limit === headline.length ) {
+        clearInterval( showAnimatedText );
+      }
+      const editorHeadline = document.querySelector( '.editor-post-title' );
+      editorHeadline.innerHTML = headline.substring( 0, limit );
+      limit++;
+    }, 5 )
+
+    editPost( { title: headline } );
+    editPost( { meta: { apbe_headline: headline } } );
+  }
+
   return (
     <>
       <p><strong>{ __( 'Headline', 'ai-plus-block-editor' ) }</strong></p>
