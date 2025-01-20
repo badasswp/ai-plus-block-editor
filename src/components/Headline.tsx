@@ -42,7 +42,6 @@ const Headline = (): JSX.Element => {
    * @returns { void }
    */
   const handleClick = async (): Promise<void> => {
-    // Display Toast.
     setIsLoading( true );
 
     const response = await apiFetch(
@@ -63,17 +62,13 @@ const Headline = (): JSX.Element => {
     let limit = 1;
 
     const showAnimatedAiText = setInterval( () => {
-      // Clear Interval.
       if ( limit === caption.length ) {
         clearInterval( showAnimatedAiText );
       }
-
-      // Update the Headline.
       setHeadline( caption.substring( 0, limit ) );
       limit++;
     }, 5 )
 
-    // Hide Toast.
     setIsLoading( false );
   }
 
