@@ -33,7 +33,15 @@ const SEO = (): JSX.Element => {
     setKeywords( getEditedPostAttribute( 'meta' )['apbe_seo_keywords'] );
   }, [] )
 
-  const handleClick = async () => {
+  /**
+   * This function fires when the user clicks
+   * the `Generate` button.
+   *
+   * @since 1.1.0
+   *
+   * @returns { void }
+   */
+  const handleClick = async (): Promise<void> => {
     setIsLoading( true );
 
     const response = await apiFetch(
@@ -63,6 +71,14 @@ const SEO = (): JSX.Element => {
     setIsLoading( false );
   }
 
+  /**
+   * This function fires when the user selects
+   * the AI generated result.
+   *
+   * @since 1.1.0
+   *
+   * @returns { void }
+   */
   const handleSelection = (): void => {
     editPost( { meta: { apbe_seo_keywords: keywords } } );
   }
