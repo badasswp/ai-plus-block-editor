@@ -62,10 +62,10 @@ const Headline = (): JSX.Element => {
 
     let limit = 1;
 
-    const showAnimatedText = setInterval( () => {
+    const showAnimatedAiText = setInterval( () => {
       // Clear Interval.
       if ( limit === caption.length ) {
-        clearInterval( showAnimatedText );
+        clearInterval( showAnimatedAiText );
       }
 
       // Update the Headline.
@@ -88,9 +88,9 @@ const Headline = (): JSX.Element => {
   const handleSelection = (): void => {
     let limit = 1;
 
-    const showAnimatedText = setInterval( () => {
+    const showAnimatedAiText = setInterval( () => {
       if ( limit === headline.length ) {
-        clearInterval( showAnimatedText );
+        clearInterval( showAnimatedAiText );
       }
       const editorHeadline = document.querySelector( '.editor-post-title' );
       editorHeadline.innerHTML = headline.substring( 0, limit );
