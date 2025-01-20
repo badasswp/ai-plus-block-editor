@@ -33,7 +33,7 @@ class PostMeta extends Service implements Kernel {
 	public function __construct() {
 		$this->meta = [
 			'apbe_headline',
-			'apbe_seo_keywords'
+			'apbe_seo_keywords',
 		];
 	}
 
