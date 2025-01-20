@@ -1,7 +1,8 @@
 import { __ } from '@wordpress/i18n';
-import { select } from '@wordpress/data';
-import { Button, TextareaControl } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { check } from '@wordpress/icons';
+import { select, dispatch } from '@wordpress/data';
+import { Button, TextareaControl, Icon } from '@wordpress/components';
+import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
 import Toast from '../components/Toast';
@@ -18,9 +19,19 @@ import Toast from '../components/Toast';
  */
 const SEO = (): JSX.Element => {
   const[ keywords, setKeywords ] = useState( '' );
-  const[ isLoading, setIsLoading ] = useState( false );
-  const { getCurrentPostId, getEditedPostContent } = select('core/editor');
+  const [ isLoading, setIsLoading ] = useState( false );
+  const { editPost } = dispatch( 'core/editor' ) as any;
+  const {
+    getCurrentPostId,
+    getEditedPostAttribute,
+    getEditedPostContent,
+  } = select( 'core/editor' );
+
   const content = getEditedPostContent();
+
+  useEffect( () => {
+    setKeywords( getEditedPostAttribute( 'meta' )['apbe_seo_keywords'] );
+  }, [] )
 
   const handleClick = async () => {
     // Display Toast.
@@ -57,20 +68,32 @@ const SEO = (): JSX.Element => {
     setIsLoading( false );
   }
 
+  const handleSelection = (): void => {
+    editPost( { meta: { apbe_seo_keywords: keywords } } );
+  }
+
   return (
     <>
-      <p><strong>{ __( 'Keywords', 'ai-plus-block-editor' ) }</strong></p>
+      <p><strong>{ __( 'SEO Keywords', 'ai-plus-block-editor' ) }</strong></p>
       <TextareaControl
-        rows={ 2 }
+        rows={ 7 }
         value={ keywords }
         onChange={ e => console.log(e) }
       />
-      <Button
-        variant="primary"
-        onClick={ handleClick }
-      >
-        { __( 'Generate', 'ai-plus-block-editor' ) }
-      </Button>
+      <div className="apbe-button-group">
+        <Button
+          variant="primary"
+          onClick={ handleClick }
+        >
+          { __( 'Generate', 'ai-plus-block-editor' ) }
+        </Button>
+        <Button
+          variant="secondary"
+          onClick={ handleSelection }
+        >
+          <Icon icon={ check } />
+        </Button>
+      </div>
       <Toast
         message={ __( 'AI is generating text, please hold on for a bit...' ) }
         isLoading={ isLoading }
