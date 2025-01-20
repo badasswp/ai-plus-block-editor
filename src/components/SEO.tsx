@@ -10,8 +10,8 @@ import Toast from '../components/Toast';
 /**
  * SEO.
  *
- * This Component returns the SEO
- * keywords, label and button.
+ * This Component returns the SEO keywords,
+ * label and button.
  *
  * @since 1.1.0
  *
@@ -34,7 +34,6 @@ const SEO = (): JSX.Element => {
   }, [] )
 
   const handleClick = async () => {
-    // Display Toast.
     setIsLoading( true );
 
     const response = await apiFetch(
@@ -54,17 +53,13 @@ const SEO = (): JSX.Element => {
     let limit = 1;
 
     const displayWithEffect = setInterval( () => {
-      // Clear Interval.
       if ( limit === data.length ) {
         clearInterval( displayWithEffect );
       }
-
-      // Update the Keywords.
       setKeywords( data.substring( 0, limit ) );
       limit++;
     }, 5 )
 
-    // Hide Toast.
     setIsLoading( false );
   }
 
