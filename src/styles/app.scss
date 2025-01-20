@@ -46,6 +46,23 @@
 			}
 		}
 	}
+
+	&-button {
+		&-group {
+			display: flex;
+			justify-content: space-between;
+
+			button {
+				height: 38px;
+				border-radius: 3px;
+
+				&.is-secondary {
+					padding-left: 9px;
+					padding-right: 9px;
+				}
+			}
+		}
+	}
 }
 
 @keyframes slideUp {
