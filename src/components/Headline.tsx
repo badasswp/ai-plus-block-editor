@@ -58,6 +58,7 @@ const Headline = (): JSX.Element => {
     );
 
     const { data } = response as any;
+    const caption = data.trim().replace( /^"|"$/g, '' );
 
     let limit = 1;
 
