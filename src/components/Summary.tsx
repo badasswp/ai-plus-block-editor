@@ -1,7 +1,8 @@
 import { __ } from '@wordpress/i18n';
-import { select } from '@wordpress/data';
-import { Button, TextareaControl } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { check } from '@wordpress/icons'
+import { select, dispatch } from '@wordpress/data';
+import { Button, TextareaControl, Icon } from '@wordpress/components';
+import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
 import Toast from '../components/Toast';
@@ -19,11 +20,28 @@ import Toast from '../components/Toast';
 const Summary = (): JSX.Element => {
   const[ summary, setSummary ] = useState( '' );
   const[ isLoading, setIsLoading ] = useState( false );
-  const { getCurrentPostId, getEditedPostContent } = select('core/editor');
+  const { editPost } = dispatch( 'core/editor' ) as any;
+  const {
+    getCurrentPostId,
+    getEditedPostContent,
+    getEditedPostAttribute
+  } = select( 'core/editor' );
+
   const content = getEditedPostContent();
 
-  const handleClick = async () => {
-    // Display Toast.
+  useEffect( () => {
+    setSummary( getEditedPostAttribute( 'meta' )['apbe_summary'] );
+  }, [] )
+
+  /**
+   * This function fires when the user clicks
+   * the `Generate` button.
+   *
+   * @since 1.1.0
+   *
+   * @returns { void }
+   */
+  const handleClick = async (): Promise<void> => {
     setIsLoading( true );
 
     const response = await apiFetch(
@@ -42,35 +60,52 @@ const Summary = (): JSX.Element => {
 
     let limit = 1;
 
-    const displayWithEffect = setInterval( () => {
-      // Clear Interval.
+    const showAnimatedAiText = setInterval( () => {
       if ( limit === data.length ) {
-        clearInterval( displayWithEffect );
+        clearInterval( showAnimatedAiText );
       }
-
-      // Update the Summary.
       setSummary( data.substring( 0, limit ) );
       limit++;
     }, 5 )
 
-    // Hide Toast.
     setIsLoading( false );
+  }
+
+  /**
+   * This function fires when the user selects
+   * the AI generated result.
+   *
+   * @since 1.1.0
+   *
+   * @returns { void }
+   */
+  const handleSelection = (): void => {
+    editPost( { excerpt: summary } );
+    editPost( { meta: { apbe_summary: summary } } );
   }
 
   return (
     <>
       <p><strong>{ __( 'Summary', 'ai-plus-block-editor' ) }</strong></p>
       <TextareaControl
-        rows={ 2 }
+        rows={ 4 }
         value={ summary }
         onChange={ e => console.log(e) }
       />
-      <Button
-        variant="primary"
-        onClick={ handleClick }
-      >
-        { __( 'Generate', 'ai-plus-block-editor' ) }
-      </Button>
+      <div className="apbe-button-group">
+        <Button
+          variant="primary"
+          onClick={ handleClick }
+        >
+          { __( 'Generate', 'ai-plus-block-editor' ) }
+        </Button>
+        <Button
+          variant="secondary"
+          onClick={ handleSelection }
+        >
+          <Icon icon={ check } />
+        </Button>
+      </div>
       <Toast
         message={ __( 'AI is generating text, please hold on for a bit...' ) }
         isLoading={ isLoading }
