@@ -34,6 +34,8 @@ class PostMeta extends Service implements Kernel {
 		$this->meta = [
 			'apbe_headline',
 			'apbe_seo_keywords',
+			'apbe_slug',
+			'apbe_summary',
 		];
 	}
 
