@@ -11,7 +11,7 @@ You can also get the latest version from any of our [release tags](https://githu
 
 This plugin adds AI capabilities to the Block Editor.
 
-
+https://github.com/user-attachments/assets/93077898-ed42-4b48-b4e4-c3a2e23b55ac
 
 ### Headline
 
