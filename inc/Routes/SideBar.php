@@ -91,7 +91,7 @@ class SideBar extends Route implements Router {
 				break;
 
 			case 'slug':
-				$placeholder = 'Generate an appropriate %s that is SEO friendly, using the following content: %s';
+				$placeholder = 'Generate an appropriate %s that can be found easily by search engines, using the following content: %s';
 				break;
 
 			case 'keywords':
