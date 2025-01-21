@@ -42,6 +42,33 @@ public function custom_tone( $prompt, $prompt_tone, $prompt_text ): string {
 - prompt_text _`{string}`_ By default this will be a string that contains the __text__ sent to the AI LLM endpoint.
 <br/>
 
+#### `apbe_feature_prompt`
+
+This custom hook provides a simple way to filter the feature prompt used by the AI LLM endpoint.
+
+```php
+add_filter( 'apbe_feature_prompt', [ $this, 'custom_feature' ], 10, 3 );
+
+public function custom_feature( $prompt, $prompt_feature, $prompt_text ): string {
+    if ( 'slug' === $prompt_feature ) {
+        return sprintf(
+            'Generate an SEO friendly %s using the content: %s',
+            $prompt_feature,
+            $prompt_text
+        );
+    }
+
+    return $prompt;
+}
+```
+
+**Parameters**
+
+- prompt _`{string}`_ By default this will be a string that contains the __prompt__ sent to the AI LLM endpoint.
+- prompt_feature _`{string}`_ By default this will be a string that contains the __feature__ sent to the AI LLM endpoint.
+- prompt_text _`{string}`_ By default this will be a string that contains the __text__ sent to the AI LLM endpoint.
+<br/>
+
 #### `apbe_rest_routes`
 
 This custom hook (filter) provides the ability to add and modify the default REST routes in the plugin.
