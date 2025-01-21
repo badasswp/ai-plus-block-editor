@@ -1,7 +1,8 @@
 import { __ } from '@wordpress/i18n';
-import { select } from '@wordpress/data';
-import { Button, TextControl } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { check } from '@wordpress/icons';
+import { select, dispatch } from '@wordpress/data';
+import { Button, TextControl, Icon } from '@wordpress/components';
+import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
 import Toast from '../components/Toast';
@@ -17,13 +18,30 @@ import Toast from '../components/Toast';
  * @returns {JSX.Element}
  */
 const Slug = (): JSX.Element => {
-  const[ slug, setSlug ] = useState( '' );
-  const[ isLoading, setIsLoading ] = useState( false );
-  const { getCurrentPostId, getEditedPostContent } = select('core/editor');
+  const [ slug, setSlug ] = useState( '' );
+  const [ isLoading, setIsLoading ] = useState( false );
+  const { editPost } = dispatch( 'core/editor' ) as any;
+  const {
+    getCurrentPostId,
+    getEditedPostContent,
+    getEditedPostAttribute
+  } = select( 'core/editor' );
+
   const content = getEditedPostContent();
 
-  const handleClick = async () => {
-    // Display Toast.
+  useEffect( () => {
+    setSlug( getEditedPostAttribute( 'meta' )['apbe_slug'] );
+  }, [] )
+
+  /**
+   * This function fires when the user clicks
+   * the `Generate` button.
+   *
+   * @since 1.1.0
+   *
+   * @returns { void }
+   */
+  const handleClick = async (): Promise<void> => {
     setIsLoading( true );
 
     const response = await apiFetch(
@@ -39,22 +57,32 @@ const Slug = (): JSX.Element => {
     );
 
     const { data } = response as any;
+    const slashedSlug = ( '/' != data.charAt(0) ) ? `/${data}` : data;
 
     let limit = 1;
 
-    const displayWithEffect = setInterval( () => {
-      // Clear Interval.
-      if ( limit === data.length ) {
-        clearInterval( displayWithEffect );
+    const showAnimatedAiText = setInterval( () => {
+      if ( limit === slashedSlug.length ) {
+        clearInterval( showAnimatedAiText );
       }
-
-      // Update the Slug field.
-      setSlug( data.substring( 0, limit ) );
+      setSlug( slashedSlug.substring( 0, limit ) );
       limit++;
     }, 5 )
 
-    // Hide Toast.
     setIsLoading( false );
+  }
+
+  /**
+   * This function fires when the user selects
+   * the AI generated result.
+   *
+   * @since 1.1.0
+   *
+   * @returns { void }
+   */
+  const handleSelection = (): void => {
+    editPost( { slug } );
+    editPost( { meta: { apbe_slug: slug } } );
   }
 
   return (
@@ -66,12 +94,20 @@ const Slug = (): JSX.Element => {
         value={ slug }
         onChange={ () => { } }
       />
-      <Button
-        variant="primary"
-        onClick={ handleClick }
-      >
-        { __( 'Generate', 'ai-plus-block-editor' ) }
-      </Button>
+      <div className="apbe-button-group">
+        <Button
+          variant="primary"
+          onClick={ handleClick }
+        >
+          { __( 'Generate', 'ai-plus-block-editor' ) }
+        </Button>
+        <Button
+          variant="secondary"
+          onClick={ handleSelection }
+        >
+          <Icon icon={ check } />
+        </Button>
+      </div>
       <Toast
         message={ __( 'AI is generating text, please hold on for a bit...' ) }
         isLoading={ isLoading }
