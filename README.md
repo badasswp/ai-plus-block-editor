@@ -13,6 +13,11 @@ This plugin adds AI capabilities to the Block Editor.
 
 https://github.com/user-attachments/assets/93077898-ed42-4b48-b4e4-c3a2e23b55ac
 
+| Headline | Slug   |
+| :-       | :-     |
+| https://github.com/user-attachments/assets/7d8fa09c-900c-49cb-a4d4-ed73419377ba <br/><br/>| https://github.com/user-attachments/assets/a8d6df17-7c7d-49df-8a09-1c40b84e3487 <br/><br/>|
+<br/>
+
 ### Headline
 
 https://github.com/user-attachments/assets/7d8fa09c-900c-49cb-a4d4-ed73419377ba
