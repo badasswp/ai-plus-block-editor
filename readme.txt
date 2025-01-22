@@ -15,10 +15,49 @@ Add AI Capabilities to the Block Editor.
 1. Go to 'Plugins > Add New' on your WordPress admin dashboard.
 2. Search for 'AI + Block Editor' plugin from the official WordPress plugin repository.
 3. Click 'Install Now' and then 'Activate'.
+4. To get started, you would need to have an API key from your API Provider (for e.g. Open AI). Visit any of the AI provider sites to get one.
+5. If you have gotten your API key, you should save it into your plugin options page.
+6. Make sure to enable the checkbox for your API Provider for e.g. <strong>Enable Open AI</strong or any other as applicable to you.
 
 == Description ==
 
 Add AI Capabilities to the Block Editor.
+
+= ✔️ Features =
+
+Our plugin comes with everything you need to add AI capabilities to your Block Editor.
+
+✔️ <strong>Change Text Tone (casual, official, narrative, and so on...)</strong> in block editor.
+✔️ <strong>Generate Title/Headline</strong> using AI.
+✔️ <strong>Generate Summary/Excerpts</strong>.
+✔️ <strong>Generate SEO friendly URL Slugs</strong> for your post articles.
+✔️ <strong>Generate SEO Keywords</strong> to help with SEO optimisation.
+✔️ <strong>Shortcut Keys</strong> - CMD + SHIFT + A + I.
+✔️ Available in <strong>mutiple langauges</strong> such as Arabic, Chinese, Hebrew, Hindi, Russian, German, Italian, Croatian, Spanish & French languages.
+✔️ <strong>Backward compatible</strong>, works with most WP versions.
+
+= ✨ Getting Started =
+
+1. To get started, you would need to have an API key from your API Provider (for e.g. Open AI). Visit any of the AI provider sites to get one.
+
+2. If you have gotten your API key, you should save it into your plugin options page.
+
+3. Make sure to enable the checkbox for your API Provider for e.g. <strong>Enable Open AI</strong or any other as applicable to you.
+
+You can get a taste of how this works, by using the [demo](https://tastewp.com/create/NMS/8.0/6.7.0/ai-plus-block-editor/twentytwentythree?ni=true&origin=wp) link.
+
+= 🔌🎨 Plug and Play or Customize =
+
+The AI Plus Block Editor plugin is built to work right out of the box. Simply install, activate and start using.
+
+Want to add your personal touch? All of our documentation can be found [here](https://github.com/badasswp/ai-plus-block-editor). You can override the plugin's behaviour with custom logic of your own using [hooks](https://github.com/badasswp/ai-plus-block-editor?tab=readme-ov-file#hooks).
+
+== Screenshots ==
+
+1. Change Text Tone - AI Capabilities added to the Block editor's Toolbar.
+2. Headline, Summary, Slug, Keywords - AI Capabilities added to the Block editor's Sidebar.
+3. Options Page - Add API keys and select AI Provider.
+4. Sidebar Icon - Locate AI Sidebar feature on the top-right corner of screen.
 
 == Changelog ==
 
