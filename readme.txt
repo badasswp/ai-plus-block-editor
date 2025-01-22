@@ -33,6 +33,7 @@ Our plugin comes with everything you need to add AI capabilities to your Block E
 ✔️ <strong>Generate SEO friendly URL Slugs</strong> for your post articles.
 ✔️ <strong>Generate SEO Keywords</strong> to help with SEO optimisation.
 ✔️ <strong>Shortcut Keys</strong> - CMD + SHIFT + A + I.
+✔️ <strong>Custom Filters</strong> to help user <strong>modify AI prompts</strong>.
 ✔️ Available in <strong>mutiple langauges</strong> such as Arabic, Chinese, Hebrew, Hindi, Russian, German, Italian, Croatian, Spanish & French languages.
 ✔️ <strong>Backward compatible</strong>, works with most WP versions.
 
