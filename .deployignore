@@ -14,3 +14,9 @@ phpstan.neon
 src
 assets
 tests
+vendor/orhanerday/open-ai/files/assistant-file.txt
+vendor/orhanerday/open-ai/files/en-marvel-endgame.m4a
+vendor/orhanerday/open-ai/files/sample_file_1.jsonl
+vendor/orhanerday/open-ai/files/tr-baris-ozcan-youtuber.m4a
+vendor/orhanerday/open-ai/legal.md
+vendor/orhanerday/open-ai/openai-elephpant.svg
