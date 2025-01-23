@@ -88,10 +88,10 @@ const Slug = (): JSX.Element => {
     <>
       <p><strong>{ __( 'Slug', 'ai-plus-block-editor' ) }</strong></p>
       <TextControl
-        __nextHasNoMarginBottom
-        placeholder="/your-article-slug"
+        placeholder="your-article-slug"
         value={ slug }
         onChange={ text => setSlug( text ) }
+        __nextHasNoMarginBottom
       />
       <div className="apbe-button-group">
         <Button
