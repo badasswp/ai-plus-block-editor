@@ -102,6 +102,7 @@ const Headline = (): JSX.Element => {
         rows={ 4 }
         value={ headline }
         onChange={ e => console.log(e) }
+        __nextHasNoMarginBottom
       />
       <div className="apbe-button-group">
         <Button

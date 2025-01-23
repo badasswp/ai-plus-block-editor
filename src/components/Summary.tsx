@@ -91,6 +91,7 @@ const Summary = (): JSX.Element => {
         rows={ 4 }
         value={ summary }
         onChange={ e => console.log(e) }
+        __nextHasNoMarginBottom
       />
       <div className="apbe-button-group">
         <Button

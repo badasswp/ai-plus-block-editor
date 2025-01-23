@@ -26,10 +26,6 @@
 			justify-content: center;
 		}
 
-		input[type='text'] {
-			margin-bottom: 9px;
-		}
-
 		ul {
 			margin: 0;
 			padding: 0;
@@ -51,6 +47,7 @@
 		&-group {
 			display: flex;
 			justify-content: space-between;
+			margin-top: 8.5px;
 
 			button {
 				height: 38px;

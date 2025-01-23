@@ -90,6 +90,7 @@ const SEO = (): JSX.Element => {
         rows={ 7 }
         value={ keywords }
         onChange={ e => console.log(e) }
+        __nextHasNoMarginBottom
       />
       <div className="apbe-button-group">
         <Button
