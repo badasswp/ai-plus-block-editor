@@ -87,12 +87,11 @@ const Headline = (): JSX.Element => {
       if ( limit === headline.length ) {
         clearInterval( showAnimatedAiText );
       }
-      const editorHeadline = document.querySelector( '.editor-post-title' );
-      editorHeadline.innerHTML = headline.substring( 0, limit );
+      editPost( { title: headline.substring(0, limit) } );
       limit++;
     }, 5 )
 
-    editPost( { title: headline } );
+
     editPost( { meta: { apbe_headline: headline } } );
   }
 
