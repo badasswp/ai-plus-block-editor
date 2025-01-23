@@ -25,6 +25,16 @@ https://github.com/user-attachments/assets/93077898-ed42-4b48-b4e4-c3a2e23b55ac
 | <video src="https://github.com/user-attachments/assets/e9b5a583-0573-4a8c-bd2c-47a5f8071e23"/> <br/><br/>| <video src="https://github.com/user-attachments/assets/7e9435b1-f505-48bf-a029-2889a669c67d"/> <br/><br/>|
 <br/>
 
+## Getting Started
+
+To get started, you would need to have an API key of your own provided by AI Provider for e.g. Open AI. Head over to the URL below and follow the instructions to generate your personal API key:
+
+```
+https://platform.openai.com/api-keys
+```
+
+If you have done this successfully, you should have save these details into your __AI + Block Editor__ options page and you are ready to go!
+
 ### Hooks
 
 #### `apbe_tone_prompt`

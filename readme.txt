@@ -16,12 +16,13 @@ Save time and improve engagement with AI-powered insights directly within the Wo
 
 == Installation ==
 
-1. Go to 'Plugins > Add New' on your WordPress admin dashboard.
-2. Search for 'AI + Block Editor' plugin from the official WordPress plugin repository.
+1. Go to <strong>Plugins > Add New</strong> on your WordPress admin dashboard.
+2. Search for <strong>AI + Block Editor</strong> plugin from the official WordPress plugin repository.
 3. Click 'Install Now' and then 'Activate'.
-4. To get started, you would need to have an API key from your API Provider (for e.g. Open AI). Visit any of the AI provider sites to get one.
+4. To get started, you would need to have an API key from your API Provider. For e.g. Open AI is <a href="https://platform.openai.com/api-keys">https://platform.openai.com/api-keys</a>.
 5. If you have gotten your API key, you should save it into your plugin options page.
-6. Make sure to enable the checkbox for your API Provider for e.g. <strong>Enable Open AI</strong or any other as applicable to you.
+6. Make sure to enable the checkbox for your API Provider for e.g. <strong>Enable Open AI</strong> or any other as applicable to you.
+7. That's it! You're all set to start using AI.
 
 == Description ==
 
@@ -43,13 +44,13 @@ Our plugin comes with everything you need to add AI capabilities to your Block E
 
 = ✨ Getting Started =
 
-1. To get started, you would need to have an API key from your API Provider (for e.g. Open AI). Visit any of the AI provider sites to get one.
+1. To get started, you would need to have an API key from your API Provider. For e.g. Open AI is <a href="https://platform.openai.com/api-keys">https://platform.openai.com/api-keys</a>.
 
 2. If you have gotten your API key, you should save it into your plugin options page.
 
 3. Make sure to enable the checkbox for your API Provider for e.g. <strong>Enable Open AI</strong> or any other as applicable to you.
 
-You can get a taste of how this works, by using the [demo](https://tastewp.com/create/NMS/8.0/6.7.0/ai-plus-block-editor/twentytwentythree?ni=true&origin=wp) link.
+You can get a taste of how this plugin works, by using the [demo](https://tastewp.com/create/NMS/8.0/6.7.0/ai-plus-block-editor/twentytwentythree?ni=true&origin=wp) link.
 
 = 🔌🎨 Plug and Play or Customize =
 
