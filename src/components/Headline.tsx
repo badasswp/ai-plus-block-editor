@@ -62,7 +62,7 @@ const Headline = (): JSX.Element => {
     let limit = 1;
 
     const showAnimatedAiText = setInterval( () => {
-      if ( limit === caption.length ) {
+      if ( aiHeadline.length === limit ) {
         clearInterval( showAnimatedAiText );
       }
       setHeadline( aiHeadline.substring( 0, limit ) );

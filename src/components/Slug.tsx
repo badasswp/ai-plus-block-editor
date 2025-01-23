@@ -61,7 +61,7 @@ const Slug = (): JSX.Element => {
     let limit = 1;
 
     const showAnimatedAiText = setInterval( () => {
-      if ( limit === slashedSlug.length ) {
+      if ( aiSlug.length === limit ) {
         clearInterval( showAnimatedAiText );
       }
       setSlug( aiSlug.substring( 0, limit ) );

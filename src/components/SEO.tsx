@@ -61,7 +61,7 @@ const SEO = (): JSX.Element => {
     let limit = 1;
 
     const showAnimatedAiText = setInterval( () => {
-      if ( limit === data.length ) {
+      if ( aiKeywords.length === limit ) {
         clearInterval( showAnimatedAiText );
       }
       setKeywords( aiKeywords.substring( 0, limit ) );
