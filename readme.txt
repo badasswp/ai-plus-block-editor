@@ -67,6 +67,16 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.1.1 =
+* Fix: Resolved issues with onChange handler for AiSidebar fields.
+* Fix: Resolved issues with front slashed slug.
+* Fix: Resolved issue with deprecation warnings - nextHasNoMarginBottom.
+* Fix: Resolved issue related to null object on: editor-post-title update.
+* Fix: Resolved issue with dependency conflict `wp-edit-site`.
+* Chore: Updated build ignore list.
+* Chore: Updated README notes.
+* Tested up to WP 6.7.1.
+
 = 1.1.0 =
 * Feat: Added Headline, Summary, Slug, Keywords feature.
 * Feat: Added AI sidebar.
