@@ -101,7 +101,7 @@ const Headline = (): JSX.Element => {
       <TextareaControl
         rows={ 4 }
         value={ headline }
-        onChange={ e => console.log(e) }
+        onChange={ text => setHeadline( text ) }
         __nextHasNoMarginBottom
       />
       <div className="apbe-button-group">

@@ -92,7 +92,7 @@ const Slug = (): JSX.Element => {
         __nextHasNoMarginBottom
         placeholder="/your-article-slug"
         value={ slug }
-        onChange={ () => { } }
+        onChange={ text => setSlug( text ) }
       />
       <div className="apbe-button-group">
         <Button

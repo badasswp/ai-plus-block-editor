@@ -90,7 +90,7 @@ const Summary = (): JSX.Element => {
       <TextareaControl
         rows={ 4 }
         value={ summary }
-        onChange={ e => console.log(e) }
+        onChange={ text => setSummary( text ) }
         __nextHasNoMarginBottom
       />
       <div className="apbe-button-group">

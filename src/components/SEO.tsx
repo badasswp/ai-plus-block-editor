@@ -89,7 +89,7 @@ const SEO = (): JSX.Element => {
       <TextareaControl
         rows={ 7 }
         value={ keywords }
-        onChange={ e => console.log(e) }
+        onChange={ text => setKeywords( text ) }
         __nextHasNoMarginBottom
       />
       <div className="apbe-button-group">
