@@ -49,7 +49,7 @@ jobs:
     - name: Clean Up Files
       run: |
         while IFS= read -r file; do
-          git rm -r "$file"
+          git rm -rf "$file"
         done < .deployignore
         git rm .deployignore
         git clean -f yarn.lock
