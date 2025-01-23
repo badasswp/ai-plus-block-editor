@@ -1,6 +1,8 @@
 # ai-plus-block-editor
 Add AI Capabilities to the WP Block Editor.
 
+<img width="305" border="1" alt="ai-plus-block-editor" src="https://github.com/user-attachments/assets/7ed0cac1-8f7a-493d-91ee-4915e4600d2c" />
+
 ## Download
 
 Download from [WordPress plugin repository](https://wordpress.org/plugins/ai-plus-block-editor/).
