@@ -56,7 +56,7 @@ const Summary = (): JSX.Element => {
       }
     );
 
-    const { data } = response as any;
+    const { data: aiSummary } = response as any;
 
     let limit = 1;
 
@@ -64,7 +64,7 @@ const Summary = (): JSX.Element => {
       if ( limit === data.length ) {
         clearInterval( showAnimatedAiText );
       }
-      setSummary( data.substring( 0, limit ) );
+      setSummary( aiSummary.substring( 0, limit ) );
       limit++;
     }, 5 )
 

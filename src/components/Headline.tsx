@@ -57,7 +57,7 @@ const Headline = (): JSX.Element => {
     );
 
     const { data } = response as any;
-    const caption = data.trim().replace( /^"|"$/g, '' );
+    const aiHeadline = data.trim().replace( /^"|"$/g, '' );
 
     let limit = 1;
 
@@ -65,7 +65,7 @@ const Headline = (): JSX.Element => {
       if ( limit === caption.length ) {
         clearInterval( showAnimatedAiText );
       }
-      setHeadline( caption.substring( 0, limit ) );
+      setHeadline( aiHeadline.substring( 0, limit ) );
       limit++;
     }, 5 )
 

@@ -56,8 +56,7 @@ const Slug = (): JSX.Element => {
       }
     );
 
-    const { data } = response as any;
-    const slashedSlug = ( '/' != data.charAt(0) ) ? `/${data}` : data;
+    const { data: aiSlug } = response as any;
 
     let limit = 1;
 
@@ -65,7 +64,7 @@ const Slug = (): JSX.Element => {
       if ( limit === slashedSlug.length ) {
         clearInterval( showAnimatedAiText );
       }
-      setSlug( slashedSlug.substring( 0, limit ) );
+      setSlug( aiSlug.substring( 0, limit ) );
       limit++;
     }, 5 )
 
