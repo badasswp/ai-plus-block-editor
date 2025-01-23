@@ -36,7 +36,7 @@ https://platform.openai.com/api-keys
 
 If you have done this successfully, you should have save these details into your __AI + Block Editor__ options page and you are ready to go!
 
-<img width="976" alt="admin-page" src="https://github.com/user-attachments/assets/e301d2aa-a153-44db-8883-9f0be268d8f1" />
+<img width="1388" alt="ai-plus-admin-options-page" src="https://github.com/user-attachments/assets/4b62a212-5935-45a7-a784-b0d7443ed70f" />
 
 ## Hooks
 
