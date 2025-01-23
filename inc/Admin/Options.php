@@ -151,7 +151,7 @@ class Options {
 					'open_ai_token'  => [
 						'control'     => esc_attr( 'password' ),
 						'placeholder' => esc_attr( '' ),
-						'label'       => esc_html__( 'Token', 'ai-plus-block-editor' ),
+						'label'       => esc_html__( 'API Keys', 'ai-plus-block-editor' ),
 						'summary'     => esc_html__( 'e.g. ae2kgch7i', 'ai-plus-block-editor' ),
 					],
 				],
@@ -167,7 +167,7 @@ class Options {
 					'google_gemini_token'  => [
 						'control'     => esc_attr( 'text' ),
 						'placeholder' => esc_attr( '' ),
-						'label'       => esc_html__( 'Token', 'ai-plus-block-editor' ),
+						'label'       => esc_html__( 'API Keys', 'ai-plus-block-editor' ),
 						'summary'     => esc_html__( 'e.g. ae2kgch7i', 'ai-plus-block-editor' ),
 					],
 				],
