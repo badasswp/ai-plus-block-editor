@@ -1,7 +1,7 @@
 # ai-plus-block-editor
 Add AI Capabilities to the WP Block Editor.
 
-<img width="305" border="1" alt="ai-plus-block-editor" src="https://github.com/user-attachments/assets/7ed0cac1-8f7a-493d-91ee-4915e4600d2c" />
+<img width="446" alt="ai-plus-block-editor" src="https://github.com/user-attachments/assets/9e6dd4dd-1983-4723-9eb1-b3a77ac733ee">
 
 ## Download
 
@@ -36,7 +36,9 @@ https://platform.openai.com/api-keys
 
 If you have done this successfully, you should have save these details into your __AI + Block Editor__ options page and you are ready to go!
 
-### Hooks
+<img width="1388" alt="ai-plus-admin-options-page" src="https://github.com/user-attachments/assets/4b62a212-5935-45a7-a784-b0d7443ed70f" />
+
+## Hooks
 
 #### `apbe_tone_prompt`
 
