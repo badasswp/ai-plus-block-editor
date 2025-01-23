@@ -25,7 +25,6 @@ https://github.com/user-attachments/assets/93077898-ed42-4b48-b4e4-c3a2e23b55ac
 | Keywords | Summary   |
 | :-       | :-        |
 | <video src="https://github.com/user-attachments/assets/e9b5a583-0573-4a8c-bd2c-47a5f8071e23"/> <br/><br/>| <video src="https://github.com/user-attachments/assets/7e9435b1-f505-48bf-a029-2889a669c67d"/> <br/><br/>|
-<br/>
 
 ## Getting Started
 
