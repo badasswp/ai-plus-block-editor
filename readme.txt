@@ -10,6 +10,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Add AI Capabilities to the Block Editor.
 
+Generate <strong>Captions/Headlines</strong>, <strong>Summaries</strong>, <strong>Slugs</strong>, <strong>SEO Keywords</strong> using our amazing plugin. It is fast and very useful for users who need to quickly generate high-quality content with minimal effort. Whether you're a <strong>blogger</strong>, <strong>editor</strong>, or <strong>content creator</strong>, our plugin helps streamline your workflow by providing intelligent suggestions that enhance readability and SEO performance.
+
+Save time and improve engagement with AI-powered insights directly within the WordPress block editor.
+
 == Installation ==
 
 1. Go to 'Plugins > Add New' on your WordPress admin dashboard.
@@ -32,8 +36,8 @@ Our plugin comes with everything you need to add AI capabilities to your Block E
 ✔️ <strong>Generate Summary/Excerpts</strong>.
 ✔️ <strong>Generate SEO friendly URL Slugs</strong> for your post articles.
 ✔️ <strong>Generate SEO Keywords</strong> to help with SEO optimisation.
-✔️ <strong>Shortcut Keys</strong> - CMD + SHIFT + A + I.
 ✔️ <strong>Custom Filters</strong> to help user <strong>modify AI prompts</strong>.
+✔️ <strong>Shortcut Keys</strong> - CMD + SHIFT + A + I.
 ✔️ Available in <strong>mutiple langauges</strong> such as Arabic, Chinese, Hebrew, Hindi, Russian, German, Italian, Croatian, Spanish & French languages.
 ✔️ <strong>Backward compatible</strong>, works with most WP versions.
 
@@ -43,7 +47,7 @@ Our plugin comes with everything you need to add AI capabilities to your Block E
 
 2. If you have gotten your API key, you should save it into your plugin options page.
 
-3. Make sure to enable the checkbox for your API Provider for e.g. <strong>Enable Open AI</strong or any other as applicable to you.
+3. Make sure to enable the checkbox for your API Provider for e.g. <strong>Enable Open AI</strong> or any other as applicable to you.
 
 You can get a taste of how this works, by using the [demo](https://tastewp.com/create/NMS/8.0/6.7.0/ai-plus-block-editor/twentytwentythree?ni=true&origin=wp) link.
 

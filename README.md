@@ -9,7 +9,9 @@ You can also get the latest version from any of our [release tags](https://githu
 
 ## Why AI Plus Block Editor?
 
-This plugin adds AI capabilities to the Block Editor.
+Generate __Captions/Headlines__, __Summaries__, __Slugs__, __SEO Keywords__ using our amazing plugin. It is fast and very useful for users who need to quickly generate high-quality content with minimal effort. Whether you're a __blogger__, __editor__, or __content creator__, our plugin helps streamline your workflow by providing intelligent suggestions that enhance readability and SEO performance.
+
+Save time and improve engagement with AI-powered insights directly within the WordPress block editor.
 
 https://github.com/user-attachments/assets/93077898-ed42-4b48-b4e4-c3a2e23b55ac
 
