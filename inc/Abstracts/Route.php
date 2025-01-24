@@ -145,7 +145,7 @@ abstract class Route implements Router {
 	 * @param \WP_REST_Request $request Request Object.
 	 * @return bool|\WP_Error
 	 */
-	public function is_user_permissible( $request ): bool {
+	public function is_user_permissible( $request ) {
 		$http_error = rest_authorization_required_code();
 
 		if ( ! current_user_can( 'administrator' ) ) {

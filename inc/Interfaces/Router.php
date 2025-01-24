@@ -39,5 +39,5 @@ interface Router {
 	 * @param \WP_REST_Request $request Request Object.
 	 * @return bool|\WP_Error
 	 */
-	public function is_user_permissible( $request ): bool;
+	public function is_user_permissible( $request );
 }
