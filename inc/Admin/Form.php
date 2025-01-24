@@ -18,7 +18,7 @@ class Form {
 	 *
 	 * @var mixed[]
 	 */
-	private array $options;
+	protected array $options;
 
 	/**
 	 * Set up Constructor.
