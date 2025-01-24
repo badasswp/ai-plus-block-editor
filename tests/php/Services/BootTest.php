@@ -8,7 +8,6 @@ use AiPlusBlockEditor\Services\Boot;
 use AiPlusBlockEditor\Abstracts\Service;
 
 /**
- * @covers \AiPlusBlockEditor\Services\Boot::__construct
  * @covers \AiPlusBlockEditor\Services\Boot::register
  * @covers \AiPlusBlockEditor\Services\Boot::register_translation
  */

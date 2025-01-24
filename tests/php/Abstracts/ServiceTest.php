@@ -7,7 +7,6 @@ use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Abstracts\Service;
 
 /**
- * @covers \AiPlusBlockEditor\Abstracts\Service::__construct
  * @covers \AiPlusBlockEditor\Abstracts\Service::get_instance
  */
 class ServiceTest extends TestCase {
