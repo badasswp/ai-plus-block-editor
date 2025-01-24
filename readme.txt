@@ -10,10 +10,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Add AI Capabilities to the Block Editor.
 
-Generate <strong>Captions/Headlines</strong>, <strong>Summaries</strong>, <strong>Slugs</strong>, <strong>SEO Keywords</strong> using our amazing plugin. It is fast and very useful for users who need to quickly generate high-quality content with minimal effort. Whether you're a <strong>blogger</strong>, <strong>editor</strong>, or <strong>content creator</strong>, our plugin helps streamline your workflow by providing intelligent suggestions that enhance readability and SEO performance.
-
-Save time and improve engagement with AI-powered insights directly within the WordPress block editor.
-
 == Installation ==
 
 1. Go to <strong>Plugins > Add New</strong> on your WordPress admin dashboard.
@@ -27,6 +23,10 @@ Save time and improve engagement with AI-powered insights directly within the Wo
 == Description ==
 
 Add AI Capabilities to the Block Editor.
+
+Generate <strong>Captions/Headlines</strong>, <strong>Summaries</strong>, <strong>Slugs</strong>, <strong>SEO Keywords</strong> using our amazing plugin. It is fast and very useful for users who need to quickly generate high-quality content with minimal effort. Whether you're a <strong>blogger</strong>, <strong>editor</strong>, or <strong>content creator</strong>, our plugin helps streamline your workflow by providing intelligent suggestions that enhance readability and SEO performance.
+
+Save time and improve engagement with AI-powered insights directly within the WordPress block editor.
 
 = ✔️ Features =
 
