@@ -102,12 +102,12 @@ class Options {
 		return [
 			'heading' => esc_html__( 'Actions', 'ai-plus-block-editor' ),
 			'button'  => [
-				'name'  => 'watermark_my_images_save_settings',
+				'name'  => 'ai_plus_block_editor_save_settings',
 				'label' => esc_html__( 'Save Changes', 'ai-plus-block-editor' ),
 			],
 			'nonce'   => [
-				'name'   => 'watermark_my_images_settings_nonce',
-				'action' => 'watermark_my_images_settings_action',
+				'name'   => 'ai_plus_block_editor_settings_nonce',
+				'action' => 'ai_plus_block_editor_settings_action',
 			],
 		];
 	}
