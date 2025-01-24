@@ -17,6 +17,7 @@ use AiPlusBlockEditor\Admin\Form;
  * @covers \AiPlusBlockEditor\Admin\Form::get_setting
  * @covers \AiPlusBlockEditor\Admin\Form::get_form_control
  * @covers \AiPlusBlockEditor\Admin\Form::get_text_control
+ * @covers \AiPlusBlockEditor\Admin\Form::get_password_control
  * @covers \AiPlusBlockEditor\Admin\Form::get_checkbox_control
  * @covers \AiPlusBlockEditor\Admin\Form::get_select_control
  * @covers \AiPlusBlockEditor\Admin\Form::get_form_submit
@@ -333,6 +334,26 @@ class FormTest extends TestCase {
 
 		$this->assertSame(
 			'<input type="text" placeholder="Text Placeholder" value="Text Name" name="text_name"/>',
+			$control
+		);
+	}
+
+	public function test_get_password_control() {
+		$this->form->shouldReceive( 'get_setting' )
+			->times( 1 )->with( 'text_name' )->andReturn( 'Text Name' );
+
+		$control = $this->form->get_password_control(
+			[
+				'control'     => 'text',
+				'placeholder' => 'Text Placeholder',
+				'label'       => 'Text Label',
+				'summary'     => 'Text Summary',
+			],
+			'text_name'
+		);
+
+		$this->assertSame(
+			'<input type="password" placeholder="Text Placeholder" value="Text Name" name="text_name"/>',
 			$control
 		);
 	}
