@@ -85,7 +85,9 @@ abstract class Route implements Router {
 	 * @return \WP_REST_Response|\WP_Error
 	 */
 	public function request( $request ) {
-		$this->ai      = new AI();
+		// Register AI instance for use across routes.
+		$this->ai = $this->ai ?? new AI();
+
 		$this->request = $request;
 
 		return $this->response();
