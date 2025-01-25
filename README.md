@@ -120,9 +120,9 @@ public function custom_feature( $prompt, $prompt_feature, $prompt_text ): string
 This custom hook (filter) provides the ability to add and modify the default REST routes in the plugin.
 
 ```php
-add_filter( 'apbe_rest_routes', [ $this, 'custom_route' ], 10, 3 );
+add_filter( 'apbe_rest_routes', [ $this, 'custom_route' ], 10, 1 );
 
-public function custom_rest_routes( $rest_routes ) {
+public function custom_route( $rest_routes ) {
     if ( ! in_array( AiPostTitle::class, $rest_routes, true ) ) {
         $rest_routes[] = AiPostTitle::class;
     }
