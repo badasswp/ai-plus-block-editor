@@ -21,41 +21,34 @@ class AI implements Provider {
 	 *
 	 * @var Provider
 	 */
-	protected Provider $provider;
-
-	/**
-	 * Set Up.
-	 *
-	 * @since 1.0.0
-	 */
-	public function __construct() {
-		$ai = $this->get_provider();
-
-		// Register AI Provider.
-		switch ( $ai ) {
-			case 'OpenAI':
-				$this->provider = new OpenAI();
-				break;
-		}
-	}
+	public Provider $provider;
 
 	/**
 	 * Get Provider.
 	 *
+	 * This method gets the instance of the AI Provider
+	 * selected by the user.
+	 *
 	 * @since 1.0.0
 	 *
-	 * @return string
+	 * @return Provider
 	 */
-	protected function get_provider(): string {
+	protected function get_provider(): Provider {
 		$ai_provider = get_option( 'ai_plus_block_editor', [] )['ai_provider'] ?? '';
+
+		switch ( $ai_provider ) {
+			case 'OpenAI':
+				$ai_provider = new OpenAI();
+				break;
+		}
 
 		/**
 		 * Filter AI Provider.
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param string $ai_provider AI Provider.
-		 * @return string
+		 * @param Provider $ai_provider AI Provider.
+		 * @return Provider
 		 */
 		return apply_filters( 'apbe_ai_provider', $ai_provider );
 	}
@@ -69,6 +62,8 @@ class AI implements Provider {
 	 * @return string
 	 */
 	public function run( $payload ): string {
+		$this->provider = $this->get_provider();
+
 		return $this->provider->run( $payload );
 	}
 }
