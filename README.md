@@ -45,20 +45,22 @@ If you have done this successfully, you should have save these details into your
 This custom hook (filter) provides the ability to modify the AI Provider.
 
 ```php
+use YourNamespace\OpenAI_Extender;
+
 add_filter( 'apbe_ai_provider', [ $this, 'custom_ai_provider' ], 10, 1 );
 
 public function custom_ai_provider( $ai_provider ) {
-    if ( 'OpenAI' === $ai_provider ) {
-        $ai_provider = 'OpenAI_Extender'
+    if ( $ai_provider instanceOf OpenAI ) {
+        $ai_provider = new OpenAI_Extender();
     }
 
-    return (string) $ai_provider;
+    return $ai_provider;
 }
 ```
 
 **Parameters**
 
-- ai_provider _`{string}`_ By default this will be a string containing the key to the default AI provider selected by the user.
+- ai_provider _`{Provider}`_ By default this will be an instance of the Provider interface that MUST contain a `run` method implementation.
 <br/>
 
 #### `apbe_open_ai_args`
