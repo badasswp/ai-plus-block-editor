@@ -15,15 +15,6 @@ use AiPlusBlockEditor\Interfaces\Provider;
 
 class AI implements Provider {
 	/**
-	 * AI Provider.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @var Provider
-	 */
-	public Provider $provider;
-
-	/**
 	 * Get Provider.
 	 *
 	 * This method gets the instance of the AI Provider
@@ -62,8 +53,6 @@ class AI implements Provider {
 	 * @return string
 	 */
 	public function run( $payload ): string {
-		$this->provider = $this->get_provider();
-
-		return $this->provider->run( $payload );
+		return $this->get_provider()->run( $payload );
 	}
 }
