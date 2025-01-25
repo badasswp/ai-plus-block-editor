@@ -40,6 +40,27 @@ If you have done this successfully, you should have save these details into your
 
 ## Hooks
 
+#### `apbe_ai_provider`
+
+This custom hook (filter) provides the ability to modify the AI Provider.
+
+```php
+add_filter( 'apbe_ai_provider', [ $this, 'custom_ai_provider' ], 10, 1 );
+
+public function custom_ai_provider( $ai_provider ) {
+    if ( 'OpenAI' === $ai_provider ) {
+        $ai_provider = 'OpenAI_Extender'
+    }
+
+    return (string) $ai_provider;
+}
+```
+
+**Parameters**
+
+- ai_provider _`{string}`_ By default this will be a string containing the key to the default AI provider selected by the user.
+<br/>
+
 #### `apbe_tone_prompt`
 
 This custom hook provides a simple way to filter the tone used by the AI LLM endpoint.
