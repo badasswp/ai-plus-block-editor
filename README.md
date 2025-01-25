@@ -61,6 +61,30 @@ public function custom_ai_provider( $ai_provider ) {
 - ai_provider _`{string}`_ By default this will be a string containing the key to the default AI provider selected by the user.
 <br/>
 
+#### `apbe_open_ai_args`
+
+This custom hook (filter) provides the ability to modify the OpenAI args before it sent to the LLM.
+
+```php
+add_filter( 'apbe_open_ai_args', [ $this, 'custom_args' ], 10, 1 );
+
+public function custom_args( $args ) {
+    return wp_parse_args(
+        [
+            'model'       => 'gpt-4-turbo',
+            'temperature' => 1.5
+            'max_tokens'  => 1000,
+        ],
+        $args
+    )
+}
+```
+
+**Parameters**
+
+- args _`{array}`_ By default this will be an array containing the OpenAI default parameters.
+<br/>
+
 #### `apbe_tone_prompt`
 
 This custom hook provides a simple way to filter the tone used by the AI LLM endpoint.
