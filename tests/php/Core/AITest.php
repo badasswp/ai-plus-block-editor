@@ -8,8 +8,7 @@ use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Providers\OpenAI;
 
 /**
- * @covers \AiPlusBlockEditor\Abstracts\AI::__construct
- * @covers \AiPlusBlockEditor\Abstracts\AI::get_provider
+ * @covers \AiPlusBlockEditor\Core\AI::run
  */
 class AITest extends TestCase {
 	public AI $ai;
