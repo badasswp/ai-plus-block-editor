@@ -4,12 +4,13 @@ namespace AiPlusBlockEditor\Tests\Routes;
 
 use Mockery;
 use WP_Mock\Tools\TestCase;
+use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Routes\SideBar;
-use AiPlusBlockEditor\Abstracts\Service;
 
 /**
  * @covers \AiPlusBlockEditor\Routes\SideBar::response
  * @covers \AiPlusBlockEditor\Routes\SideBar::get_400_response
+ * @covers \AiPlusBlockEditor\Routes\SideBar::get_response
  */
 class SideBarTest extends TestCase {
 	public SideBar $sidebar;
@@ -68,7 +69,175 @@ class SideBarTest extends TestCase {
 
 		$sidebar->request = $request;
 
-		$this->assertInstanceOf( \WP_REST_Response::class, $sidebar->response() );
+		$this->assertSame( 'What a Wonderful World!', $sidebar->response() );
+		$this->assertConditionsMet();
+	}
+
+	public function test_get_response_passes_with_headline_feature() {
+		$sidebar = Mockery::mock( SideBar::class )->makePartial();
+		$sidebar->shouldAllowMockingProtectedMethods();
+
+		$ai = Mockery::mock( AI::class )->makePartial();
+		$ai->shouldAllowMockingProtectedMethods();
+
+		$sidebar->args = [
+			'feature' => 'headline',
+			'text' => 'Hello World!',
+		];
+
+		\WP_Mock::expectFilter(
+			'apbe_feature_prompt',
+			'Generate an appropriate headline in 1 paragraph, using the following content: Hello World!',
+			'headline',
+			'Hello World!'
+		);
+
+		\WP_Mock::userFunction( 'rest_ensure_response' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		$ai->shouldReceive( 'run' )
+			->with(
+				[
+					'content' => 'Generate an appropriate headline in 1 paragraph, using the following content: Hello World!',
+				]
+			)
+			->andReturn( 'What a Wonderful World!' );
+
+		$sidebar->ai = $ai;
+
+		$response = $sidebar->get_response();
+
+		$this->assertSame( $response, 'What a Wonderful World!' );
+		$this->assertConditionsMet();
+	}
+
+	public function test_get_response_passes_with_slug_feature() {
+		$sidebar = Mockery::mock( SideBar::class )->makePartial();
+		$sidebar->shouldAllowMockingProtectedMethods();
+
+		$ai = Mockery::mock( AI::class )->makePartial();
+		$ai->shouldAllowMockingProtectedMethods();
+
+		$sidebar->args = [
+			'feature' => 'slug',
+			'text' => 'Hello World!',
+		];
+
+		\WP_Mock::expectFilter(
+			'apbe_feature_prompt',
+			'Generate an appropriate slug that can be found easily by search engines, using the following content: Hello World!',
+			'slug',
+			'Hello World!'
+		);
+
+		\WP_Mock::userFunction( 'rest_ensure_response' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		$ai->shouldReceive( 'run' )
+			->with(
+				[
+					'content' => 'Generate an appropriate slug that can be found easily by search engines, using the following content: Hello World!',
+				]
+			)
+			->andReturn( 'What a Wonderful World!' );
+
+		$sidebar->ai = $ai;
+
+		$response = $sidebar->get_response();
+
+		$this->assertSame( $response, 'What a Wonderful World!' );
+		$this->assertConditionsMet();
+	}
+
+	public function test_get_response_passes_with_keywords_feature() {
+		$sidebar = Mockery::mock( SideBar::class )->makePartial();
+		$sidebar->shouldAllowMockingProtectedMethods();
+
+		$ai = Mockery::mock( AI::class )->makePartial();
+		$ai->shouldAllowMockingProtectedMethods();
+
+		$sidebar->args = [
+			'feature' => 'keywords',
+			'text' => 'Hello World!',
+		];
+
+		\WP_Mock::expectFilter(
+			'apbe_feature_prompt',
+			'Generate appropriate keywords that are SEO friendly and separated with commas, using the following content: Hello World!',
+			'keywords',
+			'Hello World!'
+		);
+
+		\WP_Mock::userFunction( 'rest_ensure_response' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		$ai->shouldReceive( 'run' )
+			->with(
+				[
+					'content' => 'Generate appropriate keywords that are SEO friendly and separated with commas, using the following content: Hello World!',
+				]
+			)
+			->andReturn( 'What a Wonderful World!' );
+
+		$sidebar->ai = $ai;
+
+		$response = $sidebar->get_response();
+
+		$this->assertSame( $response, 'What a Wonderful World!' );
+		$this->assertConditionsMet();
+	}
+
+	public function test_get_response_passes_with_summary_feature() {
+		$sidebar = Mockery::mock( SideBar::class )->makePartial();
+		$sidebar->shouldAllowMockingProtectedMethods();
+
+		$ai = Mockery::mock( AI::class )->makePartial();
+		$ai->shouldAllowMockingProtectedMethods();
+
+		$sidebar->args = [
+			'feature' => 'summary',
+			'text' => 'Hello World!',
+		];
+
+		\WP_Mock::expectFilter(
+			'apbe_feature_prompt',
+			'Generate an appropriate summary for the following content: Hello World!',
+			'summary',
+			'Hello World!'
+		);
+
+		\WP_Mock::userFunction( 'rest_ensure_response' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		$ai->shouldReceive( 'run' )
+			->with(
+				[
+					'content' => 'Generate an appropriate summary for the following content: Hello World!',
+				]
+			)
+			->andReturn( 'What a Wonderful World!' );
+
+		$sidebar->ai = $ai;
+
+		$response = $sidebar->get_response();
+
+		$this->assertSame( $response, 'What a Wonderful World!' );
 		$this->assertConditionsMet();
 	}
 }
