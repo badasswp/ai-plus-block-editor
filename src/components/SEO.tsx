@@ -44,7 +44,7 @@ const SEO = (): JSX.Element => {
   const handleClick = async (): Promise<void> => {
     setIsLoading( true );
 
-    const response = await apiFetch(
+    const aiKeywords: string = await apiFetch(
       {
         path: '/ai-plus-block-editor/v1/sidebar',
         method: 'POST',
@@ -56,10 +56,7 @@ const SEO = (): JSX.Element => {
       }
     );
 
-    const { data: aiKeywords } = response as any;
-
     let limit = 1;
-
     const showAnimatedAiText = setInterval( () => {
       if ( aiKeywords.length === limit ) {
         clearInterval( showAnimatedAiText );

@@ -44,7 +44,7 @@ const Headline = (): JSX.Element => {
   const handleClick = async (): Promise<void> => {
     setIsLoading( true );
 
-    const response = await apiFetch(
+    const response: string = await apiFetch(
       {
         path: '/ai-plus-block-editor/v1/sidebar',
         method: 'POST',
@@ -56,11 +56,9 @@ const Headline = (): JSX.Element => {
       }
     );
 
-    const { data } = response as any;
-    const aiHeadline = data.trim().replace( /^"|"$/g, '' );
+    const aiHeadline = response.trim().replace( /^"|"$/g, '' );
 
     let limit = 1;
-
     const showAnimatedAiText = setInterval( () => {
       if ( aiHeadline.length === limit ) {
         clearInterval( showAnimatedAiText );

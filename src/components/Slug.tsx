@@ -44,7 +44,7 @@ const Slug = (): JSX.Element => {
   const handleClick = async (): Promise<void> => {
     setIsLoading( true );
 
-    const response = await apiFetch(
+    const aiSlug: string = await apiFetch(
       {
         path: '/ai-plus-block-editor/v1/sidebar',
         method: 'POST',
@@ -56,10 +56,7 @@ const Slug = (): JSX.Element => {
       }
     );
 
-    const { data: aiSlug } = response as any;
-
     let limit = 1;
-
     const showAnimatedAiText = setInterval( () => {
       if ( aiSlug.length === limit ) {
         clearInterval( showAnimatedAiText );

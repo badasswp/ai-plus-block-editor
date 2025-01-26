@@ -44,7 +44,7 @@ const Summary = (): JSX.Element => {
   const handleClick = async (): Promise<void> => {
     setIsLoading( true );
 
-    const response = await apiFetch(
+    const aiSummary: string = await apiFetch(
       {
         path: '/ai-plus-block-editor/v1/sidebar',
         method: 'POST',
@@ -56,10 +56,7 @@ const Summary = (): JSX.Element => {
       }
     );
 
-    const { data: aiSummary } = response as any;
-
     let limit = 1;
-
     const showAnimatedAiText = setInterval( () => {
       if ( aiSummary.length === limit ) {
         clearInterval( showAnimatedAiText );
