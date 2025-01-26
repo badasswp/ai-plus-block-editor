@@ -82,7 +82,7 @@ class SideBarTest extends TestCase {
 
 		$sidebar->args = [
 			'feature' => 'headline',
-			'text' => 'Hello World!',
+			'text'    => 'Hello World!',
 		];
 
 		\WP_Mock::expectFilter(
@@ -124,7 +124,7 @@ class SideBarTest extends TestCase {
 
 		$sidebar->args = [
 			'feature' => 'slug',
-			'text' => 'Hello World!',
+			'text'    => 'Hello World!',
 		];
 
 		\WP_Mock::expectFilter(
@@ -166,7 +166,7 @@ class SideBarTest extends TestCase {
 
 		$sidebar->args = [
 			'feature' => 'keywords',
-			'text' => 'Hello World!',
+			'text'    => 'Hello World!',
 		];
 
 		\WP_Mock::expectFilter(
@@ -208,7 +208,7 @@ class SideBarTest extends TestCase {
 
 		$sidebar->args = [
 			'feature' => 'summary',
-			'text' => 'Hello World!',
+			'text'    => 'Hello World!',
 		];
 
 		\WP_Mock::expectFilter(
