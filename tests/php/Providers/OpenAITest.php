@@ -8,7 +8,8 @@ use AiPlusBlockEditor\Providers\OpenAI;
 use Orhanerday\OpenAi\OpenAi as ChatGPT;
 
 /**
- * @covers \AiPlusBlockEditor\Providers\OpenAI::register
+ * @covers \AiPlusBlockEditor\Providers\OpenAI::__construct
+ * @covers \AiPlusBlockEditor\Providers\OpenAI::get_default_args
  */
 class OpenAITest extends TestCase {
 	public OpenAI $open_ai;
