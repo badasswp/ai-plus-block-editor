@@ -9,6 +9,7 @@ use AiPlusBlockEditor\Abstracts\Service;
 
 /**
  * @covers \AiPlusBlockEditor\Routes\SideBar::response
+ * @covers \AiPlusBlockEditor\Routes\SideBar::get_400_response
  */
 class SideBarTest extends TestCase {
 	public SideBar $sidebar;
