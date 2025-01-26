@@ -15,25 +15,6 @@ use AiPlusBlockEditor\Interfaces\Provider;
 
 class OpenAI implements Provider {
 	/**
-	 * Open AI.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @var ChatGPT
-	 */
-	protected ChatGPT $ai;
-
-	/**
-	 * Set up.
-	 *
-	 * @since 1.0.0
-	 */
-	public function __construct() {
-		$ai_token = get_option( 'ai_plus_block_editor', [] )['open_ai_token'] ?? '';
-		$this->ai = new ChatGPT( $ai_token );
-	}
-
-	/**
 	 * Get Default Args.
 	 *
 	 * @since 1.0.0
@@ -71,10 +52,11 @@ class OpenAI implements Provider {
 	 * @return string
 	 */
 	public function run( $payload ): string {
+		$ai_keys = get_option( 'ai_plus_block_editor', [] )['open_ai_token'] ?? '';
 		$payload = wp_parse_args( [ 'role' => 'user' ], $payload );
 
 		$response = json_decode(
-			$this->ai->chat(
+			( new ChatGPT( $ai_keys ) )->chat(
 				wp_parse_args(
 					[ 'messages' => [ $payload ] ],
 					$this->get_default_args()
