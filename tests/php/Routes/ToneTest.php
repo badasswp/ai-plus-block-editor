@@ -4,12 +4,13 @@ namespace AiPlusBlockEditor\Tests\Routes;
 
 use Mockery;
 use WP_Mock\Tools\TestCase;
+use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Routes\Tone;
-use AiPlusBlockEditor\Abstracts\Service;
 
 /**
  * @covers \AiPlusBlockEditor\Routes\Tone::response
  * @covers \AiPlusBlockEditor\Routes\Tone::get_400_response
+ * @covers \AiPlusBlockEditor\Routes\Tone::get_response
  */
 class ToneTest extends TestCase {
 	public Tone $tone;
@@ -68,7 +69,49 @@ class ToneTest extends TestCase {
 
 		$tone->request = $request;
 
-		$this->assertInstanceOf( \WP_REST_Response::class, $tone->response() );
+		$this->assertSame( 'What a Wonderful World!', $tone->response() );
+		$this->assertConditionsMet();
+	}
+
+	public function test_get_response() {
+		$tone = Mockery::mock( Tone::class )->makePartial();
+		$tone->shouldAllowMockingProtectedMethods();
+
+		$ai = Mockery::mock( AI::class )->makePartial();
+		$ai->shouldAllowMockingProtectedMethods();
+
+		$tone->args = [
+			'tone' => 'Casual',
+			'text' => 'Hello World!',
+		];
+
+		\WP_Mock::expectFilter(
+			'apbe_tone_prompt',
+			'Using a Casual tone, generate a text I can use to substitute the following text: Hello World!',
+			'Casual',
+			'Hello World!'
+		);
+
+		\WP_Mock::userFunction( 'rest_ensure_response' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		$ai->shouldReceive( 'run' )
+			->with(
+				[
+					'content' => 'Using a Casual tone, generate a text I can use to substitute the following text: Hello World!',
+				]
+			)
+			->andReturn( 'What a Wonderful World!' );
+
+		$tone->ai = $ai;
+
+		$response = $tone->get_response();
+
+		$this->assertSame( $response, 'What a Wonderful World!' );
 		$this->assertConditionsMet();
 	}
 }
