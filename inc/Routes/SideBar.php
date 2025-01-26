@@ -65,7 +65,7 @@ class SideBar extends Route implements Router {
 			);
 		}
 
-		return new \WP_REST_Response( $this->get_response() );
+		return $this->get_response();
 	}
 
 	/**
