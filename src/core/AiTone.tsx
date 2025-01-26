@@ -48,7 +48,7 @@ export const filterBlockTypesWithAI = (settings: any): object => {
       // Display Toast.
       setIsLoading( true );
 
-      const response = await apiFetch(
+      const aiTone: string = await apiFetch(
         {
           path: '/ai-plus-block-editor/v1/tone',
           method: 'POST',
@@ -60,18 +60,17 @@ export const filterBlockTypesWithAI = (settings: any): object => {
         }
       );
 
-    const { data } = response as any;
-
       let limit = 1;
-
       const displayWithEffect = setInterval( () => {
-        // Clear Interval.
-        if ( limit === data.length ) {
+        if ( aiTone.length === limit ) {
           clearInterval( displayWithEffect );
         }
-
-        // Update Block Editor.
-        updateBlockAttributes( getSelectedBlockClientId(), { content: data.substring( 0, limit ) } );
+        updateBlockAttributes(
+          getSelectedBlockClientId(),
+          {
+            content: aiTone.substring( 0, limit )
+          }
+        );
         limit++;
       }, 5 )
 
