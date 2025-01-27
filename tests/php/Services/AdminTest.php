@@ -295,7 +295,7 @@ class AdminTest extends TestCase {
 			]
 		);
 
-		$reflection = new \ReflectionClass( $this->admin );
+		$reflection = new \ReflectionClass( Admin::class );
 
 		\WP_Mock::userFunction( 'plugin_dir_url' )
 			->with( $reflection->getFileName() )
