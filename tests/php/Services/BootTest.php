@@ -10,6 +10,7 @@ use AiPlusBlockEditor\Abstracts\Service;
 /**
  * @covers \AiPlusBlockEditor\Services\Boot::register
  * @covers \AiPlusBlockEditor\Services\Boot::register_translation
+ * @covers \AiPlusBlockEditor\Services\Boot::register_scripts
  */
 class BootTest extends TestCase {
 	public Boot $boot;
@@ -29,6 +30,48 @@ class BootTest extends TestCase {
 		\WP_Mock::expectActionAdded( 'enqueue_block_editor_assets', [ $this->boot, 'register_scripts' ] );
 
 		$this->boot->register();
+
+		$this->assertConditionsMet();
+	}
+
+	public function test_register_scripts() {
+		$boot = new \ReflectionClass( Boot::class );
+
+		\WP_Mock::userFunction( 'plugin_dir_url' )
+			->with( $boot->getFileName() )
+			->andReturn( 'https://example.com/wp-content/plugins/ai-plus-block-editor/inc/Services/' );
+
+		\WP_Mock::userFunction( 'plugin_dir_path' )
+			->with( $boot->getFileName() )
+			->andReturn( '/var/www/wp-content/plugins/ai-plus-block-editor/inc/Services/' );
+
+		\WP_Mock::userFunction( 'wp_enqueue_script' )
+			->with(
+				'ai-plus-block-editor',
+				'https://example.com/wp-content/plugins/ai-plus-block-editor/inc/Services/../../dist/app.js',
+				[
+					'wp-i18n',
+					'wp-element',
+					'wp-blocks',
+					'wp-components',
+					'wp-editor',
+					'wp-hooks',
+					'wp-compose',
+					'wp-plugins',
+					'wp-edit-post',
+				],
+				'1.1.0',
+				false,
+			);
+
+		\WP_Mock::userFunction( 'wp_set_script_translations' )
+			->with(
+				'ai-plus-block-editor',
+				'ai-plus-block-editor',
+				'/var/www/wp-content/plugins/ai-plus-block-editor/inc/Services/../../languages',
+			);
+
+		$this->boot->register_scripts();
 
 		$this->assertConditionsMet();
 	}
