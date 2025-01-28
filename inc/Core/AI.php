@@ -77,6 +77,6 @@ class AI implements Provider {
 				sprintf( 'Server Error: %s', $e->getMessage() ),
 				[ 'status' => 500 ]
 			);
-		};
+		}
 	}
 }
