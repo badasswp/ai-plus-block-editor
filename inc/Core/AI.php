@@ -29,7 +29,7 @@ class AI implements Provider {
 
 		switch ( $ai_provider ) {
 			case 'OpenAI':
-				$ai_provider = new OpenAI();
+				$ai_provider = OpenAI::class;
 				break;
 		}
 
