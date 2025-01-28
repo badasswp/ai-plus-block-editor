@@ -1,6 +1,8 @@
 # ai-plus-block-editor
 Add AI Capabilities to the WP Block Editor.
 
+[![Coverage Status](https://coveralls.io/repos/github/badasswp/ai-plus-block-editor/badge.svg?branch=master)](https://coveralls.io/github/badasswp/ai-plus-block-editor?branch=master)
+
 <img width="446" alt="ai-plus-block-editor" src="https://github.com/user-attachments/assets/9e6dd4dd-1983-4723-9eb1-b3a77ac733ee">
 
 ## Download
