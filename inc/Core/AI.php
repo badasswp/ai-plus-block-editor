@@ -33,15 +33,31 @@ class AI implements Provider {
 				break;
 		}
 
+		return $this->get_instance( new $ai_provider() );
+	}
+
+	/**
+	 * Get Provider Instance.
+	 *
+	 * This method presents us a work-around with
+	 * correctly mocking and writing tests for the
+	 * `get_provider` method.
+	 *
+	 * @since TBD
+	 *
+	 * @param Provider $provider
+	 * @return Provider
+	 */
+	protected function get_instance( Provider $provider ): Provider {
 		/**
 		 * Filter AI Provider.
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param Provider $ai_provider AI Provider.
+		 * @param Provider $provider AI Provider.
 		 * @return Provider
 		 */
-		return apply_filters( 'apbe_ai_provider', $ai_provider );
+		return apply_filters( 'apbe_ai_provider', $provider );
 	}
 
 	/**
