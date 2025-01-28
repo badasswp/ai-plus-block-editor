@@ -108,7 +108,7 @@ class AITest extends TestCase {
 			->times( 1 )
 			->with(
 				[
-					'content' => 'Do nothing...'
+					'content' => 'Do nothing...',
 				]
 			)
 			->andThrow(
