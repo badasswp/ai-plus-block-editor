@@ -37,7 +37,7 @@ class PostMetaTest extends TestCase {
 			->with(
 				[
 					'apbe_headline',
-					'abpe_seo_keywords',
+					'apbe_seo_keywords',
 					'apbe_slug',
 					'apbe_summary',
 				]
