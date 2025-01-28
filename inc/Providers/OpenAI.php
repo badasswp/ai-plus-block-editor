@@ -49,9 +49,9 @@ class OpenAI implements Provider {
 	 * @since 1.0.0
 	 *
 	 * @param mixed[] $payload JSON Payload.
-	 * @return string
+	 * @return string|\WP_Error
 	 */
-	public function run( $payload ): string {
+	public function run( $payload ) {
 		$ai_keys = get_option( 'ai_plus_block_editor', [] )['open_ai_token'] ?? '';
 		$payload = wp_parse_args( [ 'role' => 'user' ], $payload );
 
