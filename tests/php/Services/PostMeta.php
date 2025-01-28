@@ -48,14 +48,10 @@ class PostMetaTest extends TestCase {
 				]
 			);
 
-		$sidebar = new SideBar();
-
 		\WP_Mock::userFunction( 'register_post_meta' )
 			->with(
 				'',
-				[
-					'apbe_summary',
-				],
+				'apbe_summary',
 				[
 					'single'            => true,
 					'show_in_rest'      => true,
