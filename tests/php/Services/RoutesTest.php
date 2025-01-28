@@ -12,6 +12,7 @@ use AiPlusBlockEditor\Services\Routes;
  * @covers \AiPlusBlockEditor\Services\Routes::__construct
  * @covers \AiPlusBlockEditor\Services\Routes::register
  * @covers \AiPlusBlockEditor\Services\Routes::register_rest_routes
+ * @covers \AiPlusBlockEditor\Abstracts\Route::register_route
  */
 class RoutesTest extends TestCase {
 	public Routes $routes;
