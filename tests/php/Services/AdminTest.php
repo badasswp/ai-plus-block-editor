@@ -7,7 +7,6 @@ use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Services\Admin;
 
 /**
- * @covers \AiPlusBlockEditor\Core\Client::__construct
  * @covers \AiPlusBlockEditor\Services\Admin::__construct
  * @covers \AiPlusBlockEditor\Services\Admin::register
  * @covers \AiPlusBlockEditor\Services\Admin::register_options_menu
