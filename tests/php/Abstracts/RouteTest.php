@@ -6,6 +6,7 @@ use Mockery;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Abstracts\Route;
+use AiPlusBlockEditor\Interfaces\Provider;
 
 /**
  * @covers \AiPlusBlockEditor\Abstracts\Route::request
@@ -36,16 +37,36 @@ class RouteTest extends TestCase {
 		$request = Mockery::mock( \WP_REST_Request::class )->makePartial();
 		$request->shouldAllowMockingProtectedMethods();
 
-		$response = Mockery::mock( \WP_REST_Response::class )->makePartial();
-		$response->shouldAllowMockingProtectedMethods();
+		$wp_response = Mockery::mock( \WP_REST_Response::class )->makePartial();
+		$wp_response->shouldAllowMockingProtectedMethods();
+
+		$route->shouldReceive( 'get_ai_client' )
+			->with( $ai )
+			->andReturn( $wp_response );
 
 		$route->shouldReceive( 'response' )
 			->times( 1 )
-			->andReturn( $response );
+			->andReturn( $wp_response );
 
-		$route->ai = $ai;
+		$response = $route->request( $request );
 
-		$this->assertInstanceOf( \WP_REST_Response::class, $route->request( $request ) );
+		$this->assertConditionsMet();
+		$this->assertInstanceOf( AI::class, $route->ai );
+		$this->assertInstanceOf( \WP_REST_Response::class, $response );
+	}
+
+	public function test_get_ai_client() {
+		$route = Mockery::mock( Route::class )->makePartial();
+		$route->shouldAllowMockingProtectedMethods();
+
+		$ai = Mockery::mock( AI::class )->makePartial();
+		$ai->shouldAllowMockingProtectedMethods();
+
+		$ai_client = $route->get_ai_client( $ai );
+
+		$this->assertConditionsMet();
+		$this->assertSame( $ai, $ai_client );
+		$this->assertInstanceOf( Provider::class, $ai_client );
 	}
 
 	public function test_register_route() {
