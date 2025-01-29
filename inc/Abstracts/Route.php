@@ -11,6 +11,7 @@
 namespace AiPlusBlockEditor\Abstracts;
 
 use AiPlusBlockEditor\Interfaces\Router;
+use AiPlusBlockEditor\Interfaces\Provider;
 use AiPlusBlockEditor\Core\AI;
 
 /**
@@ -85,12 +86,22 @@ abstract class Route implements Router {
 	 * @return \WP_REST_Response|\WP_Error
 	 */
 	public function request( $request ) {
-		// Register AI instance for use across routes.
-		$this->ai = $this->ai ?? new AI();
-
+		$this->ai      = $this->get_ai_client( new AI() );
 		$this->request = $request;
 
 		return $this->response();
+	}
+
+	/**
+	 * Get AI Client.
+	 *
+	 * @since TBD
+	 *
+	 * @param Provider $provider
+	 * @return Provider
+	 */
+	protected function get_ai_client( Provider $provider ): Provider {
+		return $provider;
 	}
 
 	/**
