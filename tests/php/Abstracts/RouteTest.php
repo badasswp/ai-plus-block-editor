@@ -13,6 +13,7 @@ use AiPlusBlockEditor\Interfaces\Provider;
  * @covers \AiPlusBlockEditor\Abstracts\Route::register_route
  * @covers \AiPlusBlockEditor\Abstracts\Route::get_400_response
  * @covers \AiPlusBlockEditor\Abstracts\Route::is_user_permissible
+ * @covers \AiPlusBlockEditor\Abstracts\Route::get_ai_client
  */
 class RouteTest extends TestCase {
 	public Route $route;
