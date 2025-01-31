@@ -24,7 +24,8 @@ const Summary = (): JSX.Element => {
   const {
     getCurrentPostId,
     getEditedPostContent,
-    getEditedPostAttribute
+    getEditedPostAttribute,
+    savePost,
   } = select( 'core/editor' );
 
   const content = getEditedPostContent();
@@ -79,6 +80,7 @@ const Summary = (): JSX.Element => {
   const handleSelection = (): void => {
     editPost( { excerpt: summary } );
     editPost( { meta: { apbe_summary: summary } } );
+    savePost();
   }
 
   return (

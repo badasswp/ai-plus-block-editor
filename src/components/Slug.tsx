@@ -24,7 +24,8 @@ const Slug = (): JSX.Element => {
   const {
     getCurrentPostId,
     getEditedPostContent,
-    getEditedPostAttribute
+    getEditedPostAttribute,
+    savePost,
   } = select( 'core/editor' );
 
   const content = getEditedPostContent();
@@ -79,6 +80,7 @@ const Slug = (): JSX.Element => {
   const handleSelection = (): void => {
     editPost( { slug } );
     editPost( { meta: { apbe_slug: slug } } );
+    savePost();
   }
 
   return (

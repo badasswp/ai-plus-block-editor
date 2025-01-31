@@ -25,6 +25,7 @@ const Headline = (): JSX.Element => {
     getCurrentPostId,
     getEditedPostAttribute,
     getEditedPostContent,
+    savePost,
   } = select( 'core/editor' );
 
   const content = getEditedPostContent();
@@ -91,6 +92,7 @@ const Headline = (): JSX.Element => {
 
 
     editPost( { meta: { apbe_headline: headline } } );
+    savePost();
   }
 
   return (

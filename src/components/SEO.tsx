@@ -25,6 +25,7 @@ const SEO = (): JSX.Element => {
     getCurrentPostId,
     getEditedPostAttribute,
     getEditedPostContent,
+    savePost,
   } = select( 'core/editor' );
 
   const content = getEditedPostContent();
@@ -78,6 +79,7 @@ const SEO = (): JSX.Element => {
    */
   const handleSelection = (): void => {
     editPost( { meta: { apbe_seo_keywords: keywords } } );
+    savePost();
   }
 
   return (
