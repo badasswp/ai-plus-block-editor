@@ -55,15 +55,29 @@ class OpenAI implements Provider {
 		$ai_keys = get_option( 'ai_plus_block_editor', [] )['open_ai_token'] ?? '';
 		$payload = wp_parse_args( [ 'role' => 'user' ], $payload );
 
-		$response = json_decode(
-			( new ChatGPT( $ai_keys ) )->chat(
+		try {
+			$response = ( new ChatGPT( $ai_keys ) )->chat(
 				wp_parse_args(
 					[ 'messages' => [ $payload ] ],
 					$this->get_default_args()
 				)
-			),
-			true
-		);
+			);
+		} catch ( \Exception $e ) {
+			$error_msg = sprintf(
+				'Error: OpenAI API call failed... %s',
+				$e->getMessage()
+			);
+
+			error_log( $error_msg );
+
+			return new \WP_Error(
+				'ai-plus-block-editor-open-ai-error',
+				$error_msg,
+				[ 'status' => 500 ]
+			);
+		}
+
+		$response = json_decode( $response, true );
 
 		return $response['choices'][0]['message']['content'] ?? '';
 	}
