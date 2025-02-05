@@ -70,6 +70,7 @@ class OpenAI implements Provider {
 
 			error_log( $error_msg );
 
+			// Deal gracefully, with error.
 			return new \WP_Error(
 				'ai-plus-block-editor-open-ai-error',
 				$error_msg,
@@ -78,6 +79,15 @@ class OpenAI implements Provider {
 		}
 
 		$response = json_decode( $response, true );
+
+		// Deal gracefully, with error.
+		if ( is_null( $response ) ) {
+			return new \WP_Error(
+				'ai-plus-block-editor-json-error',
+				'Error: Malformed JSON output.',
+				[ 'status' => 500 ]
+			);
+		}
 
 		return $response['choices'][0]['message']['content'] ?? '';
 	}
