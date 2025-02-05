@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.2
+* Refactor: AI client instance, make interchangeable.
+* Fix: Minor syntax typos.
+* Chore: Updated README notes.
+* Test: Add more unit tests.
+* Tested up to WP 6.7.1.
+
 ## 1.1.1
 * Fix: Resolved issues with onChange handler for AiSidebar fields.
 * Fix: Resolved issues with front slashed slug.
