@@ -8,7 +8,7 @@ Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Add AI Capabilities to the Block Editor.
+Add AI Capabilities to the Block Editor. Generate Captions/Headlines, Summaries, Slugs, SEO Keywords using our amazing plugin.
 
 == Installation ==
 
