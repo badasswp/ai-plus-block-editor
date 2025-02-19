@@ -81,5 +81,4 @@ describe( 'Headline', () => {
     expect( selectButton ).toBeInTheDocument();
     expect( selectButton ).toBeInstanceOf( HTMLButtonElement );
   } );
-
 } );
