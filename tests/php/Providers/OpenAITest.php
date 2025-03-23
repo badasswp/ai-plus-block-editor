@@ -10,6 +10,7 @@ use Orhanerday\OpenAi\OpenAi as ChatGPT;
 /**
  * @covers \AiPlusBlockEditor\Providers\OpenAI::run
  * @covers \AiPlusBlockEditor\Providers\OpenAI::get_default_args
+ * @covers \AiPlusBlockEditor\Providers\OpenAI::get_json_error
  */
 class OpenAITest extends TestCase {
 	public OpenAI $open_ai;
@@ -61,12 +62,21 @@ class OpenAITest extends TestCase {
 		);
 	}
 
+	/**
+	 * @runInSeparateProcess
+	 *
+	 * This test is flaky because we cannot accurately
+	 * mock the 3rd party OpenAI class.
+	 */
 	public function test_run() {
 		$open_ai = Mockery::mock( OpenAI::class )->makePartial();
 		$open_ai->shouldAllowMockingProtectedMethods();
 
 		$chat_gpt = Mockery::mock( ChatGPT::class )->makePartial();
 		$chat_gpt->shouldAllowMockingProtectedMethods();
+
+		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error->shouldAllowMockingProtectedMethods();
 
 		$open_ai->shouldReceive( 'get_default_args' )
 			->andReturn(
@@ -103,7 +113,20 @@ class OpenAITest extends TestCase {
 			]
 		);
 
-		$this->assertSame( $response, '' );
+		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertConditionsMet();
+	}
+
+	public function test_get_json_error() {
+		$open_ai = Mockery::mock( OpenAI::class )->makePartial();
+		$open_ai->shouldAllowMockingProtectedMethods();
+
+		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error->shouldAllowMockingProtectedMethods();
+
+		$response = $open_ai->get_json_error( 'API Error...' );
+
+		$this->assertInstanceOf( \WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 }
