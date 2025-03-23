@@ -164,3 +164,32 @@ public function custom_route( $rest_routes ) {
 - rest_routes _`{array}`_ By default this will be an array containing the plugin's REST routes.
 <br/>
 
+---
+
+## Contribute
+
+Contributions are __welcome__ and will be fully __credited__. To contribute, please fork this repo and raise a PR (Pull Request) against the `master` branch.
+
+### Pre-requisites
+
+You should have the following tools before proceeding to the next steps:
+
+- Composer
+- Yarn
+- Docker
+
+To enable you start development, please run:
+
+```bash
+yarn start
+```
+
+This should spin up a local WP env instance for you to work with at:
+
+```bash
+http://apbe.localhost:5487
+```
+
+You should now have a functioning local WP env to work with.
+
+__Awesome!__ - Thanks for being interested in contributing your time and code to this project!
