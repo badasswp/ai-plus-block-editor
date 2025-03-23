@@ -68,6 +68,7 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 == Changelog ==
 
 = 1.2.0 =
+* Fix: Gracefully deal with WP REST error responses.
 * Feat: Add local development environment setup.
 * Fix: AI sidebar feature save buttons not working correctly.
 * Fix: Deal with the issue of super-imposed notices.
