@@ -21,8 +21,8 @@ import Toast from '../components/Toast';
 const Summary = (): JSX.Element => {
 	const [ summary, setSummary ] = useState( '' );
 	const [ isLoading, setIsLoading ] = useState( false );
-	const { removeNotice } = useDispatch( noticesStore );
 	const { editPost, savePost } = dispatch( 'core/editor' ) as any;
+	const { createErrorNotice, removeNotice } = useDispatch( noticesStore );
 	const { getCurrentPostId, getEditedPostContent, getEditedPostAttribute } =
 		select( 'core/editor' );
 
@@ -48,46 +48,51 @@ const Summary = (): JSX.Element => {
 		notices.forEach( ( notice ) => removeNotice( notice.id ) );
 		setIsLoading( true );
 
-		const aiSummary: string = await apiFetch( {
-			path: '/ai-plus-block-editor/v1/sidebar',
-			method: 'POST',
-			data: {
-				id: getCurrentPostId(),
-				text: content.text || content,
-				feature: 'summary',
-			},
-		} );
-
-		/**
-		 * This function returns a promise that resolves
-		 * to the AI generated summary when the Animation
-		 * responsible for showing same is completed.
-		 *
-		 * @since 1.2.0
-		 *
-		 * @return { Promise<string> } Animated text.
-		 */
-		const showAnimatedAiText = (): Promise< string > => {
-			let limit = 1;
-
-			return new Promise( ( resolve ) => {
-				const animatedTextInterval = setInterval( () => {
-					if ( aiSummary.length === limit ) {
-						clearInterval( animatedTextInterval );
-						resolve( aiSummary );
-					}
-					setSummary( aiSummary.substring( 0, limit ) );
-					limit++;
-				}, 5 );
+		try {
+			const aiSummary: string = await apiFetch( {
+				path: '/ai-plus-block-editor/v1/sidebar',
+				method: 'POST',
+				data: {
+					id: getCurrentPostId(),
+					text: content.text || content,
+					feature: 'summary',
+				},
 			} );
-		};
 
-		showAnimatedAiText().then( ( newSummary ) => {
-			editPost( { excerpt: newSummary } );
-			editPost( { meta: { apbe_summary: newSummary } } );
-		} );
+			/**
+			 * This function returns a promise that resolves
+			 * to the AI generated summary when the Animation
+			 * responsible for showing same is completed.
+			 *
+			 * @since 1.2.0
+			 *
+			 * @return { Promise<string> } Animated text.
+			 */
+			const showAnimatedAiText = (): Promise< string > => {
+				let limit = 1;
 
-		setIsLoading( false );
+				return new Promise( ( resolve ) => {
+					const animatedTextInterval = setInterval( () => {
+						if ( aiSummary.length === limit ) {
+							clearInterval( animatedTextInterval );
+							resolve( aiSummary );
+						}
+						setSummary( aiSummary.substring( 0, limit ) );
+						limit++;
+					}, 5 );
+				} );
+			};
+
+			showAnimatedAiText().then( ( newSummary ) => {
+				editPost( { excerpt: newSummary } );
+				editPost( { meta: { apbe_summary: newSummary } } );
+			} );
+
+			setIsLoading( false );
+		} catch ( e ) {
+			createErrorNotice( e.message );
+			setIsLoading( false );
+		}
 	};
 
 	/**

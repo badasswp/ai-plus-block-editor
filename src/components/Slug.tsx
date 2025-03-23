@@ -21,8 +21,8 @@ import Toast from '../components/Toast';
 const Slug = (): JSX.Element => {
 	const [ slug, setSlug ] = useState( '' );
 	const [ isLoading, setIsLoading ] = useState( false );
-	const { removeNotice } = useDispatch( noticesStore );
 	const { editPost, savePost } = dispatch( 'core/editor' ) as any;
+	const { createErrorNotice, removeNotice } = useDispatch( noticesStore );
 	const { getCurrentPostId, getEditedPostContent, getEditedPostAttribute } =
 		select( 'core/editor' );
 
@@ -48,46 +48,51 @@ const Slug = (): JSX.Element => {
 		notices.forEach( ( notice ) => removeNotice( notice.id ) );
 		setIsLoading( true );
 
-		const aiSlug: string = await apiFetch( {
-			path: '/ai-plus-block-editor/v1/sidebar',
-			method: 'POST',
-			data: {
-				id: getCurrentPostId(),
-				text: content.text || content,
-				feature: 'slug',
-			},
-		} );
-
-		/**
-		 * This function returns a promise that resolves
-		 * to the AI generated slug when the Animation responsible
-		 * for showing same is completed.
-		 *
-		 * @since 1.2.0
-		 *
-		 * @return { Promise<string> } Animated text.
-		 */
-		const showAnimatedAiText = (): Promise< string > => {
-			let limit = 1;
-
-			return new Promise( ( resolve ) => {
-				const animatedTextInterval = setInterval( () => {
-					if ( aiSlug.length === limit ) {
-						clearInterval( animatedTextInterval );
-						resolve( aiSlug );
-					}
-					setSlug( aiSlug.substring( 0, limit ) );
-					limit++;
-				}, 5 );
+		try {
+			const aiSlug: string = await apiFetch( {
+				path: '/ai-plus-block-editor/v1/sidebar',
+				method: 'POST',
+				data: {
+					id: getCurrentPostId(),
+					text: content.text || content,
+					feature: 'slug',
+				},
 			} );
-		};
 
-		showAnimatedAiText().then( ( newSlug ) => {
-			editPost( { slug: newSlug } );
-			editPost( { meta: { apbe_slug: newSlug } } );
-		} );
+			/**
+			 * This function returns a promise that resolves
+			 * to the AI generated slug when the Animation responsible
+			 * for showing same is completed.
+			 *
+			 * @since 1.2.0
+			 *
+			 * @return { Promise<string> } Animated text.
+			 */
+			const showAnimatedAiText = (): Promise< string > => {
+				let limit = 1;
 
-		setIsLoading( false );
+				return new Promise( ( resolve ) => {
+					const animatedTextInterval = setInterval( () => {
+						if ( aiSlug.length === limit ) {
+							clearInterval( animatedTextInterval );
+							resolve( aiSlug );
+						}
+						setSlug( aiSlug.substring( 0, limit ) );
+						limit++;
+					}, 5 );
+				} );
+			};
+
+			showAnimatedAiText().then( ( newSlug ) => {
+				editPost( { slug: newSlug } );
+				editPost( { meta: { apbe_slug: newSlug } } );
+			} );
+
+			setIsLoading( false );
+		} catch ( e ) {
+			createErrorNotice( e.message );
+			setIsLoading( false );
+		}
 	};
 
 	/**

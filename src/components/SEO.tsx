@@ -21,8 +21,8 @@ import Toast from '../components/Toast';
 const SEO = (): JSX.Element => {
 	const [ keywords, setKeywords ] = useState( '' );
 	const [ isLoading, setIsLoading ] = useState( false );
-	const { removeNotice } = useDispatch( noticesStore );
 	const { editPost, savePost } = dispatch( 'core/editor' ) as any;
+	const { createErrorNotice, removeNotice } = useDispatch( noticesStore );
 	const { getCurrentPostId, getEditedPostAttribute, getEditedPostContent } =
 		select( 'core/editor' );
 
@@ -48,45 +48,50 @@ const SEO = (): JSX.Element => {
 		notices.forEach( ( notice ) => removeNotice( notice.id ) );
 		setIsLoading( true );
 
-		const aiKeywords: string = await apiFetch( {
-			path: '/ai-plus-block-editor/v1/sidebar',
-			method: 'POST',
-			data: {
-				id: getCurrentPostId(),
-				text: content.text || content,
-				feature: 'keywords',
-			},
-		} );
-
-		/**
-		 * This function returns a promise that resolves
-		 * to the AI generated SEO keywords when the Animation
-		 * responsible for showing same is completed.
-		 *
-		 * @since 1.2.0
-		 *
-		 * @return { Promise<string> } Animated text.
-		 */
-		const showAnimatedAiText = (): Promise< string > => {
-			let limit = 1;
-
-			return new Promise( ( resolve ) => {
-				const animatedTextInterval = setInterval( () => {
-					if ( aiKeywords.length === limit ) {
-						clearInterval( animatedTextInterval );
-						resolve( aiKeywords );
-					}
-					setKeywords( aiKeywords.substring( 0, limit ) );
-					limit++;
-				}, 5 );
+		try {
+			const aiKeywords: string = await apiFetch( {
+				path: '/ai-plus-block-editor/v1/sidebar',
+				method: 'POST',
+				data: {
+					id: getCurrentPostId(),
+					text: content.text || content,
+					feature: 'keywords',
+				},
 			} );
-		};
 
-		showAnimatedAiText().then( ( newKeywords ) => {
-			editPost( { meta: { apbe_seo_keywords: newKeywords } } );
-		} );
+			/**
+			 * This function returns a promise that resolves
+			 * to the AI generated SEO keywords when the Animation
+			 * responsible for showing same is completed.
+			 *
+			 * @since 1.2.0
+			 *
+			 * @return { Promise<string> } Animated text.
+			 */
+			const showAnimatedAiText = (): Promise< string > => {
+				let limit = 1;
 
-		setIsLoading( false );
+				return new Promise( ( resolve ) => {
+					const animatedTextInterval = setInterval( () => {
+						if ( aiKeywords.length === limit ) {
+							clearInterval( animatedTextInterval );
+							resolve( aiKeywords );
+						}
+						setKeywords( aiKeywords.substring( 0, limit ) );
+						limit++;
+					}, 5 );
+				} );
+			};
+
+			showAnimatedAiText().then( ( newKeywords ) => {
+				editPost( { meta: { apbe_seo_keywords: newKeywords } } );
+			} );
+
+			setIsLoading( false );
+		} catch ( e ) {
+			createErrorNotice( e.message );
+			setIsLoading( false );
+		}
 	};
 
 	/**
