@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.2.0
+* Enforce WP linting style across plugin.
+
 ## 1.1.2
 * Refactor: AI client instance, make interchangeable.
 * Fix: Minor syntax typos.
