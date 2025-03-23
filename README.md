@@ -190,6 +190,6 @@ This should spin up a local WP env instance for you to work with at:
 http://apbe.localhost:5487
 ```
 
-You should now have a functioning local WP env to work with.
+You should now have a functioning local WP env to work with. To login to the `wp-admin` backend, please username as `admin` & password as `password`.
 
 __Awesome!__ - Thanks for being interested in contributing your time and code to this project!
