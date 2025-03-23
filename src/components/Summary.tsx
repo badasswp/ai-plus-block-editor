@@ -1,8 +1,9 @@
 import { __ } from '@wordpress/i18n';
 import { check } from '@wordpress/icons';
-import { select, dispatch } from '@wordpress/data';
-import { Button, TextareaControl, Icon } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
+import { store as noticesStore } from '@wordpress/notices';
+import { Button, TextareaControl, Icon } from '@wordpress/components';
+import { select, dispatch, useSelect, useDispatch } from '@wordpress/data';
 import apiFetch from '@wordpress/api-fetch';
 
 import Toast from '../components/Toast';
@@ -20,11 +21,16 @@ import Toast from '../components/Toast';
 const Summary = (): JSX.Element => {
 	const [ summary, setSummary ] = useState( '' );
 	const [ isLoading, setIsLoading ] = useState( false );
+	const { removeNotice } = useDispatch( noticesStore );
 	const { editPost, savePost } = dispatch( 'core/editor' ) as any;
 	const { getCurrentPostId, getEditedPostContent, getEditedPostAttribute } =
 		select( 'core/editor' );
 
 	const content = getEditedPostContent();
+	const notices = useSelect(
+		( use ) => use( noticesStore ).getNotices(),
+		[]
+	);
 
 	useEffect( () => {
 		setSummary( getEditedPostAttribute( 'meta' ).apbe_summary );
@@ -39,6 +45,7 @@ const Summary = (): JSX.Element => {
 	 * @return { void }
 	 */
 	const handleClick = async (): Promise< void > => {
+		notices.forEach( ( notice ) => removeNotice( notice.id ) );
 		setIsLoading( true );
 
 		const aiSummary: string = await apiFetch( {

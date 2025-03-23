@@ -1,7 +1,11 @@
 # Changelog
 
 ## 1.2.0
-* Enforce WP linting style across plugin.
+* Feat: Add local development environment setup.
+* Fix: AI sidebar feature save buttons not working correctly.
+* Fix: Deal with the issue of super-imposed notices.
+* Chore: Enforce WP linting style across plugin.
+* Tested up to WP 6.7.2.
 
 ## 1.1.2
 * Refactor: AI client instance, make interchangeable.
