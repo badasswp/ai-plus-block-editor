@@ -53,14 +53,33 @@ const Headline = (): JSX.Element => {
 
 		const aiHeadline = response.trim().replace( /^"|"$/g, '' );
 
-		let limit = 1;
-		const showAnimatedAiText = setInterval( () => {
-			if ( aiHeadline.length === limit ) {
-				clearInterval( showAnimatedAiText );
-			}
-			setHeadline( aiHeadline.substring( 0, limit ) );
-			limit++;
-		}, 5 );
+		/**
+		 * This function returns a promise that resolves
+		 * to the AI generated headline when the Animation
+		 * responsible for showing same is completed.
+		 *
+		 * @since 1.2.0
+		 *
+		 * @return { Promise<string> } Animated text.
+		 */
+		const showAnimatedAiText = (): Promise< string > => {
+			let limit = 1;
+
+			return new Promise( ( resolve ) => {
+				const animatedTextInterval = setInterval( () => {
+					if ( aiHeadline.length === limit ) {
+						clearInterval( animatedTextInterval );
+						resolve( aiHeadline );
+					}
+					setHeadline( aiHeadline.substring( 0, limit ) );
+					limit++;
+				}, 5 );
+			} );
+		};
+
+		showAnimatedAiText().then( ( newHeadline ) => {
+			editPost( { meta: { apbe_headline: newHeadline } } );
+		} );
 
 		setIsLoading( false );
 	};

@@ -51,14 +51,34 @@ const Summary = (): JSX.Element => {
 			},
 		} );
 
-		let limit = 1;
-		const showAnimatedAiText = setInterval( () => {
-			if ( aiSummary.length === limit ) {
-				clearInterval( showAnimatedAiText );
-			}
-			setSummary( aiSummary.substring( 0, limit ) );
-			limit++;
-		}, 5 );
+		/**
+		 * This function returns a promise that resolves
+		 * to the AI generated summary when the Animation
+		 * responsible for showing same is completed.
+		 *
+		 * @since 1.2.0
+		 *
+		 * @return { Promise<string> } Animated text.
+		 */
+		const showAnimatedAiText = (): Promise< string > => {
+			let limit = 1;
+
+			return new Promise( ( resolve ) => {
+				const animatedTextInterval = setInterval( () => {
+					if ( aiSummary.length === limit ) {
+						clearInterval( animatedTextInterval );
+						resolve( aiSummary );
+					}
+					setSummary( aiSummary.substring( 0, limit ) );
+					limit++;
+				}, 5 );
+			} );
+		};
+
+		showAnimatedAiText().then( ( newSummary ) => {
+			editPost( { excerpt: newSummary } );
+			editPost( { meta: { apbe_summary: newSummary } } );
+		} );
 
 		setIsLoading( false );
 	};

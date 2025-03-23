@@ -51,14 +51,33 @@ const SEO = (): JSX.Element => {
 			},
 		} );
 
-		let limit = 1;
-		const showAnimatedAiText = setInterval( () => {
-			if ( aiKeywords.length === limit ) {
-				clearInterval( showAnimatedAiText );
-			}
-			setKeywords( aiKeywords.substring( 0, limit ) );
-			limit++;
-		}, 5 );
+		/**
+		 * This function returns a promise that resolves
+		 * to the AI generated SEO keywords when the Animation
+		 * responsible for showing same is completed.
+		 *
+		 * @since 1.2.0
+		 *
+		 * @return { Promise<string> } Animated text.
+		 */
+		const showAnimatedAiText = (): Promise< string > => {
+			let limit = 1;
+
+			return new Promise( ( resolve ) => {
+				const animatedTextInterval = setInterval( () => {
+					if ( aiKeywords.length === limit ) {
+						clearInterval( animatedTextInterval );
+						resolve( aiKeywords );
+					}
+					setKeywords( aiKeywords.substring( 0, limit ) );
+					limit++;
+				}, 5 );
+			} );
+		};
+
+		showAnimatedAiText().then( ( newKeywords ) => {
+			editPost( { meta: { apbe_seo_keywords: newKeywords } } );
+		} );
 
 		setIsLoading( false );
 	};
