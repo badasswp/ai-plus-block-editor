@@ -1,8 +1,8 @@
 # Changelog
 
 ## 1.2.0
-* Fix: Gracefully deal with WP REST error responses.
 * Feat: Add local development environment setup.
+* Fix: Gracefully deal with WP REST error responses.
 * Fix: AI sidebar feature save buttons not working correctly.
 * Fix: Deal with the issue of super-imposed notices.
 * Chore: Enforce WP linting style across plugin.
