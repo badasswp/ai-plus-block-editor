@@ -20,13 +20,9 @@ import Toast from '../components/Toast';
 const Headline = (): JSX.Element => {
 	const [ headline, setHeadline ] = useState( '' );
 	const [ isLoading, setIsLoading ] = useState( false );
-	const { editPost } = dispatch( 'core/editor' ) as any;
-	const {
-		getCurrentPostId,
-		getEditedPostAttribute,
-		getEditedPostContent,
-		savePost,
-	} = select( 'core/editor' );
+	const { editPost, savePost } = dispatch( 'core/editor' ) as any;
+	const { getCurrentPostId, getEditedPostAttribute, getEditedPostContent } =
+		select( 'core/editor' );
 
 	const content = getEditedPostContent();
 
@@ -57,14 +53,33 @@ const Headline = (): JSX.Element => {
 
 		const aiHeadline = response.trim().replace( /^"|"$/g, '' );
 
-		let limit = 1;
-		const showAnimatedAiText = setInterval( () => {
-			if ( aiHeadline.length === limit ) {
-				clearInterval( showAnimatedAiText );
-			}
-			setHeadline( aiHeadline.substring( 0, limit ) );
-			limit++;
-		}, 5 );
+		/**
+		 * This function returns a promise that resolves
+		 * to the AI generated headline when the Animation
+		 * responsible for showing same is completed.
+		 *
+		 * @since 1.2.0
+		 *
+		 * @return { Promise<string> } Animated text.
+		 */
+		const showAnimatedAiText = (): Promise< string > => {
+			let limit = 1;
+
+			return new Promise( ( resolve ) => {
+				const animatedTextInterval = setInterval( () => {
+					if ( aiHeadline.length === limit ) {
+						clearInterval( animatedTextInterval );
+						resolve( aiHeadline );
+					}
+					setHeadline( aiHeadline.substring( 0, limit ) );
+					limit++;
+				}, 5 );
+			} );
+		};
+
+		showAnimatedAiText().then( ( newHeadline ) => {
+			editPost( { meta: { apbe_headline: newHeadline } } );
+		} );
 
 		setIsLoading( false );
 	};
@@ -80,16 +95,32 @@ const Headline = (): JSX.Element => {
 	const handleSelection = (): void => {
 		let limit = 1;
 
-		const showAnimatedAiText = setInterval( () => {
-			if ( limit === headline.length ) {
-				clearInterval( showAnimatedAiText );
-			}
-			editPost( { title: headline.substring( 0, limit ) } );
-			limit++;
-		}, 5 );
+		/**
+		 * This function returns a promise that
+		 * resolves to the headline when the Animation responsible
+		 * for showing the headline is completed.
+		 *
+		 * @since 1.2.0
+		 *
+		 * @return { Promise<string> } Animated text.
+		 */
+		const showAnimatedAiText = (): Promise< string > => {
+			return new Promise( ( resolve ) => {
+				const animatedTextInterval = setInterval( () => {
+					if ( limit === headline.length ) {
+						clearInterval( animatedTextInterval );
+						resolve( headline );
+					}
+					editPost( { title: headline.substring( 0, limit ) } );
+					limit++;
+				}, 5 );
+			} );
+		};
 
-		editPost( { meta: { apbe_headline: headline } } );
-		savePost();
+		showAnimatedAiText().then( ( newHeadline ) => {
+			editPost( { meta: { apbe_headline: newHeadline } } );
+			savePost();
+		} );
 	};
 
 	return (

@@ -20,13 +20,9 @@ import Toast from '../components/Toast';
 const Slug = (): JSX.Element => {
 	const [ slug, setSlug ] = useState( '' );
 	const [ isLoading, setIsLoading ] = useState( false );
-	const { editPost } = dispatch( 'core/editor' ) as any;
-	const {
-		getCurrentPostId,
-		getEditedPostContent,
-		getEditedPostAttribute,
-		savePost,
-	} = select( 'core/editor' );
+	const { editPost, savePost } = dispatch( 'core/editor' ) as any;
+	const { getCurrentPostId, getEditedPostContent, getEditedPostAttribute } =
+		select( 'core/editor' );
 
 	const content = getEditedPostContent();
 
@@ -55,14 +51,34 @@ const Slug = (): JSX.Element => {
 			},
 		} );
 
-		let limit = 1;
-		const showAnimatedAiText = setInterval( () => {
-			if ( aiSlug.length === limit ) {
-				clearInterval( showAnimatedAiText );
-			}
-			setSlug( aiSlug.substring( 0, limit ) );
-			limit++;
-		}, 5 );
+		/**
+		 * This function returns a promise that resolves
+		 * to the AI generated slug when the Animation responsible
+		 * for showing same is completed.
+		 *
+		 * @since 1.2.0
+		 *
+		 * @return { Promise<string> } Animated text.
+		 */
+		const showAnimatedAiText = (): Promise< string > => {
+			let limit = 1;
+
+			return new Promise( ( resolve ) => {
+				const animatedTextInterval = setInterval( () => {
+					if ( aiSlug.length === limit ) {
+						clearInterval( animatedTextInterval );
+						resolve( aiSlug );
+					}
+					setSlug( aiSlug.substring( 0, limit ) );
+					limit++;
+				}, 5 );
+			} );
+		};
+
+		showAnimatedAiText().then( ( newSlug ) => {
+			editPost( { slug: newSlug } );
+			editPost( { meta: { apbe_slug: newSlug } } );
+		} );
 
 		setIsLoading( false );
 	};
