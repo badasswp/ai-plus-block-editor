@@ -62,33 +62,42 @@ class OpenAI implements Provider {
 					$this->get_default_args()
 				)
 			);
+
+			$response = json_decode( $response, true );
+
+			// Deal gracefully, with API error.
+			if ( isset( $response['error'] ) ) {
+				return $this->get_json_error( $response['error']['message'] ?? '' );
+			}
 		} catch ( \Exception $e ) {
 			$error_msg = sprintf(
 				'Error: OpenAI API call failed... %s',
 				$e->getMessage()
 			);
 
-			error_log( $error_msg );
-
-			// Deal gracefully, with error.
-			return new \WP_Error(
-				'ai-plus-block-editor-open-ai-error',
-				$error_msg,
-				[ 'status' => 500 ]
-			);
+			return $this->get_json_error( $error_msg );
 		}
 
-		$response = json_decode( $response, true );
-
-		// Deal gracefully, with error.
 		if ( is_null( $response ) ) {
-			return new \WP_Error(
-				'ai-plus-block-editor-json-error',
-				'Error: Malformed JSON output.',
-				[ 'status' => 500 ]
-			);
+			return $this->get_json_error( 'Error: Malformed JSON output.' );
 		}
 
 		return $response['choices'][0]['message']['content'] ?? '';
+	}
+
+	/**
+	 * Get JSON Error.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $message Error Message.
+	 * @return \WP_Error
+	 */
+	protected function get_json_error( $message ) {
+		return new \WP_Error(
+			'ai-plus-block-editor-json-error',
+			$message,
+			[ 'status' => 500 ]
+		);
 	}
 }
