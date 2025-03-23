@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
 
 import Summary from '../../src/components/Summary';
 
@@ -39,6 +39,10 @@ jest.mock( '@wordpress/components', () => ( {
 } ) );
 
 jest.mock( '@wordpress/data', () => ( {
+	useSelect: jest.fn(),
+	useDispatch: jest.fn( () => ( {
+		removeNotice: jest.fn(),
+	} ) ),
 	dispatch: jest.fn( ( store ) =>
 		store === 'core/editor'
 			? {
@@ -62,6 +66,8 @@ jest.mock( '@wordpress/data', () => ( {
 			  }
 			: {}
 	),
+	createReduxStore: jest.fn(),
+	register: jest.fn(),
 } ) );
 
 describe( 'Summary', () => {
