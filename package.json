@@ -6,16 +6,20 @@
 	"license": "GPL-2.0-or-later",
 	"homepage": "https://github.com/badasswp/ai-plus-block-editor#readme",
 	"scripts": {
-		"start": "composer install && yarn install && yarn build",
+		"start": "yarn boot && yarn build && yarn wp-env start",
+		"stop": "yarn wp-env stop",
 		"watch": "webpack --watch",
 		"build": "webpack",
+		"boot": "composer install && yarn install",
 		"test": "npm-run-all --parallel test:*",
 		"test:js": "jest --passWithNoTests",
 		"lint:js": "eslint . --ext .js,.jsx,.ts,.tsx",
 		"lint:js:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
 		"lint:php": "composer run lint",
 		"lint:php:fix": "composer run lint:fix",
-		"ci": "yarn test:js && yarn lint:js && yarn lint:php"
+		"ci": "yarn test:js && yarn lint:js && yarn lint:php",
+		"wp-env": "wp-env",
+		"bash": "wp-env run cli bash"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.22.11",
@@ -26,6 +30,7 @@
 		"@testing-library/jest-dom": "5.17",
 		"@testing-library/react": "15.0.6",
 		"@types/jest": "^29.5.4",
+		"@wordpress/env": "^10.20.0",
 		"@wordpress/eslint-plugin": "^22.6.0",
 		"@wordpress/scripts": "^26.9.0",
 		"css-loader": "^6.8.1",

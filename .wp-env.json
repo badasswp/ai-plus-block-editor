@@ -1,0 +1,17 @@
+{
+	"plugins": [
+		"."
+	],
+	"phpVersion": "8.2",
+	"port": 5487,
+	"testsPort": 5488,
+	"config": {
+		"WP_DEBUG": true,
+		"WP_DEBUG_LOG": true,
+		"WP_SITEURL": "http://apbe.localhost",
+		"WP_HOME": "http://apbe.localhost"
+	},
+	"lifecycleScripts": {
+		"afterStart": "./bin/setup.sh"
+	}
+}
