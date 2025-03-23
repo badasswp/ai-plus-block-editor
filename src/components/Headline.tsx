@@ -76,16 +76,32 @@ const Headline = (): JSX.Element => {
 	const handleSelection = (): void => {
 		let limit = 1;
 
-		const showAnimatedAiText = setInterval( () => {
-			if ( limit === headline.length ) {
-				clearInterval( showAnimatedAiText );
-			}
-			editPost( { title: headline.substring( 0, limit ) } );
-			limit++;
-		}, 5 );
+		/**
+		 * This function returns a promise that
+		 * resolves to the headline when the Animation responsible
+		 * for showing the headline is completed.
+		 *
+		 * @since 1.2.0
+		 *
+		 * @return { Promise<string> } Animated text.
+		 */
+		const showAnimatedAiText = (): Promise< string > => {
+			return new Promise( ( resolve ) => {
+				const animatedTextInterval = setInterval( () => {
+					if ( limit === headline.length ) {
+						clearInterval( animatedTextInterval );
+						resolve( headline );
+					}
+					editPost( { title: headline.substring( 0, limit ) } );
+					limit++;
+				}, 5 );
+			} );
+		};
 
-		editPost( { meta: { apbe_headline: headline } } );
-		savePost();
+		showAnimatedAiText().then( ( newHeadline ) => {
+			editPost( { meta: { apbe_headline: newHeadline } } );
+			savePost();
+		} );
 	};
 
 	return (
