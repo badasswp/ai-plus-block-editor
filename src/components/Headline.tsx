@@ -20,13 +20,9 @@ import Toast from '../components/Toast';
 const Headline = (): JSX.Element => {
 	const [ headline, setHeadline ] = useState( '' );
 	const [ isLoading, setIsLoading ] = useState( false );
-	const { editPost } = dispatch( 'core/editor' ) as any;
-	const {
-		getCurrentPostId,
-		getEditedPostAttribute,
-		getEditedPostContent,
-		savePost,
-	} = select( 'core/editor' );
+	const { editPost, savePost } = dispatch( 'core/editor' ) as any;
+	const { getCurrentPostId, getEditedPostAttribute, getEditedPostContent } =
+		select( 'core/editor' );
 
 	const content = getEditedPostContent();
 
