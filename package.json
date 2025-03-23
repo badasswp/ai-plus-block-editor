@@ -13,11 +13,12 @@
 		"boot": "composer install && yarn install",
 		"test": "npm-run-all --parallel test:*",
 		"test:js": "jest --passWithNoTests",
+		"test:php": "composer run test",
 		"lint:js": "eslint . --ext .js,.jsx,.ts,.tsx",
 		"lint:js:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
 		"lint:php": "composer run lint",
 		"lint:php:fix": "composer run lint:fix",
-		"ci": "yarn test:js && yarn lint:js && yarn lint:php",
+		"ci": "yarn test:js && yarn lint:js && yarn test:php && yarn lint:php",
 		"wp-env": "wp-env",
 		"bash": "wp-env run cli bash"
 	},
