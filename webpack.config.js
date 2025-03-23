@@ -1,5 +1,5 @@
-const path = require('path');
-const defaultConfig = require('@wordpress/scripts/config/webpack.config');
+const path = require( 'path' );
+const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 
 module.exports = {
 	...defaultConfig,
@@ -9,12 +9,12 @@ module.exports = {
 	},
 
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve( __dirname, 'dist' ),
 		filename: '[name].js',
 	},
 
 	resolve: {
-		extensions: ['.tsx', '.ts', '.js'],
+		extensions: [ '.tsx', '.ts', '.js' ],
 	},
 
 	module: {
@@ -26,8 +26,8 @@ module.exports = {
 					loader: 'ts-loader',
 					options: {
 						configFile: 'tsconfig.json',
-						transpileOnly: true
-					}
+						transpileOnly: true,
+					},
 				},
 			},
 			{
@@ -36,7 +36,11 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+						presets: [
+							'@babel/preset-env',
+							'@babel/preset-react',
+							'@babel/preset-typescript',
+						],
 					},
 				},
 			},
@@ -54,11 +58,11 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
-				use: ['style-loader', 'css-loader', 'sass-loader'],
+				use: [ 'style-loader', 'css-loader', 'sass-loader' ],
 			},
 		],
 	},
 
 	devtool: 'source-map',
-	mode: 'production'
+	mode: 'production',
 };

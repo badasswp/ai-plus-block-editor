@@ -6,16 +6,20 @@
  *
  * @since 1.1.0
  *
- * @returns {JSX.Element}
+ * @param  props
+ * @param  props.isLoading
+ * @param  props.message
+ *
+ * @return {JSX.Element} Toast.
  */
-const Toast = ({ isLoading, message }): JSX.Element => {
-  return (
-    isLoading && (
-      <div className="apbe-toast" role="alert">
-        <span>{ message }</span>
-      </div>
-    )
-  );
+const Toast = ( { isLoading, message } ): JSX.Element => {
+	return (
+		isLoading && (
+			<div className="apbe-toast" role="alert">
+				<span>{ message }</span>
+			</div>
+		)
+	);
 };
 
 export default Toast;
