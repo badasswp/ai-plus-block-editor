@@ -2,8 +2,9 @@
 import { __ } from '@wordpress/i18n';
 import { verse } from '@wordpress/icons';
 import { addFilter } from '@wordpress/hooks';
-import { select, dispatch } from '@wordpress/data';
 import { BlockControls } from '@wordpress/block-editor';
+import { store as noticesStore } from '@wordpress/notices';
+import { select, dispatch, useDispatch } from '@wordpress/data';
 import { Fragment, useState, useEffect } from '@wordpress/element';
 import { ToolbarGroup, ToolbarDropdownMenu } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
@@ -42,6 +43,7 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 		 */
 		const getTone = async ( newTone: string ) => {
 			const { getCurrentPostId } = select( 'core/editor' );
+			const { createErrorNotice } = useDispatch( noticesStore );
 			const { updateBlockAttributes } = dispatch(
 				'core/block-editor'
 			) as any;
@@ -52,29 +54,33 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 			// Display Toast.
 			setIsLoading( true );
 
-			const aiTone: string = await apiFetch( {
-				path: '/ai-plus-block-editor/v1/tone',
-				method: 'POST',
-				data: {
-					id: getCurrentPostId(),
-					text: content.text || content,
-					newTone,
-				},
-			} );
-
-			let limit = 1;
-			const displayWithEffect = setInterval( () => {
-				if ( aiTone.length === limit ) {
-					clearInterval( displayWithEffect );
-				}
-				updateBlockAttributes( getSelectedBlockClientId(), {
-					content: aiTone.substring( 0, limit ),
+			try {
+				const aiTone: string = await apiFetch( {
+					path: '/ai-plus-block-editor/v1/tone',
+					method: 'POST',
+					data: {
+						id: getCurrentPostId(),
+						text: content.text || content,
+						newTone,
+					},
 				} );
-				limit++;
-			}, 5 );
 
-			// Hide Toast.
-			setIsLoading( false );
+				let limit = 1;
+				const displayWithEffect = setInterval( () => {
+					if ( aiTone.length === limit ) {
+						clearInterval( displayWithEffect );
+					}
+					updateBlockAttributes( getSelectedBlockClientId(), {
+						content: aiTone.substring( 0, limit ),
+					} );
+					limit++;
+				}, 5 );
+
+				// Hide Toast.
+				setIsLoading( false );
+			} catch ( e ) {
+				createErrorNotice( e.message );
+			}
 		};
 
 		useEffect( () => {
