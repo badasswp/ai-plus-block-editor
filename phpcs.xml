@@ -12,6 +12,7 @@
 	<arg name="colors" />
 	<file>.</file>
 
+	<exclude-pattern>/dist/</exclude-pattern>
 	<exclude-pattern>/vendor/</exclude-pattern>
 	<exclude-pattern>/languages/</exclude-pattern>
 	<exclude-pattern>/node_modules/</exclude-pattern>
