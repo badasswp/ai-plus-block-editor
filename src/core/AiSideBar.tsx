@@ -20,43 +20,40 @@ import '../styles/app.scss';
  *
  * @since 1.1.0
  *
- * @returns {JSX.Element}
+ * @return {JSX.Element} AI SideBar.
  */
 const AiSideBar = (): JSX.Element => {
-  return (
-    <Fragment>
-      <PluginSidebarMoreMenuItem
-        icon={ verse }
-        target="apbe-sidebar"
-      >
-        { __( 'AI + Block Editor', 'ai-plus-block-editor' ) }
-      </PluginSidebarMoreMenuItem>
-      <PluginSidebar
-        name="apbe-sidebar"
-        title={ __( 'AI + Block Editor', 'ai-plus-block-editor' ) }
-        icon={ verse }
-      >
-        <PanelBody>
-          <div className="apbe-sidebar">
-            <ul>
-              <li>
-                <Headline />
-              </li>
-              <li>
-                <Slug />
-              </li>
-              <li>
-                <SEO />
-              </li>
-              <li>
-                <Summary />
-              </li>
-            </ul>
-          </div>
-        </PanelBody>
-      </PluginSidebar>
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<PluginSidebarMoreMenuItem icon={ verse } target="apbe-sidebar">
+				{ __( 'AI + Block Editor', 'ai-plus-block-editor' ) }
+			</PluginSidebarMoreMenuItem>
+			<PluginSidebar
+				name="apbe-sidebar"
+				title={ __( 'AI + Block Editor', 'ai-plus-block-editor' ) }
+				icon={ verse }
+			>
+				<PanelBody>
+					<div className="apbe-sidebar">
+						<ul>
+							<li>
+								<Headline />
+							</li>
+							<li>
+								<Slug />
+							</li>
+							<li>
+								<SEO />
+							</li>
+							<li>
+								<Summary />
+							</li>
+						</ul>
+					</div>
+				</PanelBody>
+			</PluginSidebar>
+		</Fragment>
+	);
 };
 
 registerPlugin( 'ai-plus-block-editor', { render: AiSideBar } );

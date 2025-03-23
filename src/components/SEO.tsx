@@ -1,8 +1,9 @@
 import { __ } from '@wordpress/i18n';
 import { check } from '@wordpress/icons';
-import { select, dispatch } from '@wordpress/data';
-import { Button, TextareaControl, Icon } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
+import { store as noticesStore } from '@wordpress/notices';
+import { Button, TextareaControl, Icon } from '@wordpress/components';
+import { select, dispatch, useSelect, useDispatch } from '@wordpress/data';
 import apiFetch from '@wordpress/api-fetch';
 
 import Toast from '../components/Toast';
@@ -15,102 +16,126 @@ import Toast from '../components/Toast';
  *
  * @since 1.1.0
  *
- * @returns {JSX.Element}
+ * @return {JSX.Element} SEO Keywords.
  */
 const SEO = (): JSX.Element => {
-  const[ keywords, setKeywords ] = useState( '' );
-  const [ isLoading, setIsLoading ] = useState( false );
-  const { editPost } = dispatch( 'core/editor' ) as any;
-  const {
-    getCurrentPostId,
-    getEditedPostAttribute,
-    getEditedPostContent,
-    savePost,
-  } = select( 'core/editor' );
+	const [ keywords, setKeywords ] = useState( '' );
+	const [ isLoading, setIsLoading ] = useState( false );
+	const { editPost, savePost } = dispatch( 'core/editor' ) as any;
+	const { createErrorNotice, removeNotice } = useDispatch( noticesStore );
+	const { getCurrentPostId, getEditedPostAttribute, getEditedPostContent } =
+		select( 'core/editor' );
 
-  const content = getEditedPostContent();
+	const content = getEditedPostContent();
+	const notices = useSelect(
+		( use ) => use( noticesStore ).getNotices(),
+		[]
+	);
 
-  useEffect( () => {
-    setKeywords( getEditedPostAttribute( 'meta' )['apbe_seo_keywords'] );
-  }, [] )
+	useEffect( () => {
+		setKeywords( getEditedPostAttribute( 'meta' ).apbe_seo_keywords );
+	}, [ getEditedPostAttribute ] );
 
-  /**
-   * This function fires when the user clicks
-   * the `Generate` button.
-   *
-   * @since 1.1.0
-   *
-   * @returns { void }
-   */
-  const handleClick = async (): Promise<void> => {
-    setIsLoading( true );
+	/**
+	 * This function fires when the user clicks
+	 * the `Generate` button.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @return { void }
+	 */
+	const handleClick = async (): Promise< void > => {
+		notices.forEach( ( notice ) => removeNotice( notice.id ) );
+		setIsLoading( true );
 
-    const aiKeywords: string = await apiFetch(
-      {
-        path: '/ai-plus-block-editor/v1/sidebar',
-        method: 'POST',
-        data: {
-          id: getCurrentPostId(),
-          text: content.text || content,
-          feature: 'keywords'
-        },
-      }
-    );
+		try {
+			const aiKeywords: string = await apiFetch( {
+				path: '/ai-plus-block-editor/v1/sidebar',
+				method: 'POST',
+				data: {
+					id: getCurrentPostId(),
+					text: content.text || content,
+					feature: 'keywords',
+				},
+			} );
 
-    let limit = 1;
-    const showAnimatedAiText = setInterval( () => {
-      if ( aiKeywords.length === limit ) {
-        clearInterval( showAnimatedAiText );
-      }
-      setKeywords( aiKeywords.substring( 0, limit ) );
-      limit++;
-    }, 5 )
+			/**
+			 * This function returns a promise that resolves
+			 * to the AI generated SEO keywords when the Animation
+			 * responsible for showing same is completed.
+			 *
+			 * @since 1.2.0
+			 *
+			 * @return { Promise<string> } Animated text.
+			 */
+			const showAnimatedAiText = (): Promise< string > => {
+				let limit = 1;
 
-    setIsLoading( false );
-  }
+				return new Promise( ( resolve ) => {
+					const animatedTextInterval = setInterval( () => {
+						if ( aiKeywords.length === limit ) {
+							clearInterval( animatedTextInterval );
+							resolve( aiKeywords );
+						}
+						setKeywords( aiKeywords.substring( 0, limit ) );
+						limit++;
+					}, 5 );
+				} );
+			};
 
-  /**
-   * This function fires when the user selects
-   * the AI generated result.
-   *
-   * @since 1.1.0
-   *
-   * @returns { void }
-   */
-  const handleSelection = (): void => {
-    editPost( { meta: { apbe_seo_keywords: keywords } } );
-    savePost();
-  }
+			showAnimatedAiText().then( ( newKeywords ) => {
+				editPost( { meta: { apbe_seo_keywords: newKeywords } } );
+			} );
 
-  return (
-    <>
-      <p><strong>{ __( 'SEO Keywords', 'ai-plus-block-editor' ) }</strong></p>
-      <TextareaControl
-        rows={ 7 }
-        value={ keywords }
-        onChange={ text => setKeywords( text ) }
-        __nextHasNoMarginBottom
-      />
-      <div className="apbe-button-group">
-        <Button
-          variant="primary"
-          onClick={ handleClick }
-        >
-          { __( 'Generate', 'ai-plus-block-editor' ) }
-        </Button>
-        <Button
-          variant="secondary"
-          onClick={ handleSelection }
-        >
-          <Icon icon={ check } />
-        </Button>
-      </div>
-      <Toast
-        message={ __( 'AI is generating text, please hold on for a bit...' ) }
-        isLoading={ isLoading }
-      />
-    </>
-  )
-}
+			setIsLoading( false );
+		} catch ( e ) {
+			createErrorNotice( e.message );
+			setIsLoading( false );
+		}
+	};
+
+	/**
+	 * This function fires when the user selects
+	 * the AI generated result.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @return { void }
+	 */
+	const handleSelection = (): void => {
+		editPost( { meta: { apbe_seo_keywords: keywords } } );
+		savePost();
+	};
+
+	return (
+		<>
+			<p>
+				<strong>
+					{ __( 'SEO Keywords', 'ai-plus-block-editor' ) }
+				</strong>
+			</p>
+			<TextareaControl
+				rows={ 7 }
+				value={ keywords }
+				onChange={ ( text ) => setKeywords( text ) }
+				__nextHasNoMarginBottom
+			/>
+			<div className="apbe-button-group">
+				<Button variant="primary" onClick={ handleClick }>
+					{ __( 'Generate', 'ai-plus-block-editor' ) }
+				</Button>
+				<Button variant="secondary" onClick={ handleSelection }>
+					<Icon icon={ check } />
+				</Button>
+			</div>
+			<Toast
+				message={ __(
+					'AI is generating text, please hold on for a bit…'
+				) }
+				isLoading={ isLoading }
+			/>
+		</>
+	);
+};
 
 export default SEO;

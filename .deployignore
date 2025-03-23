@@ -1,7 +1,10 @@
 .babelrc
 .editorconfig
+.eslintignore
+.eslintrc.js
 .gitignore
 .github
+.wp-env.json
 CHANGELOG.md
 jest.config.js
 jest.setup.js
@@ -14,6 +17,7 @@ phpstan.neon
 src
 assets
 tests
+bin
 vendor/orhanerday/open-ai/files/assistant-file.txt
 vendor/orhanerday/open-ai/files/en-marvel-endgame.m4a
 vendor/orhanerday/open-ai/files/sample_file_1.jsonl
