@@ -1,0 +1,45 @@
+{
+	"translation-revision-date": "2024-08-29 02:16+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "da_DK\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"AI + Block Editor"
+			],
+			"Headline": [
+				"Overskrift"
+			],
+			"Slug": [
+				"Snegl"
+			],
+			"SEO Keywords": [
+				"SEO søgeord"
+			],
+			"Summary": [
+				"Oversigt"
+			],
+			"Use Casual Tone": [
+				"Brug afslappet tone"
+			],
+			"Use Official Tone": [
+				"AI + Block Editor"
+			],
+			"Use Descriptive Tone": [
+				"AI + Block Editor"
+			],
+			"Use Narrative Tone": [
+				"AI + Block Editor"
+			],
+			"Use Agressive Tone": [
+				"AI + Block Editor"
+			]
+		}
+	}
+}
