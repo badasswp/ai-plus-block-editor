@@ -7,7 +7,7 @@
 		"messages": {
 			"": {
 				"domain": "messages",
-				"lang": "da_DK",
+				"lang": "da_DK\\n",
 				"plural-forms": "nplurals=2; plural=(n != 1);"
 			},
 			"AI + Block Editor": [
@@ -37,7 +37,7 @@
 			"Use Narrative Tone": [
 				"Brug fortælle tone"
 			],
-			"Use Agressive Tone": [
+			"Use Aggressive Tone": [
 				"Brug en aggressiv tone"
 			]
 		}
