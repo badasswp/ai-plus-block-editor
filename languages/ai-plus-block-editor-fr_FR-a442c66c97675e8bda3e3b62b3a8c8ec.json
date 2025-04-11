@@ -1,0 +1,45 @@
+{
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "fr_FR\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"AI + éditeur de blocs"
+			],
+			"Headline": [
+				"Titre"
+			],
+			"Slug": [
+				"Limace"
+			],
+			"SEO Keywords": [
+				"Mots-clés SEO"
+			],
+			"Summary": [
+				"Résumé"
+			],
+			"Use Casual Tone": [
+				"Utilisez un ton décontracté"
+			],
+			"Use Official Tone": [
+				"Utilisez le ton officiel"
+			],
+			"Use Descriptive Tone": [
+				"Utilisez un ton descriptif"
+			],
+			"Use Narrative Tone": [
+				"Utiliser un ton narratif"
+			],
+			"Use Aggressive Tone": [
+				"Utilisez un ton agressif"
+			]
+		}
+	}
+}
