@@ -1,0 +1,45 @@
+{
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "es_ES\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"AI + Editor de bloques"
+			],
+			"Headline": [
+				"Titular"
+			],
+			"Slug": [
+				"Babosa"
+			],
+			"SEO Keywords": [
+				"Palabras clave SEO"
+			],
+			"Summary": [
+				"Resumen"
+			],
+			"Use Casual Tone": [
+				"Utilice un tono informal"
+			],
+			"Use Official Tone": [
+				"Usar tono oficial"
+			],
+			"Use Descriptive Tone": [
+				"Utilice un tono descriptivo"
+			],
+			"Use Narrative Tone": [
+				"Utilice un tono narrativo"
+			],
+			"Use Aggressive Tone": [
+				"Utilice un tono agresivo"
+			]
+		}
+	}
+}
