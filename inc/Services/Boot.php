@@ -23,7 +23,7 @@ class Boot extends Service implements Kernel {
 	 */
 	public function register(): void {
 		add_action( 'init', [ $this, 'register_translation' ] );
-		add_action( 'enqueue_block_editor_assets', [ $this, 'register_scripts' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'register_scripts' ], 999 );
 	}
 
 	/**
@@ -36,7 +36,7 @@ class Boot extends Service implements Kernel {
 	public function register_scripts() {
 		wp_enqueue_script(
 			'ai-plus-block-editor',
-			plugin_dir_url( __FILE__ ) . '../../dist/app.js',
+			plugins_url( 'ai-plus-block-editor/dist/app.js' ),
 			[
 				'wp-i18n',
 				'wp-element',
