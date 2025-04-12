@@ -3,8 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { verse } from '@wordpress/icons';
 import { addFilter } from '@wordpress/hooks';
 import { BlockControls } from '@wordpress/block-editor';
-import { store as noticesStore } from '@wordpress/notices';
-import { select, dispatch, useDispatch } from '@wordpress/data';
+import { select, dispatch } from '@wordpress/data';
 import { Fragment, useState, useEffect } from '@wordpress/element';
 import { ToolbarGroup, ToolbarDropdownMenu } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
@@ -43,7 +42,6 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 		 */
 		const getTone = async ( newTone: string ) => {
 			const { getCurrentPostId } = select( 'core/editor' );
-			const { createErrorNotice } = useDispatch( noticesStore );
 			const { updateBlockAttributes } = dispatch(
 				'core/block-editor'
 			) as any;
@@ -79,7 +77,8 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 				// Hide Toast.
 				setIsLoading( false );
 			} catch ( e ) {
-				createErrorNotice( e.message );
+				// eslint-disable-next-line no-console
+				console.log( e.message );
 			}
 		};
 
