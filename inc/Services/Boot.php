@@ -23,7 +23,7 @@ class Boot extends Service implements Kernel {
 	 */
 	public function register(): void {
 		add_action( 'init', [ $this, 'register_translation' ] );
-		add_action( 'enqueue_block_editor_assets', [ $this, 'register_scripts' ], 999 );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'register_scripts' ] );
 	}
 
 	/**
