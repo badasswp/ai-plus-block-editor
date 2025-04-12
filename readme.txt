@@ -67,6 +67,14 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.3.0 =
+* Feat: Update translations for French, Danish, Spanish & German languages.
+* Feat: Add new toast for AiTone usage.
+* Fix: Resolve issue with `createErrorNotice` for AiTone.
+* Fix: Update WP bash scripts.
+* Fix: Update README notes.
+* Tested up to WP 6.7.2.
+
 = 1.2.0 =
 * Feat: Add local development environment setup.
 * Fix: Gracefully deal with WP REST error responses.
