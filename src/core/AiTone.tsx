@@ -91,6 +91,7 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 		return (
 			<Fragment>
 				<Toast
+					isInEditor={ true }
 					message={ __(
 						'AI is generating text, please hold on for a bit…'
 					) }
