@@ -40,7 +40,7 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 		 * @param {string} newTone AI tone sent to LLM endpoint.
 		 * @return {void}
 		 */
-		const getTone = async ( newTone: string ) => {
+		const getTone = async ( newTone: string ): Promise< void > => {
 			const { getCurrentPostId } = select( 'core/editor' );
 			const { updateBlockAttributes } = dispatch(
 				'core/block-editor'
