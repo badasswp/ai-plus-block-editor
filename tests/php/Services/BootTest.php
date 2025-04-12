@@ -37,9 +37,12 @@ class BootTest extends TestCase {
 	public function test_register_scripts() {
 		$boot = new \ReflectionClass( Boot::class );
 
-		\WP_Mock::userFunction( 'plugin_dir_url' )
-			->with( $boot->getFileName() )
-			->andReturn( 'https://example.com/wp-content/plugins/ai-plus-block-editor/inc/Services/' );
+		\WP_Mock::userFunction( 'plugins_url' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return sprintf( 'https://example.com/wp-content/plugins/%s', $arg );
+				}
+			);
 
 		\WP_Mock::userFunction( 'plugin_dir_path' )
 			->with( $boot->getFileName() )
@@ -48,7 +51,7 @@ class BootTest extends TestCase {
 		\WP_Mock::userFunction( 'wp_enqueue_script' )
 			->with(
 				'ai-plus-block-editor',
-				'https://example.com/wp-content/plugins/ai-plus-block-editor/inc/Services/../../dist/app.js',
+				'https://example.com/wp-content/plugins/ai-plus-block-editor/dist/app.js',
 				[
 					'wp-i18n',
 					'wp-element',
@@ -60,7 +63,7 @@ class BootTest extends TestCase {
 					'wp-plugins',
 					'wp-edit-post',
 				],
-				'1.1.0',
+				'1.3.0',
 				false,
 			);
 

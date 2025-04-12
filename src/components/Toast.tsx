@@ -1,3 +1,5 @@
+import ToastForBlockEditor from './ToastForBlockEditor';
+
 /**
  * Toast Component.
  *
@@ -8,11 +10,18 @@
  *
  * @param  props
  * @param  props.isLoading
+ * @param  props.isInEditor
  * @param  props.message
  *
  * @return {JSX.Element} Toast.
  */
-const Toast = ( { isLoading, message } ): JSX.Element => {
+const Toast = ( { isLoading, message, isInEditor = false } ): JSX.Element => {
+	if ( isInEditor ) {
+		return (
+			<ToastForBlockEditor message={ message } isLoading={ isLoading } />
+		);
+	}
+
 	return (
 		isLoading && (
 			<div className="apbe-toast" role="alert">

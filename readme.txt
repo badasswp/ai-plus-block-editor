@@ -2,8 +2,8 @@
 Contributors: badasswp
 Tags: ai, block, editor, chat-gpt, assistant.
 Requires at least: 6.0
-Tested up to: 6.7.1
-Stable tag: 1.2.0
+Tested up to: 6.7.2
+Stable tag: 1.3.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -66,6 +66,14 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 4. Sidebar Icon - Locate AI Sidebar feature on the top-right corner of screen.
 
 == Changelog ==
+
+= 1.3.0 =
+* Feat: Update translations for French, Danish, Spanish & German languages.
+* Feat: Add new toast for AiTone usage.
+* Fix: Resolve issue with `createErrorNotice` for AiTone.
+* Fix: Update WP bash scripts.
+* Fix: Update README notes.
+* Tested up to WP 6.7.2.
 
 = 1.2.0 =
 * Feat: Add local development environment setup.

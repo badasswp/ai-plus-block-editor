@@ -7,38 +7,38 @@
 		"messages": {
 			"": {
 				"domain": "messages",
-				"lang": "da_DK\\n",
+				"lang": "es_ES\\n",
 				"plural-forms": "nplurals=2; plural=(n != 1);"
 			},
 			"AI + Block Editor": [
-				"AI + Block Editor"
+				"AI + Editor de bloques"
 			],
 			"Headline": [
-				"Overskrift"
+				"Titular"
 			],
 			"Slug": [
-				"Snegl"
+				"Babosa"
 			],
 			"SEO Keywords": [
-				"SEO søgeord"
+				"Palabras clave SEO"
 			],
 			"Summary": [
-				"Oversigt"
+				"Resumen"
 			],
 			"Use Casual Tone": [
-				"Brug afslappet tone"
+				"Utilice un tono informal"
 			],
 			"Use Official Tone": [
-				"Brug officiel tone"
+				"Usar tono oficial"
 			],
 			"Use Descriptive Tone": [
-				"Brug beskrivende tone"
+				"Utilice un tono descriptivo"
 			],
 			"Use Narrative Tone": [
-				"Brug fortælle tone"
+				"Utilice un tono narrativo"
 			],
 			"Use Aggressive Tone": [
-				"Brug en aggressiv tone"
+				"Utilice un tono agresivo"
 			]
 		}
 	}

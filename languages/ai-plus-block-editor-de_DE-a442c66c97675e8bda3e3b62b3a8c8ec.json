@@ -7,38 +7,38 @@
 		"messages": {
 			"": {
 				"domain": "messages",
-				"lang": "da_DK\\n",
+				"lang": "de_DE\\n",
 				"plural-forms": "nplurals=2; plural=(n != 1);"
 			},
 			"AI + Block Editor": [
-				"AI + Block Editor"
+				"AI + Block-Editor"
 			],
 			"Headline": [
-				"Overskrift"
+				"Überschrift"
 			],
 			"Slug": [
-				"Snegl"
+				"Schnecke"
 			],
 			"SEO Keywords": [
-				"SEO søgeord"
+				"SEO Schlüsselwort"
 			],
 			"Summary": [
-				"Oversigt"
+				"Zusammenfassung"
 			],
 			"Use Casual Tone": [
-				"Brug afslappet tone"
+				"Verwenden Sie einen lockeren Ton"
 			],
 			"Use Official Tone": [
-				"Brug officiel tone"
+				"Verwenden Sie den offiziellen Ton"
 			],
 			"Use Descriptive Tone": [
-				"Brug beskrivende tone"
+				"Verwenden Sie einen beschreibenden Ton"
 			],
 			"Use Narrative Tone": [
-				"Brug fortælle tone"
+				"Verwenden Sie einen narrativen Ton"
 			],
 			"Use Aggressive Tone": [
-				"Brug en aggressiv tone"
+				"BVerwenden Sie einen aggressiven Ton"
 			]
 		}
 	}
