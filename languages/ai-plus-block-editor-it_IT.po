@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2025-04-14 23:57+0100\n"
+"PO-Revision-Date: 2025-04-15 07:20+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: it_IT\n"
@@ -56,11 +56,11 @@ msgstr "Fornitore di AI"
 
 #: inc/Admin/Options.php:144
 msgid "Open AI"
-msgstr ""
+msgstr "Open AI"
 
 #: inc/Admin/Options.php:148
 msgid "Enable Open AI"
-msgstr ""
+msgstr "Abilitia Open AI"
 
 #: inc/Admin/Options.php:149
 msgid "Use Chat GPT capabilities in Block Editor"
@@ -68,36 +68,36 @@ msgstr "Utilizzare le funzionalità Chat GPT nell'Editor blocchi"
 
 #: inc/Admin/Options.php:154 inc/Admin/Options.php:170
 msgid "Token"
-msgstr ""
+msgstr "Token"
 
 #: inc/Admin/Options.php:155 inc/Admin/Options.php:171
 msgid "e.g. ae2kgch7i"
-msgstr ""
+msgstr "e.g. ae2kgch7i"
 
 #: inc/Admin/Options.php:160
 msgid "Google Gemini"
-msgstr ""
+msgstr "Google Gemini"
 
 #: inc/Admin/Options.php:164
 msgid "Enable Google Gemini"
-msgstr ""
+msgstr "Abilitia Google Gemini"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr ""
+msgstr "Utilizza le funzionalità di Google Gemini in Block Editor"
 
 #: inc/Admin/Options.php:190
 msgid "Settings Saved."
-msgstr ""
+msgstr "Impostazioni Salvate."
 
 #. Plugin URI of the plugin/theme
 msgid "https://github.com/badasswp/ai-plus-block-editor"
-msgstr ""
+msgstr "https://github.com/badasswp/ai-plus-block-editor"
 
 #. Author of the plugin/theme
 msgid "badasswp"
-msgstr ""
+msgstr "badasswp"
 
 #. Author URI of the plugin/theme
 msgid "https://github.com/badasswp"
-msgstr ""
+msgstr "https://github.com/badasswp"
