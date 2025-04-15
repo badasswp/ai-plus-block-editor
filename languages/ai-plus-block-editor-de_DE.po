@@ -1,4 +1,5 @@
-#, fuzzy
+# Copyright (C) badasswp
+# This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
