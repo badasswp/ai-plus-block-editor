@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2025-04-08 22:35+0100\n"
+"PO-Revision-Date: 2025-04-15 10:00+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -69,7 +69,7 @@ msgstr "Chat-GPT-Funktionen im Block-Editor verwenden"
 
 #: inc/Admin/Options.php:154 inc/Admin/Options.php:170
 msgid "Token"
-msgstr ""
+msgstr "Token"
 
 #: inc/Admin/Options.php:155 inc/Admin/Options.php:171
 msgid "e.g. ae2kgch7i"
@@ -85,20 +85,20 @@ msgstr "Google Gemini Aktivieren"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr ""
+msgstr "Verwenden Sie die Funktionen von Google Gemini im Block-Editor"
 
 #: inc/Admin/Options.php:190
 msgid "Settings Saved."
-msgstr ""
+msgstr "Einstellungen Gespeichert."
 
 #. Plugin URI of the plugin/theme
 msgid "https://github.com/badasswp/ai-plus-block-editor"
-msgstr ""
+msgstr "https://github.com/badasswp/ai-plus-block-editor"
 
 #. Author of the plugin/theme
 msgid "badasswp"
-msgstr ""
+msgstr "badasswp"
 
 #. Author URI of the plugin/theme
 msgid "https://github.com/badasswp"
-msgstr ""
+msgstr "https://github.com/badasswp"
