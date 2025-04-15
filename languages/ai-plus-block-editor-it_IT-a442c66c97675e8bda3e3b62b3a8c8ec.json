@@ -1,0 +1,45 @@
+{
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+					"domain": "messages",
+					"lang": "it_IT\\n",
+					"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+					"AI + Editor di blocchi"
+			],
+			"Headline": [
+				"Titolo"
+			],
+			"Slug": [
+				"Lumaca"
+			],
+			"SEO Keywords": [
+				"Parole chiave SEO"
+			],
+			"Summary": [
+				"Riepilogo"
+			],
+			"Use Casual Tone": [
+				"Usa un tono casual"
+			],
+			"Use Official Tone": [
+				"Usa il tono ufficiale"
+			],
+			"Use Descriptive Tone": [
+				"Usa un tono descrittivo"
+			],
+			"Use Narrative Tone": [
+				"Usa il tono narrativo"
+			],
+			"Use Aggressive Tone": [
+				"Usa un tono aggressivo"
+			]
+		}
+	}
+}
