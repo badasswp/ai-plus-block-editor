@@ -39,6 +39,12 @@
 			],
 			"Use Aggressive Tone": [
 				"Utilisez un ton agressif"
+			],
+			"Generate": [
+				"Générer"
+			],
+			"AI is generating text, please hold on for a bit.": [
+				"L'IA génère du texte, veuillez patienter un instant."
 			]
 		}
 	}
