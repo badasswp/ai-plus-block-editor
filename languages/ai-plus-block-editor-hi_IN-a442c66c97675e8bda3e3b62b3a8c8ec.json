@@ -1,0 +1,51 @@
+{
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "hi_IN\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"AI + ब्लॉक संपादक"
+			],
+			"Headline": [
+				"शीर्षक"
+			],
+			"Slug": [
+				"काउंटर"
+			],
+			"SEO Keywords": [
+				"एसईओ कीवर्ड"
+			],
+			"Summary": [
+				"सारांश"
+			],
+			"Use Casual Tone": [
+				"सामान्य लहजे का प्रयोग करें"
+			],
+			"Use Official Tone": [
+				"आधिकारिक स्वर का प्रयोग करें"
+			],
+			"Use Descriptive Tone": [
+				"वर्णनात्मक लहजे का प्रयोग करें"
+			],
+			"Use Narrative Tone": [
+				"Utiliser un ton narratif"
+			],
+			"Use Aggressive Tone": [
+				"कथात्मक लहजे का प्रयोग करें"
+			],
+			"Generate": [
+				"उत्पन्न"
+			],
+			"AI is generating text, please hold on for a bit.": [
+				"AI पाठ उत्पन्न कर रहा है, कृपया थोड़ा रुकें।"
+			]
+		}
+	}
+}
