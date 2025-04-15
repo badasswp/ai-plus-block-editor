@@ -1,0 +1,51 @@
+{
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "ru_RU\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"AI + редактор блоков"
+			],
+			"Headline": [
+				"Заголовок"
+			],
+			"Slug": [
+				"Слизень"
+			],
+			"SEO Keywords": [
+				"SEO-ключевые слова"
+			],
+			"Summary": [
+				"Краткое содержание"
+			],
+			"Use Casual Tone": [
+				"Используйте непринужденный тон"
+			],
+			"Use Official Tone": [
+				"Используйте официальный тон"
+			],
+			"Use Descriptive Tone": [
+				"Используйте описательный тон"
+			],
+			"Use Narrative Tone": [
+				"Используйте повествовательный тон"
+			],
+			"Use Aggressive Tone": [
+				"Используйте агрессивный тон"
+			],
+			"Generate": [
+				"Генерировать"
+			],
+			"AI is generating text, please hold on for a bit.": [
+				"ИИ генерирует текст, пожалуйста, подождите немного."
+			]
+		}
+	}
+}
