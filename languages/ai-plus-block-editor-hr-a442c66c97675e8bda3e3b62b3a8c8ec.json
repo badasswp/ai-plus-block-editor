@@ -1,0 +1,51 @@
+{
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "hr\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"AI + uređivač blokova"
+			],
+			"Headline": [
+				"Naslov"
+			],
+			"Slug": [
+				"Puž"
+			],
+			"SEO Keywords": [
+				"SEO ključne riječi"
+			],
+			"Summary": [
+				"Sažetak"
+			],
+			"Use Casual Tone": [
+				"Koristite ležeran ton"
+			],
+			"Use Official Tone": [
+				"Koristite službeni ton"
+			],
+			"Use Descriptive Tone": [
+				"Koristite opisni ton"
+			],
+			"Use Narrative Tone": [
+				"Koristite narativni ton"
+			],
+			"Use Aggressive Tone": [
+				"Koristite agresivan ton"
+			],
+			"Generate": [
+				"Generirati"
+			],
+			"AI is generating text, please hold on for a bit.": [
+				"AI generira tekst, sačekajte malo."
+			]
+		}
+	}
+}
