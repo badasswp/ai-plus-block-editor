@@ -1,18 +1,51 @@
 {
-    "translation-revision-date": "2024-08-29 02:16+0100",
-    "generator": "WP-CLI/2.6.0",
-    "source": "dist/app.js",
-    "domain": "messages",
-    "locale_data": {
-        "messages": {
-            "": {
-                "domain": "messages",
-                "lang": "he_IL\\n",
-                "plural-forms": "nplurals=2; plural=(n != 1);"
-            },
-            "AI + Block Editor": [
-                "‫AI + עורך בלוק"
-            ]
-        }
-    }
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "he_IL\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"AI + עורך בלוק"
+			],
+			"Headline": [
+				"כּוֹתֶרֶת"
+			],
+			"Slug": [
+				"שַׁבְּלוּל"
+			],
+			"SEO Keywords": [
+				"מילות מפתח SEO"
+			],
+			"Summary": [
+				"תַקצִיר"
+			],
+			"Use Casual Tone": [
+				"השתמש בטון מזדמן"
+			],
+			"Use Official Tone": [
+				"השתמש בטון רשמי"
+			],
+			"Use Descriptive Tone": [
+				"השתמש בטון תיאורי"
+			],
+			"Use Narrative Tone": [
+				"השתמש בטון סיפורי"
+			],
+			"Use Aggressive Tone": [
+				"השתמש בטון אגרסיבי"
+			],
+			"Generate": [
+				"לִיצוֹר"
+			],
+			"AI is generating text, please hold on for a bit.": [
+				"AI מייצר טקסט, בבקשה תחזיק מעמד קצת."
+			]
+		}
+	}
 }
