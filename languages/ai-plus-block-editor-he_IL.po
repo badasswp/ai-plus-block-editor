@@ -1,0 +1,104 @@
+# Copyright (C) badasswp
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: AI + Block Editor\n"
+"POT-Creation-Date: 2025-01-11 11:40+0100\n"
+"PO-Revision-Date: 2025-04-16 01:30+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: he_IL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+"X-Domain: ai-plus-block-editor\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: ai-plus-block-editor.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+"X-Poedit-SearchPathExcluded-2: vendor\n"
+
+#. translators: Plugin directory path.
+#: ai-plus-block-editor.php:32
+#, php-format
+msgid "Fatal Error: Composer not setup in %s"
+msgstr "שגיאה חמורה: המלחין לא הוגדר ב-%s"
+
+#. Plugin Name of the plugin/theme
+#: inc/Admin/Options.php:79
+msgid "AI + Block Editor"
+msgstr "‫AI + עורך בלוק"
+
+#. Description of the plugin/theme
+#: inc/Admin/Options.php:83
+msgid "Add AI Capabilities to the WP Block Editor."
+msgstr "הוסף יכולות AI לעורך בלוק WP."
+
+#: inc/Admin/Options.php:103
+msgid "Actions"
+msgstr "פעולות"
+
+#: inc/Admin/Options.php:106
+msgid "Save Changes"
+msgstr "שמור שינויים"
+
+#: inc/Admin/Options.php:128
+msgid "General Options"
+msgstr "אפשרויות כלליות"
+
+#: inc/Admin/Options.php:132
+msgid "AI Provider"
+msgstr "ספק AI"
+
+#: inc/Admin/Options.php:144
+msgid "Open AI"
+msgstr "‫Open AI"
+
+#: inc/Admin/Options.php:148
+msgid "Enable Open AI"
+msgstr "אפשר Open AI"
+
+#: inc/Admin/Options.php:149
+msgid "Use Chat GPT capabilities in Block Editor"
+msgstr "השתמש ביכולות Chat GPT בעורך החסימה"
+
+#: inc/Admin/Options.php:154 inc/Admin/Options.php:170
+msgid "Token"
+msgstr "אֲסִימוֹן"
+
+#: inc/Admin/Options.php:155 inc/Admin/Options.php:171
+msgid "e.g. ae2kgch7i"
+msgstr "לְמָשָׁל ae2kgch7i"
+
+#: inc/Admin/Options.php:160
+msgid "Google Gemini"
+msgstr "גוגל תאומים"
+
+#: inc/Admin/Options.php:164
+msgid "Enable Google Gemini"
+msgstr "הפעל את Google Gemini"
+
+#: inc/Admin/Options.php:165
+msgid "Use Google Gemini capabilities in Block Editor"
+msgstr "השתמש ביכולות של Google Gemini ב-Block Editor"
+
+#: inc/Admin/Options.php:190
+msgid "Settings Saved."
+msgstr "ההגדרות נשמרו."
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/badasswp/ai-plus-block-editor"
+msgstr "‫https://github.com/badasswp/ai-plus-block-editor"
+
+#. Author of the plugin/theme
+msgid "badasswp"
+msgstr "‫badasswp"
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/badasswp"
+msgstr "‫https://github.com/badasswp"
