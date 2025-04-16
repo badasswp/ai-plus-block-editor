@@ -8,11 +8,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 import Toast from '../components/Toast';
 
-interface selectProps {
-	getCurrentPostId: () => number;
-	getEditedPostContent: () => any;
-	getEditedPostAttribute: ( attribute: string ) => any;
-}
+import { selectProps } from '../types';
 
 /**
  * SEO.
