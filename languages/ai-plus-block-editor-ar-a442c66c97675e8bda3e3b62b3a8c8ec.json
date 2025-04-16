@@ -1,18 +1,51 @@
 {
-    "translation-revision-date": "2024-08-29 02:16+0100",
-    "generator": "WP-CLI/2.6.0",
-    "source": "dist/app.js",
-    "domain": "messages",
-    "locale_data": {
-        "messages": {
-            "": {
-                "domain": "messages",
-                "lang": "ar\\n",
-                "plural-forms": "nplurals=2; plural=(n != 1);"
-            },
-            "AI + Block Editor": [
-                "الذكاء الاصطناعي + محرر الكتل"
-            ]
-        }
-    }
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "ar\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"الذكاء الاصطناعي + محرر الكتل"
+			],
+			"Headline": [
+				"العنوان"
+			],
+			"Slug": [
+				"سبيكة"
+			],
+			"SEO Keywords": [
+				"كلمات مفتاحية لتحسين محركات البحث"
+			],
+			"Summary": [
+				"ملخص"
+			],
+			"Use Casual Tone": [
+				"استخدم النغمة غير الرسمية"
+			],
+			"Use Official Tone": [
+				"استخدم النغمة الرسمية"
+			],
+			"Use Descriptive Tone": [
+				"استخدم نبرة وصفية"
+			],
+			"Use Narrative Tone": [
+				"استخدم نبرة السرد"
+			],
+			"Use Aggressive Tone": [
+				"استخدم نبرة عدوانية"
+			],
+			"Generate": [
+				"يولد"
+			],
+			"AI is generating text, please hold on for a bit.": [
+				"الذكاء الاصطناعي يقوم بإنشاء نص، يرجى الانتظار قليلاً."
+			]
+		}
+	}
 }
