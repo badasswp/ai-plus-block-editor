@@ -1,0 +1,51 @@
+{
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "zh_CN\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"AI+区块编辑器"
+			],
+			"Headline": [
+				"标题"
+			],
+			"Slug": [
+				"蛞蝓"
+			],
+			"SEO Keywords": [
+				"搜索引擎优化关键词"
+			],
+			"Summary": [
+				"概括"
+			],
+			"Use Casual Tone": [
+				"使用随意的语气"
+			],
+			"Use Official Tone": [
+				"使用官方语气"
+			],
+			"Use Descriptive Tone": [
+				"使用描述性语气"
+			],
+			"Use Narrative Tone": [
+				"使用叙述语气"
+			],
+			"Use Aggressive Tone": [
+				"使用积极的语气"
+			],
+			"Generate": [
+				"产生"
+			],
+			"AI is generating text, please hold on for a bit.": [
+				"AI正在生成文本，请稍等片刻。"
+			]
+		}
+	}
+}
