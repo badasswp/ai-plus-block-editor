@@ -3,7 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { verse } from '@wordpress/icons';
 import { addFilter } from '@wordpress/hooks';
 import { BlockControls } from '@wordpress/block-editor';
-import { select, dispatch } from '@wordpress/data';
+import { useSelect, useDispatch } from '@wordpress/data';
 import { Fragment, useState, useEffect } from '@wordpress/element';
 import { ToolbarGroup, ToolbarDropdownMenu } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
@@ -13,6 +13,8 @@ import { getBlockControlOptions } from '../utils';
 
 import '../styles/app.scss';
 
+import { selectProps, selectBlockProps } from '../utils/types';
+import { editorStore, blockEditorStore } from '../utils/store';
 /**
  * Filter Blocks with AI.
  *
@@ -41,13 +43,23 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 		 * @return {void}
 		 */
 		const getTone = async ( newTone: string ): Promise< void > => {
-			const { getCurrentPostId } = select( 'core/editor' );
-			const { updateBlockAttributes } = dispatch(
-				'core/block-editor'
+			const { postId, blockId, blockContent } = useSelect( ( select ) => {
+				const { getCurrentPostId } = select(
+					editorStore
+				) as selectProps;
+				const { getSelectedBlock, getSelectedBlockClientId } = select(
+					blockEditorStore
+				) as selectBlockProps;
+
+				return {
+					postId: getCurrentPostId(),
+					blockId: getSelectedBlockClientId(),
+					blockContent: getSelectedBlock()?.attributes?.content || '',
+				};
+			}, [] );
+			const { updateBlockAttributes } = useDispatch(
+				blockEditorStore
 			) as any;
-			const { getSelectedBlock, getSelectedBlockClientId } =
-				select( 'core/block-editor' );
-			const { content } = getSelectedBlock().attributes;
 
 			// Display Toast.
 			setIsLoading( true );
@@ -57,8 +69,8 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 					path: '/ai-plus-block-editor/v1/tone',
 					method: 'POST',
 					data: {
-						id: getCurrentPostId(),
-						text: content.text || content,
+						id: postId,
+						text: blockContent?.text || blockContent,
 						newTone,
 					},
 				} );
@@ -68,7 +80,7 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 					if ( aiTone.length === limit ) {
 						clearInterval( displayWithEffect );
 					}
-					updateBlockAttributes( getSelectedBlockClientId(), {
+					updateBlockAttributes( blockId, {
 						content: aiTone.substring( 0, limit ),
 					} );
 					limit++;
