@@ -8,7 +8,8 @@ import apiFetch from '@wordpress/api-fetch';
 
 import Toast from '../components/Toast';
 
-import { selectProps } from '../types';
+import { selectProps } from '../utils/types';
+import { editorStore } from '../utils/store';
 
 /**
  * SEO.
@@ -21,7 +22,6 @@ import { selectProps } from '../types';
  * @return {JSX.Element} SEO Keywords.
  */
 const SEO = (): JSX.Element => {
-	const editorStore = 'core/editor';
 	const [ keywords, setKeywords ] = useState( '' );
 	const [ isLoading, setIsLoading ] = useState( false );
 	const { editPost, savePost } = useDispatch( editorStore ) as any;
