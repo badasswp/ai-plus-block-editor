@@ -116,7 +116,8 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 				<Toast
 					isInEditor={ true }
 					message={ __(
-						'AI is generating text, please hold on for a bit…'
+						'AI is generating text, please hold on for a bit.',
+						'ai-plus-block-editor'
 					) }
 					isLoading={ isLoading }
 				/>
