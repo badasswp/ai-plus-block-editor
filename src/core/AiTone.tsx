@@ -65,13 +65,12 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 		 * @return {void}
 		 */
 		const getTone = async ( newTone: string ): Promise< void > => {
+			const { postId, blockId, blockContent } = getToneParams();
+			const { createErrorNotice } = dispatch( noticesStore ) as any;
 			const { updateBlockAttributes } = dispatch(
 				blockEditorStore
 			) as any;
 
-			const { postId, blockId, blockContent } = getToneParams();
-
-			// Display Toast.
 			setIsLoading( true );
 
 			try {
@@ -96,11 +95,12 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 					limit++;
 				}, 5 );
 
-				// Hide Toast.
 				setIsLoading( false );
 			} catch ( e ) {
-				// eslint-disable-next-line no-console
-				console.log( e.message );
+				createErrorNotice( e.message, {
+					type: 'snackbar',
+					isDismissible: true,
+				} );
 			}
 		};
 
