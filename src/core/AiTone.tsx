@@ -108,6 +108,7 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 			if ( tone ) {
 				getTone( tone );
 			}
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 		}, [ tone ] );
 
 		return (
