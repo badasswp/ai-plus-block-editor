@@ -11,7 +11,7 @@ import apiFetch from '@wordpress/api-fetch';
 import Toast from '../components/Toast';
 import { getBlockControlOptions } from '../utils';
 import { selectProps, selectBlockProps } from '../utils/types';
-import { editorStore, blockEditorStore } from '../utils/store';
+import { editorStore, noticesStore, blockEditorStore } from '../utils/store';
 
 import '../styles/app.scss';
 
