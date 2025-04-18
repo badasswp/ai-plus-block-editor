@@ -40,7 +40,7 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 		 * This function retrieves the current post ID,
 		 * selected block ID, and block content.
 		 *
-		 * @since 1.0.0
+		 * @since 1.4.0
 		 * @return {Object} Object containing postId, blockId and blockContent.
 		 */
 		const getToneParams = (): any => {
