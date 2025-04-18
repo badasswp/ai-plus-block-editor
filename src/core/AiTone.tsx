@@ -3,18 +3,18 @@ import { __ } from '@wordpress/i18n';
 import { verse } from '@wordpress/icons';
 import { addFilter } from '@wordpress/hooks';
 import { BlockControls } from '@wordpress/block-editor';
-import { useSelect, useDispatch } from '@wordpress/data';
+import { select, dispatch } from '@wordpress/data';
 import { Fragment, useState, useEffect } from '@wordpress/element';
 import { ToolbarGroup, ToolbarDropdownMenu } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
 import Toast from '../components/Toast';
 import { getBlockControlOptions } from '../utils';
+import { selectProps, selectBlockProps } from '../utils/types';
+import { editorStore, blockEditorStore } from '../utils/store';
 
 import '../styles/app.scss';
 
-import { selectProps, selectBlockProps } from '../utils/types';
-import { editorStore, blockEditorStore } from '../utils/store';
 /**
  * Filter Blocks with AI.
  *
@@ -35,6 +35,28 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 		const [ isLoading, setIsLoading ] = useState( false );
 
 		/**
+		 * Get Tone Params.
+		 *
+		 * This function retrieves the current post ID,
+		 * selected block ID, and block content.
+		 *
+		 * @since 1.0.0
+		 * @return {Object} Object containing postId, blockId and blockContent.
+		 */
+		const getToneParams = (): any => {
+			const { getCurrentPostId } = select( editorStore ) as selectProps;
+			const { getSelectedBlock, getSelectedBlockClientId } = select(
+				blockEditorStore
+			) as selectBlockProps;
+
+			return {
+				postId: getCurrentPostId(),
+				blockId: getSelectedBlockClientId(),
+				blockContent: getSelectedBlock()?.attributes?.content || '',
+			};
+		};
+
+		/**
 		 * Get AI generated tone.
 		 *
 		 * @since 1.0.0
@@ -43,23 +65,11 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 		 * @return {void}
 		 */
 		const getTone = async ( newTone: string ): Promise< void > => {
-			const { postId, blockId, blockContent } = useSelect( ( select ) => {
-				const { getCurrentPostId } = select(
-					editorStore
-				) as selectProps;
-				const { getSelectedBlock, getSelectedBlockClientId } = select(
-					blockEditorStore
-				) as selectBlockProps;
-
-				return {
-					postId: getCurrentPostId(),
-					blockId: getSelectedBlockClientId(),
-					blockContent: getSelectedBlock()?.attributes?.content || '',
-				};
-			}, [] );
-			const { updateBlockAttributes } = useDispatch(
+			const { updateBlockAttributes } = dispatch(
 				blockEditorStore
 			) as any;
+
+			const { postId, blockId, blockContent } = getToneParams();
 
 			// Display Toast.
 			setIsLoading( true );
