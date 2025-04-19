@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { __ } from '@wordpress/i18n';
 import { verse } from '@wordpress/icons';
-import { addFilter } from '@wordpress/hooks';
+import { addFilter, applyFilters } from '@wordpress/hooks';
 import { BlockControls } from '@wordpress/block-editor';
 import { select, dispatch } from '@wordpress/data';
 import { Fragment, useState, useEffect } from '@wordpress/element';
@@ -52,13 +52,29 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 			// Display Toast.
 			setIsLoading( true );
 
+			/**
+			 * Filter the Block Content.
+			 *
+			 * By default the passed content should contain
+			 * the block content.
+			 *
+			 * @since 1.4.0
+			 *
+			 * @param {any} content Block content.
+			 * @return {string} Block Content.
+			 */
+			const blockContent = applyFilters(
+				'apbe.blockContent',
+				content?.text || content
+			) as string;
+
 			try {
 				const aiTone: string = await apiFetch( {
 					path: '/ai-plus-block-editor/v1/tone',
 					method: 'POST',
 					data: {
 						id: getCurrentPostId(),
-						text: content.text || content,
+						text: blockContent,
 						newTone,
 					},
 				} );
