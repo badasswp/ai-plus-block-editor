@@ -17,9 +17,7 @@ type DropdownOption = {
  * @param {Function} setTone Subscribe to setTone setter method.
  * @return {DropdownOption[]} Dropdown options.
  */
-export const getBlockControlOptions = (
-	setTone: Function
-): DropdownOption[] => {
+export const getBlockMenuOptions = ( setTone: Function ): DropdownOption[] => {
 	const menu = [];
 
 	const options = {
@@ -50,5 +48,32 @@ export const getBlockControlOptions = (
 	 * @param {DropdownOption[]} menu Menu array containing menu objects.
 	 * @return {DropdownOption[]}
 	 */
-	return applyFilters( 'apbe.blockControlOptions', menu ) as DropdownOption[];
+	return applyFilters( 'apbe.blockMenuOptions', menu ) as DropdownOption[];
+};
+
+/**
+ * Get Allowed Blocks.
+ *
+ * This function filters the allowed blocks
+ * available to the AI tone feature.
+ *
+ * @since 1.4.0
+ *
+ * @return {string[]} Allowed blocks.
+ */
+export const getAllowedBlocks = (): string[] => {
+	const allowedBlocks = [ 'core/paragraph' ];
+
+	/**
+	 * Filter Allowed Blocks.
+	 *
+	 * By default the passed option should contain
+	 * allowed blocks.
+	 *
+	 * @since 1.4.0
+	 *
+	 * @param {string[]} allowedBlocks Allowed blocks array.
+	 * @return {string[]}
+	 */
+	return applyFilters( 'apbe.allowedBlocks', allowedBlocks ) as string[];
 };

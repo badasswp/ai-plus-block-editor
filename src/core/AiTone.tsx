@@ -8,11 +8,11 @@ import { Fragment, useState, useEffect } from '@wordpress/element';
 import { ToolbarGroup, ToolbarDropdownMenu } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
-import Toast from '../components/Toast';
-import { getBlockControlOptions } from '../utils';
 import { selectProps, selectBlockProps } from '../utils/types';
+import { getAllowedBlocks, getBlockMenuOptions } from '../utils';
 import { editorStore, noticesStore, blockEditorStore } from '../utils/store';
 
+import Toast from '../components/Toast';
 import '../styles/app.scss';
 
 /**
@@ -26,7 +26,7 @@ import '../styles/app.scss';
 export const filterBlockTypesWithAI = ( settings: any ): object => {
 	const { name, edit } = settings;
 
-	if ( 'core/paragraph' !== name ) {
+	if ( getAllowedBlocks().indexOf( name ) === -1 ) {
 		return settings;
 	}
 
@@ -126,7 +126,7 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 						<ToolbarDropdownMenu
 							icon={ verse }
 							label={ __( 'AI + Block Editor' ) }
-							controls={ getBlockControlOptions( setTone ) }
+							controls={ getBlockMenuOptions( setTone ) }
 						/>
 					</ToolbarGroup>
 				</BlockControls>
