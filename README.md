@@ -42,6 +42,8 @@ If you have done this successfully, you should have save these details into your
 
 ## Hooks
 
+### PHP Hooks
+
 #### `apbe_ai_provider`
 
 This custom hook (filter) provides the ability to modify the AI Provider.
@@ -164,6 +166,8 @@ public function custom_route( $rest_routes ) {
 - rest_routes _`{array}`_ By default this will be an array containing the plugin's REST routes.
 <br/>
 
+### JS Hooks
+
 #### `apbe.allowedBlocks`
 
 This custom hook (filter) provides the ability to extend the AiTone feature to other custom blocks:
@@ -200,11 +204,11 @@ addFilter(
 	'apbe.blockMenuOptions',
 	'yourBlockMenuOptions',
 	( blockMenuOptions ) => {
-		blockMenuOptions.push( {
+		const yourOptions = {
 			conversation: __( 'Use Conversation Tone', 'ai-plus-block-editor' )
-		} )
+		}
 
-		return blockMenuOptions;
+		return { ...blockMenuOptions, ...yourOptions }
 	}
 );
 ```
