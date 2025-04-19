@@ -9,7 +9,7 @@ import { ToolbarGroup, ToolbarDropdownMenu } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
 import Toast from '../components/Toast';
-import { getBlockControlOptions } from '../utils';
+import { getAllowedBlocks, getBlockControlOptions } from '../utils';
 
 import '../styles/app.scss';
 
@@ -24,7 +24,7 @@ import '../styles/app.scss';
 export const filterBlockTypesWithAI = ( settings: any ): object => {
 	const { name, edit } = settings;
 
-	if ( 'core/paragraph' !== name ) {
+	if ( getAllowedBlocks().indexOf( name ) === -1 ) {
 		return settings;
 	}
 
