@@ -200,11 +200,9 @@ addFilter(
 	'apbe.blockMenuOptions',
 	'yourBlockMenuOptions',
 	( blockMenuOptions ) => {
-		if ( blockMenuOptions.indexOf( 'your/block' ) === -1 ) {
-			blockMenuOptions.push( {
-				conversation: __( 'Use Conversation Tone', 'ai-plus-block-editor' )
-			} )
-		}
+		blockMenuOptions.push( {
+			conversation: __( 'Use Conversation Tone', 'ai-plus-block-editor' )
+		} )
 
 		return blockMenuOptions;
 	}
