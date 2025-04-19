@@ -1,5 +1,13 @@
 # Changelog
 
+# 1.4.0
+* Refactor: Adopt useSelect & useDispatch hooks in sidebar components.
+* Feat: Add new language translations for Italian, Russian, Chinese, Arabic, Hebrew & Croatian.
+* Feat: Add new custom filters `apbe.allowedBlocks`.
+* Test: Update Unit Tests to match refactor work.
+* Update README docs.
+* Tested up to WP 6.7.2.
+
 # 1.3.0
 * Feat: Update translations for French, Danish, Spanish & German languages.
 * Feat: Add new toast for AiTone usage.
