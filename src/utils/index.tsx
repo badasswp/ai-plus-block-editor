@@ -17,9 +17,7 @@ type DropdownOption = {
  * @param {Function} setTone Subscribe to setTone setter method.
  * @return {DropdownOption[]} Dropdown options.
  */
-export const getBlockControlOptions = (
-	setTone: Function
-): DropdownOption[] => {
+export const getBlockMenuOptions = ( setTone: Function ): DropdownOption[] => {
 	const menu = [];
 
 	const options = {
@@ -50,7 +48,7 @@ export const getBlockControlOptions = (
 	 * @param {DropdownOption[]} menu Menu array containing menu objects.
 	 * @return {DropdownOption[]}
 	 */
-	return applyFilters( 'apbe.blockControlOptions', menu ) as DropdownOption[];
+	return applyFilters( 'apbe.blockMenuOptions', menu ) as DropdownOption[];
 };
 
 /**
