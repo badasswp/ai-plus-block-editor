@@ -7,44 +7,44 @@
 		"messages": {
 			"": {
 				"domain": "messages",
-				"lang": "es_ES\\n",
+				"lang": "he_IL\\n",
 				"plural-forms": "nplurals=2; plural=(n != 1);"
 			},
 			"AI + Block Editor": [
-				"AI + Editor de bloques"
+				"AI + עורך בלוק"
 			],
 			"Headline": [
-				"Titular"
+				"כּוֹתֶרֶת"
 			],
 			"Slug": [
-				"Babosa"
+				"שַׁבְּלוּל"
 			],
 			"SEO Keywords": [
-				"Palabras clave SEO"
+				"מילות מפתח SEO"
 			],
 			"Summary": [
-				"Resumen"
+				"תַקצִיר"
 			],
 			"Use Casual Tone": [
-				"Utilice un tono informal"
+				"השתמש בטון מזדמן"
 			],
 			"Use Official Tone": [
-				"Usar tono oficial"
+				"השתמש בטון רשמי"
 			],
 			"Use Descriptive Tone": [
-				"Utilice un tono descriptivo"
+				"השתמש בטון תיאורי"
 			],
 			"Use Narrative Tone": [
-				"Utilice un tono narrativo"
+				"השתמש בטון סיפורי"
 			],
 			"Use Aggressive Tone": [
-				"Utilice un tono agresivo"
+				"השתמש בטון אגרסיבי"
 			],
 			"Generate": [
-				"Generar"
+				"לִיצוֹר"
 			],
 			"AI is generating text, please hold on for a bit.": [
-				"La IA está generando texto, espere un momento."
+				"AI מייצר טקסט, בבקשה תחזיק מעמד קצת."
 			]
 		}
 	}

@@ -39,6 +39,12 @@
 			],
 			"Use Aggressive Tone": [
 				"Brug en aggressiv tone"
+			],
+			"Generate": [
+				"Frembringe"
+			],
+			"AI is generating text, please hold on for a bit.": [
+				"AI genererer tekst, vent venligst lidt."
 			]
 		}
 	}

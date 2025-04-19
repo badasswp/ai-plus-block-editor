@@ -10,6 +10,8 @@ import apiFetch from '@wordpress/api-fetch';
 
 import Toast from '../components/Toast';
 import { getAllowedBlocks, getBlockControlOptions } from '../utils';
+import { selectProps, selectBlockProps } from '../utils/types';
+import { editorStore, noticesStore, blockEditorStore } from '../utils/store';
 
 import '../styles/app.scss';
 
@@ -33,6 +35,28 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 		const [ isLoading, setIsLoading ] = useState( false );
 
 		/**
+		 * Get Tone Params.
+		 *
+		 * This function retrieves the current post ID,
+		 * selected block ID, and block content.
+		 *
+		 * @since 1.4.0
+		 * @return {Object} Object containing postId, blockId and blockContent.
+		 */
+		const getToneParams = (): any => {
+			const { getCurrentPostId } = select( editorStore ) as selectProps;
+			const { getSelectedBlock, getSelectedBlockClientId } = select(
+				blockEditorStore
+			) as selectBlockProps;
+
+			return {
+				postId: getCurrentPostId(),
+				blockId: getSelectedBlockClientId(),
+				blockContent: getSelectedBlock()?.attributes?.content || '',
+			};
+		};
+
+		/**
 		 * Get AI generated tone.
 		 *
 		 * @since 1.0.0
@@ -41,40 +65,21 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 		 * @return {void}
 		 */
 		const getTone = async ( newTone: string ): Promise< void > => {
-			const { getCurrentPostId } = select( 'core/editor' );
+			const { postId, blockId, blockContent } = getToneParams();
+			const { createErrorNotice } = dispatch( noticesStore ) as any;
 			const { updateBlockAttributes } = dispatch(
-				'core/block-editor'
+				blockEditorStore
 			) as any;
-			const { getSelectedBlock, getSelectedBlockClientId } =
-				select( 'core/block-editor' );
-			const { content } = getSelectedBlock().attributes;
 
-			// Display Toast.
 			setIsLoading( true );
-
-			/**
-			 * Filter the Block Content.
-			 *
-			 * By default the passed content should contain
-			 * the block content.
-			 *
-			 * @since 1.4.0
-			 *
-			 * @param {any} content Block content.
-			 * @return {string} Block Content.
-			 */
-			const blockContent = applyFilters(
-				'apbe.blockContent',
-				content?.text || content
-			) as string;
 
 			try {
 				const aiTone: string = await apiFetch( {
 					path: '/ai-plus-block-editor/v1/tone',
 					method: 'POST',
 					data: {
-						id: getCurrentPostId(),
-						text: blockContent,
+						id: postId,
+						text: blockContent?.text || blockContent,
 						newTone,
 					},
 				} );
@@ -84,17 +89,18 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 					if ( aiTone.length === limit ) {
 						clearInterval( displayWithEffect );
 					}
-					updateBlockAttributes( getSelectedBlockClientId(), {
+					updateBlockAttributes( blockId, {
 						content: aiTone.substring( 0, limit ),
 					} );
 					limit++;
 				}, 5 );
 
-				// Hide Toast.
 				setIsLoading( false );
 			} catch ( e ) {
-				// eslint-disable-next-line no-console
-				console.log( e.message );
+				createErrorNotice( e.message, {
+					type: 'snackbar',
+					isDismissible: true,
+				} );
 			}
 		};
 
@@ -102,6 +108,7 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 			if ( tone ) {
 				getTone( tone );
 			}
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 		}, [ tone ] );
 
 		return (
@@ -109,7 +116,8 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 				<Toast
 					isInEditor={ true }
 					message={ __(
-						'AI is generating text, please hold on for a bit…'
+						'AI is generating text, please hold on for a bit.',
+						'ai-plus-block-editor'
 					) }
 					isLoading={ isLoading }
 				/>

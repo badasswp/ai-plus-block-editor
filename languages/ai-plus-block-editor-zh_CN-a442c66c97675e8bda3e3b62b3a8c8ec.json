@@ -7,44 +7,44 @@
 		"messages": {
 			"": {
 				"domain": "messages",
-				"lang": "es_ES\\n",
+				"lang": "zh_CN\\n",
 				"plural-forms": "nplurals=2; plural=(n != 1);"
 			},
 			"AI + Block Editor": [
-				"AI + Editor de bloques"
+				"AI+区块编辑器"
 			],
 			"Headline": [
-				"Titular"
+				"标题"
 			],
 			"Slug": [
-				"Babosa"
+				"蛞蝓"
 			],
 			"SEO Keywords": [
-				"Palabras clave SEO"
+				"搜索引擎优化关键词"
 			],
 			"Summary": [
-				"Resumen"
+				"概括"
 			],
 			"Use Casual Tone": [
-				"Utilice un tono informal"
+				"使用随意的语气"
 			],
 			"Use Official Tone": [
-				"Usar tono oficial"
+				"使用官方语气"
 			],
 			"Use Descriptive Tone": [
-				"Utilice un tono descriptivo"
+				"使用描述性语气"
 			],
 			"Use Narrative Tone": [
-				"Utilice un tono narrativo"
+				"使用叙述语气"
 			],
 			"Use Aggressive Tone": [
-				"Utilice un tono agresivo"
+				"使用积极的语气"
 			],
 			"Generate": [
-				"Generar"
+				"产生"
 			],
 			"AI is generating text, please hold on for a bit.": [
-				"La IA está generando texto, espere un momento."
+				"AI正在生成文本，请稍等片刻。"
 			]
 		}
 	}
