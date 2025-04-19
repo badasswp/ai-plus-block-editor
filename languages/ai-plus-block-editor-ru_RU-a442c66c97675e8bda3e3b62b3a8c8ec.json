@@ -7,44 +7,44 @@
 		"messages": {
 			"": {
 				"domain": "messages",
-				"lang": "es_ES\\n",
+				"lang": "ru_RU\\n",
 				"plural-forms": "nplurals=2; plural=(n != 1);"
 			},
 			"AI + Block Editor": [
-				"AI + Editor de bloques"
+				"AI + редактор блоков"
 			],
 			"Headline": [
-				"Titular"
+				"Заголовок"
 			],
 			"Slug": [
-				"Babosa"
+				"Слизень"
 			],
 			"SEO Keywords": [
-				"Palabras clave SEO"
+				"SEO-ключевые слова"
 			],
 			"Summary": [
-				"Resumen"
+				"Краткое содержание"
 			],
 			"Use Casual Tone": [
-				"Utilice un tono informal"
+				"Используйте непринужденный тон"
 			],
 			"Use Official Tone": [
-				"Usar tono oficial"
+				"Используйте официальный тон"
 			],
 			"Use Descriptive Tone": [
-				"Utilice un tono descriptivo"
+				"Используйте описательный тон"
 			],
 			"Use Narrative Tone": [
-				"Utilice un tono narrativo"
+				"Используйте повествовательный тон"
 			],
 			"Use Aggressive Tone": [
-				"Utilice un tono agresivo"
+				"Используйте агрессивный тон"
 			],
 			"Generate": [
-				"Generar"
+				"Генерировать"
 			],
 			"AI is generating text, please hold on for a bit.": [
-				"La IA está generando texto, espere un momento."
+				"ИИ генерирует текст, пожалуйста, подождите немного."
 			]
 		}
 	}

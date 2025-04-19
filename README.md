@@ -42,6 +42,8 @@ If you have done this successfully, you should have save these details into your
 
 ## Hooks
 
+### PHP Hooks
+
 #### `apbe_ai_provider`
 
 This custom hook (filter) provides the ability to modify the AI Provider.
@@ -162,6 +164,58 @@ public function custom_route( $rest_routes ) {
 **Parameters**
 
 - rest_routes _`{array}`_ By default this will be an array containing the plugin's REST routes.
+<br/>
+
+### JS Hooks
+
+#### `apbe.allowedBlocks`
+
+This custom hook (filter) provides the ability to extend the AiTone feature to other custom blocks:
+
+```js
+import { addFilter } from '@wordpress/hooks';
+
+addFilter(
+	'apbe.allowedBlocks',
+	'yourBlocks',
+	( allowedBlocks ) => {
+		if ( allowedBlocks.indexOf( 'your/block' ) === -1 ) {
+			allowedBlocks.push( 'your/block' );
+		}
+
+		return allowedBlocks;
+	}
+);
+```
+
+**Parameters**
+
+- allowedBlocks _`{string[]}`_ List of Allowed Blocks.
+<br/>
+
+#### `apbe.blockMenuOptions`
+
+This custom hook (filter) provides the ability to extend the menu options shown when using the AI tone feature on a block:
+
+```js
+import { addFilter } from '@wordpress/hooks';
+
+addFilter(
+	'apbe.blockMenuOptions',
+	'yourBlockMenuOptions',
+	( blockMenuOptions ) => {
+		const yourOptions = {
+			conversation: __( 'Use Conversation Tone', 'ai-plus-block-editor' )
+		}
+
+		return { ...blockMenuOptions, ...yourOptions }
+	}
+);
+```
+
+**Parameters**
+
+- blockMenuOptions _`{string[]}`_ List of Block Menu Options.
 <br/>
 
 ---

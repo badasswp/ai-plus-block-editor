@@ -7,44 +7,44 @@
 		"messages": {
 			"": {
 				"domain": "messages",
-				"lang": "es_ES\\n",
+				"lang": "hr\\n",
 				"plural-forms": "nplurals=2; plural=(n != 1);"
 			},
 			"AI + Block Editor": [
-				"AI + Editor de bloques"
+				"AI + uređivač blokova"
 			],
 			"Headline": [
-				"Titular"
+				"Naslov"
 			],
 			"Slug": [
-				"Babosa"
+				"Puž"
 			],
 			"SEO Keywords": [
-				"Palabras clave SEO"
+				"SEO ključne riječi"
 			],
 			"Summary": [
-				"Resumen"
+				"Sažetak"
 			],
 			"Use Casual Tone": [
-				"Utilice un tono informal"
+				"Koristite ležeran ton"
 			],
 			"Use Official Tone": [
-				"Usar tono oficial"
+				"Koristite službeni ton"
 			],
 			"Use Descriptive Tone": [
-				"Utilice un tono descriptivo"
+				"Koristite opisni ton"
 			],
 			"Use Narrative Tone": [
-				"Utilice un tono narrativo"
+				"Koristite narativni ton"
 			],
 			"Use Aggressive Tone": [
-				"Utilice un tono agresivo"
+				"Koristite agresivan ton"
 			],
 			"Generate": [
-				"Generar"
+				"Generirati"
 			],
 			"AI is generating text, please hold on for a bit.": [
-				"La IA está generando texto, espere un momento."
+				"AI generira tekst, sačekajte malo."
 			]
 		}
 	}

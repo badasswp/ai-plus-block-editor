@@ -2,10 +2,21 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 
+import { useSelect, useDispatch } from '@wordpress/data';
+
 import Headline from '../../src/components/Headline';
 
 jest.mock( '@wordpress/i18n', () => ( {
 	__: jest.fn( ( arg ) => arg ),
+} ) );
+
+jest.mock( '@wordpress/data', () => ( {
+	useSelect: jest.fn(),
+	useDispatch: jest.fn(),
+} ) );
+
+jest.mock( '@wordpress/notices', () => ( {
+	store: 'core/notices',
 } ) );
 
 jest.mock( '@wordpress/components', () => ( {
@@ -18,9 +29,11 @@ jest.mock( '@wordpress/components', () => ( {
 			</>
 		);
 	} ),
+
 	Icon: jest.fn( () => {
 		return <>Icon</>;
 	} ),
+
 	TextareaControl: jest.fn(
 		( { rows, value, onChange, __nextHasNoMarginBottom = true } ) => {
 			return (
@@ -38,39 +51,27 @@ jest.mock( '@wordpress/components', () => ( {
 	),
 } ) );
 
-jest.mock( '@wordpress/data', () => ( {
-	useSelect: jest.fn(),
-	useDispatch: jest.fn( () => ( {
-		removeNotice: jest.fn(),
-	} ) ),
-	dispatch: jest.fn( ( store ) =>
-		store === 'core/editor'
-			? {
-					editPost: jest.fn(),
-			  }
-			: {}
-	),
-	select: jest.fn( ( store ) =>
-		store === 'core/editor'
-			? {
-					savePost: jest.fn(),
-					getCurrentPostId: jest.fn(),
-					getEditedPostContent: jest.fn(),
-					getEditedPostAttribute: jest.fn( ( attribute ) =>
-						attribute === 'meta'
-							? {
-									apbe_headline: 'AI generated headline...',
-							  }
-							: {}
-					),
-			  }
-			: {}
-	),
-	createReduxStore: jest.fn(),
-	register: jest.fn(),
-} ) );
-
 describe( 'Headline', () => {
+	beforeEach( () => {
+		( useSelect as jest.Mock ).mockReturnValue( {
+			postId: 1,
+			postContent: 'Hello World',
+			postHeadline: 'AI generated headline...',
+			notices: [],
+		} );
+
+		( useDispatch as jest.Mock ).mockReturnValue( {
+			editPost: jest.fn(),
+			savePost: jest.fn(),
+			removeNotice: jest.fn(),
+			createErrorNotice: jest.fn(),
+		} );
+	} );
+
+	afterEach( () => {
+		jest.clearAllMocks();
+	} );
+
 	it( 'renders the Headline textarea and 2 buttons', () => {
 		const { container } = render( <Headline /> );
 

@@ -7,44 +7,44 @@
 		"messages": {
 			"": {
 				"domain": "messages",
-				"lang": "es_ES\\n",
+				"lang": "ar\\n",
 				"plural-forms": "nplurals=2; plural=(n != 1);"
 			},
 			"AI + Block Editor": [
-				"AI + Editor de bloques"
+				"الذكاء الاصطناعي + محرر الكتل"
 			],
 			"Headline": [
-				"Titular"
+				"العنوان"
 			],
 			"Slug": [
-				"Babosa"
+				"سبيكة"
 			],
 			"SEO Keywords": [
-				"Palabras clave SEO"
+				"كلمات مفتاحية لتحسين محركات البحث"
 			],
 			"Summary": [
-				"Resumen"
+				"ملخص"
 			],
 			"Use Casual Tone": [
-				"Utilice un tono informal"
+				"استخدم النغمة غير الرسمية"
 			],
 			"Use Official Tone": [
-				"Usar tono oficial"
+				"استخدم النغمة الرسمية"
 			],
 			"Use Descriptive Tone": [
-				"Utilice un tono descriptivo"
+				"استخدم نبرة وصفية"
 			],
 			"Use Narrative Tone": [
-				"Utilice un tono narrativo"
+				"استخدم نبرة السرد"
 			],
 			"Use Aggressive Tone": [
-				"Utilice un tono agresivo"
+				"استخدم نبرة عدوانية"
 			],
 			"Generate": [
-				"Generar"
+				"يولد"
 			],
 			"AI is generating text, please hold on for a bit.": [
-				"La IA está generando texto, espere un momento."
+				"الذكاء الاصطناعي يقوم بإنشاء نص، يرجى الانتظار قليلاً."
 			]
 		}
 	}

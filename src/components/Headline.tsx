@@ -1,12 +1,15 @@
 import { __ } from '@wordpress/i18n';
 import { check } from '@wordpress/icons';
 import { useState, useEffect } from '@wordpress/element';
+import { useSelect, useDispatch } from '@wordpress/data';
 import { store as noticesStore } from '@wordpress/notices';
 import { Button, Icon, TextareaControl } from '@wordpress/components';
-import { select, dispatch, useSelect, useDispatch } from '@wordpress/data';
 import apiFetch from '@wordpress/api-fetch';
 
 import Toast from '../components/Toast';
+
+import { selectProps } from '../utils/types';
+import { editorStore } from '../utils/store';
 
 /**
  * Headline.
@@ -21,20 +24,30 @@ import Toast from '../components/Toast';
 const Headline = (): JSX.Element => {
 	const [ headline, setHeadline ] = useState( '' );
 	const [ isLoading, setIsLoading ] = useState( false );
-	const { editPost, savePost } = dispatch( 'core/editor' ) as any;
+	const { editPost, savePost } = useDispatch( editorStore ) as any;
 	const { createErrorNotice, removeNotice } = useDispatch( noticesStore );
-	const { getCurrentPostId, getEditedPostAttribute, getEditedPostContent } =
-		select( 'core/editor' );
+	const { postId, postContent, postHeadline, notices } = useSelect(
+		( select ) => {
+			const { getNotices } = select( noticesStore );
+			const {
+				getCurrentPostId,
+				getEditedPostContent,
+				getEditedPostAttribute,
+			} = select( editorStore ) as selectProps;
 
-	const content = getEditedPostContent();
-	const notices = useSelect(
-		( use ) => use( noticesStore ).getNotices(),
+			return {
+				postId: getCurrentPostId(),
+				postContent: getEditedPostContent(),
+				postHeadline: getEditedPostAttribute( 'meta' )?.apbe_headline,
+				notices: getNotices(),
+			};
+		},
 		[]
 	);
 
 	useEffect( () => {
-		setHeadline( getEditedPostAttribute( 'meta' ).apbe_headline );
-	}, [ getEditedPostAttribute ] );
+		setHeadline( postHeadline );
+	}, [ postHeadline ] );
 
 	/**
 	 * This function fires when the user clicks
@@ -53,8 +66,8 @@ const Headline = (): JSX.Element => {
 				path: '/ai-plus-block-editor/v1/sidebar',
 				method: 'POST',
 				data: {
-					id: getCurrentPostId(),
-					text: content.text || content,
+					id: postId,
+					text: postContent?.text || postContent,
 					feature: 'headline',
 				},
 			} );
@@ -155,7 +168,8 @@ const Headline = (): JSX.Element => {
 			</div>
 			<Toast
 				message={ __(
-					'AI is generating text, please hold on for a bit…'
+					'AI is generating text, please hold on for a bit.',
+					'ai-plus-block-editor'
 				) }
 				isLoading={ isLoading }
 			/>
