@@ -7,44 +7,44 @@
 		"messages": {
 			"": {
 				"domain": "messages",
-				"lang": "fr_FR\\n",
+				"lang": "hi_IN\\n",
 				"plural-forms": "nplurals=2; plural=(n != 1);"
 			},
 			"AI + Block Editor": [
-				"AI + éditeur de blocs"
+				"AI + ब्लॉक संपादक"
 			],
 			"Headline": [
-				"Titre"
+				"शीर्षक"
 			],
 			"Slug": [
-				"Limace"
+				"काउंटर"
 			],
 			"SEO Keywords": [
-				"Mots-clés SEO"
+				"एसईओ कीवर्ड"
 			],
 			"Summary": [
-				"Résumé"
+				"सारांश"
 			],
 			"Use Casual Tone": [
-				"Utilisez un ton décontracté"
+				"सामान्य लहजे का प्रयोग करें"
 			],
 			"Use Official Tone": [
-				"Utilisez le ton officiel"
+				"आधिकारिक स्वर का प्रयोग करें"
 			],
 			"Use Descriptive Tone": [
-				"Utilisez un ton descriptif"
+				"वर्णनात्मक लहजे का प्रयोग करें"
 			],
 			"Use Narrative Tone": [
 				"Utiliser un ton narratif"
 			],
 			"Use Aggressive Tone": [
-				"Utilisez un ton agressif"
+				"कथात्मक लहजे का प्रयोग करें"
 			],
 			"Generate": [
-				"Générer"
+				"उत्पन्न"
 			],
 			"AI is generating text, please hold on for a bit.": [
-				"L'IA génère du texte, veuillez patienter un instant."
+				"AI पाठ उत्पन्न कर रहा है, कृपया थोड़ा रुकें।"
 			]
 		}
 	}

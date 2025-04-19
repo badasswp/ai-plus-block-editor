@@ -4,10 +4,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2025-04-15 10:00+0100\n"
+"PO-Revision-Date: 2025-04-15 23:55+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: de_DE\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,33 +27,33 @@ msgstr ""
 #: ai-plus-block-editor.php:32
 #, php-format
 msgid "Fatal Error: Composer not setup in %s"
-msgstr "Schwerwiegender Fehler: Composer nicht eingerichtet in %s"
+msgstr "Fatalna pogreška: Skladatelj nije postavljen u %s"
 
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
 msgid "AI + Block Editor"
-msgstr "AI + Block-Editor"
+msgstr "AI + uređivač blokova"
 
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
 msgid "Add AI Capabilities to the WP Block Editor."
-msgstr "Hinzufügen von AI-Fähigkeiten zum WP-Block-Editor."
+msgstr "Dodajte AI mogućnosti u WP Block Editor."
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
-msgstr "Aktionen"
+msgstr "Radnje"
 
 #: inc/Admin/Options.php:106
 msgid "Save Changes"
-msgstr "Änderungen Speichern"
+msgstr "Spremi promjene"
 
 #: inc/Admin/Options.php:128
 msgid "General Options"
-msgstr "Allgemeine Optionen"
+msgstr "Opće opcije"
 
 #: inc/Admin/Options.php:132
 msgid "AI Provider"
-msgstr "AI-Anbieter"
+msgstr "Davatelj AI"
 
 #: inc/Admin/Options.php:144
 msgid "Open AI"
@@ -61,19 +61,19 @@ msgstr "Open AI"
 
 #: inc/Admin/Options.php:148
 msgid "Enable Open AI"
-msgstr "Open AI Aktivieren"
+msgstr "Omogući Open AI"
 
 #: inc/Admin/Options.php:149
 msgid "Use Chat GPT capabilities in Block Editor"
-msgstr "Chat-GPT-Funktionen im Block-Editor verwenden"
+msgstr "Koristite Chat GPT mogućnosti u uređivaču blokova"
 
 #: inc/Admin/Options.php:154 inc/Admin/Options.php:170
 msgid "Token"
-msgstr "Token"
+msgstr "Znak"
 
 #: inc/Admin/Options.php:155 inc/Admin/Options.php:171
 msgid "e.g. ae2kgch7i"
-msgstr "e.g. ae2kgch7i"
+msgstr "npr. ae2kgch7i"
 
 #: inc/Admin/Options.php:160
 msgid "Google Gemini"
@@ -81,15 +81,15 @@ msgstr "Google Gemini"
 
 #: inc/Admin/Options.php:164
 msgid "Enable Google Gemini"
-msgstr "Google Gemini Aktivieren"
+msgstr "Omogućite Google Gemini"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr "Verwenden Sie die Funktionen von Google Gemini im Block-Editor"
+msgstr "Koristite Google Gemini mogućnosti u uređivaču blokova"
 
 #: inc/Admin/Options.php:190
 msgid "Settings Saved."
-msgstr "Einstellungen Gespeichert."
+msgstr "Postavke su spremljene."
 
 #. Plugin URI of the plugin/theme
 msgid "https://github.com/badasswp/ai-plus-block-editor"

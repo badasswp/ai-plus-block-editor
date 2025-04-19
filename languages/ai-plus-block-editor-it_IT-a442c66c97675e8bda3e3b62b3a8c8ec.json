@@ -7,44 +7,44 @@
 		"messages": {
 			"": {
 				"domain": "messages",
-				"lang": "es_ES\\n",
+				"lang": "it_IT\\n",
 				"plural-forms": "nplurals=2; plural=(n != 1);"
 			},
 			"AI + Block Editor": [
-				"AI + Editor de bloques"
+				"AI + Editor di blocchi"
 			],
 			"Headline": [
-				"Titular"
+				"Titolo"
 			],
 			"Slug": [
-				"Babosa"
+				"Lumaca"
 			],
 			"SEO Keywords": [
-				"Palabras clave SEO"
+				"Parole chiave SEO"
 			],
 			"Summary": [
-				"Resumen"
+				"Riepilogo"
 			],
 			"Use Casual Tone": [
-				"Utilice un tono informal"
+				"Usa un tono casual"
 			],
 			"Use Official Tone": [
-				"Usar tono oficial"
+				"Usa il tono ufficiale"
 			],
 			"Use Descriptive Tone": [
-				"Utilice un tono descriptivo"
+				"Usa un tono descrittivo"
 			],
 			"Use Narrative Tone": [
-				"Utilice un tono narrativo"
+				"Usa il tono narrativo"
 			],
 			"Use Aggressive Tone": [
-				"Utilice un tono agresivo"
+				"Usa un tono aggressivo"
 			],
 			"Generate": [
-				"Generar"
+				"Generare"
 			],
 			"AI is generating text, please hold on for a bit.": [
-				"La IA está generando texto, espere un momento."
+				"L'intelligenza artificiale sta generando del testo, attendi un attimo."
 			]
 		}
 	}
