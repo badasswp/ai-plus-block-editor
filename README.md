@@ -164,6 +164,58 @@ public function custom_route( $rest_routes ) {
 - rest_routes _`{array}`_ By default this will be an array containing the plugin's REST routes.
 <br/>
 
+#### `apbe.allowedBlocks`
+
+This custom hook (filter) provides the ability to extend the AiTone feature to other custom blocks:
+
+```js
+import { addFilter } from '@wordpress/hooks';
+
+addFilter(
+	'apbe.allowedBlocks',
+	'yourBlocks',
+	( allowedBlocks ) => {
+		if ( allowedBlocks.indexOf( 'your/block' ) === -1 ) {
+			allowedBlocks.push( 'your/block' );
+		}
+
+		return allowedBlocks;
+	}
+);
+```
+
+**Parameters**
+
+- allowedBlocks _`{string[]}`_ List of Allowed Blocks.
+<br/>
+
+#### `apbe.blockMenuOptions`
+
+This custom hook (filter) provides the ability to extend the menu options shown when using the AI tone feature on a block:
+
+```js
+import { addFilter } from '@wordpress/hooks';
+
+addFilter(
+	'apbe.blockMenuOptions',
+	'yourBlockMenuOptions',
+	( blockMenuOptions ) => {
+		if ( blockMenuOptions.indexOf( 'your/block' ) === -1 ) {
+			blockMenuOptions.push( {
+				conversation: __( 'Use Conversation Tone', 'ai-plus-block-editor' )
+			} )
+		}
+
+		return blockMenuOptions;
+	}
+);
+```
+
+**Parameters**
+
+- blockMenuOptions _`{string[]}`_ List of Block Menu Options.
+<br/>
+
 ---
 
 ## Contribute
