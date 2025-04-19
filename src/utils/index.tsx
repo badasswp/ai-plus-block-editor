@@ -52,3 +52,30 @@ export const getBlockControlOptions = (
 	 */
 	return applyFilters( 'apbe.blockControlOptions', menu ) as DropdownOption[];
 };
+
+/**
+ * Get Allowed Blocks.
+ *
+ * This function filters the allowed blocks
+ * available to the AI tone feature.
+ *
+ * @since 1.4.0
+ *
+ * @return {string[]} Allowed blocks.
+ */
+export const getAllowedBlocks = (): string[] => {
+	const allowedBlocks = [ 'core/paragraph' ];
+
+	/**
+	 * Filter Allowed Blocks.
+	 *
+	 * By default the passed option should contain
+	 * allowed blocks.
+	 *
+	 * @since 1.4.0
+	 *
+	 * @param {string[]} allowedBlocks Allowed blocks array.
+	 * @return {string[]}
+	 */
+	return applyFilters( 'apbe.allowedBlocks', allowedBlocks ) as string[];
+};
