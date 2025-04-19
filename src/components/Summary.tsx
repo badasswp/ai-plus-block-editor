@@ -3,10 +3,13 @@ import { check } from '@wordpress/icons';
 import { useState, useEffect } from '@wordpress/element';
 import { store as noticesStore } from '@wordpress/notices';
 import { Button, TextareaControl, Icon } from '@wordpress/components';
-import { select, dispatch, useSelect, useDispatch } from '@wordpress/data';
+import { useSelect, useDispatch } from '@wordpress/data';
 import apiFetch from '@wordpress/api-fetch';
 
 import Toast from '../components/Toast';
+
+import { selectProps } from '../utils/types';
+import { editorStore } from '../utils/store';
 
 /**
  * Summary.
@@ -21,20 +24,30 @@ import Toast from '../components/Toast';
 const Summary = (): JSX.Element => {
 	const [ summary, setSummary ] = useState( '' );
 	const [ isLoading, setIsLoading ] = useState( false );
-	const { editPost, savePost } = dispatch( 'core/editor' ) as any;
+	const { editPost, savePost } = useDispatch( editorStore ) as any;
 	const { createErrorNotice, removeNotice } = useDispatch( noticesStore );
-	const { getCurrentPostId, getEditedPostContent, getEditedPostAttribute } =
-		select( 'core/editor' );
+	const { postId, postContent, postSummary, notices } = useSelect(
+		( select ) => {
+			const { getNotices } = select( noticesStore );
+			const {
+				getCurrentPostId,
+				getEditedPostContent,
+				getEditedPostAttribute,
+			} = select( editorStore ) as selectProps;
 
-	const content = getEditedPostContent();
-	const notices = useSelect(
-		( use ) => use( noticesStore ).getNotices(),
+			return {
+				postId: getCurrentPostId(),
+				postContent: getEditedPostContent(),
+				postSummary: getEditedPostAttribute( 'meta' )?.apbe_summary,
+				notices: getNotices(),
+			};
+		},
 		[]
 	);
 
 	useEffect( () => {
-		setSummary( getEditedPostAttribute( 'meta' ).apbe_summary );
-	}, [ getEditedPostAttribute ] );
+		setSummary( postSummary );
+	}, [ postSummary ] );
 
 	/**
 	 * This function fires when the user clicks
@@ -53,8 +66,8 @@ const Summary = (): JSX.Element => {
 				path: '/ai-plus-block-editor/v1/sidebar',
 				method: 'POST',
 				data: {
-					id: getCurrentPostId(),
-					text: content.text || content,
+					id: postId,
+					text: postContent?.text || postContent,
 					feature: 'summary',
 				},
 			} );
