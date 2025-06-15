@@ -10,6 +10,7 @@
 
 namespace AiPlusBlockEditor\Services;
 
+use AiPlusBlockEditor\Admin\Options;
 use AiPlusBlockEditor\Abstracts\Service;
 use AiPlusBlockEditor\Interfaces\Kernel;
 
@@ -35,7 +36,7 @@ class Boot extends Service implements Kernel {
 	 */
 	public function register_scripts() {
 		wp_enqueue_script(
-			'ai-plus-block-editor',
+			Options::get_page_slug(),
 			plugins_url( 'ai-plus-block-editor/dist/app.js' ),
 			[
 				'wp-i18n',
@@ -53,8 +54,8 @@ class Boot extends Service implements Kernel {
 		);
 
 		wp_set_script_translations(
-			'ai-plus-block-editor',
-			'ai-plus-block-editor',
+			Options::get_page_slug(),
+			Options::get_page_slug(),
 			plugin_dir_path( __FILE__ ) . '../../languages'
 		);
 	}
@@ -68,7 +69,7 @@ class Boot extends Service implements Kernel {
 	 */
 	public function register_translation() {
 		load_plugin_textdomain(
-			'ai-plus-block-editor',
+			Options::get_page_slug(),
 			false,
 			dirname( plugin_basename( __FILE__ ) ) . '/../../languages'
 		);
