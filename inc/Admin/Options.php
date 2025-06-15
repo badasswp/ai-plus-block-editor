@@ -132,10 +132,9 @@ class Options {
 						'label'   => esc_html__( 'AI Provider', 'ai-plus-block-editor' ),
 						'summary' => 'e.g. Open AI (Chat GPT)',
 						'options' => [
-							'OpenAI'    => 'Open AI',
-							'Google'    => 'Google',
-							'Microsoft' => 'Microsoft',
-							'Facebook'  => 'Facebook',
+							'OpenAI'   => 'ChatGPT',
+							'Gemini'   => 'Gemini',
+							'DeepSeek' => 'DeepSeek',
 						],
 					],
 				],
