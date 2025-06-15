@@ -10,7 +10,6 @@ use AiPlusBlockEditor\Routes\Switcher;
 /**
  * @covers \AiPlusBlockEditor\Routes\Switcher::response
  * @covers \AiPlusBlockEditor\Routes\Switcher::get_400_response
- * @covers \AiPlusBlockEditor\Routes\Switcher::get_response
  */
 class SwitcherTest extends TestCase {
 	public Switcher $switcher;

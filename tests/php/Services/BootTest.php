@@ -11,6 +11,12 @@ use AiPlusBlockEditor\Abstracts\Service;
  * @covers \AiPlusBlockEditor\Services\Boot::register
  * @covers \AiPlusBlockEditor\Services\Boot::register_translation
  * @covers \AiPlusBlockEditor\Services\Boot::register_scripts
+ * @covers \AiPlusBlockEditor\Admin\Options::__callStatic
+ * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields
+ * @covers \AiPlusBlockEditor\Admin\Options::get_form_notice
+ * @covers \AiPlusBlockEditor\Admin\Options::get_form_page
+ * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
+ * @covers \AiPlusBlockEditor\Admin\Options::init
  */
 class BootTest extends TestCase {
 	public Boot $boot;
