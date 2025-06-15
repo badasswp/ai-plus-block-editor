@@ -63,9 +63,33 @@ class BootTest extends TestCase {
 					'wp-plugins',
 					'wp-edit-post',
 				],
-				'1.3.0',
+				'1.5.0',
 				false,
 			);
+
+		\WP_Mock::userFunction( 'get_option' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( 'esc_attr' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( 'wp_localize_script' )
+			->andReturn( null );
 
 		\WP_Mock::userFunction( 'wp_set_script_translations' )
 			->with(
@@ -81,6 +105,20 @@ class BootTest extends TestCase {
 
 	public function test_register_translation() {
 		$boot = new \ReflectionClass( Boot::class );
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( 'esc_attr' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
 
 		\WP_Mock::userFunction( 'plugin_basename' )
 			->once()

@@ -6,6 +6,7 @@ use Mockery;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Routes\Tone;
 use AiPlusBlockEditor\Routes\SideBar;
+use AiPlusBlockEditor\Routes\Switcher;
 use AiPlusBlockEditor\Services\Routes;
 
 /**
@@ -41,6 +42,7 @@ class RoutesTest extends TestCase {
 				[
 					Tone::class,
 					SideBar::class,
+					Switcher::class,
 				]
 			)
 			->reply(
