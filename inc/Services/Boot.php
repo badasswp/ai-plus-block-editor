@@ -53,6 +53,14 @@ class Boot extends Service implements Kernel {
 			false,
 		);
 
+		wp_localize_script(
+			Options::get_page_slug(),
+			'apbe',
+			[
+				'provider' => get_option( Options::get_page_option(), [] )['ai_provider'] ?? '',
+			]
+		);
+
 		wp_set_script_translations(
 			Options::get_page_slug(),
 			Options::get_page_slug(),
