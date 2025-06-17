@@ -166,6 +166,50 @@ public function custom_route( $rest_routes ) {
 - rest_routes _`{array}`_ By default this will be an array containing the plugin's REST routes.
 <br/>
 
+#### `apbe_form_fields`
+
+This custom hook (filter) provides the ability to add custom fields to the Admin options page like so:
+
+```php
+add_filter( 'apbe_form_fields', [ $this, 'custom_form_fields' ] );
+
+public function custom_form_fields( $fields ): array {
+    $fields = wp_parse_args(
+        [
+            'custom_group'  => [
+                'label'    => 'Custom Heading',
+                'controls' => [
+                    'custom_option_1' => [
+                        'control' => 'text',
+                        'label'   => 'My Custom Option 1',
+                        'summary' => 'Enable this option to save my custom option 1.',
+                    ],
+                    'custom_option_2' => [
+                        'control' => 'select',
+                        'label'   => 'My Custom Option 2',
+                        'summary' => 'Enable this option to save my custom option 2.',
+                        'options' => [],
+                    ],
+                    'custom_option_3' => [
+                        'control' => 'checkbox',
+                        'label'   => 'My Custom Option 3',
+                        'summary' => 'Enable this option to save my custom option 3.',
+                    ],
+                ],
+            ],
+        ],
+        $fields
+    );
+
+    return (array) $fields;
+}
+```
+
+**Parameters**
+
+- fields _`{array}`_ By default this will be an associative array containing key, value options of each field option.
+<br/>
+
 ### JS Hooks
 
 #### `apbe.allowedBlocks`
