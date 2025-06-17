@@ -36,6 +36,7 @@ class PostMeta extends Service implements Kernel {
 			'apbe_seo_keywords',
 			'apbe_slug',
 			'apbe_summary',
+			'apbe_social',
 		];
 	}
 
