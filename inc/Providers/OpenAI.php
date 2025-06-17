@@ -11,6 +11,7 @@
 namespace AiPlusBlockEditor\Providers;
 
 use Orhanerday\OpenAi\OpenAi as ChatGPT;
+use AiPlusBlockEditor\Admin\Options;
 use AiPlusBlockEditor\Interfaces\Provider;
 
 class OpenAI implements Provider {
@@ -52,7 +53,7 @@ class OpenAI implements Provider {
 	 * @return string|\WP_Error
 	 */
 	public function run( $payload ) {
-		$ai_keys = get_option( 'ai_plus_block_editor', [] )['open_ai_token'] ?? '';
+		$ai_keys = get_option( Options::get_page_option(), [] )['open_ai_token'] ?? '';
 		$payload = wp_parse_args( [ 'role' => 'user' ], $payload );
 
 		try {

@@ -89,6 +89,20 @@ class OpenAITest extends TestCase {
 				]
 			);
 
+		\WP_Mock::userFunction( 'esc_html__' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( 'esc_attr' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
 		\WP_Mock::userFunction( 'wp_parse_args' )
 			->andReturnUsing(
 				function ( $arg1, $arg2 ) {
