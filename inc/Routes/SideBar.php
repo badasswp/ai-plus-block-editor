@@ -75,6 +75,7 @@ class SideBar extends Route implements Router {
 	 * the custom prompt.
 	 *
 	 * @since 1.1.0
+	 * @since 1.5.0 Add Social prompt.
 	 *
 	 * @return \WP_REST_Response|\WP_Error
 	 */
@@ -100,6 +101,10 @@ class SideBar extends Route implements Router {
 
 			case 'summary':
 				$placeholder = 'Generate an appropriate %s for the following content: %s';
+				break;
+
+			case 'social':
+				$placeholder = 'Generate appropriate %s media trending tags for the following content: %s';
 				break;
 		}
 
