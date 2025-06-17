@@ -104,7 +104,7 @@ class SideBar extends Route implements Router {
 				break;
 
 			case 'social':
-				$placeholder = 'Generate appropriate %s media trending tags for the following content: %s';
+				$placeholder = 'Generate appropriate %s media trending hashtags for the following content: %s';
 				break;
 		}
 

@@ -255,7 +255,7 @@ class SideBarTest extends TestCase {
 
 		\WP_Mock::expectFilter(
 			'apbe_feature_prompt',
-			'Generate appropriate social media trending tags for the following content: Hello World!',
+			'Generate appropriate social media trending hashtags for the following content: Hello World!',
 			'social',
 			'Hello World!'
 		);
@@ -270,7 +270,7 @@ class SideBarTest extends TestCase {
 		$ai->shouldReceive( 'run' )
 			->with(
 				[
-					'content' => 'Generate appropriate social media trending tags for the following content: Hello World!',
+					'content' => 'Generate appropriate social media trending hashtags for the following content: Hello World!',
 				]
 			)
 			->andReturn( '#hello, #world' );
