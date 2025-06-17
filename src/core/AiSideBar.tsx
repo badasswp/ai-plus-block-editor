@@ -5,7 +5,7 @@ import { PanelBody } from '@wordpress/components';
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginSidebar, PluginSidebarMoreMenuItem } from '@wordpress/edit-post';
 
-import { SEO, Slug, Summary, Headline, Switcher } from '../components';
+import { SEO, Slug, Summary, Headline, Switcher, Social } from '../components';
 
 import '../styles/app.scss';
 
@@ -47,6 +47,9 @@ const AiSideBar = (): JSX.Element => {
 							</li>
 							<li>
 								<Summary />
+							</li>
+							<li>
+								<Social />
 							</li>
 						</ul>
 					</div>
