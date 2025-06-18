@@ -45,6 +45,36 @@
 			],
 			"AI is generating text, please hold on for a bit.": [
 				"AI genererer tekst, vent venligst lidt."
+			],
+			"Switch AI Provider": [
+				"Skift AI-udbyder"
+			],
+			"Social Media Hashtags": [
+				"Hashtags på sociale medier"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"Succes! AI-udbyderen er skiftet til OpenAI"
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"Succes! AI-udbyderen er skiftet til Gemini"
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"Succes! AI-udbyderen er skiftet til DeepSeek"
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"Succes! AI-udbyderen er skiftet til ChatGPT"
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
 			]
 		}
 	}

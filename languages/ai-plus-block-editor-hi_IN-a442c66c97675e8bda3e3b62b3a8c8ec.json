@@ -35,7 +35,7 @@
 				"वर्णनात्मक लहजे का प्रयोग करें"
 			],
 			"Use Narrative Tone": [
-				"Utiliser un ton narratif"
+				"कथात्मक लहजे का प्रयोग करें"
 			],
 			"Use Aggressive Tone": [
 				"कथात्मक लहजे का प्रयोग करें"
@@ -45,6 +45,36 @@
 			],
 			"AI is generating text, please hold on for a bit.": [
 				"AI पाठ उत्पन्न कर रहा है, कृपया थोड़ा रुकें।"
+			],
+			"Switch AI Provider": [
+				"एआई प्रदाता स्विच करें"
+			],
+			"Social Media Hashtags": [
+				"सोशल मीडिया हैशटैग"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"सफलता! AI प्रदाता सफलतापूर्वक OpenAI पर स्विच हो गया"
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"सफलता! AI प्रदाता ने सफलतापूर्वक जेमिनी पर स्विच किया"
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"सफलता! AI प्रदाता ने सफलतापूर्वक DeepSeek पर स्विच किया"
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"सफलता! AI प्रदाता सफलतापूर्वक ChatGPT पर स्विच हो गया"
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
 			]
 		}
 	}

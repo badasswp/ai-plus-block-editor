@@ -45,6 +45,36 @@
 			],
 			"AI is generating text, please hold on for a bit.": [
 				"AI מייצר טקסט, בבקשה תחזיק מעמד קצת."
+			],
+			"Switch AI Provider": [
+				"החלף ספק AI"
+			],
+			"Social Media Hashtags": [
+				"האשטאגים של מדיה חברתית"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"הצלחה! ספק הבינה המלאכותית עבר בהצלחה ל-OpenAI"
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"הצלחה! ספק הבינה המלאכותית עבר בהצלחה ל-Gemini"
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"הצלחה! ספק הבינה המלאכותית עבר בהצלחה ל-DeepSeek"
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"הצלחה! ספק הבינה המלאכותית עבר בהצלחה ל-ChatGPT"
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
 			]
 		}
 	}

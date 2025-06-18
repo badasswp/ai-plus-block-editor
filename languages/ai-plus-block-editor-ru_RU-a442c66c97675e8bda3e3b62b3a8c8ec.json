@@ -45,6 +45,36 @@
 			],
 			"AI is generating text, please hold on for a bit.": [
 				"ИИ генерирует текст, пожалуйста, подождите немного."
+			],
+			"Switch AI Provider": [
+				"Сменить поставщика ИИ"
+			],
+			"Social Media Hashtags": [
+				"Хэштеги социальных сетей"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"Успех! Поставщик ИИ успешно перешел на OpenAI"
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"Успех! Поставщик ИИ успешно перешел на Gemini"
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"Успех! Поставщик ИИ успешно переключился на DeepSeek"
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"Успех! Поставщик ИИ успешно переключился на ChatGPT"
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
 			]
 		}
 	}
