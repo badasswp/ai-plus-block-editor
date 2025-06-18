@@ -10,3 +10,7 @@ export interface selectBlockProps {
 	getBlockAttributes: ( clientId: string ) => any;
 	getBlock: ( clientId: string ) => any;
 }
+
+export interface noticeProps {
+	getNotices: () => any;
+}
