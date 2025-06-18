@@ -3,15 +3,13 @@ import { verse } from '@wordpress/icons';
 import { addFilter } from '@wordpress/hooks';
 import { BlockControls } from '@wordpress/block-editor';
 import { select, dispatch } from '@wordpress/data';
-import { Fragment, useState } from '@wordpress/element';
 import { ToolbarGroup, ToolbarDropdownMenu } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
-import { selectProps, selectBlockProps } from '../utils/types';
+import { selectProps, selectBlockProps, noticeProps } from '../utils/types';
 import { getAllowedBlocks, getBlockMenuOptions } from '../utils';
 import { editorStore, noticesStore, blockEditorStore } from '../utils/store';
 
-import Toast from '../components/Toast';
 import '../styles/app.scss';
 
 /**
@@ -30,8 +28,6 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 	}
 
 	settings.edit = ( props: any ) => {
-		const [ isLoading, setIsLoading ] = useState( false );
-
 		/**
 		 * Get Tone Params.
 		 *
@@ -64,12 +60,26 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 		 */
 		const getTone = async ( newTone: string ): Promise< void > => {
 			const { postId, blockId, blockContent } = getToneParams();
-			const { createErrorNotice } = dispatch( noticesStore ) as any;
+			const { createNotice, createErrorNotice, removeNotice } = dispatch(
+				noticesStore
+			) as any;
 			const { updateBlockAttributes } = dispatch(
 				blockEditorStore
 			) as any;
+			const { getNotices } = select( noticesStore ) as noticeProps;
 
-			setIsLoading( true );
+			createNotice(
+				'success',
+				__(
+					'AI is generating text, please hold on for a bit.',
+					'ai-plus-block-editor'
+				),
+				{
+					isDismissible: true,
+					id: 'apbe-tone-success',
+					type: 'snackbar',
+				}
+			);
 
 			try {
 				const aiTone: string = await apiFetch( {
@@ -93,7 +103,9 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 					limit++;
 				}, 5 );
 
-				setIsLoading( false );
+				getNotices().forEach( ( notice: any ) =>
+					removeNotice( notice.id )
+				);
 			} catch ( e ) {
 				createErrorNotice( e.message, {
 					type: 'snackbar',
@@ -103,15 +115,7 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 		};
 
 		return (
-			<Fragment>
-				<Toast
-					isInEditor={ true }
-					message={ __(
-						'AI is generating text, please hold on for a bit.',
-						'ai-plus-block-editor'
-					) }
-					isLoading={ isLoading }
-				/>
+			<>
 				<BlockControls>
 					<ToolbarGroup>
 						<ToolbarDropdownMenu
@@ -122,7 +126,7 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 					</ToolbarGroup>
 				</BlockControls>
 				{ edit( props ) }
-			</Fragment>
+			</>
 		);
 	};
 
