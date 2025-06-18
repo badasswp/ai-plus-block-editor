@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.5.0
+* Feat: Add AI Provider Switcher.
+* Feat: Add Social Media Hashtags Feature.
+
 # 1.4.0
 * Refactor: Adopt useSelect & useDispatch hooks in sidebar components.
 * Feat: Add new language translations for Italian, Russian, Chinese, Arabic, Hebrew & Croatian.
