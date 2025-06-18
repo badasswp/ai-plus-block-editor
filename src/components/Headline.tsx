@@ -108,6 +108,7 @@ const Headline = (): JSX.Element => {
 			setIsLoading( false );
 		}
 	};
+
 	/**
 	 * This function fires when the user selects
 	 * the AI generated result.
