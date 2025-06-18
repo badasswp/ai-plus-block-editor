@@ -4,6 +4,7 @@
 * Feat: Add AI Provider Switcher.
 * Feat: Add Social Media Hashtags Feature.
 * Fix: Breaking issue with Tone functionality.
+* Test: Fix Unit tests & update snapshots.
 
 # 1.4.0
 * Refactor: Adopt useSelect & useDispatch hooks in sidebar components.
