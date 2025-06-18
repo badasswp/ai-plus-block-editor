@@ -1,10 +1,9 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { __ } from '@wordpress/i18n';
 import { verse } from '@wordpress/icons';
 import { addFilter } from '@wordpress/hooks';
 import { BlockControls } from '@wordpress/block-editor';
 import { select, dispatch } from '@wordpress/data';
-import { Fragment, useState, useEffect } from '@wordpress/element';
+import { Fragment, useState } from '@wordpress/element';
 import { ToolbarGroup, ToolbarDropdownMenu } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
@@ -31,7 +30,6 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 	}
 
 	settings.edit = ( props: any ) => {
-		const [ tone, setTone ] = useState( '' );
 		const [ isLoading, setIsLoading ] = useState( false );
 
 		/**
@@ -104,13 +102,6 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 			}
 		};
 
-		useEffect( () => {
-			if ( tone ) {
-				getTone( tone );
-			}
-			// eslint-disable-next-line react-hooks/exhaustive-deps
-		}, [ tone ] );
-
 		return (
 			<Fragment>
 				<Toast
@@ -126,7 +117,7 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 						<ToolbarDropdownMenu
 							icon={ verse }
 							label={ __( 'AI + Block Editor' ) }
-							controls={ getBlockMenuOptions( setTone ) }
+							controls={ getBlockMenuOptions( getTone ) }
 						/>
 					</ToolbarGroup>
 				</BlockControls>
