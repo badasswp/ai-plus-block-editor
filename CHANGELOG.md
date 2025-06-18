@@ -6,6 +6,7 @@
 * Fix: Breaking issue with Tone functionality.
 * Test: Fix Unit tests & update snapshots.
 * Chore: Relocate `apbe.blockMenuOptions` hook.
+* Feat: Update text translations.
 
 # 1.4.0
 * Refactor: Adopt useSelect & useDispatch hooks in sidebar components.
