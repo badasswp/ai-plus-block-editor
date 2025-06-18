@@ -259,7 +259,7 @@ addFilter(
 
 **Parameters**
 
-- blockMenuOptions _`{string[]}`_ List of Block Menu Options.
+- blockMenuOptions _`{object}`_ List of Block Menu Options.
 <br/>
 
 ---
