@@ -1,7 +1,7 @@
-import React from 'react';
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { act, render, fireEvent, waitFor } from '@testing-library/react';
 
+import apiFetch from '@wordpress/api-fetch';
 import { useSelect, useDispatch } from '@wordpress/data';
 
 import Slug from '../../src/components/Slug';
@@ -34,43 +34,20 @@ jest.mock( '@wordpress/components', () => ( {
 		return <>Icon</>;
 	} ),
 
-	TextareaControl: jest.fn(
-		( { rows, value, onChange, __nextHasNoMarginBottom = true } ) => {
-			return (
-				__nextHasNoMarginBottom && (
-					<>
-						<textarea
-							rows={ rows }
-							onChange={ onChange }
-							value={ value }
-						/>
-					</>
-				)
-			);
-		}
-	),
-
-	TextControl: jest.fn(
-		( {
-			placeholder,
-			value,
-			onChange,
-			__nextHasNoMarginBottom = true,
-		} ) => {
-			return (
-				__nextHasNoMarginBottom && (
-					<>
-						<input
-							placeholder={ placeholder }
-							onChange={ onChange }
-							value={ value }
-						/>
-					</>
-				)
-			);
-		}
-	),
+	TextControl: jest.fn( ( { placeholder, value, onChange } ) => {
+		return (
+			<>
+				<input
+					placeholder={ placeholder }
+					onChange={ ( e ) => onChange( e.target.value ) }
+					value={ value }
+				/>
+			</>
+		);
+	} ),
 } ) );
+
+jest.mock( '@wordpress/api-fetch', () => jest.fn() );
 
 describe( 'Slug', () => {
 	beforeEach( () => {
@@ -93,24 +70,128 @@ describe( 'Slug', () => {
 		jest.clearAllMocks();
 	} );
 
-	it( 'renders the Slug text input and 2 buttons', () => {
-		const { container } = render( <Slug /> );
+	it( 'renders Slug component', () => {
+		const { container, getByRole, getByText } = render( <Slug /> );
 
-		// Expect Component to look like so:
-		expect( container.innerHTML ).toBe(
-			`<p><strong>Slug</strong></p><input placeholder="your-article-slug" value="ai-generated-slug"><div class="apbe-button-group"><button class="primary">Generate</button><button class="secondary">Icon</button></div>`
+		expect( container ).toMatchSnapshot();
+
+		expect( getByRole( 'textbox', { name: '' } ) ).toBeInTheDocument();
+		expect( getByRole( 'textbox', { name: '' } ) ).toHaveValue(
+			'ai-generated-slug'
+		);
+		expect( getByText( 'Slug' ) ).toBeVisible();
+		expect( getByRole( 'button', { name: 'Icon' } ) ).toBeVisible();
+		expect( getByRole( 'button', { name: 'Icon' } ) ).toHaveClass(
+			'secondary'
+		);
+		expect( getByRole( 'button', { name: 'Generate' } ) ).toBeVisible();
+		expect( getByRole( 'button', { name: 'Generate' } ) ).toHaveClass(
+			'primary'
+		);
+	} );
+
+	it( 'renders fetched API data from AI LLM', async () => {
+		const mockEditPost = jest.fn();
+		( useDispatch as jest.Mock ).mockReturnValue( {
+			editPost: mockEditPost,
+		} );
+
+		( apiFetch as unknown as jest.Mock ).mockImplementation(
+			jest.fn( () => Promise.resolve( 'new-ai-generated-slug' ) )
 		);
 
-		// Assert the Generate button is displayed.
-		const generateButton = screen.getByText( 'Generate' );
-		expect( generateButton ).toHaveClass( 'primary' );
-		expect( generateButton ).toBeInTheDocument();
-		expect( generateButton ).toBeInstanceOf( HTMLButtonElement );
+		const { getByRole } = render( <Slug /> );
 
-		// Assert the Select button is displayed.
-		const selectButton = screen.getByText( 'Icon' );
-		expect( selectButton ).toHaveClass( 'secondary' );
-		expect( selectButton ).toBeInTheDocument();
-		expect( selectButton ).toBeInstanceOf( HTMLButtonElement );
+		expect( getByRole( 'textbox', { name: '' } ) ).toBeInTheDocument();
+		expect( getByRole( 'textbox', { name: '' } ) ).toHaveValue(
+			'ai-generated-slug'
+		);
+
+		const button = getByRole( 'button', { name: 'Generate' } );
+		await act( async () => {
+			fireEvent.click( button );
+		} );
+
+		await waitFor( () => {
+			expect( mockEditPost ).toHaveBeenCalledTimes( 2 );
+			expect( getByRole( 'textbox', { name: '' } ) ).toBeInTheDocument();
+			expect( getByRole( 'textbox', { name: '' } ) ).toHaveValue(
+				'new-ai-generated-slug'
+			);
+		} );
+	} );
+
+	it( 'renders error notice on API fail', async () => {
+		const mockCreateErrorNotice = jest.fn();
+		( useDispatch as jest.Mock ).mockReturnValue( {
+			createErrorNotice: mockCreateErrorNotice,
+		} );
+
+		( apiFetch as unknown as jest.Mock ).mockRejectedValueOnce(
+			new Error( 'AI LLM down...' )
+		);
+
+		const { getByRole } = render( <Slug /> );
+
+		expect( getByRole( 'textbox', { name: '' } ) ).toBeInTheDocument();
+		expect( getByRole( 'textbox', { name: '' } ) ).toHaveValue(
+			'ai-generated-slug'
+		);
+
+		const button = getByRole( 'button', { name: 'Generate' } );
+		await act( async () => {
+			fireEvent.click( button );
+		} );
+
+		await waitFor( () => {
+			expect( mockCreateErrorNotice ).toHaveBeenCalledTimes( 1 );
+			expect( getByRole( 'textbox', { name: '' } ) ).toBeInTheDocument();
+			expect( getByRole( 'textbox', { name: '' } ) ).toHaveValue(
+				'ai-generated-slug'
+			);
+		} );
+	} );
+
+	it( 'saves the selected AI Slug', async () => {
+		const mockEditPost = jest.fn();
+		const mockSavePost = jest.fn();
+		( useDispatch as jest.Mock ).mockReturnValue( {
+			editPost: mockEditPost,
+			savePost: mockSavePost,
+		} );
+
+		( apiFetch as unknown as jest.Mock ).mockImplementation(
+			jest.fn( () => Promise.resolve( 'new-ai-generated-slug' ) )
+		);
+
+		const { getByRole } = render( <Slug /> );
+
+		expect( getByRole( 'textbox', { name: '' } ) ).toBeInTheDocument();
+		expect( getByRole( 'textbox', { name: '' } ) ).toHaveValue(
+			'ai-generated-slug'
+		);
+
+		const button = getByRole( 'button', { name: 'Generate' } );
+		await act( async () => {
+			fireEvent.click( button );
+		} );
+
+		await waitFor( () => {
+			expect( mockEditPost ).toHaveBeenCalledTimes( 2 );
+			expect( getByRole( 'textbox', { name: '' } ) ).toBeInTheDocument();
+			expect( getByRole( 'textbox', { name: '' } ) ).toHaveValue(
+				'new-ai-generated-slug'
+			);
+		} );
+
+		const icon = getByRole( 'button', { name: 'Icon' } );
+		await act( async () => {
+			fireEvent.click( icon );
+		} );
+
+		await waitFor( () => {
+			expect( mockEditPost ).toHaveBeenCalledTimes( 4 );
+			expect( mockSavePost ).toHaveBeenCalledTimes( 1 );
+		} );
 	} );
 } );

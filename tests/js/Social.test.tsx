@@ -76,6 +76,9 @@ describe( 'Social', () => {
 		expect( getByText( '#hello, #world' ) ).toBeInTheDocument();
 		expect( getByText( 'Social Media Hashtags' ) ).toBeVisible();
 		expect( getByRole( 'button', { name: 'Icon' } ) ).toBeVisible();
+		expect( getByRole( 'button', { name: 'Icon' } ) ).toHaveClass(
+			'secondary'
+		);
 		expect( getByRole( 'button', { name: 'Generate' } ) ).toBeVisible();
 		expect( getByRole( 'button', { name: 'Generate' } ) ).toHaveClass(
 			'primary'
@@ -111,7 +114,7 @@ describe( 'Social', () => {
 		} );
 	} );
 
-	it( 'renders error notice on API fail.', async () => {
+	it( 'renders error notice on API fail', async () => {
 		const mockCreateErrorNotice = jest.fn();
 		( useDispatch as jest.Mock ).mockReturnValue( {
 			createErrorNotice: mockCreateErrorNotice,
@@ -133,6 +136,47 @@ describe( 'Social', () => {
 		await waitFor( () => {
 			expect( mockCreateErrorNotice ).toHaveBeenCalledTimes( 1 );
 			expect( getByText( '#hello, #world' ) ).toBeInTheDocument();
+		} );
+	} );
+
+	it( 'saves the selected AI Hashtags', async () => {
+		const mockEditPost = jest.fn();
+		const mockSavePost = jest.fn();
+		( useDispatch as jest.Mock ).mockReturnValue( {
+			editPost: mockEditPost,
+			savePost: mockSavePost,
+		} );
+
+		( apiFetch as unknown as jest.Mock ).mockImplementation(
+			jest.fn( () =>
+				Promise.resolve( '#what, #beautiful, #wonderful, #world' )
+			)
+		);
+
+		const { getByText, getByRole } = render( <Social /> );
+
+		expect( getByText( '#hello, #world' ) ).toBeInTheDocument();
+
+		const button = getByRole( 'button', { name: 'Generate' } );
+		await act( async () => {
+			fireEvent.click( button );
+		} );
+
+		await waitFor( () => {
+			expect( mockEditPost ).toHaveBeenCalledTimes( 1 );
+			expect(
+				getByText( '#what, #beautiful, #wonderful, #world' )
+			).toBeInTheDocument();
+		} );
+
+		const icon = getByRole( 'button', { name: 'Icon' } );
+		await act( async () => {
+			fireEvent.click( icon );
+		} );
+
+		await waitFor( () => {
+			expect( mockEditPost ).toHaveBeenCalledTimes( 2 );
+			expect( mockSavePost ).toHaveBeenCalledTimes( 1 );
 		} );
 	} );
 } );

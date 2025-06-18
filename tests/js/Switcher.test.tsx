@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom';
-import { fireEvent, render } from '@testing-library/react';
+import { act, render, fireEvent, waitFor } from '@testing-library/react';
+
+import apiFetch from '@wordpress/api-fetch';
 import { useDispatch } from '@wordpress/data';
+
 import Switcher from '../../src/components/Switcher';
 
 jest.mock( '@wordpress/i18n', () => ( {
@@ -49,6 +52,8 @@ jest.mock( '@wordpress/components', () => ( {
 	} ),
 } ) );
 
+jest.mock( '@wordpress/api-fetch', () => jest.fn() );
+
 describe( 'Switcher', () => {
 	beforeEach( () => {
 		( useDispatch as jest.Mock ).mockReturnValue( {
@@ -76,18 +81,48 @@ describe( 'Switcher', () => {
 		expect( getByText( 'DeepSeek' ) ).toBeVisible();
 	} );
 
-	it( 'makes an API call request on selection change', () => {
+	it( 'makes an API call request on selection change', async () => {
 		const mockCreateNotice = jest.fn();
-
 		( useDispatch as jest.Mock ).mockReturnValue( {
 			createNotice: mockCreateNotice,
 		} );
 
+		( apiFetch as unknown as jest.Mock ).mockImplementation(
+			jest.fn( () => Promise.resolve( 'Gemini' ) )
+		);
+
+		const { getByTestId, getByText } = render( <Switcher /> );
+
+		const select = getByTestId( 'switcher' );
+		await act( async () => {
+			fireEvent.change( select, { target: { value: 'Gemini' } } );
+		} );
+
+		await waitFor( () => {
+			expect( getByText( 'Gemini' ) ).toBeInTheDocument();
+			expect( mockCreateNotice ).toHaveBeenCalledTimes( 1 );
+		} );
+	} );
+
+	it( 'throws error notice, on API fail', async () => {
+		const mockCreateNotice = jest.fn();
+		( useDispatch as jest.Mock ).mockReturnValue( {
+			createNotice: mockCreateNotice,
+		} );
+
+		( apiFetch as unknown as jest.Mock ).mockRejectedValueOnce(
+			new Error( 'WP website down...' )
+		);
+
 		const { getByTestId } = render( <Switcher /> );
 
 		const select = getByTestId( 'switcher' );
-		fireEvent.change( select, { target: { value: 'Gemini' } } );
+		await act( async () => {
+			fireEvent.change( select, { target: { value: 'Gemini' } } );
+		} );
 
-		expect( useDispatch ).toHaveBeenCalledTimes( 2 );
+		await waitFor( () => {
+			expect( mockCreateNotice ).toHaveBeenCalledTimes( 1 );
+		} );
 	} );
 } );
