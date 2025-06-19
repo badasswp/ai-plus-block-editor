@@ -75,6 +75,27 @@
 			],
 			"ChatGPT": [
 				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"Uspjeh! Promjena AI davatelja usluga uspješno je izvršena."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"Greška! Promjena AI davatelja usluga nije uspjela."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"Pogreška! Neuspješno dohvaćanje naslova. Provjerite zapisnike pogrešaka ili konzolu za više informacija."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"Pogreška! Neuspješno dohvaćanje identifikatora (slug). Provjerite zapisnike pogrešaka ili konzolu za više informacija."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"Pogreška! Neuspješno dohvaćanje SEO ključnih riječi. Provjerite zapisnike pogrešaka ili konzolu za više informacija."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"Pogreška! Neuspješno dohvaćanje sažetka. Provjerite zapisnike pogrešaka ili konzolu za više informacija."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"Pogreška! Neuspješno dohvaćanje oznaka (hashtagova). Provjerite zapisnike pogrešaka ili konzolu za više informacija."
 			]
 		}
 	}

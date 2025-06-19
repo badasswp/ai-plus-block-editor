@@ -75,6 +75,27 @@
 			],
 			"ChatGPT": [
 				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"Succes! AI-udbyderen er skiftet."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"Fejl! Kunne ikke skifte AI-udbyder."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"Fejl! Kunne ikke hente overskrift. Tjek dine fejllogs eller konsollen for flere oplysninger."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"Fejl! Kunne ikke hente slug. Tjek dine fejllogs eller konsollen for flere oplysninger."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"Fejl! Kunne ikke hente SEO-nøgleord. Tjek dine fejllogs eller konsollen for flere oplysninger."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"Fejl! Kunne ikke hente resumé. Tjek dine fejllogs eller konsollen for flere oplysninger."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"Fejl! Kunne ikke hente hashtags. Tjek dine fejllogs eller konsollen for flere oplysninger."
 			]
 		}
 	}

@@ -75,6 +75,27 @@
 			],
 			"ChatGPT": [
 				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"הצלחה! ספק הבינה המלאכותית הועבר בהצלחה."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"שגיאה! כישלון בהחלפת ספק הבינה המלאכותית."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"שגיאה! לא ניתן היה לאחזר את הכותרת. אנא בדוק את יומני השגיאות או את הקונסולה למידע נוסף."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"שגיאה! לא ניתן היה לאחזר את הסלג. אנא בדוק את יומני השגיאות או את הקונסולה למידע נוסף."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"שגיאה! לא ניתן היה לאחזר את מילות המפתח לקידום אתרים. אנא בדוק את יומני השגיאות או את הקונסולה למידע נוסף."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"שגיאה! לא ניתן היה לאחזר את התקציר. אנא בדוק את יומני השגיאות או את הקונסולה למידע נוסף."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"שגיאה! לא ניתן היה לאחזר את ההאשטגים. אנא בדוק את יומני השגיאות או את הקונסולה למידע נוסף."
 			]
 		}
 	}

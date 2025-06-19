@@ -75,6 +75,27 @@
 			],
 			"ChatGPT": [
 				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"सफलता! AI प्रदाता सफलतापूर्वक स्विच हो गया।"
+			],
+			"Error! Failed to switch AI Provider.": [
+				"त्रुटि! AI प्रदाता को स्विच करने में विफल।"
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"त्रुटि! शीर्षक प्राप्त करने में विफल। कृपया अधिक जानकारी के लिए अपनी त्रुटि लॉग या कंसोल जांचें।"
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"त्रुटि! स्लग प्राप्त करने में विफल। कृपया अधिक जानकारी के लिए अपनी त्रुटि लॉग या कंसोल जांचें।"
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"त्रुटि! एसईओ कीवर्ड प्राप्त करने में विफल। कृपया अधिक जानकारी के लिए अपनी त्रुटि लॉग या कंसोल जांचें।"
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"त्रुटि! सारांश प्राप्त करने में विफल। कृपया अधिक जानकारी के लिए अपनी त्रुटि लॉग या कंसोल जांचें।"
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"त्रुटि! हैशटैग प्राप्त करने में विफल। कृपया अधिक जानकारी के लिए अपनी त्रुटि लॉग या कंसोल जांचें।"
 			]
 		}
 	}

@@ -75,6 +75,27 @@
 			],
 			"ChatGPT": [
 				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"تم التحويل بنجاح! تم تحويل مزود الذكاء الاصطناعي."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"خطأ! فشل في تبديل مزود الذكاء الاصطناعي."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"خطأ! فشل في جلب العنوان. الرجاء التحقق من سجلات الأخطاء أو وحدة التحكم لمزيد من المعلومات."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"خطأ! فشل في جلب السبيكة. الرجاء التحقق من سجلات الأخطاء أو وحدة التحكم لمزيد من المعلومات."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"خطأ! فشل في جلب كلمات مفتاحية لتحسين محركات البحث. الرجاء التحقق من سجلات الأخطاء أو وحدة التحكم لمزيد من المعلومات."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"خطأ! فشل في جلب الملخص. الرجاء التحقق من سجلات الأخطاء أو وحدة التحكم لمزيد من المعلومات."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"خطأ! فشل في جلب الهاشتاجات. الرجاء التحقق من سجلات الأخطاء أو وحدة التحكم لمزيد من المعلومات."
 			]
 		}
 	}

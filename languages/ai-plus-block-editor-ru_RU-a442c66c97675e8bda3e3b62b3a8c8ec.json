@@ -75,6 +75,27 @@
 			],
 			"ChatGPT": [
 				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"Успех! Поставщик ИИ успешно переключился."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"Ошибка! Не удалось переключить поставщика ИИ."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"Ошибка! Не удалось получить заголовок. Пожалуйста, проверьте журналы ошибок или консоль для получения дополнительной информации."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"Ошибка! Не удалось получить слаг. Пожалуйста, проверьте журналы ошибок или консоль для получения дополнительной информации."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"Ошибка! Не удалось получить SEO ключевые слова. Пожалуйста, проверьте журналы ошибок или консоль для получения дополнительной информации."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"Ошибка! Не удалось получить краткое описание. Пожалуйста, проверьте журналы ошибок или консоль для получения дополнительной информации."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"Ошибка! Не удалось получить хэштеги. Пожалуйста, проверьте журналы ошибок или консоль для получения дополнительной информации."
 			]
 		}
 	}

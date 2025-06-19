@@ -75,6 +75,27 @@
 			],
 			"ChatGPT": [
 				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"Successo! Il fornitore di IA è stato cambiato con successo."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"Errore! Impossibile cambiare il fornitore di IA."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"Errore! Impossibile recuperare il titolo. Controlla i log degli errori o la console per maggiori informazioni."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"Errore! Impossibile recuperare lo slug. Controlla i log degli errori o la console per maggiori informazioni."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"Errore! Impossibile recuperare le parole chiave SEO. Controlla i log degli errori o la console per maggiori informazioni."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"Errore! Impossibile recuperare il riepilogo. Controlla i log degli errori o la console per maggiori informazioni."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"Errore! Impossibile recuperare gli hashtag. Controlla i log degli errori o la console per maggiori informazioni."
 			]
 		}
 	}

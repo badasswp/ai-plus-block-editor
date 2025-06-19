@@ -75,6 +75,27 @@
 			],
 			"ChatGPT": [
 				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"成功！AI 提供商切换成功。"
+			],
+			"Error! Failed to switch AI Provider.": [
+				"错误！切换 AI 提供商失败。"
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"错误！获取标题失败。请检查错误日志或控制台以获取更多信息。"
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"错误！获取短链接失败。请检查错误日志或控制台以获取更多信息。"
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"错误！获取 SEO 关键词失败。请检查错误日志或控制台以获取更多信息。"
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"错误！获取摘要失败。请检查错误日志或控制台以获取更多信息。"
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"错误！获取标签失败。请检查错误日志或控制台以获取更多信息。"
 			]
 		}
 	}
