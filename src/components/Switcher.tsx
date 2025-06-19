@@ -1,6 +1,6 @@
 import { useState } from '@wordpress/element';
 import { useDispatch } from '@wordpress/data';
-import { __, sprintf } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import { SelectControl } from '@wordpress/components';
 import { store as noticesStore } from '@wordpress/notices';
 import apiFetch from '@wordpress/api-fetch';
@@ -23,7 +23,7 @@ const Switcher = (): JSX.Element => {
 		setProvider( value );
 
 		try {
-			const response: any = await apiFetch( {
+			await apiFetch( {
 				path: '/ai-plus-block-editor/v1/switcher',
 				method: 'POST',
 				data: {
@@ -33,10 +33,9 @@ const Switcher = (): JSX.Element => {
 
 			createNotice(
 				'success',
-				sprintf(
-					// translators: %s: The snackbar message.
-					__( 'Success! %s', 'ai-plus-block-editor' ),
-					response.message
+				__(
+					'Success! AI Provider switched successfully.',
+					'ai-plus-block-editor'
 				),
 				{
 					isDismissible: true,
@@ -47,10 +46,9 @@ const Switcher = (): JSX.Element => {
 		} catch ( e ) {
 			createNotice(
 				'error',
-				sprintf(
-					// translators: %s: The snackbar message.
-					__( 'Error! %s', 'ai-plus-block-editor' ),
-					e.message
+				__(
+					'Error! Failed to switch AI Provider.',
+					'ai-plus-block-editor'
 				),
 				{
 					isDismissible: true,
@@ -58,6 +56,8 @@ const Switcher = (): JSX.Element => {
 					type: 'snackbar',
 				}
 			);
+			// eslint-disable-next-line no-console
+			console.error( e.message );
 		}
 	};
 

@@ -45,6 +45,57 @@
 			],
 			"AI is generating text, please hold on for a bit.": [
 				"L'intelligenza artificiale sta generando del testo, attendi un attimo."
+			],
+			"Switch AI Provider": [
+				"Cambia fornitore di IA"
+			],
+			"Social Media Hashtags": [
+				"Hashtag dei social media"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"Successo! Il fornitore di intelligenza artificiale è passato con successo a OpenAI"
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"Successo! Il fornitore di intelligenza artificiale è passato con successo a Gemini"
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"Successo! Il fornitore di intelligenza artificiale è passato con successo a DeepSeek"
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"Successo! Il fornitore di intelligenza artificiale è passato con successo a ChatGPT"
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"Successo! Il fornitore di IA è stato cambiato con successo."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"Errore! Impossibile cambiare il fornitore di IA."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"Errore! Impossibile recuperare il titolo. Controlla i log degli errori o la console per maggiori informazioni."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"Errore! Impossibile recuperare lo slug. Controlla i log degli errori o la console per maggiori informazioni."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"Errore! Impossibile recuperare le parole chiave SEO. Controlla i log degli errori o la console per maggiori informazioni."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"Errore! Impossibile recuperare il riepilogo. Controlla i log degli errori o la console per maggiori informazioni."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"Errore! Impossibile recuperare gli hashtag. Controlla i log degli errori o la console per maggiori informazioni."
 			]
 		}
 	}

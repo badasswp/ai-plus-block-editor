@@ -43,6 +43,27 @@ class BootTest extends TestCase {
 	public function test_register_scripts() {
 		$boot = new \ReflectionClass( Boot::class );
 
+		$mock_boot = Mockery::mock( Boot::class )->makePartial();
+		$mock_boot->shouldAllowMockingProtectedMethods();
+
+		$mock_boot->shouldReceive( 'get_assets' )
+			->andReturn(
+				[
+					'dependencies' => [
+						'wp-i18n',
+						'wp-element',
+						'wp-blocks',
+						'wp-components',
+						'wp-editor',
+						'wp-hooks',
+						'wp-compose',
+						'wp-plugins',
+						'wp-edit-post',
+					],
+					'version'      => '1750321560',
+				]
+			);
+
 		\WP_Mock::userFunction( 'plugins_url' )
 			->andReturnUsing(
 				function ( $arg ) {
@@ -69,7 +90,7 @@ class BootTest extends TestCase {
 					'wp-plugins',
 					'wp-edit-post',
 				],
-				'1.5.0',
+				'1750321560',
 				false,
 			);
 
@@ -104,7 +125,7 @@ class BootTest extends TestCase {
 				'/var/www/wp-content/plugins/ai-plus-block-editor/inc/Services/../../languages',
 			);
 
-		$this->boot->register_scripts();
+		$mock_boot->register_scripts();
 
 		$this->assertConditionsMet();
 	}
