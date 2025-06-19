@@ -104,8 +104,15 @@ const Headline = (): JSX.Element => {
 
 			setIsLoading( false );
 		} catch ( e ) {
-			createErrorNotice( e.message );
 			setIsLoading( false );
+			createErrorNotice(
+				__(
+					'Error! Failed to fetch Headline. Please check your error logs or console for more info.',
+					'ai-plus-block-editor'
+				)
+			);
+			// eslint-disable-next-line
+			console.error( e.message );
 		}
 	};
 
