@@ -1,6 +1,6 @@
 import { useState } from '@wordpress/element';
 import { useDispatch } from '@wordpress/data';
-import { __, sprintf } from '@wordpress/i18n';
+import { __ } from '@wordpress/i18n';
 import { SelectControl } from '@wordpress/components';
 import { store as noticesStore } from '@wordpress/notices';
 import apiFetch from '@wordpress/api-fetch';

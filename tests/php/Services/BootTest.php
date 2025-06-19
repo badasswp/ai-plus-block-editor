@@ -60,7 +60,7 @@ class BootTest extends TestCase {
 						'wp-plugins',
 						'wp-edit-post',
 					],
-					'version' => '1750321560',
+					'version'      => '1750321560',
 				]
 			);
 
