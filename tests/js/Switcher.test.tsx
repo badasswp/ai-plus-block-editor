@@ -63,6 +63,8 @@ describe( 'Switcher', () => {
 		( window as any ).apbe = {
 			provider: 'OpenAI',
 		};
+
+		jest.spyOn( console, 'error' ).mockImplementation( () => {} );
 	} );
 
 	afterEach( () => {
