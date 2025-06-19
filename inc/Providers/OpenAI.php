@@ -45,6 +45,21 @@ class OpenAI implements Provider {
 	}
 
 	/**
+	 * Get Client.
+	 *
+	 * This method initializes the OpenAI client
+	 * with the API keys stored in the options.
+	 *
+	 * @since 1.5.0
+	 *
+	 * @return ChatGPT
+	 */
+	protected function get_client(): ChatGPT {
+		$ai_keys = get_option( Options::get_page_option(), [] )['open_ai_token'] ?? '';
+		return new ChatGPT( $ai_keys );
+	}
+
+	/**
 	 * Get AI Response.
 	 *
 	 * @since 1.0.0
@@ -57,7 +72,7 @@ class OpenAI implements Provider {
 		$payload = wp_parse_args( [ 'role' => 'user' ], $payload );
 
 		try {
-			$response = ( new ChatGPT( $ai_keys ) )->chat(
+			$response = $this->get_client()->chat(
 				wp_parse_args(
 					[ 'messages' => [ $payload ] ],
 					$this->get_default_args()
