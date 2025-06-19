@@ -62,6 +62,35 @@ class OpenAITest extends TestCase {
 		);
 	}
 
+	public function test_get_client() {
+		$open_ai = Mockery::mock( OpenAI::class )->makePartial();
+		$open_ai->shouldAllowMockingProtectedMethods();
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( 'esc_attr' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( 'get_option' )
+			->with( 'ai_plus_block_editor', [] )
+			->andReturn(
+				[
+					'open_ai_token' => 'age38gegewjdhagepkhif',
+				]
+			);
+
+		$this->assertInstanceOf( ChatGPT::class, $open_ai->get_client() );
+	}
+
 	/**
 	 * @runInSeparateProcess
 	 *
@@ -77,6 +106,9 @@ class OpenAITest extends TestCase {
 
 		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
+
+		$open_ai->shouldReceive( 'get_client' )
+			->andReturn( $chat_gpt );
 
 		$open_ai->shouldReceive( 'get_default_args' )
 			->andReturn(
@@ -127,7 +159,7 @@ class OpenAITest extends TestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertSame( 'What a Wonderful World!', $response );
 		$this->assertConditionsMet();
 	}
 
