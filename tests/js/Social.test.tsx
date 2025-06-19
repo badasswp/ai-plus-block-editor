@@ -62,6 +62,8 @@ describe( 'Social', () => {
 			removeNotice: jest.fn(),
 			createErrorNotice: jest.fn(),
 		} );
+
+		jest.spyOn( console, 'error' ).mockImplementation( () => {} );
 	} );
 
 	afterEach( () => {
