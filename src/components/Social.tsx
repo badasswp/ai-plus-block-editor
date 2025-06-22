@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { check } from '@wordpress/icons';
 import { useState, useEffect } from '@wordpress/element';
 import { store as noticesStore } from '@wordpress/notices';
-import { Button, TextControl, Icon } from '@wordpress/components';
+import { Button, TextareaControl, Icon } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import apiFetch from '@wordpress/api-fetch';
 
@@ -12,21 +12,21 @@ import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
 
 /**
- * Slug.
+ * Social.
  *
- * This Component returns the Slug
- * label and button.
+ * This Component returns the Social media
+ * trending hash-tags & keywords.
  *
- * @since 1.1.0
+ * @since 1.5.0
  *
- * @return {JSX.Element} Slug.
+ * @return {JSX.Element} Social Hashtags.
  */
-const Slug = (): JSX.Element => {
-	const [ slug, setSlug ] = useState( '' );
+const Social = (): JSX.Element => {
+	const [ social, setSocial ] = useState( '' );
 	const [ isLoading, setIsLoading ] = useState( false );
 	const { editPost, savePost } = useDispatch( editorStore ) as any;
 	const { createErrorNotice, removeNotice } = useDispatch( noticesStore );
-	const { postId, postContent, postSlug, notices } = useSelect(
+	const { postId, postContent, postSocial, notices } = useSelect(
 		( select ) => {
 			const { getNotices } = select( noticesStore );
 			const {
@@ -38,7 +38,7 @@ const Slug = (): JSX.Element => {
 			return {
 				postId: getCurrentPostId(),
 				postContent: getEditedPostContent(),
-				postSlug: getEditedPostAttribute( 'meta' )?.apbe_slug,
+				postSocial: getEditedPostAttribute( 'meta' )?.apbe_social,
 				notices: getNotices(),
 			};
 		},
@@ -46,14 +46,14 @@ const Slug = (): JSX.Element => {
 	);
 
 	useEffect( () => {
-		setSlug( postSlug );
-	}, [ postSlug ] );
+		setSocial( postSocial );
+	}, [ postSocial ] );
 
 	/**
 	 * This function fires when the user clicks
 	 * the `Generate` button.
 	 *
-	 * @since 1.1.0
+	 * @since 1.5.0
 	 *
 	 * @return { void }
 	 */
@@ -62,22 +62,22 @@ const Slug = (): JSX.Element => {
 		setIsLoading( true );
 
 		try {
-			const aiSlug: string = await apiFetch( {
+			const aiSocial: string = await apiFetch( {
 				path: '/ai-plus-block-editor/v1/sidebar',
 				method: 'POST',
 				data: {
 					id: postId,
 					text: postContent?.text || postContent,
-					feature: 'slug',
+					feature: 'social',
 				},
 			} );
 
 			/**
 			 * This function returns a promise that resolves
-			 * to the AI generated slug when the Animation responsible
-			 * for showing same is completed.
+			 * to the AI generated social media hashtags and keywords
+			 * when the Animation responsible for showing same is completed.
 			 *
-			 * @since 1.2.0
+			 * @since 1.5.0
 			 *
 			 * @return { Promise<string> } Animated text.
 			 */
@@ -86,19 +86,18 @@ const Slug = (): JSX.Element => {
 
 				return new Promise( ( resolve ) => {
 					const animatedTextInterval = setInterval( () => {
-						if ( aiSlug.length === limit ) {
+						if ( aiSocial.length === limit ) {
 							clearInterval( animatedTextInterval );
-							resolve( aiSlug );
+							resolve( aiSocial );
 						}
-						setSlug( aiSlug.substring( 0, limit ) );
+						setSocial( aiSocial.substring( 0, limit ) );
 						limit++;
 					}, 5 );
 				} );
 			};
 
-			showAnimatedAiText().then( ( newSlug ) => {
-				editPost( { slug: newSlug } );
-				editPost( { meta: { apbe_slug: newSlug } } );
+			showAnimatedAiText().then( ( newSocial ) => {
+				editPost( { meta: { apbe_social: newSocial } } );
 			} );
 
 			setIsLoading( false );
@@ -106,7 +105,7 @@ const Slug = (): JSX.Element => {
 			setIsLoading( false );
 			createErrorNotice(
 				__(
-					'Error! Failed to fetch Slug. Please check your error logs or console for more info.',
+					'Error! Failed to fetch Hashtags. Please check your error logs or console for more info.',
 					'ai-plus-block-editor'
 				)
 			);
@@ -119,25 +118,26 @@ const Slug = (): JSX.Element => {
 	 * This function fires when the user selects
 	 * the AI generated result.
 	 *
-	 * @since 1.1.0
+	 * @since 1.5.0
 	 *
 	 * @return { void }
 	 */
 	const handleSelection = (): void => {
-		editPost( { slug } );
-		editPost( { meta: { apbe_slug: slug } } );
+		editPost( { meta: { apbe_social: social } } );
 		savePost();
 	};
 
 	return (
 		<>
 			<p>
-				<strong>{ __( 'Slug', 'ai-plus-block-editor' ) }</strong>
+				<strong>
+					{ __( 'Social Media Hashtags', 'ai-plus-block-editor' ) }
+				</strong>
 			</p>
-			<TextControl
-				placeholder="your-article-slug"
-				value={ slug }
-				onChange={ ( text ) => setSlug( text ) }
+			<TextareaControl
+				rows={ 4 }
+				value={ social }
+				onChange={ ( text ) => setSocial( text ) }
 				__nextHasNoMarginBottom
 			/>
 			<div className="apbe-button-group">
@@ -159,4 +159,4 @@ const Slug = (): JSX.Element => {
 	);
 };
 
-export default Slug;
+export default Social;

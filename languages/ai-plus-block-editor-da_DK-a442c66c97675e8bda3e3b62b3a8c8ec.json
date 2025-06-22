@@ -45,6 +45,57 @@
 			],
 			"AI is generating text, please hold on for a bit.": [
 				"AI genererer tekst, vent venligst lidt."
+			],
+			"Switch AI Provider": [
+				"Skift AI-udbyder"
+			],
+			"Social Media Hashtags": [
+				"Hashtags på sociale medier"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"Succes! AI-udbyderen er skiftet til OpenAI"
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"Succes! AI-udbyderen er skiftet til Gemini"
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"Succes! AI-udbyderen er skiftet til DeepSeek"
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"Succes! AI-udbyderen er skiftet til ChatGPT"
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"Succes! AI-udbyderen er skiftet."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"Fejl! Kunne ikke skifte AI-udbyder."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"Fejl! Kunne ikke hente overskrift. Tjek dine fejllogs eller konsollen for flere oplysninger."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"Fejl! Kunne ikke hente slug. Tjek dine fejllogs eller konsollen for flere oplysninger."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"Fejl! Kunne ikke hente SEO-nøgleord. Tjek dine fejllogs eller konsollen for flere oplysninger."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"Fejl! Kunne ikke hente resumé. Tjek dine fejllogs eller konsollen for flere oplysninger."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"Fejl! Kunne ikke hente hashtags. Tjek dine fejllogs eller konsollen for flere oplysninger."
 			]
 		}
 	}

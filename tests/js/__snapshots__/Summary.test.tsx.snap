@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Summary renders Summary component 1`] = `
+<div>
+  <p>
+    <strong>
+      Summary
+    </strong>
+  </p>
+  <textarea
+    rows="4"
+  >
+    AI generated summary...
+  </textarea>
+  <div
+    class="apbe-button-group"
+  >
+    <button
+      class="primary"
+    >
+      Generate
+    </button>
+    <button
+      class="secondary"
+    >
+      Icon
+    </button>
+  </div>
+</div>
+`;

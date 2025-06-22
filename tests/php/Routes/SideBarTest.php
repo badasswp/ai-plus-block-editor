@@ -240,4 +240,46 @@ class SideBarTest extends TestCase {
 		$this->assertSame( $response, 'What a Wonderful World!' );
 		$this->assertConditionsMet();
 	}
+
+	public function test_get_response_passes_with_social_media_hashtag_feature() {
+		$sidebar = Mockery::mock( SideBar::class )->makePartial();
+		$sidebar->shouldAllowMockingProtectedMethods();
+
+		$ai = Mockery::mock( AI::class )->makePartial();
+		$ai->shouldAllowMockingProtectedMethods();
+
+		$sidebar->args = [
+			'feature' => 'social',
+			'text'    => 'Hello World!',
+		];
+
+		\WP_Mock::expectFilter(
+			'apbe_feature_prompt',
+			'Generate appropriate social media trending hashtags for the following content: Hello World!',
+			'social',
+			'Hello World!'
+		);
+
+		\WP_Mock::userFunction( 'rest_ensure_response' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		$ai->shouldReceive( 'run' )
+			->with(
+				[
+					'content' => 'Generate appropriate social media trending hashtags for the following content: Hello World!',
+				]
+			)
+			->andReturn( '#hello, #world' );
+
+		$sidebar->ai = $ai;
+
+		$response = $sidebar->get_response();
+
+		$this->assertSame( $response, '#hello, #world' );
+		$this->assertConditionsMet();
+	}
 }

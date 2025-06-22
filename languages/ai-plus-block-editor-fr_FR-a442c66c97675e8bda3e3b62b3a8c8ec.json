@@ -45,6 +45,57 @@
 			],
 			"AI is generating text, please hold on for a bit.": [
 				"L'IA génère du texte, veuillez patienter un instant."
+			],
+			"Switch AI Provider": [
+				"Changer de fournisseur d’IA"
+			],
+			"Social Media Hashtags": [
+				"Hashtags des médias sociaux"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"Succès ! Le fournisseur d'IA a migré avec succès vers OpenAI"
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"Succès ! Le fournisseur d'IA a migré avec succès vers Gemini"
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"Succès ! Le fournisseur d'IA a adopté DeepSeek avec succès."
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"Succès ! Le fournisseur d'IA a migré avec succès vers ChatGPT."
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"Succès ! Le fournisseur d'IA a été remplacé avec succès."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"Erreur ! Échec du changement de fournisseur d'IA."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"Erreur ! Impossible de récupérer le titre. Veuillez consulter vos journaux d’erreurs ou la console pour plus d’informations."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"Erreur ! Impossible de récupérer le slug. Veuillez consulter vos journaux d’erreurs ou la console pour plus d’informations."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"Erreur ! Impossible de récupérer les mots-clés SEO. Veuillez consulter vos journaux d’erreurs ou la console pour plus d’informations."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"Erreur ! Impossible de récupérer le résumé. Veuillez consulter vos journaux d’erreurs ou la console pour plus d’informations."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"Erreur ! Impossible de récupérer les hashtags. Veuillez consulter vos journaux d’erreurs ou la console pour plus d’informations."
 			]
 		}
 	}

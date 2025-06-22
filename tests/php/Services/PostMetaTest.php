@@ -40,6 +40,7 @@ class PostMetaTest extends TestCase {
 					'apbe_seo_keywords',
 					'apbe_slug',
 					'apbe_summary',
+					'apbe_social',
 				]
 			)
 			->reply(

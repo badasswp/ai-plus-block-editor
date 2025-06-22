@@ -115,10 +115,9 @@ class OptionsTest extends TestCase {
 							'label'   => 'AI Provider',
 							'summary' => 'e.g. Open AI (Chat GPT)',
 							'options' => [
-								'OpenAI'    => 'Open AI',
-								'Google'    => 'Google',
-								'Microsoft' => 'Microsoft',
-								'Facebook'  => 'Facebook',
+								'OpenAI'   => 'ChatGPT',
+								'Gemini'   => 'Gemini',
+								'DeepSeek' => 'DeepSeek',
 							],
 						],
 					],

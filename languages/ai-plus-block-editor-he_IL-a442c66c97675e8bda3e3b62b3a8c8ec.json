@@ -45,6 +45,57 @@
 			],
 			"AI is generating text, please hold on for a bit.": [
 				"AI מייצר טקסט, בבקשה תחזיק מעמד קצת."
+			],
+			"Switch AI Provider": [
+				"החלף ספק AI"
+			],
+			"Social Media Hashtags": [
+				"האשטאגים של מדיה חברתית"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"הצלחה! ספק הבינה המלאכותית עבר בהצלחה ל-OpenAI"
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"הצלחה! ספק הבינה המלאכותית עבר בהצלחה ל-Gemini"
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"הצלחה! ספק הבינה המלאכותית עבר בהצלחה ל-DeepSeek"
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"הצלחה! ספק הבינה המלאכותית עבר בהצלחה ל-ChatGPT"
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"הצלחה! ספק הבינה המלאכותית הועבר בהצלחה."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"שגיאה! כישלון בהחלפת ספק הבינה המלאכותית."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"שגיאה! לא ניתן היה לאחזר את הכותרת. אנא בדוק את יומני השגיאות או את הקונסולה למידע נוסף."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"שגיאה! לא ניתן היה לאחזר את הסלג. אנא בדוק את יומני השגיאות או את הקונסולה למידע נוסף."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"שגיאה! לא ניתן היה לאחזר את מילות המפתח לקידום אתרים. אנא בדוק את יומני השגיאות או את הקונסולה למידע נוסף."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"שגיאה! לא ניתן היה לאחזר את התקציר. אנא בדוק את יומני השגיאות או את הקונסולה למידע נוסף."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"שגיאה! לא ניתן היה לאחזר את ההאשטגים. אנא בדוק את יומני השגיאות או את הקונסולה למידע נוסף."
 			]
 		}
 	}

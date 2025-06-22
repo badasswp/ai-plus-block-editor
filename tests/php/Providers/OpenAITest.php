@@ -11,6 +11,13 @@ use Orhanerday\OpenAi\OpenAi as ChatGPT;
  * @covers \AiPlusBlockEditor\Providers\OpenAI::run
  * @covers \AiPlusBlockEditor\Providers\OpenAI::get_default_args
  * @covers \AiPlusBlockEditor\Providers\OpenAI::get_json_error
+ * @covers \AiPlusBlockEditor\Admin\Options::__callStatic
+ * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields
+ * @covers \AiPlusBlockEditor\Admin\Options::get_form_notice
+ * @covers \AiPlusBlockEditor\Admin\Options::get_form_page
+ * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
+ * @covers \AiPlusBlockEditor\Admin\Options::init
+ * @covers \AiPlusBlockEditor\Providers\OpenAI::get_client
  */
 class OpenAITest extends TestCase {
 	public OpenAI $open_ai;
@@ -62,6 +69,35 @@ class OpenAITest extends TestCase {
 		);
 	}
 
+	public function test_get_client() {
+		$open_ai = Mockery::mock( OpenAI::class )->makePartial();
+		$open_ai->shouldAllowMockingProtectedMethods();
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( 'esc_attr' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( 'get_option' )
+			->with( 'ai_plus_block_editor', [] )
+			->andReturn(
+				[
+					'open_ai_token' => 'age38gegewjdhagepkhif',
+				]
+			);
+
+		$this->assertInstanceOf( ChatGPT::class, $open_ai->get_client() );
+	}
+
 	/**
 	 * @runInSeparateProcess
 	 *
@@ -78,6 +114,9 @@ class OpenAITest extends TestCase {
 		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
+		$open_ai->shouldReceive( 'get_client' )
+			->andReturn( $chat_gpt );
+
 		$open_ai->shouldReceive( 'get_default_args' )
 			->andReturn(
 				[
@@ -87,6 +126,20 @@ class OpenAITest extends TestCase {
 					'frequency_penalty' => 0,
 					'presence_penalty'  => 0,
 				]
+			);
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( 'esc_attr' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
 			);
 
 		\WP_Mock::userFunction( 'wp_parse_args' )
@@ -113,7 +166,7 @@ class OpenAITest extends TestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertSame( 'What a Wonderful World!', $response );
 		$this->assertConditionsMet();
 	}
 
