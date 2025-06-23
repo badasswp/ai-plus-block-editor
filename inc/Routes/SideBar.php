@@ -88,23 +88,23 @@ class SideBar extends Route implements Router {
 		// Get Prompt.
 		switch ( $prompt_feature ) {
 			case 'headline':
-				$placeholder = 'Generate an appropriate %s in 1 paragraph, using the following content: %s';
+				$placeholder = 'Generate an appropriate %s in 1 paragraph, using the following content: %s. Do not include any explanation, commentary, or alternative suggestions.';
 				break;
 
 			case 'slug':
-				$placeholder = 'Generate an appropriate %s that can be found easily by search engines, using the following content: %s';
+				$placeholder = 'Generate an appropriate %s that can be found easily by search engines, using the following content: %s. Do not include any explanation, commentary, or alternative suggestions.';
 				break;
 
 			case 'keywords':
-				$placeholder = 'Generate appropriate %s that are SEO friendly and separated with commas, using the following content: %s';
+				$placeholder = 'Generate appropriate %s that are SEO friendly and separated with commas, using the following content: %s. Do not include any explanation, commentary, or alternative suggestions.';
 				break;
 
 			case 'summary':
-				$placeholder = 'Generate an appropriate %s for the following content: %s';
+				$placeholder = 'Generate an appropriate %s for the following content: %s. Do not include any explanation, commentary, or alternative suggestions.';
 				break;
 
 			case 'social':
-				$placeholder = 'Generate appropriate %s media trending hashtags for the following content: %s';
+				$placeholder = 'Generate appropriate %s media trending hashtags for the following content: %s. Do not include any explanation, commentary, or alternative suggestions.';
 				break;
 		}
 
