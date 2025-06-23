@@ -98,6 +98,98 @@ class OpenAITest extends TestCase {
 		$this->assertInstanceOf( ChatGPT::class, $open_ai->get_client() );
 	}
 
+	public function test_run_fails_if_missing_api_keys_and_returns_wp_error() {
+		$open_ai = Mockery::mock( OpenAI::class )->makePartial();
+		$open_ai->shouldAllowMockingProtectedMethods();
+
+		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error->shouldAllowMockingProtectedMethods();
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( 'esc_attr' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( '__' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( 'get_option' )
+			->with( 'ai_plus_block_editor', [] )
+			->andReturn(
+				[
+					'open_ai_token' => '',
+				]
+			);
+
+		$response = $open_ai->run(
+			[
+				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
+			]
+		);
+
+		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertConditionsMet();
+	}
+
+	public function test_run_fails_if_missing_prompt_text_and_returns_wp_error() {
+		$open_ai = Mockery::mock( OpenAI::class )->makePartial();
+		$open_ai->shouldAllowMockingProtectedMethods();
+
+		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error->shouldAllowMockingProtectedMethods();
+
+		\WP_Mock::userFunction( 'esc_html__' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( 'esc_attr' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( '__' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		\WP_Mock::userFunction( 'get_option' )
+			->with( 'ai_plus_block_editor', [] )
+			->andReturn(
+				[
+					'open_ai_token' => 'age38gegewjdhagepkhif',
+				]
+			);
+
+		$response = $open_ai->run(
+			[
+				'content' => '',
+			]
+		);
+
+		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertConditionsMet();
+	}
+
 	/**
 	 * @runInSeparateProcess
 	 *
