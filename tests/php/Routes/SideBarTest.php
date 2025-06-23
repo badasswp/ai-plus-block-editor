@@ -87,7 +87,7 @@ class SideBarTest extends TestCase {
 
 		\WP_Mock::expectFilter(
 			'apbe_feature_prompt',
-			'Generate an appropriate headline in 1 paragraph, using the following content: Hello World!',
+			'Generate an appropriate headline in 1 paragraph, using the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 			'headline',
 			'Hello World!'
 		);
@@ -102,7 +102,7 @@ class SideBarTest extends TestCase {
 		$ai->shouldReceive( 'run' )
 			->with(
 				[
-					'content' => 'Generate an appropriate headline in 1 paragraph, using the following content: Hello World!',
+					'content' => 'Generate an appropriate headline in 1 paragraph, using the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 				]
 			)
 			->andReturn( 'What a Wonderful World!' );
@@ -129,7 +129,7 @@ class SideBarTest extends TestCase {
 
 		\WP_Mock::expectFilter(
 			'apbe_feature_prompt',
-			'Generate an appropriate slug that can be found easily by search engines, using the following content: Hello World!',
+			'Generate an appropriate slug that can be found easily by search engines, using the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 			'slug',
 			'Hello World!'
 		);
@@ -144,7 +144,7 @@ class SideBarTest extends TestCase {
 		$ai->shouldReceive( 'run' )
 			->with(
 				[
-					'content' => 'Generate an appropriate slug that can be found easily by search engines, using the following content: Hello World!',
+					'content' => 'Generate an appropriate slug that can be found easily by search engines, using the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 				]
 			)
 			->andReturn( 'What a Wonderful World!' );
@@ -171,7 +171,7 @@ class SideBarTest extends TestCase {
 
 		\WP_Mock::expectFilter(
 			'apbe_feature_prompt',
-			'Generate appropriate keywords that are SEO friendly and separated with commas, using the following content: Hello World!',
+			'Generate appropriate keywords that are SEO friendly and separated with commas, using the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 			'keywords',
 			'Hello World!'
 		);
@@ -186,7 +186,7 @@ class SideBarTest extends TestCase {
 		$ai->shouldReceive( 'run' )
 			->with(
 				[
-					'content' => 'Generate appropriate keywords that are SEO friendly and separated with commas, using the following content: Hello World!',
+					'content' => 'Generate appropriate keywords that are SEO friendly and separated with commas, using the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 				]
 			)
 			->andReturn( 'What a Wonderful World!' );
@@ -213,7 +213,7 @@ class SideBarTest extends TestCase {
 
 		\WP_Mock::expectFilter(
 			'apbe_feature_prompt',
-			'Generate an appropriate summary for the following content: Hello World!',
+			'Generate an appropriate summary for the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 			'summary',
 			'Hello World!'
 		);
@@ -228,7 +228,7 @@ class SideBarTest extends TestCase {
 		$ai->shouldReceive( 'run' )
 			->with(
 				[
-					'content' => 'Generate an appropriate summary for the following content: Hello World!',
+					'content' => 'Generate an appropriate summary for the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 				]
 			)
 			->andReturn( 'What a Wonderful World!' );
@@ -255,7 +255,7 @@ class SideBarTest extends TestCase {
 
 		\WP_Mock::expectFilter(
 			'apbe_feature_prompt',
-			'Generate appropriate social media trending hashtags for the following content: Hello World!',
+			'Generate appropriate social media trending hashtags for the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 			'social',
 			'Hello World!'
 		);
@@ -270,7 +270,7 @@ class SideBarTest extends TestCase {
 		$ai->shouldReceive( 'run' )
 			->with(
 				[
-					'content' => 'Generate appropriate social media trending hashtags for the following content: Hello World!',
+					'content' => 'Generate appropriate social media trending hashtags for the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 				]
 			)
 			->andReturn( '#hello, #world' );
