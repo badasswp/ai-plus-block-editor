@@ -67,6 +67,17 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.5.0 =
+* Feat: AI Provider Switcher.
+* Feat: Add Google Gemini AI provider.
+* Feat: Add Social media hash-tag sidebar feature.
+* Feat: Update text translations for new features.
+* Feat: Improve AI prompts.
+* Fix: Breaking issue with Tone functionality.
+* Test: Fix Unit tests & update snapshots.
+* Chore: Relocate `apbe.blockMenuOptions` hook.
+* Fix: Console errors in unit tests.
+
 = 1.4.0 =
 * Refactor: Adopt useSelect & useDispatch hooks in sidebar components.
 * Feat: Add new language translations for Italian, Russian, Chinese, Arabic, Hebrew & Croatian.

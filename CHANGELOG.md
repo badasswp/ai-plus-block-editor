@@ -1,12 +1,15 @@
 # Changelog
 
 # 1.5.0
-* Feat: Add AI Provider Switcher.
-* Feat: Add Social Media Hashtags Feature.
+* Feat: AI Provider Switcher.
+* Feat: Add Google Gemini AI provider.
+* Feat: Add Social media hash-tag sidebar feature.
+* Feat: Update text translations for new features.
+* Feat: Improve AI prompts.
 * Fix: Breaking issue with Tone functionality.
 * Test: Fix Unit tests & update snapshots.
 * Chore: Relocate `apbe.blockMenuOptions` hook.
-* Feat: Update text translations.
+* Fix: Console errors in unit tests.
 
 # 1.4.0
 * Refactor: Adopt useSelect & useDispatch hooks in sidebar components.
