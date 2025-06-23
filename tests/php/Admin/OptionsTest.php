@@ -147,7 +147,7 @@ class OptionsTest extends TestCase {
 							'summary' => 'Use Google Gemini capabilities in Block Editor',
 						],
 						'google_gemini_token'  => [
-							'control'     => 'text',
+							'control'     => 'password',
 							'placeholder' => '',
 							'label'       => 'API Keys',
 							'summary'     => 'e.g. ae2kgch7ib9eqcbeveq9a923nv87392av',

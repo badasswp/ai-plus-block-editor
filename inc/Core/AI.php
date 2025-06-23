@@ -11,6 +11,7 @@
 namespace AiPlusBlockEditor\Core;
 
 use AiPlusBlockEditor\Providers\OpenAI;
+use AiPlusBlockEditor\Providers\Gemini;
 use AiPlusBlockEditor\Interfaces\Provider;
 
 class AI implements Provider {
@@ -30,6 +31,10 @@ class AI implements Provider {
 		switch ( $ai_provider ) {
 			case 'OpenAI':
 				$ai_provider = OpenAI::class;
+				break;
+
+			case 'Gemini':
+				$ai_provider = Gemini::class;
 				break;
 		}
 
