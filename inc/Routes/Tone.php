@@ -82,7 +82,7 @@ class Tone extends Route implements Router {
 		// Get Args.
 		$prompt_tone = $this->args['tone'] ?? '';
 		$prompt_text = $this->args['text'] ?? '';
-		$placeholder = 'Using a %s tone, generate a text I can use to substitute the following text: %s';
+		$placeholder = 'Using a %s tone, generate a text I can use to substitute the following text: %s. Do not include any explanation, commentary, or alternative suggestions.';
 
 		// Get Prompt.
 		$prompt = sprintf( $placeholder, $prompt_tone, $prompt_text );

@@ -87,7 +87,7 @@ class ToneTest extends TestCase {
 
 		\WP_Mock::expectFilter(
 			'apbe_tone_prompt',
-			'Using a Casual tone, generate a text I can use to substitute the following text: Hello World!',
+			'Using a Casual tone, generate a text I can use to substitute the following text: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 			'Casual',
 			'Hello World!'
 		);
@@ -102,7 +102,7 @@ class ToneTest extends TestCase {
 		$ai->shouldReceive( 'run' )
 			->with(
 				[
-					'content' => 'Using a Casual tone, generate a text I can use to substitute the following text: Hello World!',
+					'content' => 'Using a Casual tone, generate a text I can use to substitute the following text: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 				]
 			)
 			->andReturn( 'What a Wonderful World!' );
