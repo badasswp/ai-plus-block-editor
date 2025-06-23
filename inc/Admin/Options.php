@@ -164,7 +164,7 @@ class Options {
 						'summary' => esc_html__( 'Use Google Gemini capabilities in Block Editor', 'ai-plus-block-editor' ),
 					],
 					'google_gemini_token'  => [
-						'control'     => esc_attr( 'text' ),
+						'control'     => esc_attr( 'password' ),
 						'placeholder' => esc_attr( '' ),
 						'label'       => esc_html__( 'API Keys', 'ai-plus-block-editor' ),
 						'summary'     => esc_html__( 'e.g. ae2kgch7ib9eqcbeveq9a923nv87392av', 'ai-plus-block-editor' ),
