@@ -55,8 +55,8 @@ class OpenAI implements Provider {
 	 * @return ChatGPT
 	 */
 	protected function get_client(): ChatGPT {
-		$ai_keys = get_option( Options::get_page_option(), [] )['open_ai_token'] ?? '';
-		return new ChatGPT( $ai_keys );
+		$api_key = get_option( Options::get_page_option(), [] )['open_ai_token'] ?? '';
+		return new ChatGPT( $api_key );
 	}
 
 	/**
@@ -68,7 +68,24 @@ class OpenAI implements Provider {
 	 * @return string|\WP_Error
 	 */
 	public function run( $payload ) {
-		$ai_keys = get_option( Options::get_page_option(), [] )['open_ai_token'] ?? '';
+		$api_key = get_option( Options::get_page_option(), [] )['open_ai_token'] ?? '';
+
+		if ( empty( $api_key ) ) {
+			return $this->get_json_error(
+				__( 'Missing OpenAI API key.', 'ai-plus-block-editor' )
+			);
+		}
+
+		// Default prompt if not passed.
+		$prompt_text = $payload['content'] ?? '';
+
+		// Validate prompt text.
+		if ( ! is_string( $prompt_text ) || empty( $prompt_text ) ) {
+			return $this->get_json_error(
+				__( 'Invalid prompt text.', 'ai-plus-block-editor' )
+			);
+		}
+
 		$payload = wp_parse_args( [ 'role' => 'user' ], $payload );
 
 		try {
