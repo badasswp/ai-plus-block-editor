@@ -1,7 +1,7 @@
-import React from 'react';
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { act, render, fireEvent, waitFor } from '@testing-library/react';
 
+import apiFetch from '@wordpress/api-fetch';
 import { useSelect, useDispatch } from '@wordpress/data';
 
 import Headline from '../../src/components/Headline';
@@ -34,22 +34,20 @@ jest.mock( '@wordpress/components', () => ( {
 		return <>Icon</>;
 	} ),
 
-	TextareaControl: jest.fn(
-		( { rows, value, onChange, __nextHasNoMarginBottom = true } ) => {
-			return (
-				__nextHasNoMarginBottom && (
-					<>
-						<textarea
-							rows={ rows }
-							onChange={ onChange }
-							value={ value }
-						/>
-					</>
-				)
-			);
-		}
-	),
+	TextareaControl: jest.fn( ( { rows, value, onChange } ) => {
+		return (
+			<>
+				<textarea
+					rows={ rows }
+					onChange={ ( e ) => onChange( e.target.value ) }
+					value={ value }
+				/>
+			</>
+		);
+	} ),
 } ) );
+
+jest.mock( '@wordpress/api-fetch', () => jest.fn() );
 
 describe( 'Headline', () => {
 	beforeEach( () => {
@@ -66,30 +64,121 @@ describe( 'Headline', () => {
 			removeNotice: jest.fn(),
 			createErrorNotice: jest.fn(),
 		} );
+
+		jest.spyOn( console, 'error' ).mockImplementation( () => {} );
 	} );
 
 	afterEach( () => {
 		jest.clearAllMocks();
 	} );
 
-	it( 'renders the Headline textarea and 2 buttons', () => {
-		const { container } = render( <Headline /> );
+	it( 'renders Headline component', () => {
+		const { container, getByText, getByRole } = render( <Headline /> );
 
-		// Expect Component to look like so:
-		expect( container.innerHTML ).toBe(
-			`<p><strong>Headline</strong></p><textarea rows="4">AI generated headline...</textarea><div class="apbe-button-group"><button class="primary">Generate</button><button class="secondary">Icon</button></div>`
+		expect( container ).toMatchSnapshot();
+
+		expect( getByText( 'AI generated headline...' ) ).toBeInTheDocument();
+		expect( getByText( 'Headline' ) ).toBeVisible();
+		expect( getByRole( 'button', { name: 'Icon' } ) ).toBeVisible();
+		expect( getByRole( 'button', { name: 'Icon' } ) ).toHaveClass(
+			'secondary'
+		);
+		expect( getByRole( 'button', { name: 'Generate' } ) ).toBeVisible();
+		expect( getByRole( 'button', { name: 'Generate' } ) ).toHaveClass(
+			'primary'
+		);
+	} );
+
+	it( 'renders fetched API data from AI LLM', async () => {
+		const mockEditPost = jest.fn();
+		( useDispatch as jest.Mock ).mockReturnValue( {
+			editPost: mockEditPost,
+		} );
+
+		( apiFetch as unknown as jest.Mock ).mockImplementation(
+			jest.fn( () => Promise.resolve( 'What a Wonderful World!' ) )
 		);
 
-		// Assert the Generate button is displayed.
-		const generateButton = screen.getByText( 'Generate' );
-		expect( generateButton ).toHaveClass( 'primary' );
-		expect( generateButton ).toBeInTheDocument();
-		expect( generateButton ).toBeInstanceOf( HTMLButtonElement );
+		const { getByText, getByRole } = render( <Headline /> );
 
-		// Assert the Select button is displayed.
-		const selectButton = screen.getByText( 'Icon' );
-		expect( selectButton ).toHaveClass( 'secondary' );
-		expect( selectButton ).toBeInTheDocument();
-		expect( selectButton ).toBeInstanceOf( HTMLButtonElement );
+		expect( getByText( 'AI generated headline...' ) ).toBeInTheDocument();
+
+		const button = getByRole( 'button', { name: 'Generate' } );
+		await act( async () => {
+			fireEvent.click( button );
+		} );
+
+		await waitFor( () => {
+			expect( mockEditPost ).toHaveBeenCalledTimes( 1 );
+			expect(
+				getByText( 'What a Wonderful World!' )
+			).toBeInTheDocument();
+		} );
+	} );
+
+	it( 'renders error notice on API fail', async () => {
+		const mockCreateErrorNotice = jest.fn();
+		( useDispatch as jest.Mock ).mockReturnValue( {
+			createErrorNotice: mockCreateErrorNotice,
+		} );
+
+		( apiFetch as unknown as jest.Mock ).mockRejectedValueOnce(
+			new Error( 'AI LLM down...' )
+		);
+
+		const { getByText, getByRole } = render( <Headline /> );
+
+		expect( getByText( 'AI generated headline...' ) ).toBeInTheDocument();
+
+		const button = getByRole( 'button', { name: 'Generate' } );
+		await act( async () => {
+			fireEvent.click( button );
+		} );
+
+		await waitFor( () => {
+			expect( mockCreateErrorNotice ).toHaveBeenCalledTimes( 1 );
+			expect(
+				getByText( 'AI generated headline...' )
+			).toBeInTheDocument();
+		} );
+	} );
+
+	it( 'saves the selected AI Headline', async () => {
+		const mockEditPost = jest.fn();
+		const mockSavePost = jest.fn();
+		( useDispatch as jest.Mock ).mockReturnValue( {
+			editPost: mockEditPost,
+			savePost: mockSavePost,
+		} );
+
+		( apiFetch as unknown as jest.Mock ).mockImplementation(
+			jest.fn( () => Promise.resolve( 'What a Wonderful World!' ) )
+		);
+
+		const { getByText, getByRole } = render( <Headline /> );
+
+		expect( getByText( 'AI generated headline...' ) ).toBeInTheDocument();
+
+		const button = getByRole( 'button', { name: 'Generate' } );
+		await act( async () => {
+			fireEvent.click( button );
+		} );
+
+		await waitFor( () => {
+			expect( mockEditPost ).toHaveBeenCalledTimes( 1 );
+			expect(
+				getByText( 'What a Wonderful World!' )
+			).toBeInTheDocument();
+		} );
+
+		const icon = getByRole( 'button', { name: 'Icon' } );
+		await act( async () => {
+			fireEvent.click( icon );
+		} );
+
+		await waitFor( () => {
+			expect( mockEditPost ).toHaveBeenCalledTimes( 25 );
+			expect( mockSavePost ).toHaveBeenCalledTimes( 1 );
+		} );
 	} );
 } );

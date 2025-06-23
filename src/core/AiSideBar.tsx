@@ -5,10 +5,7 @@ import { PanelBody } from '@wordpress/components';
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginSidebar, PluginSidebarMoreMenuItem } from '@wordpress/edit-post';
 
-import SEO from '../components/SEO';
-import Slug from '../components/Slug';
-import Summary from '../components/Summary';
-import Headline from '../components/Headline';
+import { SEO, Slug, Summary, Headline, Switcher, Social } from '../components';
 
 import '../styles/app.scss';
 
@@ -37,6 +34,9 @@ const AiSideBar = (): JSX.Element => {
 					<div className="apbe-sidebar">
 						<ul>
 							<li>
+								<Switcher />
+							</li>
+							<li>
 								<Headline />
 							</li>
 							<li>
@@ -47,6 +47,9 @@ const AiSideBar = (): JSX.Element => {
 							</li>
 							<li>
 								<Summary />
+							</li>
+							<li>
+								<Social />
 							</li>
 						</ul>
 					</div>

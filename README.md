@@ -67,6 +67,58 @@ public function custom_ai_provider( $ai_provider ) {
 - ai_provider _`{Provider}`_ By default this will be an instance of the Provider interface that MUST contain a `run` method implementation.
 <br/>
 
+#### `apbe_gemini_api_url`
+
+This custom hook (filter) provides the ability to modify the Gemini API endpoint used for generating AI content.
+
+```php
+add_filter( 'apbe_gemini_api_url', [ $this, 'custom_api_url' ], 10, 1 );
+
+public function custom_api_url( $url ) {
+    $project_id  = 'johndoe';
+    $location    = 'virginia-us';
+    $endpoint_id = 'agewcbdkh78hjkf';
+
+    return esc_url( sprintf(
+        'https://aiplatform.googleapis.com/v1/projects/%s/locations/%s/endpoints/%s:generateContent',
+        $project_id,
+        $location,
+        $endpoint_id,
+		) );
+}
+```
+
+**Parameters**
+
+- url _`{string}`_ By default this will be a string containing the API endpoint for the Gemini LLM.
+<br/>
+
+#### `apbe_gemini_args`
+
+This custom hook (filter) provides the ability to modify the Gemini args before it is sent to the LLM.
+
+```php
+add_filter( 'apbe_gemini_args', [ $this, 'custom_args' ], 10, 1 );
+
+public function custom_args( $args ) {
+    return wp_parse_args(
+        [
+            'model'           => 'gemini-2.0-flash',
+            'temperature'     => 1.0,
+            'maxOutputTokens' => 256,
+            'topK'            => 40,
+            'topP'            => 0.95,
+        ],
+        $args
+    )
+}
+```
+
+**Parameters**
+
+- args _`{array}`_ By default this will be an array containing the Gemini default parameters.
+<br/>
+
 #### `apbe_open_ai_args`
 
 This custom hook (filter) provides the ability to modify the OpenAI args before it sent to the LLM.
@@ -166,6 +218,50 @@ public function custom_route( $rest_routes ) {
 - rest_routes _`{array}`_ By default this will be an array containing the plugin's REST routes.
 <br/>
 
+#### `apbe_form_fields`
+
+This custom hook (filter) provides the ability to add custom fields to the Admin options page like so:
+
+```php
+add_filter( 'apbe_form_fields', [ $this, 'custom_form_fields' ] );
+
+public function custom_form_fields( $fields ): array {
+    $fields = wp_parse_args(
+        [
+            'custom_group'  => [
+                'label'    => 'Custom Heading',
+                'controls' => [
+                    'custom_option_1' => [
+                        'control' => 'text',
+                        'label'   => 'My Custom Option 1',
+                        'summary' => 'Enable this option to save my custom option 1.',
+                    ],
+                    'custom_option_2' => [
+                        'control' => 'select',
+                        'label'   => 'My Custom Option 2',
+                        'summary' => 'Enable this option to save my custom option 2.',
+                        'options' => [],
+                    ],
+                    'custom_option_3' => [
+                        'control' => 'checkbox',
+                        'label'   => 'My Custom Option 3',
+                        'summary' => 'Enable this option to save my custom option 3.',
+                    ],
+                ],
+            ],
+        ],
+        $fields
+    );
+
+    return (array) $fields;
+}
+```
+
+**Parameters**
+
+- fields _`{array}`_ By default this will be an associative array containing key, value options of each field option.
+<br/>
+
 ### JS Hooks
 
 #### `apbe.allowedBlocks`
@@ -215,7 +311,7 @@ addFilter(
 
 **Parameters**
 
-- blockMenuOptions _`{string[]}`_ List of Block Menu Options.
+- blockMenuOptions _`{Object}`_ List of Block Menu Options.
 <br/>
 
 ---

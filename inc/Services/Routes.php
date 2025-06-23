@@ -13,6 +13,7 @@ namespace AiPlusBlockEditor\Services;
 
 use AiPlusBlockEditor\Routes\Tone;
 use AiPlusBlockEditor\Routes\SideBar;
+use AiPlusBlockEditor\Routes\Switcher;
 use AiPlusBlockEditor\Abstracts\Service;
 use AiPlusBlockEditor\Interfaces\Kernel;
 
@@ -37,6 +38,7 @@ class Routes extends Service implements Kernel {
 		$this->routes = [
 			Tone::class,
 			SideBar::class,
+			Switcher::class,
 		];
 	}
 

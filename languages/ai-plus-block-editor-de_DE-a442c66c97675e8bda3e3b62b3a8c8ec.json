@@ -45,6 +45,57 @@
 			],
 			"AI is generating text, please hold on for a bit.": [
 				"KI generiert Text, bitte warten Sie einen Moment."
+			],
+			"Switch AI Provider": [
+				"KI-Anbieter wechseln"
+			],
+			"Social Media Hashtags": [
+				"Social-Media-Hashtags"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"Erfolg! KI-Anbieter erfolgreich auf OpenAI umgestiegen"
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"Erfolg! KI-Anbieter wechselt erfolgreich zu Gemini"
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"Erfolg! KI-Anbieter erfolgreich auf DeepSeek umgestellt"
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"Erfolg! Der KI-Anbieter wurde erfolgreich auf ChatGPT umgestellt"
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"Erfolg! Der Wechsel des KI-Anbieters war erfolgreich."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"Fehler! Wechsel des KI-Anbieters fehlgeschlagen."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"Fehler! Schlagzeile konnte nicht abgerufen werden. Bitte überprüfen Sie Ihre Fehlerprotokolle oder die Konsole für weitere Informationen."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"Fehler! Slug konnte nicht abgerufen werden. Bitte überprüfen Sie Ihre Fehlerprotokolle oder die Konsole für weitere Informationen."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"Fehler! SEO-Schlüsselwörter konnten nicht abgerufen werden. Bitte überprüfen Sie Ihre Fehlerprotokolle oder die Konsole für weitere Informationen."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"Fehler! Zusammenfassung konnte nicht abgerufen werden. Bitte überprüfen Sie Ihre Fehlerprotokolle oder die Konsole für weitere Informationen."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"Fehler! Hashtags konnten nicht abgerufen werden. Bitte überprüfen Sie Ihre Fehlerprotokolle oder die Konsole für weitere Informationen."
 			]
 		}
 	}
