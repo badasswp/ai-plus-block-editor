@@ -89,8 +89,13 @@ describe( 'Social', () => {
 
 	it( 'renders fetched API data from AI LLM', async () => {
 		const mockEditPost = jest.fn();
+		const mockCreateNotice = jest.fn();
+		const mockRemoveNotice = jest.fn();
+
 		( useDispatch as jest.Mock ).mockReturnValue( {
 			editPost: mockEditPost,
+			createNotice: mockCreateNotice,
+			removeNotice: mockRemoveNotice,
 		} );
 
 		( apiFetch as unknown as jest.Mock ).mockImplementation(
@@ -118,8 +123,13 @@ describe( 'Social', () => {
 
 	it( 'renders error notice on API fail', async () => {
 		const mockCreateErrorNotice = jest.fn();
+		const mockCreateNotice = jest.fn();
+		const mockRemoveNotice = jest.fn();
+
 		( useDispatch as jest.Mock ).mockReturnValue( {
 			createErrorNotice: mockCreateErrorNotice,
+			createNotice: mockCreateNotice,
+			removeNotice: mockRemoveNotice,
 		} );
 
 		( apiFetch as unknown as jest.Mock ).mockRejectedValueOnce(
@@ -144,9 +154,16 @@ describe( 'Social', () => {
 	it( 'saves the selected AI Hashtags', async () => {
 		const mockEditPost = jest.fn();
 		const mockSavePost = jest.fn();
+		const mockCreateNotice = jest.fn();
+		const mockRemoveNotice = jest.fn();
+		const mockCreateErrorNotice = jest.fn();
+
 		( useDispatch as jest.Mock ).mockReturnValue( {
 			editPost: mockEditPost,
 			savePost: mockSavePost,
+			createNotice: mockCreateNotice,
+			removeNotice: mockRemoveNotice,
+			createErrorNotice: mockCreateErrorNotice,
 		} );
 
 		( apiFetch as unknown as jest.Mock ).mockImplementation(
