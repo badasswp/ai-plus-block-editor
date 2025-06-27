@@ -1,5 +1,8 @@
 # Changelog
 
+# Unreleased
+* Refactor: Update Components to use WP's snackbar notice.
+
 # 1.5.0
 * Feat: AI Provider Switcher.
 * Feat: Add Google Gemini AI provider.
