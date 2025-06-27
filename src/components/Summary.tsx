@@ -6,8 +6,6 @@ import { Button, TextareaControl, Icon } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import apiFetch from '@wordpress/api-fetch';
 
-import Toast from '../components/Toast';
-
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
 
@@ -23,9 +21,9 @@ import { editorStore } from '../utils/store';
  */
 const Summary = (): JSX.Element => {
 	const [ summary, setSummary ] = useState( '' );
-	const [ isLoading, setIsLoading ] = useState( false );
 	const { editPost, savePost } = useDispatch( editorStore ) as any;
-	const { createErrorNotice, removeNotice } = useDispatch( noticesStore );
+	const { createNotice, createErrorNotice, removeNotice } =
+		useDispatch( noticesStore );
 	const { postId, postContent, postSummary, notices } = useSelect(
 		( select ) => {
 			const { getNotices } = select( noticesStore );
@@ -59,7 +57,18 @@ const Summary = (): JSX.Element => {
 	 */
 	const handleClick = async (): Promise< void > => {
 		notices.forEach( ( notice ) => removeNotice( notice.id ) );
-		setIsLoading( true );
+		createNotice(
+			'info',
+			__(
+				'AI is generating text, please hold on for a bit.',
+				'ai-plus-block-editor'
+			),
+			{
+				isDismissible: true,
+				id: 'apbe-info',
+				type: 'snackbar',
+			}
+		);
 
 		try {
 			const aiSummary: string = await apiFetch( {
@@ -100,10 +109,9 @@ const Summary = (): JSX.Element => {
 				editPost( { excerpt: newSummary } );
 				editPost( { meta: { apbe_summary: newSummary } } );
 			} );
-
-			setIsLoading( false );
+			removeNotice( 'apbe-info' );
 		} catch ( e ) {
-			setIsLoading( false );
+			removeNotice( 'apbe-info' );
 			createErrorNotice(
 				__(
 					'Error! Failed to fetch Summary. Please check your error logs or console for more info.',
@@ -148,13 +156,6 @@ const Summary = (): JSX.Element => {
 					<Icon icon={ check } />
 				</Button>
 			</div>
-			<Toast
-				message={ __(
-					'AI is generating text, please hold on for a bit.',
-					'ai-plus-block-editor'
-				) }
-				isLoading={ isLoading }
-			/>
 		</>
 	);
 };
