@@ -6,8 +6,6 @@ import { store as noticesStore } from '@wordpress/notices';
 import { Button, Icon, TextareaControl } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
-import Toast from '../components/Toast';
-
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
 
@@ -23,9 +21,9 @@ import { editorStore } from '../utils/store';
  */
 const Headline = (): JSX.Element => {
 	const [ headline, setHeadline ] = useState( '' );
-	const [ isLoading, setIsLoading ] = useState( false );
 	const { editPost, savePost } = useDispatch( editorStore ) as any;
-	const { createErrorNotice, removeNotice } = useDispatch( noticesStore );
+	const { createNotice, createErrorNotice, removeNotice } =
+		useDispatch( noticesStore );
 	const { postId, postContent, postHeadline, notices } = useSelect(
 		( select ) => {
 			const { getNotices } = select( noticesStore );
@@ -59,7 +57,18 @@ const Headline = (): JSX.Element => {
 	 */
 	const handleClick = async (): Promise< void > => {
 		notices.forEach( ( notice ) => removeNotice( notice.id ) );
-		setIsLoading( true );
+		createNotice(
+			'info',
+			__(
+				'AI is generating text, please hold on for a bit.',
+				'ai-plus-block-editor'
+			),
+			{
+				isDismissible: true,
+				id: 'apbe-info',
+				type: 'snackbar',
+			}
+		);
 
 		try {
 			const response: string = await apiFetch( {
@@ -101,10 +110,9 @@ const Headline = (): JSX.Element => {
 			showAnimatedAiText().then( ( newHeadline ) => {
 				editPost( { meta: { apbe_headline: newHeadline } } );
 			} );
-
-			setIsLoading( false );
+			removeNotice( 'apbe-info' );
 		} catch ( e ) {
-			setIsLoading( false );
+			removeNotice( 'apbe-info' );
 			createErrorNotice(
 				__(
 					'Error! Failed to fetch Headline. Please check your error logs or console for more info.',
@@ -174,13 +182,6 @@ const Headline = (): JSX.Element => {
 					<Icon icon={ check } />
 				</Button>
 			</div>
-			<Toast
-				message={ __(
-					'AI is generating text, please hold on for a bit.',
-					'ai-plus-block-editor'
-				) }
-				isLoading={ isLoading }
-			/>
 		</>
 	);
 };

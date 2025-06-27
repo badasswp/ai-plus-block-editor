@@ -6,8 +6,6 @@ import { Button, TextareaControl, Icon } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import apiFetch from '@wordpress/api-fetch';
 
-import Toast from '../components/Toast';
-
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
 
@@ -23,9 +21,9 @@ import { editorStore } from '../utils/store';
  */
 const SEO = (): JSX.Element => {
 	const [ keywords, setKeywords ] = useState( '' );
-	const [ isLoading, setIsLoading ] = useState( false );
 	const { editPost, savePost } = useDispatch( editorStore ) as any;
-	const { createErrorNotice, removeNotice } = useDispatch( noticesStore );
+	const { createNotice, createErrorNotice, removeNotice } =
+		useDispatch( noticesStore );
 	const { postId, postContent, postKeywords, notices } = useSelect(
 		( select ) => {
 			const { getNotices } = select( noticesStore );
@@ -60,7 +58,18 @@ const SEO = (): JSX.Element => {
 	 */
 	const handleClick = async (): Promise< void > => {
 		notices.forEach( ( notice ) => removeNotice( notice.id ) );
-		setIsLoading( true );
+		createNotice(
+			'info',
+			__(
+				'AI is generating text, please hold on for a bit.',
+				'ai-plus-block-editor'
+			),
+			{
+				isDismissible: true,
+				id: 'apbe-info',
+				type: 'snackbar',
+			}
+		);
 
 		try {
 			const aiKeywords: string = await apiFetch( {
@@ -100,10 +109,9 @@ const SEO = (): JSX.Element => {
 			showAnimatedAiText().then( ( newKeywords ) => {
 				editPost( { meta: { apbe_seo_keywords: newKeywords } } );
 			} );
-
-			setIsLoading( false );
+			removeNotice( 'apbe-info' );
 		} catch ( e ) {
-			setIsLoading( false );
+			removeNotice( 'apbe-info' );
 			createErrorNotice(
 				__(
 					'Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.',
@@ -149,13 +157,6 @@ const SEO = (): JSX.Element => {
 					<Icon icon={ check } />
 				</Button>
 			</div>
-			<Toast
-				message={ __(
-					'AI is generating text, please hold on for a bit.',
-					'ai-plus-block-editor'
-				) }
-				isLoading={ isLoading }
-			/>
 		</>
 	);
 };
