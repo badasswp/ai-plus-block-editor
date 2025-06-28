@@ -12,6 +12,7 @@ namespace AiPlusBlockEditor\Core;
 
 use AiPlusBlockEditor\Providers\OpenAI;
 use AiPlusBlockEditor\Providers\Gemini;
+use AiPlusBlockEditor\Providers\DeepSeek;
 use AiPlusBlockEditor\Interfaces\Provider;
 
 class AI implements Provider {
@@ -35,6 +36,10 @@ class AI implements Provider {
 
 			case 'Gemini':
 				$ai_provider = Gemini::class;
+				break;
+
+			case 'DeepSeek':
+				$ai_provider = DeepSeek::class;
 				break;
 		}
 
@@ -74,6 +79,14 @@ class AI implements Provider {
 	 * @return string|\WP_Error
 	 */
 	public function run( $payload ) {
+		// Sanitize Prompt.
+		$payload['content'] = html_entity_decode(
+			wp_strip_all_tags(
+				apply_filters( 'the_content', $payload['content'] ?? '' ),
+				true
+			)
+		);
+
 		try {
 			return $this->get_provider()->run( $payload );
 		} catch ( \Exception $e ) {
