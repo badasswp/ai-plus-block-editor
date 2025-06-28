@@ -123,7 +123,7 @@ class Gemini implements Provider {
 				'headers' => [
 					'Content-Type' => 'application/json',
 				],
-				'body'    => wp_json_encode( $body ),
+				'body'    => wp_json_encode( $body, JSON_UNESCAPED_UNICODE ),
 				'timeout' => 20,
 			]
 		);
