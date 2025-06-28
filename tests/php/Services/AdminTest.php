@@ -243,6 +243,8 @@ class AdminTest extends TestCase {
 			->with(
 				'ai_plus_block_editor',
 				[
+					'deepseek_enable'      => '',
+					'deepseek_token'       => '',
 					'google_gemini_enable' => '',
 					'google_gemini_token'  => '',
 					'open_ai_enable'       => '',

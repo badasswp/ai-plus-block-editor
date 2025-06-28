@@ -2,6 +2,7 @@
 
 # Unreleased
 * Refactor: Update Components to use WP's snackbar notice.
+* Feat: Implement DeepSeek AI provider.
 
 # 1.5.0
 * Feat: AI Provider Switcher.

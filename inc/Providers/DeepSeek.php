@@ -1,9 +1,9 @@
 <?php
 /**
- * Gemini Class.
+ * DeepSeek Class.
  *
  * This class is responsible for handling
- * Gemini calls.
+ * DeepSeek calls.
  *
  * @package AiPlusBlockEditor
  */
@@ -13,33 +13,33 @@ namespace AiPlusBlockEditor\Providers;
 use AiPlusBlockEditor\Interfaces\Provider;
 use AiPlusBlockEditor\Admin\Options;
 
-class Gemini implements Provider {
+class DeepSeek implements Provider {
 	/**
 	 * Get Default Args.
 	 *
-	 * @since 1.5.0
+	 * @since 1.6.0
 	 *
 	 * @return mixed[]
 	 */
 	protected function get_default_args(): array {
 		$args = [
-			'model'           => 'gemini-2.0-flash',
-			'temperature'     => 1.0,
-			'maxOutputTokens' => 256,
-			'topK'            => 40,
-			'topP'            => 0.95,
-			'stopSequences'   => [ "\n\n" ],
+			'model'             => 'deepseek-chat',
+			'temperature'       => 0.7,
+			'top_p'             => 1,
+			'max_tokens'        => 500,
+			'presence_penalty'  => 0,
+			'frequency_penalty' => 0,
 		];
 
 		/**
-		 * Filter Gemini default args.
+		 * Filter DeepSeek default args.
 		 *
-		 * @since 1.5.0
+		 * @since 1.6.0
 		 *
 		 * @param mixed[] $args Default args.
 		 * @return mixed[]
 		 */
-		$filtered_args = (array) apply_filters( 'apbe_gemini_args', $args );
+		$filtered_args = (array) apply_filters( 'apbe_deepseek_args', $args );
 
 		return wp_parse_args( $filtered_args, $args );
 	}
@@ -47,47 +47,42 @@ class Gemini implements Provider {
 	/**
 	 * Get API URL.
 	 *
-	 * This method returns the Gemini API URL
+	 * This method returns the DeepSeek API URL
 	 * endpoint. It can be filtered using the
-	 * 'apbe_gemini_api_url' filter.
+	 * 'apbe_deepseek_api_url' filter.
 	 *
-	 * @since 1.5.0
+	 * @since 1.6.0
 	 *
 	 * @return string
 	 */
 	protected function get_api_url(): string {
-		$url = esc_url(
-			sprintf(
-				'https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent',
-				$this->get_default_args()['model'] ?? ''
-			)
-		);
+		$url = esc_url( 'https://api.deepseek.com/chat/completions' );
 
 		/**
-		 * Filter Gemini API URL.
+		 * Filter DeepSeek API URL.
 		 *
-		 * @since 1.5.0
+		 * @since 1.6.0
 		 *
-		 * @param string $url Gemini API URL.
+		 * @param string $url DeepSeek API URL.
 		 * @return string
 		 */
-		return apply_filters( 'apbe_gemini_api_url', $url );
+		return apply_filters( 'apbe_deepseek_api_url', $url );
 	}
 
 	/**
 	 * Get AI Response.
 	 *
-	 * @since 1.5.0
+	 * @since 1.6.0
 	 *
 	 * @param mixed[] $payload JSON Payload.
 	 * @return string|\WP_Error
 	 */
 	public function run( $payload ) {
-		$api_key = get_option( Options::get_page_option(), [] )['google_gemini_token'] ?? '';
+		$api_key = get_option( Options::get_page_option(), [] )['deepseek_token'] ?? '';
 
 		if ( empty( $api_key ) ) {
 			return $this->get_json_error(
-				__( 'Missing Gemini API key.', 'ai-plus-block-editor' )
+				__( 'Missing DeepSeek API key.', 'ai-plus-block-editor' )
 			);
 		}
 
@@ -101,27 +96,29 @@ class Gemini implements Provider {
 			);
 		}
 
-		$args = $this->get_default_args();
-		unset( $args['model'] );
-
-		// Gemini API expects a specific body structure.
-		$body = [
-			'contents'         => [
-				[
-					'role'  => 'user',
-					'parts' => [
-						[ 'text' => $prompt_text ],
+		// DeepSeek API expects a specific body structure.
+		$body = wp_parse_args(
+			[
+				'messages' => [
+					[
+						'role'    => 'system',
+						'content' => 'You are a helpful assistant.',
+					],
+					[
+						'role'    => 'user',
+						'content' => $prompt_text,
 					],
 				],
 			],
-			'generationConfig' => $args,
-		];
+			$this->get_default_args()
+		);
 
 		$response = wp_remote_post(
-			add_query_arg( 'key', $api_key, $this->get_api_url() ),
+			$this->get_api_url(),
 			[
 				'headers' => [
-					'Content-Type' => 'application/json',
+					'Content-Type'  => 'application/json',
+					'Authorization' => 'Bearer ' . $api_key,
 				],
 				'body'    => wp_json_encode( $body, JSON_UNESCAPED_UNICODE ),
 				'timeout' => 20,
@@ -134,17 +131,13 @@ class Gemini implements Provider {
 
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
 
-		if ( isset( $data['error'] ) ) {
-			return $this->get_json_error( $data['error']['message'] ?? 'Unknown Gemini API error.' );
-		}
-
-		return $data['candidates'][0]['content']['parts'][0]['text'] ?? '';
+		return $data['choices'][0]['message']['content'] ?? '';
 	}
 
 	/**
 	 * Get JSON Error.
 	 *
-	 * @since 1.5.0
+	 * @since 1.6.0
 	 *
 	 * @param string $message Error Message.
 	 * @return \WP_Error

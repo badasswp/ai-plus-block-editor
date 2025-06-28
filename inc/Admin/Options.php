@@ -171,6 +171,22 @@ class Options {
 					],
 				],
 			],
+			'deepseek_options'      => [
+				'heading'  => esc_html__( 'DeepSeek', 'ai-plus-block-editor' ),
+				'controls' => [
+					'deepseek_enable' => [
+						'control' => esc_attr( 'checkbox' ),
+						'label'   => esc_html__( 'Enable DeepSeek', 'ai-plus-block-editor' ),
+						'summary' => esc_html__( 'Use DeepSeek capabilities in Block Editor', 'ai-plus-block-editor' ),
+					],
+					'deepseek_token'  => [
+						'control'     => esc_attr( 'password' ),
+						'placeholder' => esc_attr( '' ),
+						'label'       => esc_html__( 'API Keys', 'ai-plus-block-editor' ),
+						'summary'     => esc_html__( 'e.g. ae2kgch7ib9eqcbeveq9a923nv87392av', 'ai-plus-block-editor' ),
+					],
+				],
+			],
 		];
 	}
 

@@ -73,6 +73,15 @@ class AITest extends TestCase {
 		$ai->shouldReceive( 'get_provider' )
 			->andReturn( $open_ai );
 
+		\WP_Mock::userFunction( 'wp_strip_all_tags' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return strip_tags( $arg );
+				}
+			);
+
+		\WP_Mock::expectFilter( 'the_content', 'Generate an SEO friendly headline using: Hello World!' );
+
 		$open_ai->shouldReceive( 'run' )
 			->times( 1 )
 			->with(
@@ -103,6 +112,15 @@ class AITest extends TestCase {
 
 		$ai->shouldReceive( 'get_provider' )
 			->andReturn( $open_ai );
+
+		\WP_Mock::userFunction( 'wp_strip_all_tags' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return strip_tags( $arg );
+				}
+			);
+
+		\WP_Mock::expectFilter( 'the_content', 'Do nothing...' );
 
 		$open_ai->shouldReceive( 'run' )
 			->times( 1 )
