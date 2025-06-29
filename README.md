@@ -105,6 +105,11 @@ public function custom_args( $args ) {
 }
 ```
 
+**Parameters**
+
+- args _`{array}`_ By default this will be an array containing the DeepSeek default parameters.
+<br/>
+
 #### `apbe_gemini_api_url`
 
 This custom hook (filter) provides the ability to modify the Gemini API endpoint used for generating AI content.
@@ -122,7 +127,7 @@ public function custom_api_url( $url ) {
         $project_id,
         $location,
         $endpoint_id,
-		) );
+    ) );
 }
 ```
 
