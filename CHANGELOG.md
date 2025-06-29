@@ -3,12 +3,14 @@
 # Unreleased
 * Refactor: Update Components to use WP's snackbar notice.
 * Feat: Implement DeepSeek AI provider.
+* Feat: Implement custom filters `apbe_deepseek_api_url`, `apbe_deepseek_args`.
 * Fix: Console errors.
 * Tested up to WP 6.8.
 
 # 1.5.0
 * Feat: AI Provider Switcher.
 * Feat: Add Google Gemini AI provider.
+* Feat: Implement custom filters `apbe_gemini_api_url`, `apbe_gemini_args`.
 * Feat: Add Social media hash-tag sidebar feature.
 * Feat: Update text translations for new features.
 * Feat: Improve AI prompts.
