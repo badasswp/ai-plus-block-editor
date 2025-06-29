@@ -3,7 +3,7 @@
  * Plugin Name: AI + Block Editor
  * Plugin URI:  https://github.com/badasswp/ai-plus-block-editor
  * Description: Add AI Capabilities to the WP Block Editor.
- * Version:     1.5.0
+ * Version:     1.6.0
  * Author:      badasswp
  * Author URI:  https://github.com/badasswp
  * License:     GPL v2 or later
