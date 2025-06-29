@@ -1,6 +1,6 @@
 # Changelog
 
-# Unreleased
+# 1.6.0
 * Refactor: Update Components to use WP's snackbar notice.
 * Feat: Implement DeepSeek AI provider.
 * Feat: Implement custom filters `apbe_deepseek_api_url`, `apbe_deepseek_args`.
