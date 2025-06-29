@@ -67,6 +67,44 @@ public function custom_ai_provider( $ai_provider ) {
 - ai_provider _`{Provider}`_ By default this will be an instance of the Provider interface that MUST contain a `run` method implementation.
 <br/>
 
+#### `apbe_deepseek_api_url`
+
+This custom hook (filter) provides the ability to modify the DeepSeek endpoint used for generating AI content.
+
+```php
+add_filter( 'apbe_deepseek_api_url', [ $this, 'custom_api_url' ], 10, 1 );
+
+public function custom_api_url( $url ) {
+    return esc_url( 'https://ai.deepseek.com/chat/completions' );
+}
+```
+
+**Parameters**
+
+- url _`{string}`_ By default this will be a string containing the API endpoint for the DeepSeek LLM.
+<br/>
+
+#### `apbe_deepseek_args`
+
+This custom hook (filter) provides the ability to modify the DeepSeek args before it is sent to the LLM.
+
+```php
+add_filter( 'apbe_deepseek_args', [ $this, 'custom_args' ], 10, 1 );
+
+public function custom_args( $args ) {
+    return wp_parse_args(
+        [
+            'model'             => 'deepseek-chat',
+            'temperature'       => 0.7,
+            'max_tokens'        => 500,
+            'presence_penalty'  => 0,
+            'frequency_penalty' => 0,
+        ],
+        $args
+    )
+}
+```
+
 #### `apbe_gemini_api_url`
 
 This custom hook (filter) provides the ability to modify the Gemini API endpoint used for generating AI content.

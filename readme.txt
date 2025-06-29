@@ -3,7 +3,7 @@ Contributors: badasswp
 Tags: ai, block, editor, chat-gpt, assistant.
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 1.5.0
+Stable tag: 1.6.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -67,9 +67,17 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.6.0 =
+* Refactor: Update Components to use WP's snackbar notice.
+* Feat: Implement DeepSeek AI provider.
+* Feat: Implement custom filters `apbe_deepseek_api_url`, `apbe_deepseek_args`.
+* Fix: Console errors.
+* Tested up to WP 6.8.
+
 = 1.5.0 =
 * Feat: AI Provider Switcher.
 * Feat: Add Google Gemini AI provider.
+* Feat: Implement custom filters `apbe_gemini_api_url`, `apbe_gemini_args`.
 * Feat: Add Social media hash-tag sidebar feature.
 * Feat: Update text translations for new features.
 * Feat: Improve AI prompts.

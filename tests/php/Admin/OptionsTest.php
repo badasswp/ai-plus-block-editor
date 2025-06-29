@@ -154,6 +154,22 @@ class OptionsTest extends TestCase {
 						],
 					],
 				],
+				'deepseek_options'      => [
+					'heading'  => 'DeepSeek',
+					'controls' => [
+						'deepseek_enable' => [
+							'control' => 'checkbox',
+							'label'   => 'Enable DeepSeek',
+							'summary' => 'Use DeepSeek capabilities in Block Editor',
+						],
+						'deepseek_token'  => [
+							'control'     => 'password',
+							'placeholder' => '',
+							'label'       => 'API Keys',
+							'summary'     => 'e.g. ae2kgch7ib9eqcbeveq9a923nv87392av',
+						],
+					],
+				],
 			]
 		);
 	}
