@@ -147,6 +147,7 @@ const Slug = (): JSX.Element => {
 				value={ slug }
 				onChange={ ( text ) => setSlug( text ) }
 				__nextHasNoMarginBottom
+				__next40pxDefaultSize
 			/>
 			<div className="apbe-button-group">
 				<Button variant="primary" onClick={ handleClick }>
