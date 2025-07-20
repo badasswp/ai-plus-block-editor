@@ -3,7 +3,7 @@ Contributors: badasswp
 Tags: ai, block, editor, chat-gpt, assistant.
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -66,6 +66,10 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 4. Sidebar Icon - Locate AI Sidebar feature on the top-right corner of screen.
 
 == Changelog ==
+
+= 1.6.1 =
+* Upgrade plugin version.
+* Tested up to WP 6.8.2.
 
 = 1.6.0 =
 * Refactor: Update Components to use WP's snackbar notice.
