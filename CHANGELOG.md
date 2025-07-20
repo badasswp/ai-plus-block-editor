@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.6.1
+* Upgrade plugin version.
+* Tested up to WP 6.8.2.
+
 # 1.6.0
 * Refactor: Update Components to use WP's snackbar notice.
 * Feat: Implement DeepSeek AI provider.
