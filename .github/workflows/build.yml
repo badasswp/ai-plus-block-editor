@@ -37,8 +37,6 @@ jobs:
       run: |
         yarn install && yarn build
         git add dist/ -f
-        git rm dist/app.asset.php -f
-        git rm dist/app.js.map -f
         git rm package.json
 
     - name: Build Vendor folder
