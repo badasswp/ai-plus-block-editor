@@ -67,6 +67,10 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.6.2 =
+* Update CI/CD build workflow.
+* Tested up to WP 6.8.2.
+
 = 1.6.1 =
 * Upgrade plugin version.
 * Tested up to WP 6.8.2.
