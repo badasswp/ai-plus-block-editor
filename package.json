@@ -72,6 +72,8 @@
 		"editor",
 		"chat-gpt",
 		"open-ai",
-		"gemini"
+		"gemini",
+		"deepseek",
+		"co-pilot"
 	]
 }
