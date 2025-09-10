@@ -67,6 +67,13 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.7.0 =
+* Feat: Add Grok AI provider.
+* Feat: Implement custom filters `apbe_grok_api_url`, `apbe_grok_args`, `apbe_grok_system_prompt`.
+* Test: Update unit test cases.
+* Docs: Update README docs.
+* Tested up to WP 6.8.
+
 = 1.6.2 =
 * Update CI/CD build workflow.
 * Tested up to WP 6.8.2.
