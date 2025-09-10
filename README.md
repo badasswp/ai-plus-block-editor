@@ -162,6 +162,58 @@ public function custom_args( $args ) {
 - args _`{array}`_ By default this will be an array containing the Gemini default parameters.
 <br/>
 
+#### `apbe_grok_api_url`
+
+This custom hook (filter) provides the ability to modify the Grok endpoint used for generating AI content.
+
+```php
+add_filter( 'apbe_grok_api_url', [ $this, 'custom_api_url' ], 10, 1 );
+
+public function custom_api_url( $url ) {
+    return esc_url( 'https://api.x.ai/v2/chat/completions' );
+}
+```
+
+**Parameters**
+
+- url _`{string}`_ By default this will be a string containing the API endpoint for the Grok LLM.
+<br/>
+
+#### `apbe_grok_args`
+
+This custom hook (filter) provides the ability to modify the Grok args before it is sent to the LLM.
+
+```php
+add_filter( 'apbe_grok_args', [ $this, 'custom_args' ], 10, 1 );
+
+public function custom_args( $args ) {
+    return wp_parse_args(
+        [
+            'model'  => 'grok-5',
+            'stream' => false,
+        ],
+        $args
+    )
+}
+```
+
+**Parameters**
+
+- args _`{array}`_ By default this will be an array containing the Grok default parameters.
+<br/>
+
+#### `apbe_grok_system_prompt`
+
+This custom hook (filter) provides the ability to modify the Grok system prompt.
+
+```php
+add_filter( 'apbe_grok_system_prompt', [ $this, 'custom_system_prompt' ], 10, 1 );
+
+public function custom_system_prompt( $prompt ) {
+    return esc_html( 'You are Grok, a super-intelligent Journalist writing a cover story.' );
+}
+```
+
 #### `apbe_open_ai_args`
 
 This custom hook (filter) provides the ability to modify the OpenAI args before it sent to the LLM.
