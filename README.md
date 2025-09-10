@@ -214,6 +214,11 @@ public function custom_system_prompt( $prompt ) {
 }
 ```
 
+**Parameters**
+
+- prompt _`{string}`_ By default this will be a string containing the default system prompt.
+<br/>
+
 #### `apbe_open_ai_args`
 
 This custom hook (filter) provides the ability to modify the OpenAI args before it sent to the LLM.
