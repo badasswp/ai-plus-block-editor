@@ -26,6 +26,11 @@ exports[`Switcher renders Switcher component 1`] = `
     >
       DeepSeek
     </option>
+    <option
+      value="Grok"
+    >
+      Grok
+    </option>
   </select>
 </div>
 `;
