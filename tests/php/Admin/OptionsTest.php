@@ -118,6 +118,7 @@ class OptionsTest extends TestCase {
 								'OpenAI'   => 'ChatGPT',
 								'Gemini'   => 'Gemini',
 								'DeepSeek' => 'DeepSeek',
+								'Grok'     => 'Grok',
 							],
 						],
 					],
@@ -163,6 +164,22 @@ class OptionsTest extends TestCase {
 							'summary' => 'Use DeepSeek capabilities in Block Editor',
 						],
 						'deepseek_token'  => [
+							'control'     => 'password',
+							'placeholder' => '',
+							'label'       => 'API Keys',
+							'summary'     => 'e.g. ae2kgch7ib9eqcbeveq9a923nv87392av',
+						],
+					],
+				],
+				'grok_options'          => [
+					'heading'  => 'Grok',
+					'controls' => [
+						'grok_enable' => [
+							'control' => 'checkbox',
+							'label'   => 'Enable Grok',
+							'summary' => 'Use Grok capabilities in Block Editor',
+						],
+						'grok_token'  => [
 							'control'     => 'password',
 							'placeholder' => '',
 							'label'       => 'API Keys',
