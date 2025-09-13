@@ -75,6 +75,7 @@ const Switcher = (): JSX.Element => {
 					{ label: 'ChatGPT', value: 'OpenAI' },
 					{ label: 'Gemini', value: 'Gemini' },
 					{ label: 'DeepSeek', value: 'DeepSeek' },
+					{ label: 'Grok', value: 'Grok' },
 				] }
 				onChange={ handleChange }
 				id="switcher"
