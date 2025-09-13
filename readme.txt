@@ -3,7 +3,7 @@ Contributors: badasswp
 Tags: ai, block, editor, chat-gpt, assistant.
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 1.6.2
+Stable tag: 1.7.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -66,6 +66,13 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 4. Sidebar Icon - Locate AI Sidebar feature on the top-right corner of screen.
 
 == Changelog ==
+
+= 1.7.0 =
+* Feat: Add Grok AI provider.
+* Feat: Implement custom filters `apbe_grok_api_url`, `apbe_grok_args`, `apbe_grok_system_prompt`.
+* Test: Update unit test cases.
+* Docs: Update README docs.
+* Tested up to WP 6.8.
 
 = 1.6.2 =
 * Update CI/CD build workflow.
