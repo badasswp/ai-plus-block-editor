@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.7.1
+* Fix: Update issue with broken plugin deploy.
+* Docs: Update README docs.
+
 # 1.7.0
 * Feat: Add Grok AI provider.
 * Feat: Implement custom filters `apbe_grok_api_url`, `apbe_grok_args`, `apbe_grok_system_prompt`.
