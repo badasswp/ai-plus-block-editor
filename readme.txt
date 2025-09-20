@@ -32,6 +32,7 @@ Save time and improve engagement with AI-powered insights directly within the Wo
 
 Our plugin comes with everything you need to add AI capabilities to your Block Editor.
 
+✔️ <strong>Support for LLMs</strong> such as <strong>ChatGPT, Gemini, Deepseek, Grok</strong> and a host of others.
 ✔️ <strong>Change Text Tone (casual, official, narrative, and so on...)</strong> in block editor.
 ✔️ <strong>Generate Title/Headline</strong> using AI.
 ✔️ <strong>Generate Summary/Excerpts</strong>.
