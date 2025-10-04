@@ -141,6 +141,13 @@ class DeepSeek implements Provider {
 
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
 
+		// Notify user, if JSON yields null.
+		if ( empty( $data ) || ! isset( $data['choices'][0]['message']['content'] ) ) {
+			return $this->get_json_error(
+				$data['error']['message'] ?? __( 'Unexpected DeepSeek API response.', 'ai-plus-block-editor' )
+			);
+		}
+
 		return $data['choices'][0]['message']['content'] ?? '';
 	}
 

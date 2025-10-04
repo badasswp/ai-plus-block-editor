@@ -134,8 +134,11 @@ class Gemini implements Provider {
 
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
 
-		if ( isset( $data['error'] ) ) {
-			return $this->get_json_error( $data['error']['message'] ?? 'Unknown Gemini API error.' );
+		// Notify user, if JSON yields null.
+		if ( empty( $data ) || ! isset( $data['candidates'][0]['content']['parts'][0]['text'] ) ) {
+			return $this->get_json_error(
+				$data['error']['message'] ?? __( 'Unexpected Gemini API response.', 'ai-plus-block-editor' )
+			);
 		}
 
 		return $data['candidates'][0]['content']['parts'][0]['text'] ?? '';
