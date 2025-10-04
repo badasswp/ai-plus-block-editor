@@ -110,6 +110,23 @@ public function custom_args( $args ) {
 - args _`{array}`_ By default this will be an array containing the DeepSeek default parameters.
 <br/>
 
+#### `apbe_deepseek_system_prompt`
+
+This custom hook (filter) provides the ability to modify the DeepSeek system prompt.
+
+```php
+add_filter( 'apbe_deepseek_system_prompt', [ $this, 'custom_system_prompt' ], 10, 1 );
+
+public function custom_system_prompt( $prompt ) {
+    return esc_html( 'You are DeepSeek, a super-intelligent Journalist writing a cover story.' );
+}
+```
+
+**Parameters**
+
+- prompt _`{string}`_ By default this will be a string containing the default system prompt.
+<br/>
+
 #### `apbe_gemini_api_url`
 
 This custom hook (filter) provides the ability to modify the Gemini API endpoint used for generating AI content.
