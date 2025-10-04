@@ -96,13 +96,23 @@ class DeepSeek implements Provider {
 			);
 		}
 
+		/**
+		 * Filter DeepSeek System Prompt.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $prompt DeepSeek System prompt.
+		 * @return string
+		 */
+		$system_prompt = apply_filters( 'apbe_deepseek_system_prompt', 'You are a helpful assistant.' );
+
 		// DeepSeek API expects a specific body structure.
 		$body = wp_parse_args(
 			[
 				'messages' => [
 					[
 						'role'    => 'system',
-						'content' => 'You are a helpful assistant.',
+						'content' => $system_prompt,
 					],
 					[
 						'role'    => 'user',

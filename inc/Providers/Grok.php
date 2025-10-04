@@ -104,7 +104,6 @@ class Grok implements Provider {
 
 		// Grok API expects a specific body structure.
 		$body = wp_parse_args(
-			$this->get_default_args(),
 			[
 				'messages' => [
 					[
@@ -116,7 +115,8 @@ class Grok implements Provider {
 						'content' => $prompt_text,
 					],
 				],
-			]
+			],
+			$this->get_default_args(),
 		);
 
 		$response = wp_remote_post(
