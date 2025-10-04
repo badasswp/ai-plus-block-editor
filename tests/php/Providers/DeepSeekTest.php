@@ -246,6 +246,11 @@ class DeepSeekTest extends TestCase {
 				]
 			);
 
+		WP_Mock::expectFilter(
+			'apbe_deepseek_system_prompt',
+			'You are a helpful assistant.'
+		);
+
 		\WP_Mock::userFunction( 'add_query_arg' )
 			->andReturnNull();
 
