@@ -56,7 +56,7 @@ class DeepSeek implements Provider {
 	 * @return string
 	 */
 	protected function get_api_url(): string {
-		$url = esc_url( 'https://api.deepseek.com/chat/completions' );
+		$url = 'https://api.deepseek.com/chat/completions';
 
 		/**
 		 * Filter DeepSeek API URL.
@@ -66,7 +66,7 @@ class DeepSeek implements Provider {
 		 * @param string $url DeepSeek API URL.
 		 * @return string
 		 */
-		return apply_filters( 'apbe_deepseek_api_url', $url );
+		return esc_url( (string) apply_filters( 'apbe_deepseek_api_url', $url ) );
 	}
 
 	/**

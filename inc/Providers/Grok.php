@@ -52,7 +52,7 @@ class Grok implements Provider {
 	 * @return string
 	 */
 	protected function get_api_url(): string {
-		$url = esc_url( 'https://api.x.ai/v1/chat/completions' );
+		$url = 'https://api.x.ai/v1/chat/completions';
 
 		/**
 		 * Filter Grok API URL.
@@ -62,7 +62,7 @@ class Grok implements Provider {
 		 * @param string $url Grok API URL.
 		 * @return string
 		 */
-		return apply_filters( 'apbe_grok_api_url', $url );
+		return esc_url( (string) apply_filters( 'apbe_grok_api_url', $url ) );
 	}
 
 	/**
