@@ -11,10 +11,12 @@
 namespace AiPlusBlockEditor\Providers;
 
 use Orhanerday\OpenAi\OpenAi as ChatGPT;
-use AiPlusBlockEditor\Admin\Options;
-use AiPlusBlockEditor\Interfaces\Provider;
 
-class OpenAI implements Provider {
+use AiPlusBlockEditor\Admin\Options;
+use AiPlusBlockEditor\Abstracts\Provider;
+use AiPlusBlockEditor\Interfaces\Provider as ProviderInterface;
+
+class OpenAI extends Provider implements ProviderInterface {
 	/**
 	 * Get Default Args.
 	 *
@@ -123,21 +125,5 @@ class OpenAI implements Provider {
 		}
 
 		return $response['choices'][0]['message']['content'] ?? '';
-	}
-
-	/**
-	 * Get JSON Error.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param string $message Error Message.
-	 * @return \WP_Error
-	 */
-	protected function get_json_error( $message ) {
-		return new \WP_Error(
-			'ai-plus-block-editor-json-error',
-			$message,
-			[ 'status' => 500 ]
-		);
 	}
 }

@@ -10,10 +10,11 @@
 
 namespace AiPlusBlockEditor\Providers;
 
-use AiPlusBlockEditor\Interfaces\Provider;
 use AiPlusBlockEditor\Admin\Options;
+use AiPlusBlockEditor\Abstracts\Provider;
+use AiPlusBlockEditor\Interfaces\Provider as ProviderInterface;
 
-class Grok implements Provider {
+class Grok extends Provider implements ProviderInterface {
 	/**
 	 * Get Default Args.
 	 *
@@ -145,21 +146,5 @@ class Grok implements Provider {
 		}
 
 		return $data['choices'][0]['message']['content'] ?? '';
-	}
-
-	/**
-	 * Get JSON Error.
-	 *
-	 * @since 1.7.0
-	 *
-	 * @param string $message Error Message.
-	 * @return \WP_Error
-	 */
-	protected function get_json_error( $message ) {
-		return new \WP_Error(
-			'ai-plus-block-editor-json-error',
-			$message,
-			[ 'status' => 500 ]
-		);
 	}
 }

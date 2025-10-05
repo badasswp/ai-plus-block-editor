@@ -10,10 +10,11 @@
 
 namespace AiPlusBlockEditor\Providers;
 
-use AiPlusBlockEditor\Interfaces\Provider;
 use AiPlusBlockEditor\Admin\Options;
+use AiPlusBlockEditor\Abstracts\Provider;
+use AiPlusBlockEditor\Interfaces\Provider as ProviderInterface;
 
-class Gemini implements Provider {
+class Gemini extends Provider implements ProviderInterface {
 	/**
 	 * Get Default Args.
 	 *
@@ -140,21 +141,5 @@ class Gemini implements Provider {
 		}
 
 		return $data['candidates'][0]['content']['parts'][0]['text'] ?? '';
-	}
-
-	/**
-	 * Get JSON Error.
-	 *
-	 * @since 1.5.0
-	 *
-	 * @param string $message Error Message.
-	 * @return \WP_Error
-	 */
-	protected function get_json_error( $message ) {
-		return new \WP_Error(
-			'ai-plus-block-editor-json-error',
-			$message,
-			[ 'status' => 500 ]
-		);
 	}
 }
