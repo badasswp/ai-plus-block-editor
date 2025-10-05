@@ -50,6 +50,21 @@ abstract class Provider implements ProviderInterface {
 	 * @return \WP_Error
 	 */
 	protected function get_json_error( $message ) {
+		/**
+		 * Fire on failed Provider call.
+		 *
+		 * This provides a way to fire events on
+		 * failed AI Provider calls.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $message Error message.
+		 * @param string $class   Provider class.
+		 *
+		 * @return void
+		 */
+		do_action( 'apbe_failed_provider_call', $message, static::class );
+
 		return new \WP_Error(
 			'ai-plus-block-editor-json-error',
 			$message,
