@@ -68,6 +68,11 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.8.0 =
+* Feat: Refactor AI providers.
+* Feat: Add custom filter - `apbe_deepseek_system_prompt`.
+* Feat: Implement AI provider abstraction.
+
 = 1.7.1 =
 * Fix: Update issue with broken plugin deploy.
 * Docs: Update README docs.
