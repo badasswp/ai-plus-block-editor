@@ -56,11 +56,9 @@ class Gemini implements Provider {
 	 * @return string
 	 */
 	protected function get_api_url(): string {
-		$url = esc_url(
-			sprintf(
-				'https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent',
-				$this->get_default_args()['model'] ?? ''
-			)
+		$url = sprintf(
+			'https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent',
+			$this->get_default_args()['model'] ?? ''
 		);
 
 		/**
@@ -71,7 +69,7 @@ class Gemini implements Provider {
 		 * @param string $url Gemini API URL.
 		 * @return string
 		 */
-		return apply_filters( 'apbe_gemini_api_url', $url );
+		return esc_url( (string) apply_filters( 'apbe_gemini_api_url', $url ) );
 	}
 
 	/**
