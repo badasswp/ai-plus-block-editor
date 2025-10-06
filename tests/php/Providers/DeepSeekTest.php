@@ -2,6 +2,7 @@
 
 namespace AiPlusBlockEditor\Tests\Providers;
 
+use WP_Mock;
 use Mockery;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Providers\DeepSeek;
@@ -22,17 +23,66 @@ class DeepSeekTest extends TestCase {
 	public DeepSeek $deepseek;
 
 	public function setUp(): void {
-		\WP_Mock::setUp();
+		WP_Mock::setUp();
+
+		WP_Mock::userFunction( '__' )
+			->andReturnUsing(
+				function ( $arg1, $arg2 ) {
+					return $arg1;
+				}
+			);
+
+		WP_Mock::userFunction( 'esc_html__' )
+			->andReturnUsing(
+				function ( $arg1, $arg2 ) {
+					return $arg1;
+				}
+			);
+
+		WP_Mock::userFunction( 'esc_attr' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		WP_Mock::userFunction( 'esc_url' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg;
+				}
+			);
+
+		WP_Mock::userFunction( 'is_wp_error' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return $arg instanceof \WP_Error;
+				}
+			);
+
+		WP_Mock::userFunction( 'wp_json_encode' )
+			->andReturnUsing(
+				function ( $arg ) {
+					return json_encode( $arg );
+				}
+			);
+
+		WP_Mock::userFunction( 'wp_parse_args' )
+			->andReturnUsing(
+				function ( $arg1, $arg2 ) {
+					return array_merge( $arg2, $arg1 );
+				}
+			);
 
 		$this->deepseek = new DeepSeek();
 	}
 
 	public function tearDown(): void {
-		\WP_Mock::tearDown();
+		WP_Mock::tearDown();
 	}
 
 	public function test_get_default_args() {
-		\WP_Mock::expectFilter(
+		WP_Mock::expectFilter(
 			'apbe_deepseek_args',
 			[
 				'model'             => 'deepseek-chat',
@@ -43,13 +93,6 @@ class DeepSeekTest extends TestCase {
 				'frequency_penalty' => 0,
 			]
 		);
-
-		\WP_Mock::userFunction( 'wp_parse_args' )
-			->andReturnUsing(
-				function ( $arg1, $arg2 ) {
-					return array_merge( $arg2, $arg1 );
-				}
-			);
 
 		$reflection = new \ReflectionClass( $this->deepseek );
 		$method     = $reflection->getMethod( 'get_default_args' );
@@ -74,7 +117,7 @@ class DeepSeekTest extends TestCase {
 		$deepseek = Mockery::mock( DeepSeek::class )->makePartial();
 		$deepseek->shouldAllowMockingProtectedMethods();
 
-		\WP_Mock::expectFilter(
+		WP_Mock::expectFilter(
 			'apbe_deepseek_api_url',
 			'https://api.deepseek.com/chat/completions'
 		);
@@ -99,28 +142,7 @@ class DeepSeekTest extends TestCase {
 		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
-		\WP_Mock::userFunction( 'esc_html__' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		\WP_Mock::userFunction( 'esc_attr' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		\WP_Mock::userFunction( '__' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		\WP_Mock::userFunction( 'get_option' )
+		WP_Mock::userFunction( 'get_option' )
 			->with( 'ai_plus_block_editor', [] )
 			->andReturn(
 				[

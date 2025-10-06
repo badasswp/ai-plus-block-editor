@@ -2,6 +2,7 @@
 
 namespace AiPlusBlockEditor\Tests\Core;
 
+use WP_Mock;
 use Mockery;
 use WP_Mock\Tools\TestCase;
 
@@ -27,11 +28,11 @@ class ContainerTest extends TestCase {
 	public Container $container;
 
 	public function setUp(): void {
-		\WP_Mock::setUp();
+		WP_Mock::setUp();
 	}
 
 	public function tearDown(): void {
-		\WP_Mock::tearDown();
+		WP_Mock::tearDown();
 	}
 
 	public function test_container_contains_required_services() {
@@ -55,7 +56,7 @@ class ContainerTest extends TestCase {
 			$service::get_instance();
 		}
 
-		\WP_Mock::expectActionAdded(
+		WP_Mock::expectActionAdded(
 			'admin_init',
 			[
 				Service::$services[ Admin::class ],
@@ -63,7 +64,7 @@ class ContainerTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::expectActionAdded(
+		WP_Mock::expectActionAdded(
 			'admin_menu',
 			[
 				Service::$services[ Admin::class ],
@@ -71,7 +72,7 @@ class ContainerTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::expectActionAdded(
+		WP_Mock::expectActionAdded(
 			'admin_enqueue_scripts',
 			[
 				Service::$services[ Admin::class ],
@@ -79,7 +80,7 @@ class ContainerTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::expectActionAdded(
+		WP_Mock::expectActionAdded(
 			'init',
 			[
 				Service::$services[ Boot::class ],
@@ -87,7 +88,7 @@ class ContainerTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::expectActionAdded(
+		WP_Mock::expectActionAdded(
 			'enqueue_block_editor_assets',
 			[
 				Service::$services[ Boot::class ],
@@ -95,7 +96,7 @@ class ContainerTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::expectActionAdded(
+		WP_Mock::expectActionAdded(
 			'init',
 			[
 				Service::$services[ PostMeta::class ],
@@ -103,7 +104,7 @@ class ContainerTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::expectActionAdded(
+		WP_Mock::expectActionAdded(
 			'rest_api_init',
 			[
 				Service::$services[ Routes::class ],
