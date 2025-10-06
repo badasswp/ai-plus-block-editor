@@ -18,6 +18,15 @@ use AiPlusBlockEditor\Interfaces\Provider as ProviderInterface;
 
 class OpenAI extends Provider implements ProviderInterface {
 	/**
+	 * Provider name.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @var string
+	 */
+	protected static $name = 'OpenAI';
+
+	/**
 	 * Get Default Args.
 	 *
 	 * @since 1.0.0
@@ -88,42 +97,90 @@ class OpenAI extends Provider implements ProviderInterface {
 			);
 		}
 
-		$payload = wp_parse_args( [ 'role' => 'user' ], $payload );
+		// ChatGPT expects a specific body structure.
+		$body = wp_parse_args(
+			[
+				'messages' => [
+					'role'    => 'user',
+					'content' => $prompt_text,
+				],
+			],
+			$this->get_default_args()
+		);
 
 		try {
-			$response = $this->get_client()->chat(
-				wp_parse_args(
-					[ 'messages' => [ $payload ] ],
-					$this->get_default_args()
-				)
-			);
+			$response = $this->get_client()->chat( $body );
 
-			$response = json_decode( $response, true );
+			if ( is_wp_error( $response ) ) {
+				return $this->get_json_error( $response->get_error_message(), $body );
+			}
+
+			// Get JSON response.
+			$data = json_decode( $response, true );
 
 			// Deal gracefully, with API error.
-			if ( isset( $response['error'] ) ) {
-				$error_msg = $response['error']['message'] ?? '';
-				error_log( $error_msg );
-
-				return $this->get_json_error( $error_msg );
+			if ( empty( $data ) || isset( $data['error'] ) ) {
+				return $this->get_json_error(
+					$data['error']['message'] ?? __( 'Unexpected OpenAI API response.', 'ai-plus-block-editor' ),
+					$body
+				);
 			}
 		} catch ( \Exception $e ) {
-			$error_msg = sprintf(
-				'Error: OpenAI API call failed... %s',
-				$e->getMessage()
+			return $this->get_json_error(
+				sprintf(
+					'Error: OpenAI API call failed... %s',
+					$e->getMessage()
+				),
+				$body
 			);
-			error_log( $error_msg );
-
-			return $this->get_json_error( $error_msg );
 		}
 
-		if ( is_null( $response ) ) {
-			$error_msg = 'Error: OpenAI API call returned malformed JSON.';
-			error_log( $error_msg );
-
-			return $this->get_json_error( $error_msg );
+		if ( is_null( $data ) ) {
+			return $this->get_json_error(
+				__( 'Error: OpenAI API call returned malformed JSON.', 'ai-plus-block-editor' ),
+				$body
+			);
 		}
 
-		return $response['choices'][0]['message']['content'] ?? '';
+		// Get API response.
+		$response = $data['choices'][0]['message']['content'] ?? '';
+
+		// Get Payload.
+		$payload = wp_json_encode( $body );
+
+		// Get Provider name.
+		$provider = static::$name;
+
+		/**
+		 * Fire on successful Provider call.
+		 *
+		 * This provides a way to fire events on
+		 * successful AI Provider calls.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $response Success response.
+		 * @param string $payload  JSON Payload.
+		 * @param string $provider Provider class.
+		 *
+		 * @return void
+		 */
+		do_action( 'apbe_ai_provider_success_call', $response, $payload, $provider );
+
+		/**
+		 * Filter API response.
+		 *
+		 * This provides a way to filter the LLM
+		 * API response.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $response Success response.
+		 * @param string $payload  JSON Payload.
+		 * @param string $provider Provider class.
+		 *
+		 * @return string
+		 */
+		return apply_filters( 'apbe_ai_provider_response', $response, $payload, $provider );
 	}
 }
