@@ -346,6 +346,23 @@ public function custom_args( $args ) {
 - args _`{array}`_ By default this will be an array containing the OpenAI default parameters.
 <br/>
 
+#### `apbe_open_ai_system_prompt`
+
+This custom hook (filter) provides the ability to modify the OpenAI system prompt.
+
+```php
+add_filter( 'apbe_open_ai_system_prompt', [ $this, 'custom_system_prompt' ], 10, 1 );
+
+public function custom_system_prompt( $prompt ) {
+    return esc_html( 'You are ChatGPT, a super-intelligent Journalist writing a cover story.' );
+}
+```
+
+**Parameters**
+
+- prompt _`{string}`_ By default this will be a string containing the default system prompt.
+<br/>
+
 #### `apbe_tone_prompt`
 
 This custom hook provides a simple way to filter the tone used by the AI LLM endpoint.
