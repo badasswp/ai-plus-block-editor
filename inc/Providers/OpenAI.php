@@ -97,10 +97,24 @@ class OpenAI extends Provider implements ProviderInterface {
 			);
 		}
 
+		/**
+		 * Filter OpenAI System Prompt.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $prompt OpenAI System prompt.
+		 * @return string
+		 */
+		$system_prompt = apply_filters( 'apbe_open_ai_system_prompt', 'You are ChatGPT, a highly intelligent, helpful AI assistant.' );
+
 		// ChatGPT expects a specific body structure.
 		$body = wp_parse_args(
 			[
 				'messages' => [
+					[
+						'role'    => 'system',
+						'content' => $system_prompt,
+					],
 					[
 						'role'    => 'user',
 						'content' => $prompt_text,
