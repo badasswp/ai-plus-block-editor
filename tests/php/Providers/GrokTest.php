@@ -163,7 +163,7 @@ class GrokTest extends TestCase {
 			->with( 'ai_plus_block_editor', [] )
 			->andReturn(
 				[
-					'deepseek_token' => 'age38gegewjdhagepkhif',
+					'grok_token' => 'age38gegewjdhagepkhif',
 				]
 			);
 
