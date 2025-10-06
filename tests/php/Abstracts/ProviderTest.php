@@ -106,7 +106,7 @@ class ProviderTest extends TestCase {
 	public function test_run() {
 		$this->provider->run(
 			[
-				'content' => 'Generate me a beautiful headline for my Graduation!'
+				'content' => 'Generate me a beautiful headline for my Graduation!',
 			]
 		);
 
