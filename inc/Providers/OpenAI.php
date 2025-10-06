@@ -118,7 +118,7 @@ class OpenAI extends Provider implements ProviderInterface {
 					[
 						'role'    => 'user',
 						'content' => $prompt_text,
-					]
+					],
 				],
 			],
 			$this->get_default_args()
