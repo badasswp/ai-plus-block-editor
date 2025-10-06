@@ -67,6 +67,92 @@ public function custom_ai_provider( $ai_provider ) {
 - ai_provider _`{Provider}`_ By default this will be an instance of the Provider interface that MUST contain a `run` method implementation.
 <br/>
 
+#### `apbe_ai_provider_response`
+
+This custom hook (filter) provides the ability to modify the AI Provider response from the LLM.
+
+```php
+add_filter( 'apbe_ai_provider_response', [ $this, 'custom_response' ], 10, 3 );
+
+public function custom_response( $message, $payload, $provider ) {
+    // Strip all HTML tags.
+    return wp_strip_all_tags( $message );
+}
+```
+
+**Parameters**
+
+- $message _`{string}`_ By default this will be a string containing the success message.
+- $payload _`{string}`_ By default this will be a string containing the JSON payload.
+- $provider _`{string}`_ By default this will be a string containing the provider name.
+<br/>
+
+#### `apbe_ai_provider_success_call`
+
+This custom hook (action) provides a way to fire events for successful AI provider calls.
+
+```php
+add_action( 'apbe_ai_provider_success_call', [ $this, 'log_successful_provider_call' ], 10, 3 );
+
+public function log_successful_provider_call( $message, $payload, $provider ) {
+    if ( 'OpenAI' === $provider ) {
+        wp_insert_post(
+            [
+                'post_type'    => 'chatgpt_successful_call',
+                'post_title'   => sprintf( 'Successful Call - %s', $provider ),
+                'post_content' => wp_json_encode(
+                    [
+                        'message'  => $message,
+                        'payload'  => $payload,
+                        'provider' => $provider,
+                    ]
+                )
+            ]
+        )
+    }
+}
+```
+
+**Parameters**
+
+- $message _`{string}`_ By default this will be a string containing the success message.
+- $payload _`{string}`_ By default this will be a string containing the JSON payload.
+- $provider _`{string}`_ By default this will be a string containing the provider name.
+<br/>
+
+#### `apbe_ai_provider_fail_call`
+
+This custom hook (action) provides a way to fire events for failed AI provider calls.
+
+```php
+add_action( 'apbe_ai_provider_fail_call', [ $this, 'log_failed_provider_call' ], 10, 3 );
+
+public function log_failed_provider_call( $message, $payload, $provider ) {
+    if ( 'Grok' === $provider ) {
+        wp_insert_post(
+            [
+                'post_type'    => 'grok_failed_call',
+                'post_title'   => sprintf( 'Failed Call - %s', $provider ),
+                'post_content' => wp_json_encode(
+                    [
+                        'message'  => $message,
+                        'payload'  => $payload,
+                        'provider' => $provider,
+                    ]
+                )
+            ]
+        )
+    }
+}
+```
+
+**Parameters**
+
+- $message _`{string}`_ By default this will be a string containing the fail message.
+- $payload _`{string}`_ By default this will be a string containing the JSON payload.
+- $provider _`{string}`_ By default this will be a string containing the provider name.
+<br/>
+
 #### `apbe_deepseek_api_url`
 
 This custom hook (filter) provides the ability to modify the DeepSeek endpoint used for generating AI content.
@@ -389,15 +475,15 @@ This custom hook (filter) provides the ability to extend the AiTone feature to o
 import { addFilter } from '@wordpress/hooks';
 
 addFilter(
-	'apbe.allowedBlocks',
-	'yourBlocks',
-	( allowedBlocks ) => {
-		if ( allowedBlocks.indexOf( 'your/block' ) === -1 ) {
-			allowedBlocks.push( 'your/block' );
-		}
+    'apbe.allowedBlocks',
+    'yourBlocks',
+    ( allowedBlocks ) => {
+        if ( allowedBlocks.indexOf( 'your/block' ) === -1 ) {
+            allowedBlocks.push( 'your/block' );
+        }
 
-		return allowedBlocks;
-	}
+        return allowedBlocks;
+    }
 );
 ```
 
@@ -414,15 +500,15 @@ This custom hook (filter) provides the ability to extend the menu options shown 
 import { addFilter } from '@wordpress/hooks';
 
 addFilter(
-	'apbe.blockMenuOptions',
-	'yourBlockMenuOptions',
-	( blockMenuOptions ) => {
-		const yourOptions = {
-			conversation: __( 'Use Conversation Tone', 'ai-plus-block-editor' )
-		}
+    'apbe.blockMenuOptions',
+    'yourBlockMenuOptions',
+    ( blockMenuOptions ) => {
+        const yourOptions = {
+            conversation: __( 'Use Conversation Tone', 'ai-plus-block-editor' )
+        }
 
-		return { ...blockMenuOptions, ...yourOptions }
-	}
+        return { ...blockMenuOptions, ...yourOptions }
+    }
 );
 ```
 
