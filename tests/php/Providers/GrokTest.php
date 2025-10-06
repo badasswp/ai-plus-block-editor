@@ -27,15 +27,15 @@ class GrokTest extends TestCase {
 
 		WP_Mock::userFunction( '__' )
 			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
+				function ( $arg1, $arg2 ) {
+					return $arg1;
 				}
 			);
 
 		WP_Mock::userFunction( 'esc_html__' )
 			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
+				function ( $arg1, $arg2 ) {
+					return $arg1;
 				}
 			);
 

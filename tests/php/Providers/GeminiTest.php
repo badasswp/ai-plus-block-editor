@@ -101,13 +101,6 @@ class GeminiTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::userFunction( 'wp_parse_args' )
-			->andReturnUsing(
-				function ( $arg1, $arg2 ) {
-					return array_merge( $arg2, $arg1 );
-				}
-			);
-
 		$reflection = new \ReflectionClass( $this->gemini );
 		$method     = $reflection->getMethod( 'get_default_args' );
 
@@ -143,13 +136,6 @@ class GeminiTest extends TestCase {
 			'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent'
 		);
 
-		\WP_Mock::userFunction( 'esc_url' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
 		$url = $gemini->get_api_url();
 
 		$this->assertSame( $url, 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent' );
@@ -163,28 +149,7 @@ class GeminiTest extends TestCase {
 		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
-		\WP_Mock::userFunction( 'esc_html__' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		\WP_Mock::userFunction( 'esc_attr' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		\WP_Mock::userFunction( '__' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		\WP_Mock::userFunction( 'get_option' )
+		WP_Mock::userFunction( 'get_option' )
 			->with( 'ai_plus_block_editor', [] )
 			->andReturn(
 				[
@@ -216,28 +181,7 @@ class GeminiTest extends TestCase {
 		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
-		\WP_Mock::userFunction( 'esc_html__' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		\WP_Mock::userFunction( 'esc_attr' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		\WP_Mock::userFunction( '__' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		\WP_Mock::userFunction( 'get_option' )
+		WP_Mock::userFunction( 'get_option' )
 			->with( 'ai_plus_block_editor', [] )
 			->andReturn(
 				[
@@ -262,7 +206,7 @@ class GeminiTest extends TestCase {
 		$this->assertConditionsMet();
 	}
 
-	public function test_run() {
+	public function test_run_fails_returns_wp_error_if_malformed_JSON_is_returned() {
 		$gemini = Mockery::mock( Gemini::class )->makePartial();
 		$gemini->shouldAllowMockingProtectedMethods();
 
@@ -281,33 +225,23 @@ class GeminiTest extends TestCase {
 				]
 			);
 
-		\WP_Mock::userFunction( 'esc_html__' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
+		WP_Mock::userFunction( 'get_option' )
+			->with( 'ai_plus_block_editor', [] )
+			->andReturn(
+				[
+					'google_gemini_token' => 'age38gegewjdhagepkhif',
+				]
 			);
 
-		\WP_Mock::userFunction( 'esc_attr' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
+		$gemini->shouldReceive( 'get_api_url' )
+			->andReturn( '' );
 
-		\WP_Mock::userFunction( 'is_wp_error' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg instanceof \WP_Error;
-				}
-			);
+		WP_Mock::userFunction( 'wp_remote_post' )
+			->andReturn( '{"body":{"choices":[{"message":{"content":"What a Wonderful World!"}}]}}' );
 
-		\WP_Mock::userFunction( 'wp_json_encode' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return json_encode( $arg );
-				}
-			);
+		// Return malformed JSON response
+		WP_Mock::userFunction( 'wp_remote_retrieve_body' )
+			->andReturn( '{"choices":[{"message":{"content":' );
 
 		WP_Mock::expectAction(
 			'apbe_ai_provider_fail_call',
