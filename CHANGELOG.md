@@ -3,10 +3,11 @@
 # 1.8.0
 * Feat: Refactor AI providers.
 * Feat: Add custom filters:
-  - `apbe_ai_provider_success_call`
-	- `apbe_ai_provider_fail_call`,
-	- `apbe_ai_provider_response`,
+  - `apbe_ai_provider_success_call`.
+	- `apbe_ai_provider_fail_call`.
+	- `apbe_ai_provider_response`.
 	- `apbe_deepseek_system_prompt`.
+  - `apbe_open_ai_system_prompt`.
 * Feat: Add error logging capabilities.
 * Feat: Implement AI provider abstraction.
 * Docs: Update README docs.
