@@ -2,6 +2,7 @@
 
 namespace AiPlusBlockEditor\Tests\Interfaces;
 
+use WP_Mock;
 use Mockery;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Interfaces\Router;
@@ -15,13 +16,13 @@ class RouterTest extends TestCase {
 	public Router $router;
 
 	public function setUp(): void {
-		\WP_Mock::setUp();
+		WP_Mock::setUp();
 
 		$this->router = $this->getMockForAbstractClass( Router::class );
 	}
 
 	public function tearDown(): void {
-		\WP_Mock::tearDown();
+		WP_Mock::tearDown();
 	}
 
 	public function test_response() {

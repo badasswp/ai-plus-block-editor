@@ -2,6 +2,7 @@
 
 namespace AiPlusBlockEditor\Tests\Routes;
 
+use WP_Mock;
 use Mockery;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Core\AI;
@@ -16,13 +17,13 @@ class ToneTest extends TestCase {
 	public Tone $tone;
 
 	public function setUp(): void {
-		\WP_Mock::setUp();
+		WP_Mock::setUp();
 
 		$this->tone = new Tone();
 	}
 
 	public function tearDown(): void {
-		\WP_Mock::tearDown();
+		WP_Mock::tearDown();
 	}
 
 	public function test_route_initial_values() {
@@ -85,14 +86,14 @@ class ToneTest extends TestCase {
 			'text' => 'Hello World!',
 		];
 
-		\WP_Mock::expectFilter(
+		WP_Mock::expectFilter(
 			'apbe_tone_prompt',
 			'Using a Casual tone, generate a text I can use to substitute the following text: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 			'Casual',
 			'Hello World!'
 		);
 
-		\WP_Mock::userFunction( 'rest_ensure_response' )
+		WP_Mock::userFunction( 'rest_ensure_response' )
 			->andReturnUsing(
 				function ( $arg ) {
 					return $arg;

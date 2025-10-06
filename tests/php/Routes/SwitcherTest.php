@@ -2,6 +2,7 @@
 
 namespace AiPlusBlockEditor\Tests\Routes;
 
+use WP_Mock;
 use Mockery;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Core\AI;
@@ -21,13 +22,13 @@ class SwitcherTest extends TestCase {
 	public Switcher $switcher;
 
 	public function setUp(): void {
-		\WP_Mock::setUp();
+		WP_Mock::setUp();
 
 		$this->switcher = new Switcher();
 	}
 
 	public function tearDown(): void {
-		\WP_Mock::tearDown();
+		WP_Mock::tearDown();
 	}
 
 	public function test_route_initial_values() {
@@ -71,14 +72,14 @@ class SwitcherTest extends TestCase {
 
 		$switcher->request = $request;
 
-		\WP_Mock::userFunction( 'wp_parse_args' )
+		WP_Mock::userFunction( 'wp_parse_args' )
 			->andReturnUsing(
 				function ( $arg1, $arg2 ) {
 					return array_merge( $arg2, $arg1 );
 				}
 			);
 
-		\WP_Mock::userFunction( 'get_option' )
+		WP_Mock::userFunction( 'get_option' )
 			->with( 'ai_plus_block_editor', [] )
 			->andReturn(
 				[
@@ -90,28 +91,28 @@ class SwitcherTest extends TestCase {
 				]
 			);
 
-		\WP_Mock::userFunction( 'sanitize_text_field' )
+		WP_Mock::userFunction( 'sanitize_text_field' )
 			->andReturnUsing(
 				function ( $arg ) {
 					return $arg;
 				}
 			);
 
-		\WP_Mock::userFunction( 'esc_html__' )
+		WP_Mock::userFunction( 'esc_html__' )
 			->andReturnUsing(
 				function ( $arg ) {
 					return $arg;
 				}
 			);
 
-		\WP_Mock::userFunction( 'esc_attr' )
+		WP_Mock::userFunction( 'esc_attr' )
 			->andReturnUsing(
 				function ( $arg ) {
 					return $arg;
 				}
 			);
 
-		\WP_Mock::userFunction( 'update_option' )
+		WP_Mock::userFunction( 'update_option' )
 			->with(
 				'ai_plus_block_editor',
 				[
@@ -123,7 +124,7 @@ class SwitcherTest extends TestCase {
 				]
 			);
 
-		\WP_Mock::userFunction( 'rest_ensure_response' )
+		WP_Mock::userFunction( 'rest_ensure_response' )
 			->andReturnUsing(
 				function ( $arg ) {
 					if ( $arg instanceof \WP_Error ) {

@@ -10,10 +10,20 @@
 
 namespace AiPlusBlockEditor\Providers;
 
-use AiPlusBlockEditor\Interfaces\Provider;
 use AiPlusBlockEditor\Admin\Options;
+use AiPlusBlockEditor\Abstracts\Provider;
+use AiPlusBlockEditor\Interfaces\Provider as ProviderInterface;
 
-class Gemini implements Provider {
+class Gemini extends Provider implements ProviderInterface {
+	/**
+	 * Provider name.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @var string
+	 */
+	protected static $name = 'Gemini';
+
 	/**
 	 * Get Default Args.
 	 *
@@ -56,11 +66,9 @@ class Gemini implements Provider {
 	 * @return string
 	 */
 	protected function get_api_url(): string {
-		$url = esc_url(
-			sprintf(
-				'https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent',
-				$this->get_default_args()['model'] ?? ''
-			)
+		$url = sprintf(
+			'https://generativelanguage.googleapis.com/v1beta/models/%s:generateContent',
+			$this->get_default_args()['model'] ?? ''
 		);
 
 		/**
@@ -71,7 +79,7 @@ class Gemini implements Provider {
 		 * @param string $url Gemini API URL.
 		 * @return string
 		 */
-		return apply_filters( 'apbe_gemini_api_url', $url );
+		return esc_url( (string) apply_filters( 'apbe_gemini_api_url', $url ) );
 	}
 
 	/**
@@ -129,31 +137,58 @@ class Gemini implements Provider {
 		);
 
 		if ( is_wp_error( $response ) ) {
-			return $this->get_json_error( $response->get_error_message() );
+			return $this->get_json_error( $response->get_error_message(), $body );
 		}
 
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
 
-		if ( isset( $data['error'] ) ) {
-			return $this->get_json_error( $data['error']['message'] ?? 'Unknown Gemini API error.' );
+		// Notify user, if JSON yields null.
+		if ( empty( $data ) || ! isset( $data['candidates'][0]['content']['parts'][0]['text'] ) ) {
+			return $this->get_json_error(
+				$data['error']['message'] ?? __( 'Unexpected Gemini API response.', 'ai-plus-block-editor' ),
+				$body
+			);
 		}
 
-		return $data['candidates'][0]['content']['parts'][0]['text'] ?? '';
-	}
+		// Get API response.
+		$response = $data['candidates'][0]['content']['parts'][0]['text'] ?? '';
 
-	/**
-	 * Get JSON Error.
-	 *
-	 * @since 1.5.0
-	 *
-	 * @param string $message Error Message.
-	 * @return \WP_Error
-	 */
-	protected function get_json_error( $message ) {
-		return new \WP_Error(
-			'ai-plus-block-editor-json-error',
-			$message,
-			[ 'status' => 500 ]
-		);
+		// Get Payload.
+		$payload = wp_json_encode( $body );
+
+		// Get Provider name.
+		$provider = static::$name;
+
+		/**
+		 * Fire on successful Provider call.
+		 *
+		 * This provides a way to fire events on
+		 * successful AI Provider calls.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $response Success response.
+		 * @param string $payload  JSON Payload.
+		 * @param string $provider Provider class.
+		 *
+		 * @return void
+		 */
+		do_action( 'apbe_ai_provider_success_call', $response, $payload, $provider );
+
+		/**
+		 * Filter API response.
+		 *
+		 * This provides a way to filter the LLM
+		 * API response.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $response Success response.
+		 * @param string $payload  JSON Payload.
+		 * @param string $provider Provider class.
+		 *
+		 * @return string
+		 */
+		return apply_filters( 'apbe_ai_provider_response', $response, $payload, $provider );
 	}
 }
