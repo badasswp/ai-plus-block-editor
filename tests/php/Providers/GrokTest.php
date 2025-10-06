@@ -135,6 +135,13 @@ class GrokTest extends TestCase {
 				]
 			);
 
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'Missing Grok API key.',
+			'[]',
+			'Grok',
+		);
+
 		$response = $grok->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
@@ -159,6 +166,13 @@ class GrokTest extends TestCase {
 					'deepseek_token' => 'age38gegewjdhagepkhif',
 				]
 			);
+
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'Invalid prompt text.',
+			'[]',
+			'Grok',
+		);
 
 		$response = $grok->run(
 			[
@@ -208,6 +222,13 @@ class GrokTest extends TestCase {
 		WP_Mock::userFunction( 'wp_remote_retrieve_body' )
 			->andReturn( '{"choices":[{"message":{"content":' );
 
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'Unexpected Grok API response.',
+			'{"model":"grok-4","stream":false,"messages":[{"role":"system","content":"You are Grok, a highly intelligent, helpful AI assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
+			'Grok',
+		);
+
 		$response = $grok->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
@@ -255,6 +276,20 @@ class GrokTest extends TestCase {
 		WP_Mock::userFunction( 'wp_remote_retrieve_body' )
 			->andReturn( '{"choices":[{"message":{"content":"What a Wonderful World!"}}]}' );
 
+		WP_Mock::expectAction(
+			'apbe_ai_provider_success_call',
+			'What a Wonderful World!',
+			'{"model":"grok-4","stream":false,"messages":[{"role":"system","content":"You are Grok, a highly intelligent, helpful AI assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
+			'Grok',
+		);
+
+		WP_Mock::expectFilter(
+			'apbe_ai_provider_response',
+			'What a Wonderful World!',
+			'{"model":"grok-4","stream":false,"messages":[{"role":"system","content":"You are Grok, a highly intelligent, helpful AI assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
+			'Grok',
+		);
+
 		$response = $grok->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
@@ -271,6 +306,13 @@ class GrokTest extends TestCase {
 
 		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
+
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'API Error...',
+			'[]',
+			'Grok',
+		);
 
 		$response = $grok->get_json_error( 'API Error...' );
 

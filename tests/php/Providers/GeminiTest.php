@@ -192,6 +192,13 @@ class GeminiTest extends TestCase {
 				]
 			);
 
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'Missing Gemini API key.',
+			'[]',
+			'Gemini',
+		);
+
 		$response = $gemini->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
@@ -237,6 +244,13 @@ class GeminiTest extends TestCase {
 					'google_gemini_token' => 'age38gegewjdhagepkhif',
 				]
 			);
+
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'Invalid prompt text.',
+			'[]',
+			'Gemini',
+		);
 
 		$response = $gemini->run(
 			[
@@ -295,11 +309,40 @@ class GeminiTest extends TestCase {
 				}
 			);
 
-		\WP_Mock::userFunction( 'wp_parse_args' )
-			->andReturnUsing(
-				function ( $arg1, $arg2 ) {
-					return array_merge( $arg2, $arg1 );
-				}
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'Unexpected Gemini API response.',
+			'{"contents":[{"role":"user","parts":[{"text":"Generate me an SEO friendly Headline using: Hello World!"}]}],"generationConfig":{"temperature":1,"maxOutputTokens":256,"topK":40,"topP":0.95,"stopSequences":["\n\n"]}}',
+			'Gemini',
+		);
+
+		$response = $gemini->run(
+			[
+				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
+			]
+		);
+
+		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertConditionsMet();
+	}
+
+	public function test_run() {
+		$gemini = Mockery::mock( Gemini::class )->makePartial();
+		$gemini->shouldAllowMockingProtectedMethods();
+
+		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error->shouldAllowMockingProtectedMethods();
+
+		$gemini->shouldReceive( 'get_default_args' )
+			->andReturn(
+				[
+					'model'           => 'gemini-2.0-flash',
+					'temperature'     => 1.0,
+					'maxOutputTokens' => 256,
+					'topK'            => 40,
+					'topP'            => 0.95,
+					'stopSequences'   => [ "\n\n" ],
+				]
 			);
 
 		WP_Mock::userFunction( 'get_option' )
@@ -322,6 +365,20 @@ class GeminiTest extends TestCase {
 		WP_Mock::userFunction( 'wp_remote_retrieve_body' )
 			->andReturn( '{"candidates":[{"content":{"parts":[{"text":"What a Wonderful World!"}]}}]}' );
 
+		WP_Mock::expectAction(
+			'apbe_ai_provider_success_call',
+			'What a Wonderful World!',
+			'{"contents":[{"role":"user","parts":[{"text":"Generate me an SEO friendly Headline using: Hello World!"}]}],"generationConfig":{"temperature":1,"maxOutputTokens":256,"topK":40,"topP":0.95,"stopSequences":["\n\n"]}}',
+			'Gemini',
+		);
+
+		WP_Mock::expectFilter(
+			'apbe_ai_provider_response',
+			'What a Wonderful World!',
+			'{"contents":[{"role":"user","parts":[{"text":"Generate me an SEO friendly Headline using: Hello World!"}]}],"generationConfig":{"temperature":1,"maxOutputTokens":256,"topK":40,"topP":0.95,"stopSequences":["\n\n"]}}',
+			'Gemini',
+		);
+
 		$response = $gemini->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
@@ -338,6 +395,13 @@ class GeminiTest extends TestCase {
 
 		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
+
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'API Error...',
+			'[]',
+			'Gemini',
+		);
 
 		$response = $gemini->get_json_error( 'API Error...' );
 

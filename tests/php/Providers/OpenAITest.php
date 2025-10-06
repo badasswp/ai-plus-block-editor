@@ -184,6 +184,13 @@ class OpenAITest extends TestCase {
 				]
 			);
 
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'Missing OpenAI API key.',
+			'[]',
+			'OpenAI',
+		);
+
 		$response = $open_ai->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
@@ -229,6 +236,13 @@ class OpenAITest extends TestCase {
 					'open_ai_token' => 'age38gegewjdhagepkhif',
 				]
 			);
+
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'Invalid prompt text.',
+			'[]',
+			'OpenAI',
+		);
 
 		$response = $open_ai->run(
 			[
@@ -302,6 +316,20 @@ class OpenAITest extends TestCase {
 		$chat_gpt->shouldReceive( 'chat' )
 			->andReturn( '{"choices":[{"message":{"content":"What a Wonderful World!"}}]}' );
 
+		WP_Mock::expectAction(
+			'apbe_ai_provider_success_call',
+			'What a Wonderful World!',
+			'{"model":"gpt-3.5-turbo","temperature":1,"max_tokens":4000,"frequency_penalty":0,"presence_penalty":0,"messages":{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}}',
+			'OpenAI',
+		);
+
+		WP_Mock::expectFilter(
+			'apbe_ai_provider_response',
+			'What a Wonderful World!',
+			'{"model":"gpt-3.5-turbo","temperature":1,"max_tokens":4000,"frequency_penalty":0,"presence_penalty":0,"messages":{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}}',
+			'OpenAI',
+		);
+
 		$response = $open_ai->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
@@ -318,6 +346,13 @@ class OpenAITest extends TestCase {
 
 		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
+
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'API Error...',
+			'[]',
+			'OpenAI',
+		);
 
 		$response = $open_ai->get_json_error( 'API Error...' );
 

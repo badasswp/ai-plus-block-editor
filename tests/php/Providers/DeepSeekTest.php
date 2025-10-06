@@ -150,6 +150,13 @@ class DeepSeekTest extends TestCase {
 				]
 			);
 
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'Missing DeepSeek API key.',
+			'[]',
+			'DeepSeek',
+		);
+
 		$response = $deepseek->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
@@ -195,6 +202,13 @@ class DeepSeekTest extends TestCase {
 					'deepseek_token' => 'age38gegewjdhagepkhif',
 				]
 			);
+
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'Invalid prompt text.',
+			'[]',
+			'DeepSeek',
+		);
 
 		$response = $deepseek->run(
 			[
@@ -253,11 +267,44 @@ class DeepSeekTest extends TestCase {
 				}
 			);
 
-		\WP_Mock::userFunction( 'wp_parse_args' )
-			->andReturnUsing(
-				function ( $arg1, $arg2 ) {
-					return array_merge( $arg2, $arg1 );
-				}
+		// Return malformed JSON response
+		WP_Mock::userFunction( 'wp_remote_retrieve_body' )
+			->andReturn( '{"choices":[{"message":{"content":' );
+
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'Unexpected DeepSeek API response.',
+			'{"model":"deepseek-chat","temperature":0.7,"top_p":1,"max_tokens":500,"presence_penalty":0,"frequency_penalty":0,"messages":[{"role":"system","content":"You are a helpful assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
+			'DeepSeek',
+		);
+
+		$response = $deepseek->run(
+			[
+				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
+			]
+		);
+
+		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertConditionsMet();
+	}
+
+	public function test_run() {
+		$deepseek = Mockery::mock( DeepSeek::class )->makePartial();
+		$deepseek->shouldAllowMockingProtectedMethods();
+
+		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error->shouldAllowMockingProtectedMethods();
+
+		$deepseek->shouldReceive( 'get_default_args' )
+			->andReturn(
+				[
+					'model'             => 'deepseek-chat',
+					'temperature'       => 0.7,
+					'top_p'             => 1,
+					'max_tokens'        => 500,
+					'presence_penalty'  => 0,
+					'frequency_penalty' => 0,
+				]
 			);
 
 		WP_Mock::userFunction( 'get_option' )
@@ -285,6 +332,20 @@ class DeepSeekTest extends TestCase {
 		WP_Mock::userFunction( 'wp_remote_retrieve_body' )
 			->andReturn( '{"choices":[{"message":{"content":"What a Wonderful World!"}}]}' );
 
+		WP_Mock::expectAction(
+			'apbe_ai_provider_success_call',
+			'What a Wonderful World!',
+			'{"model":"deepseek-chat","temperature":0.7,"top_p":1,"max_tokens":500,"presence_penalty":0,"frequency_penalty":0,"messages":[{"role":"system","content":"You are a helpful assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
+			'DeepSeek',
+		);
+
+		WP_Mock::expectFilter(
+			'apbe_ai_provider_response',
+			'What a Wonderful World!',
+			'{"model":"deepseek-chat","temperature":0.7,"top_p":1,"max_tokens":500,"presence_penalty":0,"frequency_penalty":0,"messages":[{"role":"system","content":"You are a helpful assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
+			'DeepSeek',
+		);
+
 		$response = $deepseek->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
@@ -301,6 +362,13 @@ class DeepSeekTest extends TestCase {
 
 		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
+
+		WP_Mock::expectAction(
+			'apbe_ai_provider_fail_call',
+			'API Error...',
+			'[]',
+			'DeepSeek',
+		);
 
 		$response = $deepseek->get_json_error( 'API Error...' );
 
