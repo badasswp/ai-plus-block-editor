@@ -90,7 +90,7 @@ class AI implements Provider {
 		try {
 			return $this->get_provider()->run( $payload );
 		} catch ( \Exception $e ) {
-			/*return new \WP_Error(
+			return new \WP_Error(
 				'apbe-run-error',
 				sprintf( 'Server Error: %s', $e->getMessage() ),
 				[ 'status' => 500 ]
