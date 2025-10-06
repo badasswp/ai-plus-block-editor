@@ -101,8 +101,10 @@ class OpenAI extends Provider implements ProviderInterface {
 		$body = wp_parse_args(
 			[
 				'messages' => [
-					'role'    => 'user',
-					'content' => $prompt_text,
+					[
+						'role'    => 'user',
+						'content' => $prompt_text,
+					]
 				],
 			],
 			$this->get_default_args()
