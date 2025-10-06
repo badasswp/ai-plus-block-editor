@@ -302,7 +302,7 @@ class GeminiTest extends TestCase {
 				}
 			);
 
-		\WP_Mock::userFunction( 'get_option' )
+		WP_Mock::userFunction( 'get_option' )
 			->with( 'ai_plus_block_editor', [] )
 			->andReturn(
 				[
@@ -310,16 +310,16 @@ class GeminiTest extends TestCase {
 				]
 			);
 
-		\WP_Mock::userFunction( 'add_query_arg' )
+		WP_Mock::userFunction( 'add_query_arg' )
 			->andReturnNull();
 
 		$gemini->shouldReceive( 'get_api_url' )
 		->andReturn( '' );
 
-		\WP_Mock::userFunction( 'wp_remote_post' )
+		WP_Mock::userFunction( 'wp_remote_post' )
 			->andReturn( '{"body":{"candidates":[{"content":{"parts":[{"text":"What a Wonderful World!"}]}}]}}' );
 
-		\WP_Mock::userFunction( 'wp_remote_retrieve_body' )
+		WP_Mock::userFunction( 'wp_remote_retrieve_body' )
 			->andReturn( '{"candidates":[{"content":{"parts":[{"text":"What a Wonderful World!"}]}}]}' );
 
 		$response = $gemini->run(

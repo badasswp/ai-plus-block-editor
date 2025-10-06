@@ -260,7 +260,7 @@ class DeepSeekTest extends TestCase {
 				}
 			);
 
-		\WP_Mock::userFunction( 'get_option' )
+		WP_Mock::userFunction( 'get_option' )
 			->with( 'ai_plus_block_editor', [] )
 			->andReturn(
 				[
@@ -273,16 +273,16 @@ class DeepSeekTest extends TestCase {
 			'You are a helpful assistant.'
 		);
 
-		\WP_Mock::userFunction( 'add_query_arg' )
+		WP_Mock::userFunction( 'add_query_arg' )
 			->andReturnNull();
 
 		$deepseek->shouldReceive( 'get_api_url' )
 		->andReturn( '' );
 
-		\WP_Mock::userFunction( 'wp_remote_post' )
+		WP_Mock::userFunction( 'wp_remote_post' )
 			->andReturn( '{"body":{"choices":[{"message":{"content":"What a Wonderful World!"}}]}}' );
 
-		\WP_Mock::userFunction( 'wp_remote_retrieve_body' )
+		WP_Mock::userFunction( 'wp_remote_retrieve_body' )
 			->andReturn( '{"choices":[{"message":{"content":"What a Wonderful World!"}}]}' );
 
 		$response = $deepseek->run(
