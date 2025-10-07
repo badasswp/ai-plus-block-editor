@@ -11,8 +11,8 @@
 namespace AiPlusBlockEditor\Core;
 
 use AiPlusBlockEditor\Services\Admin;
-use AiPlusBlockEditor\Services\PostMeta;
 use AiPlusBlockEditor\Services\Boot;
+use AiPlusBlockEditor\Services\PostMeta;
 use AiPlusBlockEditor\Services\Routes;
 use AiPlusBlockEditor\Interfaces\Kernel;
 
@@ -34,8 +34,8 @@ class Container implements Kernel {
 	public function __construct() {
 		static::$services = [
 			Admin::class,
-			PostMeta::class,
 			Boot::class,
+			PostMeta::class,
 			Routes::class,
 		];
 	}
