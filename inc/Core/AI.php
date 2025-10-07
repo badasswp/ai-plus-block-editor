@@ -13,6 +13,8 @@ namespace AiPlusBlockEditor\Core;
 use AiPlusBlockEditor\Providers\OpenAI;
 use AiPlusBlockEditor\Providers\Gemini;
 use AiPlusBlockEditor\Providers\DeepSeek;
+use AiPlusBlockEditor\Providers\Grok;
+
 use AiPlusBlockEditor\Interfaces\Provider;
 
 class AI implements Provider {
@@ -40,6 +42,10 @@ class AI implements Provider {
 
 			case 'DeepSeek':
 				$ai_provider = DeepSeek::class;
+				break;
+
+			case 'Grok':
+				$ai_provider = Grok::class;
 				break;
 		}
 
