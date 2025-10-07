@@ -2,6 +2,7 @@
 
 namespace AiPlusBlockEditor\Tests\Services;
 
+use WP_Mock;
 use Mockery;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Services\Admin;
@@ -22,9 +23,9 @@ class AdminTest extends TestCase {
 	public Admin $admin;
 
 	public function setUp(): void {
-		\WP_Mock::setUp();
+		WP_Mock::setUp();
 
-		\WP_Mock::userFunction( 'get_option' )
+		WP_Mock::userFunction( 'get_option' )
 			->with( 'ai_plus_block_editor', [] )
 			->andReturn( [] );
 
@@ -32,13 +33,13 @@ class AdminTest extends TestCase {
 	}
 
 	public function tearDown(): void {
-		\WP_Mock::tearDown();
+		WP_Mock::tearDown();
 	}
 
 	public function test_register() {
-		\WP_Mock::expectActionAdded( 'admin_init', [ $this->admin, 'register_options_init' ] );
-		\WP_Mock::expectActionAdded( 'admin_menu', [ $this->admin, 'register_options_menu' ] );
-		\WP_Mock::expectActionAdded( 'admin_enqueue_scripts', [ $this->admin, 'register_options_styles' ] );
+		WP_Mock::expectActionAdded( 'admin_init', [ $this->admin, 'register_options_init' ] );
+		WP_Mock::expectActionAdded( 'admin_menu', [ $this->admin, 'register_options_menu' ] );
+		WP_Mock::expectActionAdded( 'admin_enqueue_scripts', [ $this->admin, 'register_options_styles' ] );
 
 		$this->admin->register();
 
@@ -46,7 +47,7 @@ class AdminTest extends TestCase {
 	}
 
 	public function test_register_options_menu() {
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_html__',
 			[
 				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
@@ -55,7 +56,7 @@ class AdminTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_attr__',
 			[
 				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
@@ -64,7 +65,7 @@ class AdminTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_attr',
 			[
 				'return' => function ( $text ) {
@@ -73,7 +74,7 @@ class AdminTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::userFunction( 'add_menu_page' )
+		WP_Mock::userFunction( 'add_menu_page' )
 			->once()
 			->with(
 				'AI + Block Editor',
@@ -93,7 +94,7 @@ class AdminTest extends TestCase {
 	}
 
 	public function test_register_options_init_bails_out_if_any_nonce_settings_is_missing() {
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_html__',
 			[
 				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
@@ -102,7 +103,7 @@ class AdminTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_attr__',
 			[
 				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
@@ -111,7 +112,7 @@ class AdminTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_attr',
 			[
 				'return' => function ( $text ) {
@@ -136,7 +137,7 @@ class AdminTest extends TestCase {
 			'ai_plus_block_editor_settings_nonce' => 'a8vbq3cg3sa',
 		];
 
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_html__',
 			[
 				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
@@ -145,7 +146,7 @@ class AdminTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_attr__',
 			[
 				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
@@ -154,7 +155,7 @@ class AdminTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_attr',
 			[
 				'return' => function ( $text ) {
@@ -163,17 +164,17 @@ class AdminTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::userFunction( 'wp_unslash' )
+		WP_Mock::userFunction( 'wp_unslash' )
 			->times( 1 )
 			->with( 'a8vbq3cg3sa' )
 			->andReturn( 'a8vbq3cg3sa' );
 
-		\WP_Mock::userFunction( 'sanitize_text_field' )
+		WP_Mock::userFunction( 'sanitize_text_field' )
 			->times( 1 )
 			->with( 'a8vbq3cg3sa' )
 			->andReturn( 'a8vbq3cg3sa' );
 
-		\WP_Mock::userFunction( 'wp_verify_nonce' )
+		WP_Mock::userFunction( 'wp_verify_nonce' )
 			->once()
 			->with( 'a8vbq3cg3sa', 'ai_plus_block_editor_settings_action' )
 			->andReturn( false );
@@ -185,7 +186,7 @@ class AdminTest extends TestCase {
 	}
 
 	public function test_register_options_init_passes() {
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_html__',
 			[
 				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
@@ -194,7 +195,7 @@ class AdminTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_attr__',
 			[
 				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
@@ -203,7 +204,7 @@ class AdminTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_attr',
 			[
 				'return' => function ( $text ) {
@@ -217,7 +218,7 @@ class AdminTest extends TestCase {
 			'ai_plus_block_editor_settings_nonce' => 'a8vbq3cg3sa',
 		];
 
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'wp_unslash',
 			[
 				'return' => function ( $text ) {
@@ -226,19 +227,19 @@ class AdminTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::userFunction( 'sanitize_text_field' )
+		WP_Mock::userFunction( 'sanitize_text_field' )
 			->andReturnUsing(
 				function ( $arg ) {
 					return $arg;
 				}
 			);
 
-		\WP_Mock::userFunction( 'wp_verify_nonce' )
+		WP_Mock::userFunction( 'wp_verify_nonce' )
 			->times( 1 )
 			->with( 'a8vbq3cg3sa', 'ai_plus_block_editor_settings_action' )
 			->andReturn( true );
 
-		\WP_Mock::userFunction( 'update_option' )
+		WP_Mock::userFunction( 'update_option' )
 			->once()
 			->with(
 				'ai_plus_block_editor',
@@ -267,10 +268,10 @@ class AdminTest extends TestCase {
 		$screen->shouldAllowMockingProtectedMethods();
 		$screen->id = 'toplevel_page_ai-plus-block-editor';
 
-		\WP_Mock::userFunction( 'get_current_screen' )
+		WP_Mock::userFunction( 'get_current_screen' )
 			->andReturn( $screen );
 
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_html__',
 			[
 				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
@@ -279,7 +280,7 @@ class AdminTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_attr__',
 			[
 				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
@@ -288,7 +289,7 @@ class AdminTest extends TestCase {
 			]
 		);
 
-		\WP_Mock::userFunction(
+		WP_Mock::userFunction(
 			'esc_attr',
 			[
 				'return' => function ( $text ) {
@@ -299,11 +300,11 @@ class AdminTest extends TestCase {
 
 		$reflection = new \ReflectionClass( Admin::class );
 
-		\WP_Mock::userFunction( 'plugin_dir_url' )
+		WP_Mock::userFunction( 'plugin_dir_url' )
 			->with( $reflection->getFileName() )
 			->andReturn( 'https://example.com/wp-content/plugins/ai-plus-block-editor/inc/Services/' );
 
-		\WP_Mock::userFunction( 'wp_enqueue_style' )
+		WP_Mock::userFunction( 'wp_enqueue_style' )
 			->with(
 				'ai-plus-block-editor',
 				'https://example.com/wp-content/plugins/ai-plus-block-editor/inc/Services/../../styles.css',
@@ -319,7 +320,7 @@ class AdminTest extends TestCase {
 	}
 
 	public function test_register_options_styles_bails() {
-		\WP_Mock::userFunction( 'get_current_screen' )
+		WP_Mock::userFunction( 'get_current_screen' )
 			->andReturn( '' );
 
 		$this->admin->register_options_styles();

@@ -2,6 +2,7 @@
 
 namespace AiPlusBlockEditor\Tests\Routes;
 
+use WP_Mock;
 use Mockery;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Core\AI;
@@ -16,13 +17,13 @@ class SideBarTest extends TestCase {
 	public SideBar $sidebar;
 
 	public function setUp(): void {
-		\WP_Mock::setUp();
+		WP_Mock::setUp();
 
 		$this->sidebar = new SideBar();
 	}
 
 	public function tearDown(): void {
-		\WP_Mock::tearDown();
+		WP_Mock::tearDown();
 	}
 
 	public function test_route_initial_values() {
@@ -85,14 +86,14 @@ class SideBarTest extends TestCase {
 			'text'    => 'Hello World!',
 		];
 
-		\WP_Mock::expectFilter(
+		WP_Mock::expectFilter(
 			'apbe_feature_prompt',
 			'Generate an appropriate headline in 1 paragraph, using the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 			'headline',
 			'Hello World!'
 		);
 
-		\WP_Mock::userFunction( 'rest_ensure_response' )
+		WP_Mock::userFunction( 'rest_ensure_response' )
 			->andReturnUsing(
 				function ( $arg ) {
 					return $arg;
@@ -127,14 +128,14 @@ class SideBarTest extends TestCase {
 			'text'    => 'Hello World!',
 		];
 
-		\WP_Mock::expectFilter(
+		WP_Mock::expectFilter(
 			'apbe_feature_prompt',
 			'Generate an appropriate slug that can be found easily by search engines, using the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 			'slug',
 			'Hello World!'
 		);
 
-		\WP_Mock::userFunction( 'rest_ensure_response' )
+		WP_Mock::userFunction( 'rest_ensure_response' )
 			->andReturnUsing(
 				function ( $arg ) {
 					return $arg;
@@ -169,14 +170,14 @@ class SideBarTest extends TestCase {
 			'text'    => 'Hello World!',
 		];
 
-		\WP_Mock::expectFilter(
+		WP_Mock::expectFilter(
 			'apbe_feature_prompt',
 			'Generate appropriate keywords that are SEO friendly and separated with commas, using the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 			'keywords',
 			'Hello World!'
 		);
 
-		\WP_Mock::userFunction( 'rest_ensure_response' )
+		WP_Mock::userFunction( 'rest_ensure_response' )
 			->andReturnUsing(
 				function ( $arg ) {
 					return $arg;
@@ -211,14 +212,14 @@ class SideBarTest extends TestCase {
 			'text'    => 'Hello World!',
 		];
 
-		\WP_Mock::expectFilter(
+		WP_Mock::expectFilter(
 			'apbe_feature_prompt',
 			'Generate an appropriate summary for the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 			'summary',
 			'Hello World!'
 		);
 
-		\WP_Mock::userFunction( 'rest_ensure_response' )
+		WP_Mock::userFunction( 'rest_ensure_response' )
 			->andReturnUsing(
 				function ( $arg ) {
 					return $arg;
@@ -253,14 +254,14 @@ class SideBarTest extends TestCase {
 			'text'    => 'Hello World!',
 		];
 
-		\WP_Mock::expectFilter(
+		WP_Mock::expectFilter(
 			'apbe_feature_prompt',
 			'Generate appropriate social media trending hashtags for the following content: Hello World!. Do not include any explanation, commentary, or alternative suggestions.',
 			'social',
 			'Hello World!'
 		);
 
-		\WP_Mock::userFunction( 'rest_ensure_response' )
+		WP_Mock::userFunction( 'rest_ensure_response' )
 			->andReturnUsing(
 				function ( $arg ) {
 					return $arg;

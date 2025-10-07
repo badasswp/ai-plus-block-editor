@@ -1,5 +1,20 @@
 # Changelog
 
+# 1.8.0
+* Feat: Refactor AI providers.
+* Feat: Add custom filters:
+  - `apbe_ai_provider_success_call`.
+	- `apbe_ai_provider_fail_call`.
+	- `apbe_ai_provider_response`.
+	- `apbe_deepseek_system_prompt`.
+  - `apbe_open_ai_system_prompt`.
+* Feat: Add error logging capabilities.
+* Feat: Implement AI provider abstraction.
+* Fix: Load missing Grok provider correctly.
+* Docs: Update README docs.
+* Test: Update unit tests.
+* Tested up to WP 6.8.2.
+
 # 1.7.1
 * Fix: Update issue with broken plugin deploy.
 * Docs: Update README docs.

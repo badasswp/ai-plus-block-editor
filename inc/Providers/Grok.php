@@ -10,10 +10,20 @@
 
 namespace AiPlusBlockEditor\Providers;
 
-use AiPlusBlockEditor\Interfaces\Provider;
 use AiPlusBlockEditor\Admin\Options;
+use AiPlusBlockEditor\Abstracts\Provider;
+use AiPlusBlockEditor\Interfaces\Provider as ProviderInterface;
 
-class Grok implements Provider {
+class Grok extends Provider implements ProviderInterface {
+	/**
+	 * Provider name.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @var string
+	 */
+	protected static $name = 'Grok';
+
 	/**
 	 * Get Default Args.
 	 *
@@ -52,7 +62,7 @@ class Grok implements Provider {
 	 * @return string
 	 */
 	protected function get_api_url(): string {
-		$url = esc_url( 'https://api.x.ai/v1/chat/completions' );
+		$url = 'https://api.x.ai/v1/chat/completions';
 
 		/**
 		 * Filter Grok API URL.
@@ -62,7 +72,7 @@ class Grok implements Provider {
 		 * @param string $url Grok API URL.
 		 * @return string
 		 */
-		return apply_filters( 'apbe_grok_api_url', $url );
+		return esc_url( (string) apply_filters( 'apbe_grok_api_url', $url ) );
 	}
 
 	/**
@@ -104,7 +114,6 @@ class Grok implements Provider {
 
 		// Grok API expects a specific body structure.
 		$body = wp_parse_args(
-			$this->get_default_args(),
 			[
 				'messages' => [
 					[
@@ -116,7 +125,8 @@ class Grok implements Provider {
 						'content' => $prompt_text,
 					],
 				],
-			]
+			],
+			$this->get_default_args(),
 		);
 
 		$response = wp_remote_post(
@@ -132,7 +142,7 @@ class Grok implements Provider {
 		);
 
 		if ( is_wp_error( $response ) ) {
-			return $this->get_json_error( $response->get_error_message() );
+			return $this->get_json_error( $response->get_error_message(), $body );
 		}
 
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
@@ -140,26 +150,50 @@ class Grok implements Provider {
 		// Notify user, if JSON yields null.
 		if ( empty( $data ) || ! isset( $data['choices'][0]['message']['content'] ) ) {
 			return $this->get_json_error(
-				$data['error']['message'] ?? __( 'Unexpected Grok API response.', 'ai-plus-block-editor' )
+				$data['error']['message'] ?? __( 'Unexpected Grok API response.', 'ai-plus-block-editor' ),
+				$body
 			);
 		}
 
-		return $data['choices'][0]['message']['content'] ?? '';
-	}
+		// Get API response.
+		$response = $data['choices'][0]['message']['content'] ?? '';
 
-	/**
-	 * Get JSON Error.
-	 *
-	 * @since 1.7.0
-	 *
-	 * @param string $message Error Message.
-	 * @return \WP_Error
-	 */
-	protected function get_json_error( $message ) {
-		return new \WP_Error(
-			'ai-plus-block-editor-json-error',
-			$message,
-			[ 'status' => 500 ]
-		);
+		// Get Payload.
+		$payload = wp_json_encode( $body );
+
+		// Get Provider name.
+		$provider = static::$name;
+
+		/**
+		 * Fire on successful Provider call.
+		 *
+		 * This provides a way to fire events on
+		 * successful AI Provider calls.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $response Success response.
+		 * @param string $payload  JSON Payload.
+		 * @param string $provider Provider class.
+		 *
+		 * @return void
+		 */
+		do_action( 'apbe_ai_provider_success_call', $response, $payload, $provider );
+
+		/**
+		 * Filter API response.
+		 *
+		 * This provides a way to filter the LLM
+		 * API response.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $response Success response.
+		 * @param string $payload  JSON Payload.
+		 * @param string $provider Provider class.
+		 *
+		 * @return string
+		 */
+		return apply_filters( 'apbe_ai_provider_response', $response, $payload, $provider );
 	}
 }

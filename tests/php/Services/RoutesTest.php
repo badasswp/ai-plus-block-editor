@@ -2,6 +2,7 @@
 
 namespace AiPlusBlockEditor\Tests\Services;
 
+use WP_Mock;
 use Mockery;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Routes\Tone;
@@ -19,17 +20,17 @@ class RoutesTest extends TestCase {
 	public Routes $routes;
 
 	public function setUp(): void {
-		\WP_Mock::setUp();
+		WP_Mock::setUp();
 
 		$this->routes = new Routes();
 	}
 
 	public function tearDown(): void {
-		\WP_Mock::tearDown();
+		WP_Mock::tearDown();
 	}
 
 	public function test_register() {
-		\WP_Mock::expectActionAdded( 'rest_api_init', [ $this->routes, 'register_rest_routes' ] );
+		WP_Mock::expectActionAdded( 'rest_api_init', [ $this->routes, 'register_rest_routes' ] );
 
 		$this->routes->register();
 
@@ -37,7 +38,7 @@ class RoutesTest extends TestCase {
 	}
 
 	public function test_register_rest_routes() {
-		\WP_Mock::onFilter( 'apbe_rest_routes' )
+		WP_Mock::onFilter( 'apbe_rest_routes' )
 			->with(
 				[
 					Tone::class,
@@ -53,7 +54,7 @@ class RoutesTest extends TestCase {
 
 		$sidebar = new SideBar();
 
-		\WP_Mock::userFunction( 'register_rest_route' )
+		WP_Mock::userFunction( 'register_rest_route' )
 			->with(
 				'ai-plus-block-editor/v1',
 				'/sidebar',
