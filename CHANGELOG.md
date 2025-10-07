@@ -10,6 +10,7 @@
   - `apbe_open_ai_system_prompt`.
 * Feat: Add error logging capabilities.
 * Feat: Implement AI provider abstraction.
+* Fix: Load missing Grok provider correctly.
 * Docs: Update README docs.
 * Test: Update unit tests.
 * Tested up to WP 6.8.2.
