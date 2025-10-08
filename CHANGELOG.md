@@ -1,11 +1,15 @@
 # Changelog
 
 # 1.8.0
+* Feat: Implement Claude AI provider.
 * Feat: Refactor AI providers.
 * Feat: Add custom filters:
   - `apbe_ai_provider_success_call`.
 	- `apbe_ai_provider_fail_call`.
 	- `apbe_ai_provider_response`.
+	- `apbe_claude_api_url`.
+	- `apbe_claude_args`.
+	- `apbe_claude_system_prompt`.
 	- `apbe_deepseek_system_prompt`.
   - `apbe_open_ai_system_prompt`.
 * Feat: Add error logging capabilities.
