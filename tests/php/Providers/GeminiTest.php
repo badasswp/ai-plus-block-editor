@@ -11,6 +11,7 @@ use AiPlusBlockEditor\Providers\Gemini;
  * @covers \AiPlusBlockEditor\Providers\Gemini::run
  * @covers \AiPlusBlockEditor\Providers\Gemini::get_api_url
  * @covers \AiPlusBlockEditor\Providers\Gemini::get_default_args
+ * @covers \AiPlusBlockEditor\Providers\Gemini::get_provider_response
  * @covers \AiPlusBlockEditor\Providers\Gemini::get_json_error
  * @covers \AiPlusBlockEditor\Admin\Options::__callStatic
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields

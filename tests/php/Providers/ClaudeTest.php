@@ -11,6 +11,7 @@ use AiPlusBlockEditor\Providers\Claude;
  * @covers \AiPlusBlockEditor\Providers\Claude::get_default_args
  * @covers \AiPlusBlockEditor\Providers\Claude::get_api_url
  * @covers \AiPlusBlockEditor\Providers\Claude::run
+ * @covers \AiPlusBlockEditor\Providers\Claude::get_provider_response
  * @covers \AiPlusBlockEditor\Providers\Claude::get_json_error
  * @covers \AiPlusBlockEditor\Admin\Options::__callStatic
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields

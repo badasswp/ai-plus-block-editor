@@ -11,6 +11,7 @@ use AiPlusBlockEditor\Providers\DeepSeek;
  * @covers \AiPlusBlockEditor\Providers\DeepSeek::run
  * @covers \AiPlusBlockEditor\Providers\DeepSeek::get_api_url
  * @covers \AiPlusBlockEditor\Providers\DeepSeek::get_default_args
+ * @covers \AiPlusBlockEditor\Providers\DeepSeek::get_provider_response
  * @covers \AiPlusBlockEditor\Providers\DeepSeek::get_json_error
  * @covers \AiPlusBlockEditor\Admin\Options::__callStatic
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields
