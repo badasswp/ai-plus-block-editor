@@ -93,10 +93,24 @@ class Claude extends Provider implements ProviderInterface {
 			);
 		}
 
+		/**
+		 * Filter Claude System Prompt.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $prompt Claude System prompt.
+		 * @return string
+		 */
+		$system_prompt = apply_filters( 'apbe_claude_system_prompt', 'You are Claude, a highly intelligent, helpful AI assistant.' );
+
 		// Claude API expects a specific body structure.
 		$body = wp_parse_args(
 			[
 				'messages' => [
+					[
+						'role'    => 'system',
+						'content' => $system_prompt,
+					],
 					[
 						'role'    => 'user',
 						'content' => $prompt_text,
