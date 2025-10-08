@@ -120,6 +120,7 @@ class OptionsTest extends TestCase {
 								'Gemini'   => 'Gemini',
 								'DeepSeek' => 'DeepSeek',
 								'Grok'     => 'Grok',
+								'Claude'   => 'Claude',
 							],
 						],
 					],
@@ -181,6 +182,22 @@ class OptionsTest extends TestCase {
 							'summary' => 'Use Grok capabilities in Block Editor',
 						],
 						'grok_token'  => [
+							'control'     => 'password',
+							'placeholder' => '',
+							'label'       => 'API Keys',
+							'summary'     => 'e.g. ae2kgch7ib9eqcbeveq9a923nv87392av',
+						],
+					],
+				],
+				'claude_options'        => [
+					'heading'  => 'Claude',
+					'controls' => [
+						'claude_enable' => [
+							'control' => 'checkbox',
+							'label'   => 'Enable Claude',
+							'summary' => 'Use Claude capabilities in Block Editor',
+						],
+						'claude_token'  => [
 							'control'     => 'password',
 							'placeholder' => '',
 							'label'       => 'API Keys',
