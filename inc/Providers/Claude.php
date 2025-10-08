@@ -159,42 +159,7 @@ class Claude extends Provider implements ProviderInterface {
 		// Get API response.
 		$response = $data['choices'][0]['message']['content'] ?? '';
 
-		// Get Payload.
-		$payload = wp_json_encode( $body );
-
-		// Get Provider name.
-		$provider = static::$name;
-
-		/**
-		 * Fire on successful Provider call.
-		 *
-		 * This provides a way to fire events on
-		 * successful AI Provider calls.
-		 *
-		 * @since 1.8.0
-		 *
-		 * @param string $response Success response.
-		 * @param string $payload  JSON Payload.
-		 * @param string $provider Provider class.
-		 *
-		 * @return void
-		 */
-		do_action( 'apbe_ai_provider_success_call', $response, $payload, $provider );
-
-		/**
-		 * Filter API response.
-		 *
-		 * This provides a way to filter the LLM
-		 * API response.
-		 *
-		 * @since 1.8.0
-		 *
-		 * @param string $response Success response.
-		 * @param string $payload  JSON Payload.
-		 * @param string $provider Provider class.
-		 *
-		 * @return string
-		 */
-		return apply_filters( 'apbe_ai_provider_response', $response, $payload, $provider );
+		// Return filtered response.
+		return $this->get_provider_response( $response, wp_json_encode( $body ), static::$name );
 	}
 }

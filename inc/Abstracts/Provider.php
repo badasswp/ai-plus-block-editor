@@ -51,6 +51,51 @@ abstract class Provider implements ProviderInterface {
 	abstract public function run( $payload );
 
 	/**
+	 * Get Provider Response.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @param string $response Success response.
+	 * @param string $payload  JSON Payload.
+	 * @param string $provider Provider class.
+	 *
+	 * @return string
+	 */
+	protected function get_provider_response( $response, $payload, $provider ): string {
+		/**
+		 * Fire on successful Provider call.
+		 *
+		 * This provides a way to fire events on
+		 * successful AI Provider calls.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $response Success response.
+		 * @param string $payload  JSON Payload.
+		 * @param string $provider Provider class.
+		 *
+		 * @return void
+		 */
+		do_action( 'apbe_ai_provider_success_call', $response, $payload, $provider );
+
+		/**
+		 * Filter API response.
+		 *
+		 * This provides a way to filter the LLM
+		 * API response.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $response Success response.
+		 * @param string $payload  JSON Payload.
+		 * @param string $provider Provider class.
+		 *
+		 * @return string
+		 */
+		return apply_filters( 'apbe_ai_provider_response', $response, $payload, $provider );
+	}
+
+	/**
 	 * Get JSON Error.
 	 *
 	 * @since 1.8.0
