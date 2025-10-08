@@ -154,6 +154,6 @@ class Gemini extends Provider implements ProviderInterface {
 		$response = $data['candidates'][0]['content']['parts'][0]['text'] ?? '';
 
 		// Return filtered response.
-		return $this->get_provider_response( $response, wp_json_encode( $body ), static::$name );
+		return $this->get_provider_response( $response, wp_json_encode( $body ) );
 	}
 }

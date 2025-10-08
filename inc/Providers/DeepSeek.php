@@ -163,6 +163,6 @@ class DeepSeek extends Provider implements ProviderInterface {
 		$response = $data['choices'][0]['message']['content'] ?? '';
 
 		// Return filtered response.
-		return $this->get_provider_response( $response, wp_json_encode( $body ), static::$name );
+		return $this->get_provider_response( $response, wp_json_encode( $body ) );
 	}
 }

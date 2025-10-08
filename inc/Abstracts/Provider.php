@@ -57,11 +57,10 @@ abstract class Provider implements ProviderInterface {
 	 *
 	 * @param string $response Success response.
 	 * @param string $payload  JSON Payload.
-	 * @param string $provider Provider class.
 	 *
 	 * @return string
 	 */
-	protected function get_provider_response( $response, $payload, $provider ): string {
+	protected function get_provider_response( $response, $payload ): string {
 		/**
 		 * Fire on successful Provider call.
 		 *
@@ -76,7 +75,7 @@ abstract class Provider implements ProviderInterface {
 		 *
 		 * @return void
 		 */
-		do_action( 'apbe_ai_provider_success_call', $response, $payload, $provider );
+		do_action( 'apbe_ai_provider_success_call', $response, $payload, static::$name );
 
 		/**
 		 * Filter API response.
@@ -92,7 +91,7 @@ abstract class Provider implements ProviderInterface {
 		 *
 		 * @return string
 		 */
-		return apply_filters( 'apbe_ai_provider_response', $response, $payload, $provider );
+		return apply_filters( 'apbe_ai_provider_response', $response, $payload, static::$name );
 	}
 
 	/**
