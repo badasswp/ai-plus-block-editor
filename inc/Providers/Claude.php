@@ -16,6 +16,15 @@ use AiPlusBlockEditor\Interfaces\Provider as ProviderInterface;
 
 class Claude extends Provider implements ProviderInterface {
 	/**
+	 * Provider name.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @var string
+	 */
+	protected static $name = 'Claude';
+
+	/**
 	 * Get Default Args.
 	 *
 	 * @since 1.8.0
@@ -124,8 +133,8 @@ class Claude extends Provider implements ProviderInterface {
 			$this->get_api_url(),
 			[
 				'headers' => [
-					'Content-Type'      => 'application/json',
 					'x-api-key'         => $api_key,
+					'Content-Type'      => 'application/json',
 					'anthropic-version' => '2023-06-01',
 				],
 				'body'    => wp_json_encode( $body, JSON_UNESCAPED_UNICODE ),
@@ -134,7 +143,7 @@ class Claude extends Provider implements ProviderInterface {
 		);
 
 		if ( is_wp_error( $response ) ) {
-			return $this->get_json_error( $response->get_error_message() );
+			return $this->get_json_error( $response->get_error_message(), $body );
 		}
 
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
@@ -142,10 +151,50 @@ class Claude extends Provider implements ProviderInterface {
 		// Notify user, if JSON yields null.
 		if ( empty( $data ) || ! isset( $data['choices'][0]['message']['content'] ) ) {
 			return $this->get_json_error(
-				$data['error']['message'] ?? __( 'Unexpected Claude API response.', 'ai-plus-block-editor' )
+				$data['error']['message'] ?? __( 'Unexpected Claude API response.', 'ai-plus-block-editor' ),
+				$body
 			);
 		}
 
-		return $data['choices'][0]['message']['content'] ?? '';
+		// Get API response.
+		$response = $data['choices'][0]['message']['content'] ?? '';
+
+		// Get Payload.
+		$payload = wp_json_encode( $body );
+
+		// Get Provider name.
+		$provider = static::$name;
+
+		/**
+		 * Fire on successful Provider call.
+		 *
+		 * This provides a way to fire events on
+		 * successful AI Provider calls.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $response Success response.
+		 * @param string $payload  JSON Payload.
+		 * @param string $provider Provider class.
+		 *
+		 * @return void
+		 */
+		do_action( 'apbe_ai_provider_success_call', $response, $payload, $provider );
+
+		/**
+		 * Filter API response.
+		 *
+		 * This provides a way to filter the LLM
+		 * API response.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $response Success response.
+		 * @param string $payload  JSON Payload.
+		 * @param string $provider Provider class.
+		 *
+		 * @return string
+		 */
+		return apply_filters( 'apbe_ai_provider_response', $response, $payload, $provider );
 	}
 }
