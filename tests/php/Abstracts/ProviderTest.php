@@ -9,6 +9,7 @@ use AiPlusBlockEditor\Abstracts\Provider;
 
 /**
  * @covers \AiPlusBlockEditor\Abstracts\Provider::get_default_args
+ * @covers \AiPlusBlockEditor\Abstracts\Provider::get_provider_response
  * @covers \AiPlusBlockEditor\Abstracts\Provider::get_json_error
  * @covers \AiPlusBlockEditor\Abstracts\Provider::run
  */
