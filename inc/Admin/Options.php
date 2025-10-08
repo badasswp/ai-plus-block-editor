@@ -136,6 +136,7 @@ class Options {
 							'Gemini'   => 'Gemini',
 							'DeepSeek' => 'DeepSeek',
 							'Grok'     => 'Grok',
+							'Claude'   => 'Claude',
 						],
 					],
 				],
@@ -197,6 +198,22 @@ class Options {
 						'summary' => esc_html__( 'Use Grok capabilities in Block Editor', 'ai-plus-block-editor' ),
 					],
 					'grok_token'  => [
+						'control'     => esc_attr( 'password' ),
+						'placeholder' => esc_attr( '' ),
+						'label'       => esc_html__( 'API Keys', 'ai-plus-block-editor' ),
+						'summary'     => esc_html__( 'e.g. ae2kgch7ib9eqcbeveq9a923nv87392av', 'ai-plus-block-editor' ),
+					],
+				],
+			],
+			'claude_options'        => [
+				'heading'  => esc_html__( 'Claude', 'ai-plus-block-editor' ),
+				'controls' => [
+					'claude_enable' => [
+						'control' => esc_attr( 'checkbox' ),
+						'label'   => esc_html__( 'Enable Claude', 'ai-plus-block-editor' ),
+						'summary' => esc_html__( 'Use Claude capabilities in Block Editor', 'ai-plus-block-editor' ),
+					],
+					'claude_token'  => [
 						'control'     => esc_attr( 'password' ),
 						'placeholder' => esc_attr( '' ),
 						'label'       => esc_html__( 'API Keys', 'ai-plus-block-editor' ),
