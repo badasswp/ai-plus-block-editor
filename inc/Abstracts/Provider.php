@@ -35,7 +35,7 @@ abstract class Provider implements ProviderInterface {
 	 *
 	 * @return mixed[]
 	 */
-	abstract protected function get_default_args();
+	abstract protected function get_default_args(): array;
 
 	/**
 	 * Run AI Prompt.
@@ -104,7 +104,7 @@ abstract class Provider implements ProviderInterface {
 	 *
 	 * @return \WP_Error
 	 */
-	protected function get_json_error( $message, $body = [] ) {
+	protected function get_json_error( $message, $body = [] ): \WP_Error {
 		// Get Payload.
 		$payload = wp_json_encode( $body );
 

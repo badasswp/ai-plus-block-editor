@@ -80,10 +80,37 @@ class ProviderTest extends TestCase {
 
 		$this->assertSame(
 			[
-				'model' => 'ai_model',
+				'model' => 'ai-model',
 			],
 			$response
 		);
+	}
+
+	public function test_get_provider_response() {
+		$payload = [
+			'model'  => 'ai-model',
+			'tokens' => 512,
+			'stream' => false,
+		];
+
+		WP_Mock::expectAction(
+			'apbe_ai_provider_success_call',
+			'What a Wonderful World!',
+			wp_json_encode( $payload ),
+			'AI Provider',
+		);
+
+		WP_Mock::expectFilter(
+			'apbe_ai_provider_response',
+			'What a Wonderful World!',
+			wp_json_encode( $payload ),
+			'AI Provider',
+		);
+
+		$response = $this->provider->get_provider_response( 'What a Wonderful World!', wp_json_encode( $payload ) );
+
+		$this->assertSame( 'What a Wonderful World!', $response );
+		$this->assertConditionsMet();
 	}
 
 	public function test_get_json_error() {
@@ -120,13 +147,13 @@ class ProviderTest extends TestCase {
 class ConcreteProvider extends Provider {
 	protected static $name = 'AI Provider';
 
-	protected function get_default_args() {
-		return [
-			'model' => 'ai_model',
-		];
-	}
-
 	public function run( $payload ) {
 		echo wp_json_encode( $payload );
+	}
+
+	protected function get_default_args(): array {
+		return [
+			'model' => 'ai-model',
+		];
 	}
 }
