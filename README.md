@@ -153,6 +153,63 @@ public function log_failed_provider_call( $message, $payload, $provider ) {
 - $provider _`{string}`_ By default this will be a string containing the provider name.
 <br/>
 
+#### `apbe_claude_api_url`
+
+This custom hook (filter) provides the ability to modify the Claude endpoint used for generating AI content.
+
+```php
+add_filter( 'apbe_claude_api_url', [ $this, 'custom_api_url' ], 10, 1 );
+
+public function custom_api_url( $url ) {
+    return esc_url( 'https://api.anthropic.com/v2/messages' );
+}
+```
+
+**Parameters**
+
+- url _`{string}`_ By default this will be a string containing the API endpoint for the Claude LLM.
+<br/>
+
+#### `apbe_claude_args`
+
+This custom hook (filter) provides the ability to modify the Claude args before it is sent to the LLM.
+
+```php
+add_filter( 'apbe_claude_args', [ $this, 'custom_args' ], 10, 1 );
+
+public function custom_args( $args ) {
+    return wp_parse_args(
+        [
+            'model'      => 'claude-4-genius',
+            'max_tokens' => 1024,
+        ],
+        $args
+    )
+}
+```
+
+**Parameters**
+
+- args _`{array}`_ By default this will be an array containing the Claude default parameters.
+<br/>
+
+#### `apbe_claude_system_prompt`
+
+This custom hook (filter) provides the ability to modify the Claude system prompt.
+
+```php
+add_filter( 'apbe_claude_system_prompt', [ $this, 'custom_system_prompt' ], 10, 1 );
+
+public function custom_system_prompt( $prompt ) {
+    return esc_html( 'You are Claude, a super-intelligent Journalist writing a cover story.' );
+}
+```
+
+**Parameters**
+
+- prompt _`{string}`_ By default this will be a string containing the default system prompt.
+<br/>
+
 #### `apbe_deepseek_api_url`
 
 This custom hook (filter) provides the ability to modify the DeepSeek endpoint used for generating AI content.
