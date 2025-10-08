@@ -244,6 +244,8 @@ class AdminTest extends TestCase {
 			->with(
 				'ai_plus_block_editor',
 				[
+					'claude_enable'        => '',
+					'claude_token'         => '',
 					'grok_enable'          => '',
 					'grok_token'           => '',
 					'deepseek_enable'      => '',

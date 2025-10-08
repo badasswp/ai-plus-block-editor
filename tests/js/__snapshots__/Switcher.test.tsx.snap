@@ -31,6 +31,11 @@ exports[`Switcher renders Switcher component 1`] = `
     >
       Grok
     </option>
+    <option
+      value="Claude"
+    >
+      Claude
+    </option>
   </select>
 </div>
 `;

@@ -11,6 +11,7 @@ use Orhanerday\OpenAi\OpenAi as ChatGPT;
 /**
  * @covers \AiPlusBlockEditor\Providers\OpenAI::run
  * @covers \AiPlusBlockEditor\Providers\OpenAI::get_default_args
+ * @covers \AiPlusBlockEditor\Providers\OpenAI::get_provider_response
  * @covers \AiPlusBlockEditor\Providers\OpenAI::get_json_error
  * @covers \AiPlusBlockEditor\Admin\Options::__callStatic
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields

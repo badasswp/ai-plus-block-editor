@@ -82,6 +82,7 @@ describe( 'Switcher', () => {
 		expect( getByText( 'Gemini' ) ).toBeVisible();
 		expect( getByText( 'DeepSeek' ) ).toBeVisible();
 		expect( getByText( 'Grok' ) ).toBeVisible();
+		expect( getByText( 'Claude' ) ).toBeVisible();
 	} );
 
 	it( 'makes an API call request on selection change', async () => {

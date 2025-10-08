@@ -11,6 +11,7 @@ use AiPlusBlockEditor\Providers\Grok;
  * @covers \AiPlusBlockEditor\Providers\Grok::get_default_args
  * @covers \AiPlusBlockEditor\Providers\Grok::get_api_url
  * @covers \AiPlusBlockEditor\Providers\Grok::run
+ * @covers \AiPlusBlockEditor\Providers\Grok::get_provider_response
  * @covers \AiPlusBlockEditor\Providers\Grok::get_json_error
  * @covers \AiPlusBlockEditor\Admin\Options::__callStatic
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields

@@ -76,6 +76,7 @@ const Switcher = (): JSX.Element => {
 					{ label: 'Gemini', value: 'Gemini' },
 					{ label: 'DeepSeek', value: 'DeepSeek' },
 					{ label: 'Grok', value: 'Grok' },
+					{ label: 'Claude', value: 'Claude' },
 				] }
 				onChange={ handleChange }
 				id="switcher"

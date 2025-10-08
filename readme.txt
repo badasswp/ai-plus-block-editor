@@ -32,7 +32,7 @@ Save time and improve engagement with AI-powered insights directly within the Wo
 
 Our plugin comes with everything you need to add AI capabilities to your Block Editor.
 
-✔️ <strong>Support for LLMs</strong> such as <strong>ChatGPT, Gemini, Deepseek, Grok</strong> and a host of others.
+✔️ <strong>Support for LLMs</strong> such as <strong>ChatGPT, Gemini, Deepseek, Grok, Claude</strong> and a host of others.
 ✔️ <strong>Change Text Tone (casual, official, narrative, and so on...)</strong> in block editor.
 ✔️ <strong>Generate Title/Headline</strong> using AI.
 ✔️ <strong>Generate Summary/Excerpts</strong>.
@@ -69,11 +69,15 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 == Changelog ==
 
 = 1.8.0 =
+* Feat: Implement Claude AI provider.
 * Feat: Refactor AI providers.
 * Feat: Add custom filters:
   - `apbe_ai_provider_success_call`.
   - `apbe_ai_provider_fail_call`.
   - `apbe_ai_provider_response`.
+  - `apbe_claude_api_url`.
+  - `apbe_claude_args`.
+  - `apbe_claude_system_prompt`.
   - `apbe_deepseek_system_prompt`.
   - `apbe_open_ai_system_prompt`.
 * Feat: Add error logging capabilities.

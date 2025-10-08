@@ -35,7 +35,7 @@ abstract class Provider implements ProviderInterface {
 	 *
 	 * @return mixed[]
 	 */
-	abstract protected function get_default_args();
+	abstract protected function get_default_args(): array;
 
 	/**
 	 * Run AI Prompt.
@@ -51,6 +51,50 @@ abstract class Provider implements ProviderInterface {
 	abstract public function run( $payload );
 
 	/**
+	 * Get Provider Response.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @param string $response Success response.
+	 * @param string $payload  JSON Payload.
+	 *
+	 * @return string
+	 */
+	protected function get_provider_response( $response, $payload ): string {
+		/**
+		 * Fire on successful Provider call.
+		 *
+		 * This provides a way to fire events on
+		 * successful AI Provider calls.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $response Success response.
+		 * @param string $payload  JSON Payload.
+		 * @param string $provider Provider class.
+		 *
+		 * @return void
+		 */
+		do_action( 'apbe_ai_provider_success_call', $response, $payload, static::$name );
+
+		/**
+		 * Filter API response.
+		 *
+		 * This provides a way to filter the LLM
+		 * API response.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $response Success response.
+		 * @param string $payload  JSON Payload.
+		 * @param string $provider Provider class.
+		 *
+		 * @return string
+		 */
+		return apply_filters( 'apbe_ai_provider_response', $response, $payload, static::$name );
+	}
+
+	/**
 	 * Get JSON Error.
 	 *
 	 * @since 1.8.0
@@ -60,7 +104,7 @@ abstract class Provider implements ProviderInterface {
 	 *
 	 * @return \WP_Error
 	 */
-	protected function get_json_error( $message, $body = [] ) {
+	protected function get_json_error( $message, $body = [] ): \WP_Error {
 		// Get Payload.
 		$payload = wp_json_encode( $body );
 
