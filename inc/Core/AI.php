@@ -59,7 +59,7 @@ class AI implements Provider {
 	 * correctly mocking and writing tests for the
 	 * `get_provider` method.
 	 *
-	 * @since TBD
+	 * @since 1.1.2
 	 *
 	 * @param Provider $provider
 	 * @return Provider

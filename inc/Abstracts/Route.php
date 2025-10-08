@@ -95,7 +95,7 @@ abstract class Route implements Router {
 	/**
 	 * Get AI Client.
 	 *
-	 * @since TBD
+	 * @since 1.1.2
 	 *
 	 * @param Provider $provider
 	 * @return Provider
