@@ -14,6 +14,7 @@ use AiPlusBlockEditor\Providers\OpenAI;
 use AiPlusBlockEditor\Providers\Gemini;
 use AiPlusBlockEditor\Providers\DeepSeek;
 use AiPlusBlockEditor\Providers\Grok;
+use AiPlusBlockEditor\Providers\Claude;
 
 use AiPlusBlockEditor\Interfaces\Provider;
 
@@ -46,6 +47,10 @@ class AI implements Provider {
 
 			case 'Grok':
 				$ai_provider = Grok::class;
+				break;
+
+			case 'Claude':
+				$ai_provider = Claude::class;
 				break;
 		}
 
