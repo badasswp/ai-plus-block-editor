@@ -19,6 +19,7 @@ use AiPlusBlockEditor\Abstracts\Service;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
  * @covers \AiPlusBlockEditor\Admin\Options::init
  * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
+ * @covers \AiPlusBlockEditor\Services\Boot::get_providers
  */
 class BootTest extends TestCase {
 	public Boot $boot;
@@ -207,5 +208,38 @@ class BootTest extends TestCase {
 		$this->boot->register_translation();
 
 		$this->assertConditionsMet();
+	}
+
+	public function test_get_providers() {
+		$boot = Mockery::mock( Boot::class )->makePartial();
+		$boot->shouldAllowMockingProtectedMethods();
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
+
+		$this->assertSame(
+			$boot->get_providers(),
+			[
+				[
+					'label' => 'ChatGPT',
+					'value' => 'OpenAI',
+				],
+				[
+					'label' => 'Gemini',
+					'value' => 'Gemini',
+				],
+				[
+					'label' => 'DeepSeek',
+					'value' => 'DeepSeek',
+				],
+				[
+					'label' => 'Grok',
+					'value' => 'Grok',
+				],
+				[
+					'label' => 'Claude',
+					'value' => 'Claude',
+				],
+			]
+		);
 	}
 }
