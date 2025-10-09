@@ -75,11 +75,13 @@ Want to add your personal touch? All of our documentation can be found [here](ht
   - `apbe_ai_provider_success_call`.
   - `apbe_ai_provider_fail_call`.
   - `apbe_ai_provider_response`.
+  - `apbe_ai_providers`.
   - `apbe_claude_api_url`.
   - `apbe_claude_args`.
   - `apbe_claude_system_prompt`.
   - `apbe_deepseek_system_prompt`.
   - `apbe_open_ai_system_prompt`.
+* Feat: Enable filtering of AI Switcher options.
 * Feat: Add error logging capabilities.
 * Feat: Implement AI provider abstraction.
 * Fix: Load missing Grok provider correctly.
