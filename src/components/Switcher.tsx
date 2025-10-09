@@ -71,13 +71,7 @@ const Switcher = (): JSX.Element => {
 			<SelectControl
 				label={ null }
 				value={ provider }
-				options={ [
-					{ label: 'ChatGPT', value: 'OpenAI' },
-					{ label: 'Gemini', value: 'Gemini' },
-					{ label: 'DeepSeek', value: 'DeepSeek' },
-					{ label: 'Grok', value: 'Grok' },
-					{ label: 'Claude', value: 'Claude' },
-				] }
+				options={ apbe?.providers || [] }
 				onChange={ handleChange }
 				id="switcher"
 				__next40pxDefaultSize
