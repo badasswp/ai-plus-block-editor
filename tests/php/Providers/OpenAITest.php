@@ -23,6 +23,7 @@ use Orhanerday\OpenAi\OpenAi as ChatGPT;
  */
 class OpenAITest extends TestCase {
 	public OpenAI $open_ai;
+	public $providers;
 
 	public function setUp(): void {
 		WP_Mock::setUp();
@@ -77,6 +78,14 @@ class OpenAITest extends TestCase {
 			);
 
 		$this->open_ai = new OpenAI();
+
+		$this->providers = [
+			'OpenAI'   => 'ChatGPT',
+			'Gemini'   => 'Gemini',
+			'DeepSeek' => 'DeepSeek',
+			'Grok'     => 'Grok',
+			'Claude'   => 'Claude',
+		];
 	}
 
 	public function tearDown(): void {
@@ -125,6 +134,8 @@ class OpenAITest extends TestCase {
 				]
 			);
 
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
+
 		$this->assertInstanceOf( ChatGPT::class, $open_ai->get_client() );
 	}
 
@@ -149,6 +160,8 @@ class OpenAITest extends TestCase {
 			'[]',
 			'OpenAI',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $open_ai->run(
 			[
@@ -181,6 +194,8 @@ class OpenAITest extends TestCase {
 			'[]',
 			'OpenAI',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $open_ai->run(
 			[
@@ -251,6 +266,8 @@ class OpenAITest extends TestCase {
 			'{"model":"gpt-3.5-turbo","temperature":1,"max_tokens":4000,"frequency_penalty":0,"presence_penalty":0,"messages":[{"role":"system","content":"You are ChatGPT, a highly intelligent, helpful AI assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
 			'OpenAI',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $open_ai->run(
 			[

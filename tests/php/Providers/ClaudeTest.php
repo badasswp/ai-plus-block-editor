@@ -22,6 +22,7 @@ use AiPlusBlockEditor\Providers\Claude;
  */
 class ClaudeTest extends TestCase {
 	public Claude $claude;
+	public $providers;
 
 	public function setUp(): void {
 		WP_Mock::setUp();
@@ -76,6 +77,14 @@ class ClaudeTest extends TestCase {
 			);
 
 		$this->claude = new Claude();
+
+		$this->providers = [
+			'OpenAI'   => 'ChatGPT',
+			'Gemini'   => 'Gemini',
+			'DeepSeek' => 'DeepSeek',
+			'Grok'     => 'Grok',
+			'Claude'   => 'Claude',
+		];
 	}
 
 	public function tearDown(): void {
@@ -143,6 +152,8 @@ class ClaudeTest extends TestCase {
 			'Claude',
 		);
 
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
+
 		$response = $claude->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
@@ -174,6 +185,8 @@ class ClaudeTest extends TestCase {
 			'[]',
 			'Claude',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $claude->run(
 			[
@@ -229,6 +242,8 @@ class ClaudeTest extends TestCase {
 			'{"model":"grok-4","stream":false,"messages":[{"role":"system","content":"You are Claude, a highly intelligent, helpful AI assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
 			'Claude',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $claude->run(
 			[
@@ -290,6 +305,8 @@ class ClaudeTest extends TestCase {
 			'{"model":"grok-4","stream":false,"messages":[{"role":"system","content":"You are Claude, a highly intelligent, helpful AI assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
 			'Claude',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $claude->run(
 			[

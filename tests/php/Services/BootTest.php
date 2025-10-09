@@ -21,11 +21,20 @@ use AiPlusBlockEditor\Abstracts\Service;
  */
 class BootTest extends TestCase {
 	public Boot $boot;
+	public $providers;
 
 	public function setUp(): void {
 		WP_Mock::setUp();
 
 		$this->boot = new Boot();
+
+		$this->providers = [
+			'OpenAI'   => 'ChatGPT',
+			'Gemini'   => 'Gemini',
+			'DeepSeek' => 'DeepSeek',
+			'Grok'     => 'Grok',
+			'Claude'   => 'Claude',
+		];
 	}
 
 	public function tearDown(): void {
@@ -96,10 +105,10 @@ class BootTest extends TestCase {
 			);
 
 		WP_Mock::userFunction( 'get_option' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
+			->andReturn(
+				[
+					'ai_provider' => 'AI Provider',
+				]
 			);
 
 		WP_Mock::userFunction( 'esc_html__' )
@@ -117,6 +126,35 @@ class BootTest extends TestCase {
 			);
 
 		WP_Mock::userFunction( 'wp_localize_script' )
+			->with(
+				'ai-plus-block-editor',
+				'apbe',
+				[
+					'provider'  => 'AI Provider',
+					'providers' => [
+						[
+							'label' => 'ChatGPT',
+							'value' => 'OpenAI',
+						],
+						[
+							'label' => 'Gemini',
+							'value' => 'Gemini',
+						],
+						[
+							'label' => 'DeepSeek',
+							'value' => 'DeepSeek',
+						],
+						[
+							'label' => 'Grok',
+							'value' => 'Grok',
+						],
+						[
+							'label' => 'Claude',
+							'value' => 'Claude',
+						],
+					],
+				]
+			)
 			->andReturn( null );
 
 		WP_Mock::userFunction( 'wp_set_script_translations' )
@@ -125,6 +163,8 @@ class BootTest extends TestCase {
 				'ai-plus-block-editor',
 				'/var/www/wp-content/plugins/ai-plus-block-editor/inc/Services/../../languages',
 			);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$mock_boot->register_scripts();
 
@@ -160,6 +200,8 @@ class BootTest extends TestCase {
 				false,
 				'/inc/Services/../../languages'
 			);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$this->boot->register_translation();
 
