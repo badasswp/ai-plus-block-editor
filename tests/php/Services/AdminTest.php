@@ -18,9 +18,11 @@ use AiPlusBlockEditor\Services\Admin;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_page
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
  * @covers \AiPlusBlockEditor\Admin\Options::init
+ * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  */
 class AdminTest extends TestCase {
 	public Admin $admin;
+	public $providers;
 
 	public function setUp(): void {
 		WP_Mock::setUp();
@@ -30,6 +32,14 @@ class AdminTest extends TestCase {
 			->andReturn( [] );
 
 		$this->admin = new Admin();
+
+		$this->providers = [
+			'OpenAI'   => 'ChatGPT',
+			'Gemini'   => 'Gemini',
+			'DeepSeek' => 'DeepSeek',
+			'Grok'     => 'Grok',
+			'Claude'   => 'Claude',
+		];
 	}
 
 	public function tearDown(): void {
@@ -87,6 +97,8 @@ class AdminTest extends TestCase {
 			)
 			->andReturn( null );
 
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
+
 		$menu = $this->admin->register_options_menu();
 
 		$this->assertNull( $menu );
@@ -121,6 +133,8 @@ class AdminTest extends TestCase {
 			]
 		);
 
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
+
 		$_POST = [
 			'ai_plus_block_editor_save_settings' => true,
 		];
@@ -136,6 +150,8 @@ class AdminTest extends TestCase {
 			'ai_plus_block_editor_save_settings'  => true,
 			'ai_plus_block_editor_settings_nonce' => 'a8vbq3cg3sa',
 		];
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		WP_Mock::userFunction(
 			'esc_html__',
@@ -239,6 +255,8 @@ class AdminTest extends TestCase {
 			->with( 'a8vbq3cg3sa', 'ai_plus_block_editor_settings_action' )
 			->andReturn( true );
 
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
+
 		WP_Mock::userFunction( 'update_option' )
 			->once()
 			->with(
@@ -269,6 +287,8 @@ class AdminTest extends TestCase {
 		$screen = Mockery::mock( \WP_Screen::class )->makePartial();
 		$screen->shouldAllowMockingProtectedMethods();
 		$screen->id = 'toplevel_page_ai-plus-block-editor';
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		WP_Mock::userFunction( 'get_current_screen' )
 			->andReturn( $screen );

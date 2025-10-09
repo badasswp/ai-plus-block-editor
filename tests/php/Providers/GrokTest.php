@@ -19,9 +19,11 @@ use AiPlusBlockEditor\Providers\Grok;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_page
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
  * @covers \AiPlusBlockEditor\Admin\Options::init
+ * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  */
 class GrokTest extends TestCase {
 	public Grok $grok;
+	public $providers;
 
 	public function setUp(): void {
 		WP_Mock::setUp();
@@ -76,6 +78,14 @@ class GrokTest extends TestCase {
 			);
 
 		$this->grok = new Grok();
+
+		$this->providers = [
+			'OpenAI'   => 'ChatGPT',
+			'Gemini'   => 'Gemini',
+			'DeepSeek' => 'DeepSeek',
+			'Grok'     => 'Grok',
+			'Claude'   => 'Claude',
+		];
 	}
 
 	public function tearDown(): void {
@@ -143,6 +153,8 @@ class GrokTest extends TestCase {
 			'Grok',
 		);
 
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
+
 		$response = $grok->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
@@ -174,6 +186,8 @@ class GrokTest extends TestCase {
 			'[]',
 			'Grok',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $grok->run(
 			[
@@ -229,6 +243,8 @@ class GrokTest extends TestCase {
 			'{"model":"grok-4","stream":false,"messages":[{"role":"system","content":"You are Grok, a highly intelligent, helpful AI assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
 			'Grok',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $grok->run(
 			[
@@ -290,6 +306,8 @@ class GrokTest extends TestCase {
 			'{"model":"grok-4","stream":false,"messages":[{"role":"system","content":"You are Grok, a highly intelligent, helpful AI assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
 			'Grok',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $grok->run(
 			[

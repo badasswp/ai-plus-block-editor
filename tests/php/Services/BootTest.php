@@ -18,14 +18,25 @@ use AiPlusBlockEditor\Abstracts\Service;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_page
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
  * @covers \AiPlusBlockEditor\Admin\Options::init
+ * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
+ * @covers \AiPlusBlockEditor\Services\Boot::get_providers
  */
 class BootTest extends TestCase {
 	public Boot $boot;
+	public $providers;
 
 	public function setUp(): void {
 		WP_Mock::setUp();
 
 		$this->boot = new Boot();
+
+		$this->providers = [
+			'OpenAI'   => 'ChatGPT',
+			'Gemini'   => 'Gemini',
+			'DeepSeek' => 'DeepSeek',
+			'Grok'     => 'Grok',
+			'Claude'   => 'Claude',
+		];
 	}
 
 	public function tearDown(): void {
@@ -96,10 +107,10 @@ class BootTest extends TestCase {
 			);
 
 		WP_Mock::userFunction( 'get_option' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
+			->andReturn(
+				[
+					'ai_provider' => 'AI Provider',
+				]
 			);
 
 		WP_Mock::userFunction( 'esc_html__' )
@@ -117,6 +128,35 @@ class BootTest extends TestCase {
 			);
 
 		WP_Mock::userFunction( 'wp_localize_script' )
+			->with(
+				'ai-plus-block-editor',
+				'apbe',
+				[
+					'provider'  => 'AI Provider',
+					'providers' => [
+						[
+							'label' => 'ChatGPT',
+							'value' => 'OpenAI',
+						],
+						[
+							'label' => 'Gemini',
+							'value' => 'Gemini',
+						],
+						[
+							'label' => 'DeepSeek',
+							'value' => 'DeepSeek',
+						],
+						[
+							'label' => 'Grok',
+							'value' => 'Grok',
+						],
+						[
+							'label' => 'Claude',
+							'value' => 'Claude',
+						],
+					],
+				]
+			)
 			->andReturn( null );
 
 		WP_Mock::userFunction( 'wp_set_script_translations' )
@@ -125,6 +165,8 @@ class BootTest extends TestCase {
 				'ai-plus-block-editor',
 				'/var/www/wp-content/plugins/ai-plus-block-editor/inc/Services/../../languages',
 			);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$mock_boot->register_scripts();
 
@@ -161,8 +203,43 @@ class BootTest extends TestCase {
 				'/inc/Services/../../languages'
 			);
 
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
+
 		$this->boot->register_translation();
 
 		$this->assertConditionsMet();
+	}
+
+	public function test_get_providers() {
+		$boot = Mockery::mock( Boot::class )->makePartial();
+		$boot->shouldAllowMockingProtectedMethods();
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
+
+		$this->assertSame(
+			$boot->get_providers(),
+			[
+				[
+					'label' => 'ChatGPT',
+					'value' => 'OpenAI',
+				],
+				[
+					'label' => 'Gemini',
+					'value' => 'Gemini',
+				],
+				[
+					'label' => 'DeepSeek',
+					'value' => 'DeepSeek',
+				],
+				[
+					'label' => 'Grok',
+					'value' => 'Grok',
+				],
+				[
+					'label' => 'Claude',
+					'value' => 'Claude',
+				],
+			]
+		);
 	}
 }

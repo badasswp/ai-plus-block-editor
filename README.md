@@ -153,6 +153,24 @@ public function log_failed_provider_call( $message, $payload, $provider ) {
 - $provider _`{string}`_ By default this will be a string containing the provider name.
 <br/>
 
+#### `apbe_ai_providers`
+
+This custom hook (filter) provides a way to filter the list of providers that appear in the AI Switcher options located in the block editor.
+
+```php
+add_filter( 'apbe_ai_providers', [ $this, 'custom_providers' ], 10, 1 );
+
+public function custom_providers( $providers ) {
+    $providers['your-provider'] = 'Your Provider';
+    return $providers;
+}
+```
+
+**Parameters**
+
+- $providers _`{mixed[]}`_ By default this a key-value pair array containing containing the list of AI providers.
+<br/>
+
 #### `apbe_claude_api_url`
 
 This custom hook (filter) provides the ability to modify the Claude endpoint used for generating AI content.

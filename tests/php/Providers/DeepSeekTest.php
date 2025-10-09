@@ -19,9 +19,11 @@ use AiPlusBlockEditor\Providers\DeepSeek;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_page
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
  * @covers \AiPlusBlockEditor\Admin\Options::init
+ * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  */
 class DeepSeekTest extends TestCase {
 	public DeepSeek $deepseek;
+	public $providers;
 
 	public function setUp(): void {
 		WP_Mock::setUp();
@@ -76,6 +78,14 @@ class DeepSeekTest extends TestCase {
 			);
 
 		$this->deepseek = new DeepSeek();
+
+		$this->providers = [
+			'OpenAI'   => 'ChatGPT',
+			'Gemini'   => 'Gemini',
+			'DeepSeek' => 'DeepSeek',
+			'Grok'     => 'Grok',
+			'Claude'   => 'Claude',
+		];
 	}
 
 	public function tearDown(): void {
@@ -151,6 +161,8 @@ class DeepSeekTest extends TestCase {
 			'DeepSeek',
 		);
 
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
+
 		$response = $deepseek->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
@@ -182,6 +194,8 @@ class DeepSeekTest extends TestCase {
 			'[]',
 			'DeepSeek',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $deepseek->run(
 			[
@@ -238,6 +252,8 @@ class DeepSeekTest extends TestCase {
 			'{"model":"deepseek-chat","temperature":0.7,"top_p":1,"max_tokens":500,"presence_penalty":0,"frequency_penalty":0,"messages":[{"role":"system","content":"You are a helpful assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
 			'DeepSeek',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $deepseek->run(
 			[
@@ -306,6 +322,8 @@ class DeepSeekTest extends TestCase {
 			'{"model":"deepseek-chat","temperature":0.7,"top_p":1,"max_tokens":500,"presence_penalty":0,"frequency_penalty":0,"messages":[{"role":"system","content":"You are a helpful assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
 			'DeepSeek',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $deepseek->run(
 			[

@@ -51,6 +51,34 @@ abstract class Provider implements ProviderInterface {
 	abstract public function run( $payload );
 
 	/**
+	 * Get Providers.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @return array
+	 */
+	public static function get_providers(): array {
+		$providers = [
+			'OpenAI'   => 'ChatGPT',
+			'Gemini'   => 'Gemini',
+			'DeepSeek' => 'DeepSeek',
+			'Grok'     => 'Grok',
+			'Claude'   => 'Claude',
+		];
+
+		/**
+		 * Filter AI Providers.
+		 *
+		 * Filter available list of AI provider options
+		 * available to users.
+		 *
+		 * @param mixed[] AI Providers.
+		 * @return mixed[]
+		 */
+		return apply_filters( 'apbe_ai_providers', $providers );
+	}
+
+	/**
 	 * Get Provider Response.
 	 *
 	 * @since 1.8.0
@@ -99,12 +127,12 @@ abstract class Provider implements ProviderInterface {
 	 *
 	 * @since 1.8.0
 	 *
-	 * @param string  $message Error Message.
-	 * @param mixed[] $body    JSON payload.
+	 * @param string  $error Error Message.
+	 * @param mixed[] $body  JSON payload.
 	 *
 	 * @return \WP_Error
 	 */
-	protected function get_json_error( $message, $body = [] ): \WP_Error {
+	protected function get_json_error( $error, $body = [] ): \WP_Error {
 		// Get Payload.
 		$payload = wp_json_encode( $body );
 
@@ -115,7 +143,7 @@ abstract class Provider implements ProviderInterface {
 		error_log(
 			wp_json_encode(
 				[
-					'message'  => $message,
+					'error'    => $error,
 					'payload'  => $payload,
 					'provider' => $provider,
 				]
@@ -130,17 +158,17 @@ abstract class Provider implements ProviderInterface {
 		 *
 		 * @since 1.8.0
 		 *
-		 * @param string $message  Error message.
+		 * @param string $error    Error message.
 		 * @param string $payload  JSON Payload.
 		 * @param string $provider Provider class.
 		 *
 		 * @return void
 		 */
-		do_action( 'apbe_ai_provider_fail_call', $message, $payload, $provider );
+		do_action( 'apbe_ai_provider_fail_call', $error, $payload, $provider );
 
 		return new \WP_Error(
 			'ai-plus-block-editor-json-error',
-			$message,
+			$error,
 			[ 'status' => 500 ]
 		);
 	}

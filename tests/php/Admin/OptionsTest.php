@@ -12,10 +12,21 @@ use AiPlusBlockEditor\Admin\Options;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_notice
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields
+ * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  */
 class OptionsTest extends TestCase {
+	public $providers;
+
 	public function setUp(): void {
 		WP_Mock::setUp();
+
+		$this->providers = [
+			'OpenAI'   => 'ChatGPT',
+			'Gemini'   => 'Gemini',
+			'DeepSeek' => 'DeepSeek',
+			'Grok'     => 'Grok',
+			'Claude'   => 'Claude',
+		];
 	}
 
 	public function tearDown(): void {
@@ -102,6 +113,8 @@ class OptionsTest extends TestCase {
 				},
 			]
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$form_fields = Options::get_form_fields();
 

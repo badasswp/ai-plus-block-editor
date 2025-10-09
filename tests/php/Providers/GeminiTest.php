@@ -19,9 +19,11 @@ use AiPlusBlockEditor\Providers\Gemini;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_page
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
  * @covers \AiPlusBlockEditor\Admin\Options::init
+ * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  */
 class GeminiTest extends TestCase {
 	public Gemini $gemini;
+	public $providers;
 
 	public function setUp(): void {
 		WP_Mock::setUp();
@@ -83,6 +85,14 @@ class GeminiTest extends TestCase {
 			);
 
 		$this->gemini = new Gemini();
+
+		$this->providers = [
+			'OpenAI'   => 'ChatGPT',
+			'Gemini'   => 'Gemini',
+			'DeepSeek' => 'DeepSeek',
+			'Grok'     => 'Grok',
+			'Claude'   => 'Claude',
+		];
 	}
 
 	public function tearDown(): void {
@@ -165,6 +175,8 @@ class GeminiTest extends TestCase {
 			'Gemini',
 		);
 
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
+
 		$response = $gemini->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
@@ -196,6 +208,8 @@ class GeminiTest extends TestCase {
 			'[]',
 			'Gemini',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $gemini->run(
 			[
@@ -250,6 +264,8 @@ class GeminiTest extends TestCase {
 			'{"contents":[{"role":"user","parts":[{"text":"Generate me an SEO friendly Headline using: Hello World!"}]}],"generationConfig":{"temperature":1,"maxOutputTokens":256,"topK":40,"topP":0.95,"stopSequences":["\n\n"]}}',
 			'Gemini',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $gemini->run(
 			[
@@ -313,6 +329,8 @@ class GeminiTest extends TestCase {
 			'{"contents":[{"role":"user","parts":[{"text":"Generate me an SEO friendly Headline using: Hello World!"}]}],"generationConfig":{"temperature":1,"maxOutputTokens":256,"topK":40,"topP":0.95,"stopSequences":["\n\n"]}}',
 			'Gemini',
 		);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$response = $gemini->run(
 			[

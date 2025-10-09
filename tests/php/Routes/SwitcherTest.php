@@ -17,14 +17,24 @@ use AiPlusBlockEditor\Routes\Switcher;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_page
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
  * @covers \AiPlusBlockEditor\Admin\Options::init
+ * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  */
 class SwitcherTest extends TestCase {
 	public Switcher $switcher;
+	public $providers;
 
 	public function setUp(): void {
 		WP_Mock::setUp();
 
 		$this->switcher = new Switcher();
+
+		$this->providers = [
+			'OpenAI'   => 'ChatGPT',
+			'Gemini'   => 'Gemini',
+			'DeepSeek' => 'DeepSeek',
+			'Grok'     => 'Grok',
+			'Claude'   => 'Claude',
+		];
 	}
 
 	public function tearDown(): void {
@@ -71,6 +81,8 @@ class SwitcherTest extends TestCase {
 			);
 
 		$switcher->request = $request;
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		WP_Mock::userFunction( 'wp_parse_args' )
 			->andReturnUsing(

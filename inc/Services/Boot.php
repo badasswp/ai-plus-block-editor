@@ -13,6 +13,7 @@ namespace AiPlusBlockEditor\Services;
 use AiPlusBlockEditor\Admin\Options;
 use AiPlusBlockEditor\Abstracts\Service;
 use AiPlusBlockEditor\Interfaces\Kernel;
+use AiPlusBlockEditor\Abstracts\Provider;
 
 class Boot extends Service implements Kernel {
 	/**
@@ -50,7 +51,8 @@ class Boot extends Service implements Kernel {
 			Options::get_page_slug(),
 			'apbe',
 			[
-				'provider' => get_option( Options::get_page_option(), [] )['ai_provider'] ?? '',
+				'provider'  => get_option( Options::get_page_option(), [] )['ai_provider'] ?? '',
+				'providers' => $this->get_providers(),
 			]
 		);
 
@@ -98,5 +100,30 @@ class Boot extends Service implements Kernel {
 		$assets = require_once $path;
 
 		return $assets;
+	}
+
+	/**
+	 * Get Providers.
+	 *
+	 * Return processed array with label and value
+	 * key-pairs for block editor use.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @return array
+	 */
+	protected function get_providers(): array {
+		$providers = Provider::get_providers();
+
+		return array_map(
+			function ( $key, $value ) {
+				return [
+					'label' => $value,
+					'value' => $key,
+				];
+			},
+			array_keys( $providers ),
+			array_values( $providers ),
+		);
 	}
 }

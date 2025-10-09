@@ -10,6 +10,8 @@
 
 namespace AiPlusBlockEditor\Admin;
 
+use AiPlusBlockEditor\Abstracts\Provider;
+
 class Options {
 	/**
 	 * The Form.
@@ -131,13 +133,7 @@ class Options {
 						'control' => esc_attr( 'select' ),
 						'label'   => esc_html__( 'AI Provider', 'ai-plus-block-editor' ),
 						'summary' => 'e.g. Open AI (Chat GPT)',
-						'options' => [
-							'OpenAI'   => 'ChatGPT',
-							'Gemini'   => 'Gemini',
-							'DeepSeek' => 'DeepSeek',
-							'Grok'     => 'Grok',
-							'Claude'   => 'Claude',
-						],
+						'options' => Provider::get_providers(),
 					],
 				],
 			],
