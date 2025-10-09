@@ -20,6 +20,7 @@ use Orhanerday\OpenAi\OpenAi as ChatGPT;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
  * @covers \AiPlusBlockEditor\Admin\Options::init
  * @covers \AiPlusBlockEditor\Providers\OpenAI::get_client
+ * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  */
 class OpenAITest extends TestCase {
 	public OpenAI $open_ai;

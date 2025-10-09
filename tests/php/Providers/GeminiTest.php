@@ -19,6 +19,7 @@ use AiPlusBlockEditor\Providers\Gemini;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_page
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
  * @covers \AiPlusBlockEditor\Admin\Options::init
+ * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  */
 class GeminiTest extends TestCase {
 	public Gemini $gemini;

@@ -12,6 +12,7 @@ use AiPlusBlockEditor\Admin\Options;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_notice
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields
+ * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  */
 class OptionsTest extends TestCase {
 	public $providers;
