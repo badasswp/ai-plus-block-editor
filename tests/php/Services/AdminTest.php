@@ -4,7 +4,7 @@ namespace AiPlusBlockEditor\Tests\Services;
 
 use WP_Mock;
 use Mockery;
-use WP_Mock\Tools\TestCase;
+use Badasswp\WPMockTC\WPMockTestCase;
 use AiPlusBlockEditor\Services\Admin;
 
 /**
@@ -20,12 +20,12 @@ use AiPlusBlockEditor\Services\Admin;
  * @covers \AiPlusBlockEditor\Admin\Options::init
  * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  */
-class AdminTest extends TestCase {
+class AdminTest extends WPMockTestCase {
 	public Admin $admin;
 	public $providers;
 
 	public function setUp(): void {
-		WP_Mock::setUp();
+		parent::setUp();
 
 		WP_Mock::userFunction( 'get_option' )
 			->with( 'ai_plus_block_editor', [] )
@@ -43,7 +43,7 @@ class AdminTest extends TestCase {
 	}
 
 	public function tearDown(): void {
-		WP_Mock::tearDown();
+		parent::tearDown();
 	}
 
 	public function test_register() {
@@ -57,32 +57,6 @@ class AdminTest extends TestCase {
 	}
 
 	public function test_register_options_menu() {
-		WP_Mock::userFunction(
-			'esc_html__',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
-		WP_Mock::userFunction(
-			'esc_attr__',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
-		WP_Mock::userFunction(
-			'esc_attr',
-			[
-				'return' => function ( $text ) {
-					return $text;
-				},
-			]
-		);
 
 		WP_Mock::userFunction( 'add_menu_page' )
 			->once()
@@ -106,33 +80,6 @@ class AdminTest extends TestCase {
 	}
 
 	public function test_register_options_init_bails_out_if_any_nonce_settings_is_missing() {
-		WP_Mock::userFunction(
-			'esc_html__',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
-		WP_Mock::userFunction(
-			'esc_attr__',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
-		WP_Mock::userFunction(
-			'esc_attr',
-			[
-				'return' => function ( $text ) {
-					return $text;
-				},
-			]
-		);
-
 		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$_POST = [
@@ -152,33 +99,6 @@ class AdminTest extends TestCase {
 		];
 
 		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
-
-		WP_Mock::userFunction(
-			'esc_html__',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
-		WP_Mock::userFunction(
-			'esc_attr__',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
-		WP_Mock::userFunction(
-			'esc_attr',
-			[
-				'return' => function ( $text ) {
-					return $text;
-				},
-			]
-		);
 
 		WP_Mock::userFunction( 'wp_unslash' )
 			->times( 1 )
@@ -202,33 +122,6 @@ class AdminTest extends TestCase {
 	}
 
 	public function test_register_options_init_passes() {
-		WP_Mock::userFunction(
-			'esc_html__',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
-		WP_Mock::userFunction(
-			'esc_attr__',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
-		WP_Mock::userFunction(
-			'esc_attr',
-			[
-				'return' => function ( $text ) {
-					return $text;
-				},
-			]
-		);
-
 		$_POST = [
 			'ai_plus_block_editor_save_settings'  => true,
 			'ai_plus_block_editor_settings_nonce' => 'a8vbq3cg3sa',
@@ -292,33 +185,6 @@ class AdminTest extends TestCase {
 
 		WP_Mock::userFunction( 'get_current_screen' )
 			->andReturn( $screen );
-
-		WP_Mock::userFunction(
-			'esc_html__',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
-		WP_Mock::userFunction(
-			'esc_attr__',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
-		WP_Mock::userFunction(
-			'esc_attr',
-			[
-				'return' => function ( $text ) {
-					return $text;
-				},
-			]
-		);
 
 		$reflection = new \ReflectionClass( Admin::class );
 
