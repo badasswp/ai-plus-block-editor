@@ -4,7 +4,7 @@ namespace AiPlusBlockEditor\Tests\Services;
 
 use WP_Mock;
 use Mockery;
-use WP_Mock\Tools\TestCase;
+use Badasswp\WPMockTC\WPMockTestCase;
 use AiPlusBlockEditor\Services\Boot;
 use AiPlusBlockEditor\Abstracts\Service;
 
@@ -21,12 +21,12 @@ use AiPlusBlockEditor\Abstracts\Service;
  * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  * @covers \AiPlusBlockEditor\Services\Boot::get_providers
  */
-class BootTest extends TestCase {
+class BootTest extends WPMockTestCase {
 	public Boot $boot;
 	public $providers;
 
 	public function setUp(): void {
-		WP_Mock::setUp();
+		parent::setUp();
 
 		$this->boot = new Boot();
 
@@ -40,7 +40,7 @@ class BootTest extends TestCase {
 	}
 
 	public function tearDown(): void {
-		WP_Mock::tearDown();
+		parent::tearDown();
 	}
 
 	public function test_register() {
@@ -113,20 +113,6 @@ class BootTest extends TestCase {
 				]
 			);
 
-		WP_Mock::userFunction( 'esc_html__' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		WP_Mock::userFunction( 'esc_attr' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
 		WP_Mock::userFunction( 'wp_localize_script' )
 			->with(
 				'ai-plus-block-editor',
@@ -175,20 +161,6 @@ class BootTest extends TestCase {
 
 	public function test_register_translation() {
 		$boot = new \ReflectionClass( Boot::class );
-
-		WP_Mock::userFunction( 'esc_html__' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		WP_Mock::userFunction( 'esc_attr' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
 
 		WP_Mock::userFunction( 'plugin_basename' )
 			->once()

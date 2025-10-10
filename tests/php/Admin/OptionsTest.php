@@ -4,8 +4,8 @@ namespace AiPlusBlockEditor\Tests\Admin;
 
 use WP_Mock;
 use Mockery;
-use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Admin\Options;
+use Badasswp\WPMockTC\WPMockTestCase;
 
 /**
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_page
@@ -14,11 +14,11 @@ use AiPlusBlockEditor\Admin\Options;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields
  * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  */
-class OptionsTest extends TestCase {
+class OptionsTest extends WPMockTestCase {
 	public $providers;
 
 	public function setUp(): void {
-		WP_Mock::setUp();
+		parent::setUp();
 
 		$this->providers = [
 			'OpenAI'   => 'ChatGPT',
@@ -30,20 +30,10 @@ class OptionsTest extends TestCase {
 	}
 
 	public function tearDown(): void {
-		WP_Mock::tearDown();
+		parent::tearDown();
 	}
 
 	public function test_get_form_page() {
-		WP_Mock::userFunction(
-			'esc_html__',
-			[
-				'times'  => 2,
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
 		$form_page = Options::get_form_page();
 
 		$this->assertSame(
@@ -58,16 +48,6 @@ class OptionsTest extends TestCase {
 	}
 
 	public function test_get_form_submit() {
-		WP_Mock::userFunction(
-			'esc_html__',
-			[
-				'times'  => 2,
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
 		$form_submit = Options::get_form_submit();
 
 		$this->assertSame(
@@ -87,33 +67,6 @@ class OptionsTest extends TestCase {
 	}
 
 	public function test_get_form_fields() {
-		WP_Mock::userFunction(
-			'esc_html__',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
-		WP_Mock::userFunction(
-			'esc_attr',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
-		WP_Mock::userFunction(
-			'esc_attr__',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
 		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$form_fields = Options::get_form_fields();
@@ -223,16 +176,6 @@ class OptionsTest extends TestCase {
 	}
 
 	public function test_get_form_notice() {
-		WP_Mock::userFunction(
-			'esc_html__',
-			[
-				'times'  => 1,
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
 		$form_notice = Options::get_form_notice();
 
 		$this->assertSame(

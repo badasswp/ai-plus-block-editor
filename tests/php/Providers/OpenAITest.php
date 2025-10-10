@@ -4,7 +4,7 @@ namespace AiPlusBlockEditor\Tests\Providers;
 
 use WP_Mock;
 use Mockery;
-use WP_Mock\Tools\TestCase;
+use Badasswp\WPMockTC\WPMockTestCase;
 use AiPlusBlockEditor\Providers\OpenAI;
 use Orhanerday\OpenAi\OpenAi as ChatGPT;
 
@@ -22,61 +22,12 @@ use Orhanerday\OpenAi\OpenAi as ChatGPT;
  * @covers \AiPlusBlockEditor\Providers\OpenAI::get_client
  * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  */
-class OpenAITest extends TestCase {
+class OpenAITest extends WPMockTestCase {
 	public OpenAI $open_ai;
 	public $providers;
 
 	public function setUp(): void {
-		WP_Mock::setUp();
-
-		WP_Mock::userFunction( '__' )
-			->andReturnUsing(
-				function ( $arg1, $arg2 ) {
-					return $arg1;
-				}
-			);
-
-		WP_Mock::userFunction( 'esc_html__' )
-			->andReturnUsing(
-				function ( $arg1, $arg2 ) {
-					return $arg1;
-				}
-			);
-
-		WP_Mock::userFunction( 'esc_attr' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		WP_Mock::userFunction( 'esc_url' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		WP_Mock::userFunction( 'is_wp_error' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg instanceof \WP_Error;
-				}
-			);
-
-		WP_Mock::userFunction( 'wp_json_encode' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return json_encode( $arg );
-				}
-			);
-
-		WP_Mock::userFunction( 'wp_parse_args' )
-			->andReturnUsing(
-				function ( $arg1, $arg2 ) {
-					return array_merge( $arg2, $arg1 );
-				}
-			);
+		parent::setUp();
 
 		$this->open_ai = new OpenAI();
 
@@ -90,7 +41,7 @@ class OpenAITest extends TestCase {
 	}
 
 	public function tearDown(): void {
-		WP_Mock::tearDown();
+		parent::tearDown();
 	}
 
 	public function test_get_default_args() {
