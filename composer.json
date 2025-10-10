@@ -15,10 +15,11 @@
 			"email": "badasswpdev@gmail.com"
 		}
 	],
-  "require": {
-    "orhanerday/open-ai": "^5.1"
-  },
+	"require": {
+		"orhanerday/open-ai": "^5.1"
+	},
 	"require-dev": {
+		"badasswp/wp-mock-tc": "^1.0",
 		"phpunit/phpunit": "^9.6",
 		"mockery/mockery": "^1.6",
 		"10up/wp_mock": "^1.0",
@@ -41,6 +42,6 @@
 		"lint:fix": "vendor/bin/phpcbf -v",
 		"test": "vendor/bin/phpunit --testdox",
 		"analyse": "vendor/bin/phpstan analyse --memory-limit=2048M",
-    "coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-cobertura cobertura.xml && coveralls --repo-token=bDrttxr9v8g9lhyT05a0AqPzZPubS1hJq --file=cobertura.xml"
+		"coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-cobertura cobertura.xml && coveralls --repo-token=bDrttxr9v8g9lhyT05a0AqPzZPubS1hJq --file=cobertura.xml"
 	}
 }
