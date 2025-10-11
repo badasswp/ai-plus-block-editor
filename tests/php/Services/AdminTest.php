@@ -57,7 +57,6 @@ class AdminTest extends WPMockTestCase {
 	}
 
 	public function test_register_options_menu() {
-
 		WP_Mock::userFunction( 'add_menu_page' )
 			->once()
 			->with(
@@ -66,7 +65,7 @@ class AdminTest extends WPMockTestCase {
 				'manage_options',
 				'ai-plus-block-editor',
 				[ $this->admin, 'register_options_page' ],
-				'dashicons-superhero',
+				'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj4KCQkJCQk8cGF0aCBkPSJNMTcuOCAybC0uOS4zYy0uMSAwLTMuNiAxLTUuMiAyLjFDMTAgNS41IDkuMyA2LjUgOC45IDcuMWMtLjYuOS0xLjcgNC43LTEuNyA2LjNsLS45IDIuM2MtLjIuNCAwIC44LjQgMSAuMSAwIC4yLjEuMy4xLjMgMCAuNi0uMi43LS41bC42LTEuNWMuMyAwIC43LS4xIDEuMi0uMi43LS4xIDEuNC0uMyAyLjItLjUuOC0uMiAxLjYtLjUgMi40LS44LjctLjMgMS40LS43IDEuOS0xLjJzLjgtMS4yIDEtMS45Yy4yLS43LjMtMS42LjQtMi40LjEtLjguMS0xLjcuMi0yLjUgMC0uOC4xLTEuNS4yLTIuMVYyem0tMS45IDUuNmMtLjEuOC0uMiAxLjUtLjMgMi4xLS4yLjYtLjQgMS0uNiAxLjMtLjMuMy0uOC42LTEuNC45LS43LjMtMS40LjUtMi4yLjgtLjYuMi0xLjMuMy0xLjguNEwxNSA3LjVjLjMtLjMuNi0uNyAxLTEuMSAwIC40IDAgLjgtLjEgMS4yek02IDIwaDh2LTEuNUg2VjIweiIgLz4KCQkJCTwvc3ZnPg==',
 				100
 			)
 			->andReturn( null );
