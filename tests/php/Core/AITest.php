@@ -2,6 +2,7 @@
 
 namespace AiPlusBlockEditor\Tests\Core;
 
+use WP_Mock;
 use Mockery;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Core\AI;
@@ -16,15 +17,15 @@ class AITest extends TestCase {
 	public AI $ai;
 
 	public function setUp(): void {
-		\WP_Mock::setUp();
+		WP_Mock::setUp();
 	}
 
 	public function tearDown(): void {
-		\WP_Mock::tearDown();
+		WP_Mock::tearDown();
 	}
 
 	public function test_get_provider() {
-		\WP_Mock::userFunction( 'get_option' )
+		WP_Mock::userFunction( 'get_option' )
 			->with( 'ai_plus_block_editor', [] )
 			->andReturn(
 				[
@@ -55,7 +56,7 @@ class AITest extends TestCase {
 		$open_ai = Mockery::mock( OpenAI::class )->makePartial();
 		$open_ai->shouldAllowMockingProtectedMethods();
 
-		\WP_Mock::expectFilter( 'apbe_ai_provider', $open_ai );
+		WP_Mock::expectFilter( 'apbe_ai_provider', $open_ai );
 
 		$instance = $ai->get_instance( $open_ai );
 
@@ -73,14 +74,14 @@ class AITest extends TestCase {
 		$ai->shouldReceive( 'get_provider' )
 			->andReturn( $open_ai );
 
-		\WP_Mock::userFunction( 'wp_strip_all_tags' )
+		WP_Mock::userFunction( 'wp_strip_all_tags' )
 			->andReturnUsing(
 				function ( $arg ) {
 					return strip_tags( $arg );
 				}
 			);
 
-		\WP_Mock::expectFilter( 'the_content', 'Generate an SEO friendly headline using: Hello World!' );
+		WP_Mock::expectFilter( 'the_content', 'Generate an SEO friendly headline using: Hello World!' );
 
 		$open_ai->shouldReceive( 'run' )
 			->times( 1 )
@@ -113,14 +114,14 @@ class AITest extends TestCase {
 		$ai->shouldReceive( 'get_provider' )
 			->andReturn( $open_ai );
 
-		\WP_Mock::userFunction( 'wp_strip_all_tags' )
+		WP_Mock::userFunction( 'wp_strip_all_tags' )
 			->andReturnUsing(
 				function ( $arg ) {
 					return strip_tags( $arg );
 				}
 			);
 
-		\WP_Mock::expectFilter( 'the_content', 'Do nothing...' );
+		WP_Mock::expectFilter( 'the_content', 'Do nothing...' );
 
 		$open_ai->shouldReceive( 'run' )
 			->times( 1 )

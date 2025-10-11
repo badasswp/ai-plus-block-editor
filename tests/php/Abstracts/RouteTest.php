@@ -2,6 +2,7 @@
 
 namespace AiPlusBlockEditor\Tests\Abstracts;
 
+use WP_Mock;
 use Mockery;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Core\AI;
@@ -19,13 +20,13 @@ class RouteTest extends TestCase {
 	public Route $route;
 
 	public function setUp(): void {
-		\WP_Mock::setUp();
+		WP_Mock::setUp();
 
 		$this->route = new ConcreteRoute();
 	}
 
 	public function tearDown(): void {
-		\WP_Mock::tearDown();
+		WP_Mock::tearDown();
 	}
 
 	public function test_request_returns_response() {
@@ -71,7 +72,7 @@ class RouteTest extends TestCase {
 	}
 
 	public function test_register_route() {
-		\WP_Mock::userFunction( 'register_rest_route' )
+		WP_Mock::userFunction( 'register_rest_route' )
 			->with(
 				'ai-plus-block-editor/v1',
 				'/sidebar',
@@ -123,10 +124,10 @@ class RouteTest extends TestCase {
 	}
 
 	public function test_is_user_permissible_returns_error_if_not_administrator() {
-		\WP_Mock::userFunction( 'rest_authorization_required_code' )
+		WP_Mock::userFunction( 'rest_authorization_required_code' )
 			->andReturn( 403 );
 
-		\WP_Mock::userFunction( 'current_user_can' )
+		WP_Mock::userFunction( 'current_user_can' )
 			->with( 'administrator' )
 			->andReturn( false );
 
@@ -143,14 +144,14 @@ class RouteTest extends TestCase {
 	}
 
 	public function test_is_user_permissible_returns_error_if_nonce_fails() {
-		\WP_Mock::userFunction( 'rest_authorization_required_code' )
+		WP_Mock::userFunction( 'rest_authorization_required_code' )
 			->andReturn( 403 );
 
-		\WP_Mock::userFunction( 'current_user_can' )
+		WP_Mock::userFunction( 'current_user_can' )
 			->with( 'administrator' )
 			->andReturn( true );
 
-		\WP_Mock::userFunction( 'wp_verify_nonce' )
+		WP_Mock::userFunction( 'wp_verify_nonce' )
 			->with( 'a8ceg59jeqwvk', 'wp_rest' )
 			->andReturn( false );
 
@@ -171,10 +172,10 @@ class RouteTest extends TestCase {
 	}
 
 	public function test_is_user_permissible_passes_correctly() {
-		\WP_Mock::userFunction( 'rest_authorization_required_code' )
+		WP_Mock::userFunction( 'rest_authorization_required_code' )
 			->andReturn( 403 );
 
-		\WP_Mock::userFunction( 'current_user_can' )
+		WP_Mock::userFunction( 'current_user_can' )
 			->with( 'administrator' )
 			->andReturn( true );
 
@@ -185,7 +186,7 @@ class RouteTest extends TestCase {
 			->with( 'X-WP-Nonce' )
 			->andReturn( 'a8ceg59jeqwvk' );
 
-		\WP_Mock::userFunction( 'wp_verify_nonce' )
+		WP_Mock::userFunction( 'wp_verify_nonce' )
 			->with( 'a8ceg59jeqwvk', 'wp_rest' )
 			->andReturn( true );
 

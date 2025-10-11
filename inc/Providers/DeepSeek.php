@@ -10,10 +10,20 @@
 
 namespace AiPlusBlockEditor\Providers;
 
-use AiPlusBlockEditor\Interfaces\Provider;
 use AiPlusBlockEditor\Admin\Options;
+use AiPlusBlockEditor\Abstracts\Provider;
+use AiPlusBlockEditor\Interfaces\Provider as ProviderInterface;
 
-class DeepSeek implements Provider {
+class DeepSeek extends Provider implements ProviderInterface {
+	/**
+	 * Provider name.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @var string
+	 */
+	protected static $name = 'DeepSeek';
+
 	/**
 	 * Get Default Args.
 	 *
@@ -56,7 +66,7 @@ class DeepSeek implements Provider {
 	 * @return string
 	 */
 	protected function get_api_url(): string {
-		$url = esc_url( 'https://api.deepseek.com/chat/completions' );
+		$url = 'https://api.deepseek.com/chat/completions';
 
 		/**
 		 * Filter DeepSeek API URL.
@@ -66,7 +76,7 @@ class DeepSeek implements Provider {
 		 * @param string $url DeepSeek API URL.
 		 * @return string
 		 */
-		return apply_filters( 'apbe_deepseek_api_url', $url );
+		return esc_url( (string) apply_filters( 'apbe_deepseek_api_url', $url ) );
 	}
 
 	/**
@@ -96,13 +106,23 @@ class DeepSeek implements Provider {
 			);
 		}
 
+		/**
+		 * Filter DeepSeek System Prompt.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $prompt DeepSeek System prompt.
+		 * @return string
+		 */
+		$system_prompt = apply_filters( 'apbe_deepseek_system_prompt', 'You are a helpful assistant.' );
+
 		// DeepSeek API expects a specific body structure.
 		$body = wp_parse_args(
 			[
 				'messages' => [
 					[
 						'role'    => 'system',
-						'content' => 'You are a helpful assistant.',
+						'content' => $system_prompt,
 					],
 					[
 						'role'    => 'user',
@@ -126,27 +146,23 @@ class DeepSeek implements Provider {
 		);
 
 		if ( is_wp_error( $response ) ) {
-			return $this->get_json_error( $response->get_error_message() );
+			return $this->get_json_error( $response->get_error_message(), $body );
 		}
 
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
 
-		return $data['choices'][0]['message']['content'] ?? '';
-	}
+		// Notify user, if JSON yields null.
+		if ( empty( $data ) || ! isset( $data['choices'][0]['message']['content'] ) ) {
+			return $this->get_json_error(
+				$data['error']['message'] ?? __( 'Unexpected DeepSeek API response.', 'ai-plus-block-editor' ),
+				$body
+			);
+		}
 
-	/**
-	 * Get JSON Error.
-	 *
-	 * @since 1.6.0
-	 *
-	 * @param string $message Error Message.
-	 * @return \WP_Error
-	 */
-	protected function get_json_error( $message ) {
-		return new \WP_Error(
-			'ai-plus-block-editor-json-error',
-			$message,
-			[ 'status' => 500 ]
-		);
+		// Get API response.
+		$response = $data['choices'][0]['message']['content'] ?? '';
+
+		// Return filtered response.
+		return $this->get_provider_response( $response, wp_json_encode( $body ) );
 	}
 }

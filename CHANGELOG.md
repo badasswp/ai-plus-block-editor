@@ -1,5 +1,27 @@
 # Changelog
 
+# 1.8.0
+* Feat: Implement Claude AI provider.
+* Fix: Load missing Grok provider correctly.
+* Feat: Implement AI provider abstraction.
+* Refactor: Improve AI providers.
+* Feat: Enable filtering of AI Switcher options.
+* Feat: Add error logging capabilities.
+* Chore: Update plugin menu icon.
+* Feat: Add custom filters:
+  - `apbe_ai_provider_success_call`.
+  - `apbe_ai_provider_fail_call`.
+  - `apbe_ai_provider_response`.
+  - `apbe_ai_providers`.
+  - `apbe_claude_api_url`.
+  - `apbe_claude_args`.
+  - `apbe_claude_system_prompt`.
+  - `apbe_deepseek_system_prompt`.
+  - `apbe_open_ai_system_prompt`.
+* Docs: Update README docs.
+* Test: Update unit tests.
+* Tested up to WP 6.8.2.
+
 # 1.7.1
 * Fix: Update issue with broken plugin deploy.
 * Docs: Update README docs.

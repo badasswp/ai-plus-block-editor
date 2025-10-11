@@ -1,9 +1,9 @@
 <?php
 /**
- * Grok Class.
+ * Claude Class.
  *
  * This class is responsible for handling
- * Grok calls.
+ * Claude calls.
  *
  * @package AiPlusBlockEditor
  */
@@ -14,7 +14,7 @@ use AiPlusBlockEditor\Admin\Options;
 use AiPlusBlockEditor\Abstracts\Provider;
 use AiPlusBlockEditor\Interfaces\Provider as ProviderInterface;
 
-class Grok extends Provider implements ProviderInterface {
+class Claude extends Provider implements ProviderInterface {
 	/**
 	 * Provider name.
 	 *
@@ -22,30 +22,30 @@ class Grok extends Provider implements ProviderInterface {
 	 *
 	 * @var string
 	 */
-	protected static $name = 'Grok';
+	protected static $name = 'Claude';
 
 	/**
 	 * Get Default Args.
 	 *
-	 * @since 1.7.0
+	 * @since 1.8.0
 	 *
 	 * @return mixed[]
 	 */
 	protected function get_default_args(): array {
 		$args = [
-			'model'  => 'grok-4',
-			'stream' => false,
+			'model'      => 'claude-3-opus-20240229',
+			'max_tokens' => 512,
 		];
 
 		/**
-		 * Filter Grok default args.
+		 * Filter Claude default args.
 		 *
-		 * @since 1.7.0
+		 * @since 1.8.0
 		 *
 		 * @param mixed[] $args Default args.
 		 * @return mixed[]
 		 */
-		$filtered_args = (array) apply_filters( 'apbe_grok_args', $args );
+		$filtered_args = (array) apply_filters( 'apbe_claude_args', $args );
 
 		return wp_parse_args( $filtered_args, $args );
 	}
@@ -53,42 +53,42 @@ class Grok extends Provider implements ProviderInterface {
 	/**
 	 * Get API URL.
 	 *
-	 * This method returns the Grok API URL
+	 * This method returns the Claude API URL
 	 * endpoint. It can be filtered using the
-	 * 'apbe_grok_api_url' filter.
+	 * 'apbe_claude_api_url' filter.
 	 *
-	 * @since 1.7.0
+	 * @since 1.8.0
 	 *
 	 * @return string
 	 */
 	protected function get_api_url(): string {
-		$url = 'https://api.x.ai/v1/chat/completions';
+		$url = 'https://api.anthropic.com/v1/messages';
 
 		/**
-		 * Filter Grok API URL.
+		 * Filter Claude API URL.
 		 *
-		 * @since 1.7.0
+		 * @since 1.8.0
 		 *
-		 * @param string $url Grok API URL.
+		 * @param string $url Claude API URL.
 		 * @return string
 		 */
-		return esc_url( (string) apply_filters( 'apbe_grok_api_url', $url ) );
+		return esc_url( (string) apply_filters( 'apbe_claude_api_url', $url ) );
 	}
 
 	/**
 	 * Get AI Response.
 	 *
-	 * @since 1.7.0
+	 * @since 1.8.0
 	 *
 	 * @param mixed[] $payload JSON Payload.
 	 * @return string|\WP_Error
 	 */
 	public function run( $payload ) {
-		$api_key = get_option( Options::get_page_option(), [] )['grok_token'] ?? '';
+		$api_key = get_option( Options::get_page_option(), [] )['claude_token'] ?? '';
 
 		if ( empty( $api_key ) ) {
 			return $this->get_json_error(
-				__( 'Missing Grok API key.', 'ai-plus-block-editor' )
+				__( 'Missing Claude API key.', 'ai-plus-block-editor' )
 			);
 		}
 
@@ -103,16 +103,16 @@ class Grok extends Provider implements ProviderInterface {
 		}
 
 		/**
-		 * Filter Grok System Prompt.
+		 * Filter Claude System Prompt.
 		 *
-		 * @since 1.7.0
+		 * @since 1.8.0
 		 *
-		 * @param string $prompt Grok System prompt.
+		 * @param string $prompt Claude System prompt.
 		 * @return string
 		 */
-		$system_prompt = apply_filters( 'apbe_grok_system_prompt', 'You are Grok, a highly intelligent, helpful AI assistant.' );
+		$system_prompt = apply_filters( 'apbe_claude_system_prompt', 'You are Claude, a highly intelligent, helpful AI assistant.' );
 
-		// Grok API expects a specific body structure.
+		// Claude API expects a specific body structure.
 		$body = wp_parse_args(
 			[
 				'messages' => [
@@ -126,15 +126,16 @@ class Grok extends Provider implements ProviderInterface {
 					],
 				],
 			],
-			$this->get_default_args(),
+			$this->get_default_args()
 		);
 
 		$response = wp_remote_post(
 			$this->get_api_url(),
 			[
 				'headers' => [
-					'Content-Type'  => 'application/json',
-					'Authorization' => 'Bearer ' . $api_key,
+					'x-api-key'         => $api_key,
+					'Content-Type'      => 'application/json',
+					'anthropic-version' => '2023-06-01',
 				],
 				'body'    => wp_json_encode( $body, JSON_UNESCAPED_UNICODE ),
 				'timeout' => 20,
@@ -150,7 +151,7 @@ class Grok extends Provider implements ProviderInterface {
 		// Notify user, if JSON yields null.
 		if ( empty( $data ) || ! isset( $data['choices'][0]['message']['content'] ) ) {
 			return $this->get_json_error(
-				$data['error']['message'] ?? __( 'Unexpected Grok API response.', 'ai-plus-block-editor' ),
+				$data['error']['message'] ?? __( 'Unexpected Claude API response.', 'ai-plus-block-editor' ),
 				$body
 			);
 		}

@@ -5,14 +5,14 @@ namespace AiPlusBlockEditor\Tests\Providers;
 use WP_Mock;
 use Mockery;
 use Badasswp\WPMockTC\WPMockTestCase;
-use AiPlusBlockEditor\Providers\Gemini;
+use AiPlusBlockEditor\Providers\Claude;
 
 /**
- * @covers \AiPlusBlockEditor\Providers\Gemini::run
- * @covers \AiPlusBlockEditor\Providers\Gemini::get_api_url
- * @covers \AiPlusBlockEditor\Providers\Gemini::get_default_args
- * @covers \AiPlusBlockEditor\Providers\Gemini::get_provider_response
- * @covers \AiPlusBlockEditor\Providers\Gemini::get_json_error
+ * @covers \AiPlusBlockEditor\Providers\Claude::get_default_args
+ * @covers \AiPlusBlockEditor\Providers\Claude::get_api_url
+ * @covers \AiPlusBlockEditor\Providers\Claude::run
+ * @covers \AiPlusBlockEditor\Providers\Claude::get_provider_response
+ * @covers \AiPlusBlockEditor\Providers\Claude::get_json_error
  * @covers \AiPlusBlockEditor\Admin\Options::__callStatic
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_notice
@@ -21,21 +21,14 @@ use AiPlusBlockEditor\Providers\Gemini;
  * @covers \AiPlusBlockEditor\Admin\Options::init
  * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  */
-class GeminiTest extends WPMockTestCase {
-	public Gemini $gemini;
+class ClaudeTest extends WPMockTestCase {
+	public Claude $claude;
 	public $providers;
 
 	public function setUp(): void {
 		parent::setUp();
 
-		WP_Mock::userFunction( 'add_query_arg' )
-			->andReturnUsing(
-				function ( $arg1, $arg2, $arg3 ) {
-					return sprintf( '%s?%s=%s', $arg3, $arg1, $arg2 );
-				}
-			);
-
-		$this->gemini = new Gemini();
+		$this->claude = new Claude();
 
 		$this->providers = [
 			'OpenAI'   => 'ChatGPT',
@@ -52,61 +45,46 @@ class GeminiTest extends WPMockTestCase {
 
 	public function test_get_default_args() {
 		WP_Mock::expectFilter(
-			'apbe_gemini_args',
+			'apbe_claude_args',
 			[
-				'model'           => 'gemini-2.0-flash',
-				'temperature'     => 1.0,
-				'maxOutputTokens' => 256,
-				'topK'            => 40,
-				'topP'            => 0.95,
-				'stopSequences'   => [ "\n\n" ],
+				'model'      => 'claude-3-opus-20240229',
+				'max_tokens' => 512,
 			]
 		);
 
-		$reflection = new \ReflectionClass( $this->gemini );
+		$reflection = new \ReflectionClass( $this->claude );
 		$method     = $reflection->getMethod( 'get_default_args' );
 
 		$method->setAccessible( true );
-		$args = $method->invoke( $this->gemini );
+		$args = $method->invoke( $this->claude );
 
 		$this->assertSame(
 			$args,
 			[
-				'model'           => 'gemini-2.0-flash',
-				'temperature'     => 1.0,
-				'maxOutputTokens' => 256,
-				'topK'            => 40,
-				'topP'            => 0.95,
-				'stopSequences'   => [ "\n\n" ],
+				'model'      => 'claude-3-opus-20240229',
+				'max_tokens' => 512,
 			]
 		);
 	}
 
 	public function test_get_api_url() {
-		$gemini = Mockery::mock( Gemini::class )->makePartial();
-		$gemini->shouldAllowMockingProtectedMethods();
-
-		$gemini->shouldReceive( 'get_default_args' )
-			->andReturn(
-				[
-					'model' => 'gemini-2.0-flash',
-				]
-			);
+		$claude = Mockery::mock( Claude::class )->makePartial();
+		$claude->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::expectFilter(
-			'apbe_gemini_api_url',
-			'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent'
+			'apbe_claude_api_url',
+			'https://api.anthropic.com/v1/messages'
 		);
 
-		$url = $gemini->get_api_url();
+		$url = $claude->get_api_url();
 
-		$this->assertSame( $url, 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent' );
+		$this->assertSame( $url, 'https://api.anthropic.com/v1/messages' );
 		$this->assertConditionsMet();
 	}
 
 	public function test_run_fails_if_missing_api_keys_and_returns_wp_error() {
-		$gemini = Mockery::mock( Gemini::class )->makePartial();
-		$gemini->shouldAllowMockingProtectedMethods();
+		$claude = Mockery::mock( Claude::class )->makePartial();
+		$claude->shouldAllowMockingProtectedMethods();
 
 		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
@@ -115,20 +93,20 @@ class GeminiTest extends WPMockTestCase {
 			->with( 'ai_plus_block_editor', [] )
 			->andReturn(
 				[
-					'google_gemini_token' => '',
+					'claude_token' => '',
 				]
 			);
 
 		WP_Mock::expectAction(
 			'apbe_ai_provider_fail_call',
-			'Missing Gemini API key.',
+			'Missing Claude API key.',
 			'[]',
-			'Gemini',
+			'Claude',
 		);
 
 		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
-		$response = $gemini->run(
+		$response = $claude->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
 			]
@@ -139,8 +117,8 @@ class GeminiTest extends WPMockTestCase {
 	}
 
 	public function test_run_fails_if_missing_prompt_text_and_returns_wp_error() {
-		$gemini = Mockery::mock( Gemini::class )->makePartial();
-		$gemini->shouldAllowMockingProtectedMethods();
+		$claude = Mockery::mock( Claude::class )->makePartial();
+		$claude->shouldAllowMockingProtectedMethods();
 
 		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
@@ -149,7 +127,7 @@ class GeminiTest extends WPMockTestCase {
 			->with( 'ai_plus_block_editor', [] )
 			->andReturn(
 				[
-					'google_gemini_token' => 'age38gegewjdhagepkhif',
+					'claude_token' => 'age38gegewjdhagepkhif',
 				]
 			);
 
@@ -157,12 +135,12 @@ class GeminiTest extends WPMockTestCase {
 			'apbe_ai_provider_fail_call',
 			'Invalid prompt text.',
 			'[]',
-			'Gemini',
+			'Claude',
 		);
 
 		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
-		$response = $gemini->run(
+		$response = $claude->run(
 			[
 				'content' => '',
 			]
@@ -173,21 +151,17 @@ class GeminiTest extends WPMockTestCase {
 	}
 
 	public function test_run_fails_returns_wp_error_if_malformed_JSON_is_returned() {
-		$gemini = Mockery::mock( Gemini::class )->makePartial();
-		$gemini->shouldAllowMockingProtectedMethods();
+		$claude = Mockery::mock( Claude::class )->makePartial();
+		$claude->shouldAllowMockingProtectedMethods();
 
 		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
-		$gemini->shouldReceive( 'get_default_args' )
+		$claude->shouldReceive( 'get_default_args' )
 			->andReturn(
 				[
-					'model'           => 'gemini-2.0-flash',
-					'temperature'     => 1.0,
-					'maxOutputTokens' => 256,
-					'topK'            => 40,
-					'topP'            => 0.95,
-					'stopSequences'   => [ "\n\n" ],
+					'model'  => 'grok-4',
+					'stream' => false,
 				]
 			);
 
@@ -195,11 +169,16 @@ class GeminiTest extends WPMockTestCase {
 			->with( 'ai_plus_block_editor', [] )
 			->andReturn(
 				[
-					'google_gemini_token' => 'age38gegewjdhagepkhif',
+					'claude_token' => 'age38gegewjdhagepkhif',
 				]
 			);
 
-		$gemini->shouldReceive( 'get_api_url' )
+		WP_Mock::expectFilter(
+			'apbe_claude_system_prompt',
+			'You are Claude, a highly intelligent, helpful AI assistant.'
+		);
+
+		$claude->shouldReceive( 'get_api_url' )
 			->andReturn( '' );
 
 		WP_Mock::userFunction( 'wp_remote_post' )
@@ -211,14 +190,14 @@ class GeminiTest extends WPMockTestCase {
 
 		WP_Mock::expectAction(
 			'apbe_ai_provider_fail_call',
-			'Unexpected Gemini API response.',
-			'{"contents":[{"role":"user","parts":[{"text":"Generate me an SEO friendly Headline using: Hello World!"}]}],"generationConfig":{"temperature":1,"maxOutputTokens":256,"topK":40,"topP":0.95,"stopSequences":["\n\n"]}}',
-			'Gemini',
+			'Unexpected Claude API response.',
+			'{"model":"grok-4","stream":false,"messages":[{"role":"system","content":"You are Claude, a highly intelligent, helpful AI assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
+			'Claude',
 		);
 
 		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
-		$response = $gemini->run(
+		$response = $claude->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
 			]
@@ -229,21 +208,17 @@ class GeminiTest extends WPMockTestCase {
 	}
 
 	public function test_run() {
-		$gemini = Mockery::mock( Gemini::class )->makePartial();
-		$gemini->shouldAllowMockingProtectedMethods();
+		$claude = Mockery::mock( Claude::class )->makePartial();
+		$claude->shouldAllowMockingProtectedMethods();
 
 		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
-		$gemini->shouldReceive( 'get_default_args' )
+		$claude->shouldReceive( 'get_default_args' )
 			->andReturn(
 				[
-					'model'           => 'gemini-2.0-flash',
-					'temperature'     => 1.0,
-					'maxOutputTokens' => 256,
-					'topK'            => 40,
-					'topP'            => 0.95,
-					'stopSequences'   => [ "\n\n" ],
+					'model'  => 'grok-4',
+					'stream' => false,
 				]
 			);
 
@@ -251,39 +226,41 @@ class GeminiTest extends WPMockTestCase {
 			->with( 'ai_plus_block_editor', [] )
 			->andReturn(
 				[
-					'google_gemini_token' => 'age38gegewjdhagepkhif',
+					'claude_token' => 'age38gegewjdhagepkhif',
 				]
 			);
 
-		WP_Mock::userFunction( 'add_query_arg' )
-			->andReturnNull();
+		WP_Mock::expectFilter(
+			'apbe_claude_system_prompt',
+			'You are Claude, a highly intelligent, helpful AI assistant.'
+		);
 
-		$gemini->shouldReceive( 'get_api_url' )
-		->andReturn( '' );
+		$claude->shouldReceive( 'get_api_url' )
+			->andReturn( '' );
 
 		WP_Mock::userFunction( 'wp_remote_post' )
-			->andReturn( '{"body":{"candidates":[{"content":{"parts":[{"text":"What a Wonderful World!"}]}}]}}' );
+			->andReturn( '{"body":{"choices":[{"message":{"content":"What a Wonderful World!"}}]}}' );
 
 		WP_Mock::userFunction( 'wp_remote_retrieve_body' )
-			->andReturn( '{"candidates":[{"content":{"parts":[{"text":"What a Wonderful World!"}]}}]}' );
+			->andReturn( '{"choices":[{"message":{"content":"What a Wonderful World!"}}]}' );
 
 		WP_Mock::expectAction(
 			'apbe_ai_provider_success_call',
 			'What a Wonderful World!',
-			'{"contents":[{"role":"user","parts":[{"text":"Generate me an SEO friendly Headline using: Hello World!"}]}],"generationConfig":{"temperature":1,"maxOutputTokens":256,"topK":40,"topP":0.95,"stopSequences":["\n\n"]}}',
-			'Gemini',
+			'{"model":"grok-4","stream":false,"messages":[{"role":"system","content":"You are Claude, a highly intelligent, helpful AI assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
+			'Claude',
 		);
 
 		WP_Mock::expectFilter(
 			'apbe_ai_provider_response',
 			'What a Wonderful World!',
-			'{"contents":[{"role":"user","parts":[{"text":"Generate me an SEO friendly Headline using: Hello World!"}]}],"generationConfig":{"temperature":1,"maxOutputTokens":256,"topK":40,"topP":0.95,"stopSequences":["\n\n"]}}',
-			'Gemini',
+			'{"model":"grok-4","stream":false,"messages":[{"role":"system","content":"You are Claude, a highly intelligent, helpful AI assistant."},{"role":"user","content":"Generate me an SEO friendly Headline using: Hello World!"}]}',
+			'Claude',
 		);
 
 		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
-		$response = $gemini->run(
+		$response = $claude->run(
 			[
 				'content' => 'Generate me an SEO friendly Headline using: Hello World!',
 			]
@@ -294,8 +271,8 @@ class GeminiTest extends WPMockTestCase {
 	}
 
 	public function test_get_json_error() {
-		$gemini = Mockery::mock( Gemini::class )->makePartial();
-		$gemini->shouldAllowMockingProtectedMethods();
+		$claude = Mockery::mock( Claude::class )->makePartial();
+		$claude->shouldAllowMockingProtectedMethods();
 
 		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
@@ -304,10 +281,10 @@ class GeminiTest extends WPMockTestCase {
 			'apbe_ai_provider_fail_call',
 			'API Error...',
 			'[]',
-			'Gemini',
+			'Claude',
 		);
 
-		$response = $gemini->get_json_error( 'API Error...' );
+		$response = $claude->get_json_error( 'API Error...' );
 
 		$this->assertInstanceOf( \WP_Error::class, $response );
 		$this->assertConditionsMet();

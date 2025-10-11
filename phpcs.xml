@@ -5,6 +5,7 @@
 		<exclude name="Generic.Arrays.DisallowShortArraySyntax" />
 		<exclude name="Generic.Files.OneObjectStructurePerFile.MultipleFound" />
 		<exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
+		<exclude name="Squiz.Scope.MethodScope.Missing" />
 	</rule>
 
 	<arg value="s" />

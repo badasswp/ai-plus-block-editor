@@ -13,6 +13,9 @@ namespace AiPlusBlockEditor\Core;
 use AiPlusBlockEditor\Providers\OpenAI;
 use AiPlusBlockEditor\Providers\Gemini;
 use AiPlusBlockEditor\Providers\DeepSeek;
+use AiPlusBlockEditor\Providers\Grok;
+use AiPlusBlockEditor\Providers\Claude;
+
 use AiPlusBlockEditor\Interfaces\Provider;
 
 class AI implements Provider {
@@ -41,6 +44,14 @@ class AI implements Provider {
 			case 'DeepSeek':
 				$ai_provider = DeepSeek::class;
 				break;
+
+			case 'Grok':
+				$ai_provider = Grok::class;
+				break;
+
+			case 'Claude':
+				$ai_provider = Claude::class;
+				break;
 		}
 
 		return $this->get_instance( new $ai_provider() );
@@ -53,7 +64,7 @@ class AI implements Provider {
 	 * correctly mocking and writing tests for the
 	 * `get_provider` method.
 	 *
-	 * @since TBD
+	 * @since 1.1.2
 	 *
 	 * @param Provider $provider
 	 * @return Provider

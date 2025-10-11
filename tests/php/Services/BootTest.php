@@ -2,8 +2,9 @@
 
 namespace AiPlusBlockEditor\Tests\Services;
 
+use WP_Mock;
 use Mockery;
-use WP_Mock\Tools\TestCase;
+use Badasswp\WPMockTC\WPMockTestCase;
 use AiPlusBlockEditor\Services\Boot;
 use AiPlusBlockEditor\Abstracts\Service;
 
@@ -17,23 +18,34 @@ use AiPlusBlockEditor\Abstracts\Service;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_page
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
  * @covers \AiPlusBlockEditor\Admin\Options::init
+ * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
+ * @covers \AiPlusBlockEditor\Services\Boot::get_providers
  */
-class BootTest extends TestCase {
+class BootTest extends WPMockTestCase {
 	public Boot $boot;
+	public $providers;
 
 	public function setUp(): void {
-		\WP_Mock::setUp();
+		parent::setUp();
 
 		$this->boot = new Boot();
+
+		$this->providers = [
+			'OpenAI'   => 'ChatGPT',
+			'Gemini'   => 'Gemini',
+			'DeepSeek' => 'DeepSeek',
+			'Grok'     => 'Grok',
+			'Claude'   => 'Claude',
+		];
 	}
 
 	public function tearDown(): void {
-		\WP_Mock::tearDown();
+		parent::tearDown();
 	}
 
 	public function test_register() {
-		\WP_Mock::expectActionAdded( 'init', [ $this->boot, 'register_translation' ] );
-		\WP_Mock::expectActionAdded( 'enqueue_block_editor_assets', [ $this->boot, 'register_scripts' ] );
+		WP_Mock::expectActionAdded( 'init', [ $this->boot, 'register_translation' ] );
+		WP_Mock::expectActionAdded( 'enqueue_block_editor_assets', [ $this->boot, 'register_scripts' ] );
 
 		$this->boot->register();
 
@@ -64,18 +76,18 @@ class BootTest extends TestCase {
 				]
 			);
 
-		\WP_Mock::userFunction( 'plugins_url' )
+		WP_Mock::userFunction( 'plugins_url' )
 			->andReturnUsing(
 				function ( $arg ) {
 					return sprintf( 'https://example.com/wp-content/plugins/%s', $arg );
 				}
 			);
 
-		\WP_Mock::userFunction( 'plugin_dir_path' )
+		WP_Mock::userFunction( 'plugin_dir_path' )
 			->with( $boot->getFileName() )
 			->andReturn( '/var/www/wp-content/plugins/ai-plus-block-editor/inc/Services/' );
 
-		\WP_Mock::userFunction( 'wp_enqueue_script' )
+		WP_Mock::userFunction( 'wp_enqueue_script' )
 			->with(
 				'ai-plus-block-editor',
 				'https://example.com/wp-content/plugins/ai-plus-block-editor/dist/app.js',
@@ -94,36 +106,53 @@ class BootTest extends TestCase {
 				false,
 			);
 
-		\WP_Mock::userFunction( 'get_option' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
+		WP_Mock::userFunction( 'get_option' )
+			->andReturn(
+				[
+					'ai_provider' => 'AI Provider',
+				]
 			);
 
-		\WP_Mock::userFunction( 'esc_html__' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		\WP_Mock::userFunction( 'esc_attr' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		\WP_Mock::userFunction( 'wp_localize_script' )
+		WP_Mock::userFunction( 'wp_localize_script' )
+			->with(
+				'ai-plus-block-editor',
+				'apbe',
+				[
+					'provider'  => 'AI Provider',
+					'providers' => [
+						[
+							'label' => 'ChatGPT',
+							'value' => 'OpenAI',
+						],
+						[
+							'label' => 'Gemini',
+							'value' => 'Gemini',
+						],
+						[
+							'label' => 'DeepSeek',
+							'value' => 'DeepSeek',
+						],
+						[
+							'label' => 'Grok',
+							'value' => 'Grok',
+						],
+						[
+							'label' => 'Claude',
+							'value' => 'Claude',
+						],
+					],
+				]
+			)
 			->andReturn( null );
 
-		\WP_Mock::userFunction( 'wp_set_script_translations' )
+		WP_Mock::userFunction( 'wp_set_script_translations' )
 			->with(
 				'ai-plus-block-editor',
 				'ai-plus-block-editor',
 				'/var/www/wp-content/plugins/ai-plus-block-editor/inc/Services/../../languages',
 			);
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$mock_boot->register_scripts();
 
@@ -133,26 +162,12 @@ class BootTest extends TestCase {
 	public function test_register_translation() {
 		$boot = new \ReflectionClass( Boot::class );
 
-		\WP_Mock::userFunction( 'esc_html__' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		\WP_Mock::userFunction( 'esc_attr' )
-			->andReturnUsing(
-				function ( $arg ) {
-					return $arg;
-				}
-			);
-
-		\WP_Mock::userFunction( 'plugin_basename' )
+		WP_Mock::userFunction( 'plugin_basename' )
 			->once()
 			->with( $boot->getFileName() )
 			->andReturn( '/inc/Services/Boot.php' );
 
-		\WP_Mock::userFunction( 'load_plugin_textdomain' )
+		WP_Mock::userFunction( 'load_plugin_textdomain' )
 			->once()
 			->with(
 				'ai-plus-block-editor',
@@ -160,8 +175,43 @@ class BootTest extends TestCase {
 				'/inc/Services/../../languages'
 			);
 
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
+
 		$this->boot->register_translation();
 
 		$this->assertConditionsMet();
+	}
+
+	public function test_get_providers() {
+		$boot = Mockery::mock( Boot::class )->makePartial();
+		$boot->shouldAllowMockingProtectedMethods();
+
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
+
+		$this->assertSame(
+			$boot->get_providers(),
+			[
+				[
+					'label' => 'ChatGPT',
+					'value' => 'OpenAI',
+				],
+				[
+					'label' => 'Gemini',
+					'value' => 'Gemini',
+				],
+				[
+					'label' => 'DeepSeek',
+					'value' => 'DeepSeek',
+				],
+				[
+					'label' => 'Grok',
+					'value' => 'Grok',
+				],
+				[
+					'label' => 'Claude',
+					'value' => 'Claude',
+				],
+			]
+		);
 	}
 }

@@ -67,6 +67,167 @@ public function custom_ai_provider( $ai_provider ) {
 - ai_provider _`{Provider}`_ By default this will be an instance of the Provider interface that MUST contain a `run` method implementation.
 <br/>
 
+#### `apbe_ai_provider_response`
+
+This custom hook (filter) provides the ability to modify the AI Provider response from the LLM.
+
+```php
+add_filter( 'apbe_ai_provider_response', [ $this, 'custom_response' ], 10, 3 );
+
+public function custom_response( $message, $payload, $provider ) {
+    // Strip all HTML tags.
+    return wp_strip_all_tags( $message );
+}
+```
+
+**Parameters**
+
+- $message _`{string}`_ By default this will be a string containing the success message.
+- $payload _`{string}`_ By default this will be a string containing the JSON payload.
+- $provider _`{string}`_ By default this will be a string containing the provider name.
+<br/>
+
+#### `apbe_ai_provider_success_call`
+
+This custom hook (action) provides a way to fire events for successful AI provider calls.
+
+```php
+add_action( 'apbe_ai_provider_success_call', [ $this, 'log_successful_provider_call' ], 10, 3 );
+
+public function log_successful_provider_call( $message, $payload, $provider ) {
+    if ( 'OpenAI' === $provider ) {
+        wp_insert_post(
+            [
+                'post_type'    => 'chatgpt_successful_call',
+                'post_title'   => sprintf( 'Successful Call - %s', $provider ),
+                'post_content' => wp_json_encode(
+                    [
+                        'message'  => $message,
+                        'payload'  => $payload,
+                        'provider' => $provider,
+                    ]
+                )
+            ]
+        )
+    }
+}
+```
+
+**Parameters**
+
+- $message _`{string}`_ By default this will be a string containing the success message.
+- $payload _`{string}`_ By default this will be a string containing the JSON payload.
+- $provider _`{string}`_ By default this will be a string containing the provider name.
+<br/>
+
+#### `apbe_ai_provider_fail_call`
+
+This custom hook (action) provides a way to fire events for failed AI provider calls.
+
+```php
+add_action( 'apbe_ai_provider_fail_call', [ $this, 'log_failed_provider_call' ], 10, 3 );
+
+public function log_failed_provider_call( $message, $payload, $provider ) {
+    if ( 'Grok' === $provider ) {
+        wp_insert_post(
+            [
+                'post_type'    => 'grok_failed_call',
+                'post_title'   => sprintf( 'Failed Call - %s', $provider ),
+                'post_content' => wp_json_encode(
+                    [
+                        'message'  => $message,
+                        'payload'  => $payload,
+                        'provider' => $provider,
+                    ]
+                )
+            ]
+        )
+    }
+}
+```
+
+**Parameters**
+
+- $message _`{string}`_ By default this will be a string containing the fail message.
+- $payload _`{string}`_ By default this will be a string containing the JSON payload.
+- $provider _`{string}`_ By default this will be a string containing the provider name.
+<br/>
+
+#### `apbe_ai_providers`
+
+This custom hook (filter) provides a way to filter the list of providers that appear in the AI Switcher options located in the block editor.
+
+```php
+add_filter( 'apbe_ai_providers', [ $this, 'custom_providers' ], 10, 1 );
+
+public function custom_providers( $providers ) {
+    $providers['your-provider'] = 'Your Provider';
+    return $providers;
+}
+```
+
+**Parameters**
+
+- $providers _`{mixed[]}`_ By default this a key-value pair array containing containing the list of AI providers.
+<br/>
+
+#### `apbe_claude_api_url`
+
+This custom hook (filter) provides the ability to modify the Claude endpoint used for generating AI content.
+
+```php
+add_filter( 'apbe_claude_api_url', [ $this, 'custom_api_url' ], 10, 1 );
+
+public function custom_api_url( $url ) {
+    return esc_url( 'https://api.anthropic.com/v2/messages' );
+}
+```
+
+**Parameters**
+
+- url _`{string}`_ By default this will be a string containing the API endpoint for the Claude LLM.
+<br/>
+
+#### `apbe_claude_args`
+
+This custom hook (filter) provides the ability to modify the Claude args before it is sent to the LLM.
+
+```php
+add_filter( 'apbe_claude_args', [ $this, 'custom_args' ], 10, 1 );
+
+public function custom_args( $args ) {
+    return wp_parse_args(
+        [
+            'model'      => 'claude-4-genius',
+            'max_tokens' => 1024,
+        ],
+        $args
+    )
+}
+```
+
+**Parameters**
+
+- args _`{array}`_ By default this will be an array containing the Claude default parameters.
+<br/>
+
+#### `apbe_claude_system_prompt`
+
+This custom hook (filter) provides the ability to modify the Claude system prompt.
+
+```php
+add_filter( 'apbe_claude_system_prompt', [ $this, 'custom_system_prompt' ], 10, 1 );
+
+public function custom_system_prompt( $prompt ) {
+    return esc_html( 'You are Claude, a super-intelligent Journalist writing a cover story.' );
+}
+```
+
+**Parameters**
+
+- prompt _`{string}`_ By default this will be a string containing the default system prompt.
+<br/>
+
 #### `apbe_deepseek_api_url`
 
 This custom hook (filter) provides the ability to modify the DeepSeek endpoint used for generating AI content.
@@ -108,6 +269,23 @@ public function custom_args( $args ) {
 **Parameters**
 
 - args _`{array}`_ By default this will be an array containing the DeepSeek default parameters.
+<br/>
+
+#### `apbe_deepseek_system_prompt`
+
+This custom hook (filter) provides the ability to modify the DeepSeek system prompt.
+
+```php
+add_filter( 'apbe_deepseek_system_prompt', [ $this, 'custom_system_prompt' ], 10, 1 );
+
+public function custom_system_prompt( $prompt ) {
+    return esc_html( 'You are DeepSeek, a super-intelligent Journalist writing a cover story.' );
+}
+```
+
+**Parameters**
+
+- prompt _`{string}`_ By default this will be a string containing the default system prompt.
 <br/>
 
 #### `apbe_gemini_api_url`
@@ -243,6 +421,23 @@ public function custom_args( $args ) {
 - args _`{array}`_ By default this will be an array containing the OpenAI default parameters.
 <br/>
 
+#### `apbe_open_ai_system_prompt`
+
+This custom hook (filter) provides the ability to modify the OpenAI system prompt.
+
+```php
+add_filter( 'apbe_open_ai_system_prompt', [ $this, 'custom_system_prompt' ], 10, 1 );
+
+public function custom_system_prompt( $prompt ) {
+    return esc_html( 'You are ChatGPT, a super-intelligent Journalist writing a cover story.' );
+}
+```
+
+**Parameters**
+
+- prompt _`{string}`_ By default this will be a string containing the default system prompt.
+<br/>
+
 #### `apbe_tone_prompt`
 
 This custom hook provides a simple way to filter the tone used by the AI LLM endpoint.
@@ -372,15 +567,15 @@ This custom hook (filter) provides the ability to extend the AiTone feature to o
 import { addFilter } from '@wordpress/hooks';
 
 addFilter(
-	'apbe.allowedBlocks',
-	'yourBlocks',
-	( allowedBlocks ) => {
-		if ( allowedBlocks.indexOf( 'your/block' ) === -1 ) {
-			allowedBlocks.push( 'your/block' );
-		}
+    'apbe.allowedBlocks',
+    'yourBlocks',
+    ( allowedBlocks ) => {
+        if ( allowedBlocks.indexOf( 'your/block' ) === -1 ) {
+            allowedBlocks.push( 'your/block' );
+        }
 
-		return allowedBlocks;
-	}
+        return allowedBlocks;
+    }
 );
 ```
 
@@ -397,15 +592,15 @@ This custom hook (filter) provides the ability to extend the menu options shown 
 import { addFilter } from '@wordpress/hooks';
 
 addFilter(
-	'apbe.blockMenuOptions',
-	'yourBlockMenuOptions',
-	( blockMenuOptions ) => {
-		const yourOptions = {
-			conversation: __( 'Use Conversation Tone', 'ai-plus-block-editor' )
-		}
+    'apbe.blockMenuOptions',
+    'yourBlockMenuOptions',
+    ( blockMenuOptions ) => {
+        const yourOptions = {
+            conversation: __( 'Use Conversation Tone', 'ai-plus-block-editor' )
+        }
 
-		return { ...blockMenuOptions, ...yourOptions }
-	}
+        return { ...blockMenuOptions, ...yourOptions }
+    }
 );
 ```
 

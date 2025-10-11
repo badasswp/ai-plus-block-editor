@@ -11,10 +11,21 @@
 namespace AiPlusBlockEditor\Providers;
 
 use Orhanerday\OpenAi\OpenAi as ChatGPT;
-use AiPlusBlockEditor\Admin\Options;
-use AiPlusBlockEditor\Interfaces\Provider;
 
-class OpenAI implements Provider {
+use AiPlusBlockEditor\Admin\Options;
+use AiPlusBlockEditor\Abstracts\Provider;
+use AiPlusBlockEditor\Interfaces\Provider as ProviderInterface;
+
+class OpenAI extends Provider implements ProviderInterface {
+	/**
+	 * Provider name.
+	 *
+	 * @since 1.8.0
+	 *
+	 * @var string
+	 */
+	protected static $name = 'OpenAI';
+
 	/**
 	 * Get Default Args.
 	 *
@@ -86,58 +97,71 @@ class OpenAI implements Provider {
 			);
 		}
 
-		$payload = wp_parse_args( [ 'role' => 'user' ], $payload );
+		/**
+		 * Filter OpenAI System Prompt.
+		 *
+		 * @since 1.8.0
+		 *
+		 * @param string $prompt OpenAI System prompt.
+		 * @return string
+		 */
+		$system_prompt = apply_filters( 'apbe_open_ai_system_prompt', 'You are ChatGPT, a highly intelligent, helpful AI assistant.' );
+
+		// ChatGPT expects a specific body structure.
+		$body = wp_parse_args(
+			[
+				'messages' => [
+					[
+						'role'    => 'system',
+						'content' => $system_prompt,
+					],
+					[
+						'role'    => 'user',
+						'content' => $prompt_text,
+					],
+				],
+			],
+			$this->get_default_args()
+		);
 
 		try {
-			$response = $this->get_client()->chat(
-				wp_parse_args(
-					[ 'messages' => [ $payload ] ],
-					$this->get_default_args()
-				)
-			);
+			$response = $this->get_client()->chat( $body );
 
-			$response = json_decode( $response, true );
+			if ( is_wp_error( $response ) ) {
+				return $this->get_json_error( $response->get_error_message(), $body );
+			}
+
+			// Get JSON response.
+			$data = json_decode( $response, true );
 
 			// Deal gracefully, with API error.
-			if ( isset( $response['error'] ) ) {
-				$error_msg = $response['error']['message'] ?? '';
-				error_log( $error_msg );
-
-				return $this->get_json_error( $error_msg );
+			if ( empty( $data ) || isset( $data['error'] ) ) {
+				return $this->get_json_error(
+					$data['error']['message'] ?? __( 'Unexpected OpenAI API response.', 'ai-plus-block-editor' ),
+					$body
+				);
 			}
 		} catch ( \Exception $e ) {
-			$error_msg = sprintf(
-				'Error: OpenAI API call failed... %s',
-				$e->getMessage()
+			return $this->get_json_error(
+				sprintf(
+					'Error: OpenAI API call failed... %s',
+					$e->getMessage()
+				),
+				$body
 			);
-			error_log( $error_msg );
-
-			return $this->get_json_error( $error_msg );
 		}
 
-		if ( is_null( $response ) ) {
-			$error_msg = 'Error: OpenAI API call returned malformed JSON.';
-			error_log( $error_msg );
-
-			return $this->get_json_error( $error_msg );
+		if ( is_null( $data ) ) {
+			return $this->get_json_error(
+				__( 'Error: OpenAI API call returned malformed JSON.', 'ai-plus-block-editor' ),
+				$body
+			);
 		}
 
-		return $response['choices'][0]['message']['content'] ?? '';
-	}
+		// Get API response.
+		$response = $data['choices'][0]['message']['content'] ?? '';
 
-	/**
-	 * Get JSON Error.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param string $message Error Message.
-	 * @return \WP_Error
-	 */
-	protected function get_json_error( $message ) {
-		return new \WP_Error(
-			'ai-plus-block-editor-json-error',
-			$message,
-			[ 'status' => 500 ]
-		);
+		// Return filtered response.
+		return $this->get_provider_response( $response, wp_json_encode( $body ) );
 	}
 }

@@ -62,6 +62,13 @@ describe( 'Switcher', () => {
 
 		( window as any ).apbe = {
 			provider: 'OpenAI',
+			providers: [
+				{ label: 'ChatGPT', value: 'OpenAI' },
+				{ label: 'Gemini', value: 'Gemini' },
+				{ label: 'DeepSeek', value: 'DeepSeek' },
+				{ label: 'Grok', value: 'Grok' },
+				{ label: 'Claude', value: 'Claude' },
+			],
 		};
 
 		jest.spyOn( console, 'error' ).mockImplementation( () => {} );
@@ -82,6 +89,7 @@ describe( 'Switcher', () => {
 		expect( getByText( 'Gemini' ) ).toBeVisible();
 		expect( getByText( 'DeepSeek' ) ).toBeVisible();
 		expect( getByText( 'Grok' ) ).toBeVisible();
+		expect( getByText( 'Claude' ) ).toBeVisible();
 	} );
 
 	it( 'makes an API call request on selection change', async () => {

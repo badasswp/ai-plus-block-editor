@@ -2,36 +2,38 @@
 
 namespace AiPlusBlockEditor\Tests\Admin;
 
+use WP_Mock;
 use Mockery;
-use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Admin\Options;
+use Badasswp\WPMockTC\WPMockTestCase;
 
 /**
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_page
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_notice
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields
+ * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  */
-class OptionsTest extends TestCase {
+class OptionsTest extends WPMockTestCase {
+	public $providers;
+
 	public function setUp(): void {
-		\WP_Mock::setUp();
+		parent::setUp();
+
+		$this->providers = [
+			'OpenAI'   => 'ChatGPT',
+			'Gemini'   => 'Gemini',
+			'DeepSeek' => 'DeepSeek',
+			'Grok'     => 'Grok',
+			'Claude'   => 'Claude',
+		];
 	}
 
 	public function tearDown(): void {
-		\WP_Mock::tearDown();
+		parent::tearDown();
 	}
 
 	public function test_get_form_page() {
-		\WP_Mock::userFunction(
-			'esc_html__',
-			[
-				'times'  => 2,
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
 		$form_page = Options::get_form_page();
 
 		$this->assertSame(
@@ -46,16 +48,6 @@ class OptionsTest extends TestCase {
 	}
 
 	public function test_get_form_submit() {
-		\WP_Mock::userFunction(
-			'esc_html__',
-			[
-				'times'  => 2,
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
 		$form_submit = Options::get_form_submit();
 
 		$this->assertSame(
@@ -75,32 +67,7 @@ class OptionsTest extends TestCase {
 	}
 
 	public function test_get_form_fields() {
-		\WP_Mock::userFunction(
-			'esc_html__',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
-		\WP_Mock::userFunction(
-			'esc_attr',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
-		\WP_Mock::userFunction(
-			'esc_attr__',
-			[
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
+		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$form_fields = Options::get_form_fields();
 
@@ -119,6 +86,7 @@ class OptionsTest extends TestCase {
 								'Gemini'   => 'Gemini',
 								'DeepSeek' => 'DeepSeek',
 								'Grok'     => 'Grok',
+								'Claude'   => 'Claude',
 							],
 						],
 					],
@@ -187,21 +155,27 @@ class OptionsTest extends TestCase {
 						],
 					],
 				],
+				'claude_options'        => [
+					'heading'  => 'Claude',
+					'controls' => [
+						'claude_enable' => [
+							'control' => 'checkbox',
+							'label'   => 'Enable Claude',
+							'summary' => 'Use Claude capabilities in Block Editor',
+						],
+						'claude_token'  => [
+							'control'     => 'password',
+							'placeholder' => '',
+							'label'       => 'API Keys',
+							'summary'     => 'e.g. ae2kgch7ib9eqcbeveq9a923nv87392av',
+						],
+					],
+				],
 			]
 		);
 	}
 
 	public function test_get_form_notice() {
-		\WP_Mock::userFunction(
-			'esc_html__',
-			[
-				'times'  => 1,
-				'return' => function ( $text, $domain = 'ai-plus-block-editor' ) {
-					return $text;
-				},
-			]
-		);
-
 		$form_notice = Options::get_form_notice();
 
 		$this->assertSame(

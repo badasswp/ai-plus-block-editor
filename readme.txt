@@ -3,7 +3,7 @@ Contributors: badasswp
 Tags: ai, block, editor, chat-gpt, assistant.
 Requires at least: 6.0
 Tested up to: 6.8
-Stable tag: 1.7.1
+Stable tag: 1.8.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -32,7 +32,7 @@ Save time and improve engagement with AI-powered insights directly within the Wo
 
 Our plugin comes with everything you need to add AI capabilities to your Block Editor.
 
-✔️ <strong>Support for LLMs</strong> such as <strong>ChatGPT, Gemini, Deepseek, Grok</strong> and a host of others.
+✔️ <strong>Support for LLMs</strong> such as <strong>ChatGPT, Gemini, Deepseek, Grok, Claude</strong> and a host of others.
 ✔️ <strong>Change Text Tone (casual, official, narrative, and so on...)</strong> in block editor.
 ✔️ <strong>Generate Title/Headline</strong> using AI.
 ✔️ <strong>Generate Summary/Excerpts</strong>.
@@ -67,6 +67,28 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 4. Sidebar Icon - Locate AI Sidebar feature on the top-right corner of screen.
 
 == Changelog ==
+
+= 1.8.0 =
+* Feat: Implement Claude AI provider.
+* Fix: Load missing Grok provider correctly.
+* Feat: Implement AI provider abstraction.
+* Refactor: Improve AI providers.
+* Feat: Enable filtering of AI Switcher options.
+* Feat: Add error logging capabilities.
+* Chore: Update plugin menu icon.
+* Feat: Add custom filters:
+  - `apbe_ai_provider_success_call`.
+  - `apbe_ai_provider_fail_call`.
+  - `apbe_ai_provider_response`.
+  - `apbe_ai_providers`.
+  - `apbe_claude_api_url`.
+  - `apbe_claude_args`.
+  - `apbe_claude_system_prompt`.
+  - `apbe_deepseek_system_prompt`.
+  - `apbe_open_ai_system_prompt`.
+* Docs: Update README docs.
+* Test: Update unit tests.
+* Tested up to WP 6.8.2.
 
 = 1.7.1 =
 * Fix: Update issue with broken plugin deploy.

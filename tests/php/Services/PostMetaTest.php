@@ -2,6 +2,7 @@
 
 namespace AiPlusBlockEditor\Tests\Services;
 
+use WP_Mock;
 use Mockery;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Services\PostMeta;
@@ -15,17 +16,17 @@ class PostMetaTest extends TestCase {
 	public PostMeta $post_meta;
 
 	public function setUp(): void {
-		\WP_Mock::setUp();
+		WP_Mock::setUp();
 
 		$this->post_meta = new PostMeta();
 	}
 
 	public function tearDown(): void {
-		\WP_Mock::tearDown();
+		WP_Mock::tearDown();
 	}
 
 	public function test_register() {
-		\WP_Mock::expectActionAdded( 'init', [ $this->post_meta, 'register_post_meta' ] );
+		WP_Mock::expectActionAdded( 'init', [ $this->post_meta, 'register_post_meta' ] );
 
 		$this->post_meta->register();
 
@@ -33,7 +34,7 @@ class PostMetaTest extends TestCase {
 	}
 
 	public function test_register_post_meta() {
-		\WP_Mock::onFilter( 'apbe_post_meta' )
+		WP_Mock::onFilter( 'apbe_post_meta' )
 			->with(
 				[
 					'apbe_headline',
@@ -49,7 +50,7 @@ class PostMetaTest extends TestCase {
 				]
 			);
 
-		\WP_Mock::userFunction( 'register_post_meta' )
+		WP_Mock::userFunction( 'register_post_meta' )
 			->with(
 				'',
 				'apbe_summary',

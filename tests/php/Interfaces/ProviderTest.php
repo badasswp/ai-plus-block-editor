@@ -2,6 +2,7 @@
 
 namespace AiPlusBlockEditor\Tests\Interfaces;
 
+use WP_Mock;
 use Mockery;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Interfaces\Provider;
@@ -13,13 +14,13 @@ class ProviderTest extends TestCase {
 	public Provider $provider;
 
 	public function setUp(): void {
-		\WP_Mock::setUp();
+		WP_Mock::setUp();
 
 		$this->provider = $this->getMockForAbstractClass( Provider::class );
 	}
 
 	public function tearDown(): void {
-		\WP_Mock::tearDown();
+		WP_Mock::tearDown();
 	}
 
 	public function test_run() {
