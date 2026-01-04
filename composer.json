@@ -1,7 +1,7 @@
 {
 	"name": "badasswp/ai-plus-block-editor",
 	"description": "Add AI Capabilities to the WP Block Editor.",
-	"type": "package",
+	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",
 	"autoload": {
 		"psr-4": {
