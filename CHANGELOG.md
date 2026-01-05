@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.8.1
+* Specify `wordpress-plugin` as Composer package type.
+* Tested up to WP 6.9.
+
 # 1.8.0
 * Feat: Implement Claude AI provider.
 * Fix: Load missing Grok provider correctly.
