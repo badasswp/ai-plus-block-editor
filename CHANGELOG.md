@@ -1,10 +1,10 @@
 # Changelog
 
-# 1.8.1
+## 1.8.1
 * Specify `wordpress-plugin` as Composer package type.
 * Tested up to WP 6.9.
 
-# 1.8.0
+## 1.8.0
 * Feat: Implement Claude AI provider.
 * Fix: Load missing Grok provider correctly.
 * Feat: Implement AI provider abstraction.
@@ -26,33 +26,33 @@
 * Test: Update unit tests.
 * Tested up to WP 6.8.2.
 
-# 1.7.1
+## 1.7.1
 * Fix: Update issue with broken plugin deploy.
 * Docs: Update README docs.
 
-# 1.7.0
+## 1.7.0
 * Feat: Add Grok AI provider.
 * Feat: Implement custom filters `apbe_grok_api_url`, `apbe_grok_args`, `apbe_grok_system_prompt`.
 * Test: Update unit test cases.
 * Docs: Update README docs.
 * Tested up to WP 6.8.
 
-# 1.6.2
+## 1.6.2
 * Update CI/CD build workflow.
 * Tested up to WP 6.8.2.
 
-# 1.6.1
+## 1.6.1
 * Upgrade plugin version.
 * Tested up to WP 6.8.2.
 
-# 1.6.0
+## 1.6.0
 * Refactor: Update Components to use WP's snackbar notice.
 * Feat: Implement DeepSeek AI provider.
 * Feat: Implement custom filters `apbe_deepseek_api_url`, `apbe_deepseek_args`.
 * Fix: Console errors.
 * Tested up to WP 6.8.
 
-# 1.5.0
+## 1.5.0
 * Feat: AI Provider Switcher.
 * Feat: Add Google Gemini AI provider.
 * Feat: Implement custom filters `apbe_gemini_api_url`, `apbe_gemini_args`.
@@ -64,7 +64,7 @@
 * Chore: Relocate `apbe.blockMenuOptions` hook.
 * Fix: Console errors in unit tests.
 
-# 1.4.0
+## 1.4.0
 * Refactor: Adopt useSelect & useDispatch hooks in sidebar components.
 * Feat: Add new language translations for Italian, Russian, Chinese, Arabic, Hebrew & Croatian.
 * Feat: Add new custom filters `apbe.allowedBlocks`.
@@ -72,7 +72,7 @@
 * Update README docs.
 * Tested up to WP 6.7.2.
 
-# 1.3.0
+## 1.3.0
 * Feat: Update translations for French, Danish, Spanish & German languages.
 * Feat: Add new toast for AiTone usage.
 * Fix: Resolve issue with `createErrorNotice` for AiTone.
