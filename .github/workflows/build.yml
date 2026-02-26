@@ -15,47 +15,47 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repo
-      uses: actions/checkout@v3
+      - name: Checkout Repo
+        uses: actions/checkout@v3
 
-    - name: Checkout to Master Built branch
-      if: github.ref == 'refs/heads/master'
-      env:
-        USER_EMAIL: "badasswpdev@gmail.com"
-        USER_NAME: "badasswp"
-      run: |
-        git config user.email "${USER_EMAIL}"
-        git config user.name "${USER_NAME}"
-        git checkout -b master-built
+      - name: Checkout to Master Built branch
+        if: github.ref == 'refs/heads/master'
+        env:
+          USER_EMAIL: "badasswpdev@gmail.com"
+          USER_NAME: "badasswp"
+        run: |
+          git config user.email "${USER_EMAIL}"
+          git config user.name "${USER_NAME}"
+          git checkout -b master-built
 
-    - name: Set up Node.js 20.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: 20.x
+      - name: Set up Node.js 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
 
-    - name: Build Dist folder
-      run: |
-        yarn install && yarn build
-        git add dist/ -f
-        git rm package.json
+      - name: Build Dist folder
+        run: |
+          yarn install && yarn build
+          git add dist/ -f
+          git rm package.json
 
-    - name: Build Vendor folder
-      run: |
-        composer install --no-dev
-        git add vendor/ -f
+      - name: Build Vendor folder
+        run: |
+          composer install --no-dev
+          git add vendor/ -f
 
-    - name: Clean Up Files
-      run: |
-        while IFS= read -r file; do
-          git rm -rf "$file"
-        done < .deployignore
-        git rm .deployignore
-        git clean -f yarn.lock
-        git clean -f node_modules
-        git clean -f composer.lock
+      - name: Clean Up Files
+        run: |
+          while IFS= read -r file; do
+            git rm -rf "$file"
+          done < .deployignore
+          git rm .deployignore
+          git clean -f yarn.lock
+          git clean -f node_modules
+          git clean -f composer.lock
 
-    - name: Push to Master Built
-      run: |
-        git commit -m "push to master-built"
-        git push origin master-built -f
-        rm -rf .git
+      - name: Push to Master Built
+        run: |
+          git commit -m "push to master-built"
+          git push origin master-built -f
+          rm -rf .git

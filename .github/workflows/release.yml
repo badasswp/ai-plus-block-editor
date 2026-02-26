@@ -1,0 +1,107 @@
+name: AiPlusBlockEditor Release
+
+on:
+  push:
+    branches:
+      - "release-*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: startsWith(github.ref_name, 'release-')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Confirm branch
+        run: |
+          echo "Release workflow triggered on branch: ${{ github.ref_name }}"
+
+      - name: Checkout release branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up Node.js 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - name: Install NPM
+        run: |
+          yarn install
+
+      - name: Check JS Linting
+        run: |
+          yarn lint:js
+
+      - name: Run JS Unit Tests
+        run: |
+          yarn test:js
+
+      - name: Set up PHP v8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+
+      - name: Validate Composer
+        run: |
+          composer validate --strict
+
+      - name: Install Composer
+        run: |
+          composer install --prefer-dist --no-progress
+
+      - name: Check PHP Linting
+        run: |
+          composer run lint
+
+      - name: Set Git identity
+        run: |
+          git config user.email "badasswpdev@gmail.com"
+          git config user.name "badasswp"
+
+      - name: Create / reset release-built branch
+        run: |
+          BUILT_BRANCH="${{ github.ref_name }}-built"
+          echo "BUILT_BRANCH=$BUILT_BRANCH" >> $GITHUB_ENV
+          git checkout -B "$BUILT_BRANCH"
+
+      - name: Build Dist folder
+        run: |
+          yarn install && yarn build
+          git add dist/ -f
+          git rm package.json
+
+      - name: Build Vendor folder
+        run: |
+          composer install --no-dev
+          git add vendor/ -f
+
+      - name: Clean Up Files
+        run: |
+          if [ -f .deployignore ]; then
+            while IFS= read -r file; do
+              git rm -r "$file"
+            done < .deployignore
+            git rm .deployignore
+          fi
+          git clean -f yarn.lock
+          git clean -f node_modules
+          git clean -f composer.lock
+
+      - name: Commit & push release-built branch
+        run: |
+          git commit -m "Build from ${{ github.ref_name }}"
+          git push origin "$BUILT_BRANCH" --force
+
+      - name: Deploy to Staging
+        uses: burnett01/rsync-deployments@6.0.0
+        with:
+          switches: -avzr --delete
+          path: ./
+          remote_path: /home/appworld/www/wp-content/plugins/ai-plus-block-editor
+          remote_host: ${{ secrets.APBE_HOST }}
+          remote_user: ${{ secrets.APBE_USER }}
+          remote_key: ${{ secrets.APBE_PRIVATE_KEY }}
