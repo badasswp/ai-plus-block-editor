@@ -87,7 +87,7 @@ jobs:
         run: |
           if [ -f .deployignore ]; then
             while IFS= read -r file; do
-              git rm -r "$file"
+              git rm -rf "$file"
             done < .deployignore
             git rm .deployignore
           fi
