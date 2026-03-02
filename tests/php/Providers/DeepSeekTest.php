@@ -4,6 +4,7 @@ namespace AiPlusBlockEditor\Tests\Providers;
 
 use WP_Mock;
 use Mockery;
+use WP_Error;
 use Badasswp\WPMockTC\WPMockTestCase;
 use AiPlusBlockEditor\Providers\DeepSeek;
 
@@ -94,7 +95,7 @@ class DeepSeekTest extends WPMockTestCase {
 		$deepseek = Mockery::mock( DeepSeek::class )->makePartial();
 		$deepseek->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::userFunction( 'get_option' )
@@ -120,7 +121,7 @@ class DeepSeekTest extends WPMockTestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 
@@ -128,7 +129,7 @@ class DeepSeekTest extends WPMockTestCase {
 		$deepseek = Mockery::mock( DeepSeek::class )->makePartial();
 		$deepseek->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::userFunction( 'get_option' )
@@ -154,7 +155,7 @@ class DeepSeekTest extends WPMockTestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 
@@ -162,7 +163,7 @@ class DeepSeekTest extends WPMockTestCase {
 		$deepseek = Mockery::mock( DeepSeek::class )->makePartial();
 		$deepseek->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		$deepseek->shouldReceive( 'get_default_args' )
@@ -212,7 +213,7 @@ class DeepSeekTest extends WPMockTestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 
@@ -220,7 +221,7 @@ class DeepSeekTest extends WPMockTestCase {
 		$deepseek = Mockery::mock( DeepSeek::class )->makePartial();
 		$deepseek->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		$deepseek->shouldReceive( 'get_default_args' )
@@ -290,7 +291,7 @@ class DeepSeekTest extends WPMockTestCase {
 		$deepseek = Mockery::mock( DeepSeek::class )->makePartial();
 		$deepseek->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::expectAction(
@@ -302,7 +303,7 @@ class DeepSeekTest extends WPMockTestCase {
 
 		$response = $deepseek->get_json_error( 'API Error...' );
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 }

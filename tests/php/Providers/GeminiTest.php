@@ -4,6 +4,7 @@ namespace AiPlusBlockEditor\Tests\Providers;
 
 use WP_Mock;
 use Mockery;
+use WP_Error;
 use Badasswp\WPMockTC\WPMockTestCase;
 use AiPlusBlockEditor\Providers\Gemini;
 
@@ -108,7 +109,7 @@ class GeminiTest extends WPMockTestCase {
 		$gemini = Mockery::mock( Gemini::class )->makePartial();
 		$gemini->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::userFunction( 'get_option' )
@@ -134,7 +135,7 @@ class GeminiTest extends WPMockTestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 
@@ -142,7 +143,7 @@ class GeminiTest extends WPMockTestCase {
 		$gemini = Mockery::mock( Gemini::class )->makePartial();
 		$gemini->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::userFunction( 'get_option' )
@@ -168,7 +169,7 @@ class GeminiTest extends WPMockTestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 
@@ -176,7 +177,7 @@ class GeminiTest extends WPMockTestCase {
 		$gemini = Mockery::mock( Gemini::class )->makePartial();
 		$gemini->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		$gemini->shouldReceive( 'get_default_args' )
@@ -224,7 +225,7 @@ class GeminiTest extends WPMockTestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 
@@ -232,7 +233,7 @@ class GeminiTest extends WPMockTestCase {
 		$gemini = Mockery::mock( Gemini::class )->makePartial();
 		$gemini->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		$gemini->shouldReceive( 'get_default_args' )
@@ -297,7 +298,7 @@ class GeminiTest extends WPMockTestCase {
 		$gemini = Mockery::mock( Gemini::class )->makePartial();
 		$gemini->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::expectAction(
@@ -309,7 +310,7 @@ class GeminiTest extends WPMockTestCase {
 
 		$response = $gemini->get_json_error( 'API Error...' );
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 }
