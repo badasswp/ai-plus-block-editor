@@ -10,7 +10,7 @@ use AiPlusBlockEditor\Routes\Switcher;
 
 /**
  * @covers \AiPlusBlockEditor\Routes\Switcher::response
- * @covers \AiPlusBlockEditor\Routes\Switcher::get_400_response
+ * @covers \AiPlusBlockEditor\Routes\Switcher::get_error_response
  * @covers \AiPlusBlockEditor\Admin\Options::__callStatic
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_notice

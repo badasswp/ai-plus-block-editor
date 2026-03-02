@@ -10,7 +10,7 @@ use AiPlusBlockEditor\Routes\Tone;
 
 /**
  * @covers \AiPlusBlockEditor\Routes\Tone::response
- * @covers \AiPlusBlockEditor\Routes\Tone::get_400_response
+ * @covers \AiPlusBlockEditor\Routes\Tone::get_error_response
  * @covers \AiPlusBlockEditor\Routes\Tone::get_response
  */
 class ToneTest extends TestCase {

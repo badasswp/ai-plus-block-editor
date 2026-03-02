@@ -10,7 +10,7 @@ use AiPlusBlockEditor\Routes\SideBar;
 
 /**
  * @covers \AiPlusBlockEditor\Routes\SideBar::response
- * @covers \AiPlusBlockEditor\Routes\SideBar::get_400_response
+ * @covers \AiPlusBlockEditor\Routes\SideBar::get_error_response
  * @covers \AiPlusBlockEditor\Routes\SideBar::get_response
  */
 class SideBarTest extends TestCase {
