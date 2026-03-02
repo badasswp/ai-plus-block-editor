@@ -9,7 +9,7 @@
  */
 
 // First we need to load the composer autoloader.
-require_once dirname( __DIR__ ) . '/../vendor/autoload.php';
+require_once dirname( __DIR__ ) . '/../../vendor/autoload.php';
 
 // Bootstrap WP_Mock.
 WP_Mock::activateStrictMode();
