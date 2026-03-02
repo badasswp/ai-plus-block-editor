@@ -57,7 +57,7 @@ class Switcher extends Route implements Router {
 		$args = $this->request->get_json_params();
 
 		if ( empty( $args['provider'] ?? '' ) ) {
-			return $this->get_400_response(
+			return $this->get_error_response(
 				sprintf(
 					'API Request does not contain a valid AI provider. Provider: %s',
 					$args['provider'] ?? ''
