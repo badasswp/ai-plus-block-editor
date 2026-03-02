@@ -4,7 +4,7 @@ import { act, render, fireEvent, waitFor } from '@testing-library/react';
 import apiFetch from '@wordpress/api-fetch';
 import { useDispatch } from '@wordpress/data';
 
-import Switcher from '../../src/components/Switcher';
+import Switcher from '../../../src/components/Switcher';
 
 jest.mock( '@wordpress/i18n', () => ( {
 	__: jest.fn( ( arg ) => arg ),

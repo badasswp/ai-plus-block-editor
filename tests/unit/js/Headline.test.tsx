@@ -4,7 +4,7 @@ import { act, render, fireEvent, waitFor } from '@testing-library/react';
 import apiFetch from '@wordpress/api-fetch';
 import { useSelect, useDispatch } from '@wordpress/data';
 
-import Headline from '../../src/components/Headline';
+import Headline from '../../../src/components/Headline';
 
 jest.mock( '@wordpress/i18n', () => ( {
 	__: jest.fn( ( arg ) => arg ),
