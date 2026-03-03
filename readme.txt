@@ -68,6 +68,9 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.9.0 =
+* Refactor: Replace get_400_response with get_error_response.
+
 = 1.8.1 =
 * Specify `wordpress-plugin` as Composer package type.
 * Tested up to WP 6.9.
