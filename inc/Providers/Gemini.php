@@ -89,7 +89,7 @@ class Gemini extends Provider implements ProviderInterface {
 	 * @since 1.5.0
 	 *
 	 * @param mixed[] $payload JSON Payload.
-	 * @return string|WP_Error
+	 * @return string|\WP_Error
 	 */
 	public function run( $payload ) {
 		$api_key = get_option( Options::get_page_option(), [] )['google_gemini_token'] ?? '';
