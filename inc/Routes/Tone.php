@@ -60,7 +60,7 @@ class Tone extends Route implements Router {
 
 		// Bail out, if it does NOT exists.
 		if ( empty( $this->args['text'] ?? '' ) ) {
-			return $this->get_400_response(
+			return $this->get_error_response(
 				sprintf(
 					'API Request does not contain a text. Post ID: %s',
 					$this->args['id'] ?? ''

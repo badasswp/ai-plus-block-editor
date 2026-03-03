@@ -127,27 +127,29 @@ abstract class Route implements Router {
 	}
 
 	/**
-	 * Get 400 Response.
+	 * Get Error Response.
 	 *
-	 * This method returns a 400 response for Bad
+	 * This method returns an error response for Bad
 	 * requests submitted.
 	 *
 	 * @since 1.0.0
 	 *
 	 * @param string $message Error Msg.
-	 * @return WP_Error
+	 * @param int    $code    Error Status code.
+	 *
+	 * @return \WP_Error
 	 */
-	public function get_400_response( $message ): WP_Error {
+	public function get_error_response( $message, $code = 400 ): \WP_Error {
 		$args = $this->request->get_json_params();
 
 		return new WP_Error(
 			'ai-plus-block-editor-bad-request',
 			sprintf(
-				'Fatal Error: Bad Request, %s',
+				'Fatal Error: %s',
 				$message
 			),
 			[
-				'status'  => 400,
+				'status'  => $code,
 				'request' => $args,
 			]
 		);

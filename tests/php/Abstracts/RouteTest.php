@@ -15,7 +15,7 @@ use AiPlusBlockEditor\Interfaces\Provider;
 /**
  * @covers \AiPlusBlockEditor\Abstracts\Route::request
  * @covers \AiPlusBlockEditor\Abstracts\Route::register_route
- * @covers \AiPlusBlockEditor\Abstracts\Route::get_400_response
+ * @covers \AiPlusBlockEditor\Abstracts\Route::get_error_response
  * @covers \AiPlusBlockEditor\Abstracts\Route::is_user_permissible
  * @covers \AiPlusBlockEditor\Abstracts\Route::get_ai_client
  */
@@ -92,8 +92,8 @@ class RouteTest extends TestCase {
 		$this->assertConditionsMet();
 	}
 
-	public function test_get_400_response() {
-		$request = Mockery::mock( WP_REST_Request::class )->makePartial();
+	public function test_get_error_response() {
+		$request = Mockery::mock( \WP_REST_Request::class )->makePartial();
 		$request->shouldAllowMockingProtectedMethods();
 
 		$request->shouldReceive( 'get_json_params' )
@@ -120,7 +120,7 @@ class RouteTest extends TestCase {
 				]
 			);
 
-		$error_response = $this->route->get_400_response( 'Something went terribly wrong...' );
+		$error_response = $this->route->get_error_response( 'Something went terribly wrong...' );
 
 		$this->assertInstanceOf( WP_Error::class, $error_response );
 		$this->assertConditionsMet();
