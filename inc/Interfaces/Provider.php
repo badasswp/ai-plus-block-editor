@@ -10,6 +10,8 @@
 
 namespace AiPlusBlockEditor\Interfaces;
 
+use WP_Error;
+
 interface Provider {
 	/**
 	 * Run AI Prompt.
@@ -17,7 +19,7 @@ interface Provider {
 	 * @since 1.0.0
 	 *
 	 * @param mixed[] $payload JSON Payload.
-	 * @return string|\WP_Error
+	 * @return string|WP_Error
 	 */
 	public function run( $payload );
 }

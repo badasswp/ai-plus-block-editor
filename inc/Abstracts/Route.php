@@ -10,6 +10,9 @@
 
 namespace AiPlusBlockEditor\Abstracts;
 
+use WP_Error;
+use WP_REST_Request;
+use WP_REST_Response;
 use AiPlusBlockEditor\Interfaces\Router;
 use AiPlusBlockEditor\Interfaces\Provider;
 use AiPlusBlockEditor\Core\AI;
@@ -57,9 +60,9 @@ abstract class Route implements Router {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var \WP_REST_Request
+	 * @var WP_REST_Request
 	 */
-	public \WP_REST_Request $request;
+	public WP_REST_Request $request;
 
 	/**
 	 * Response Callback.
@@ -69,7 +72,7 @@ abstract class Route implements Router {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return \WP_REST_Response|\WP_Error
+	 * @return WP_REST_Response|WP_Error
 	 */
 	abstract public function response();
 
@@ -82,8 +85,8 @@ abstract class Route implements Router {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param \WP_REST_Request $request Request object.
-	 * @return \WP_REST_Response|\WP_Error
+	 * @param WP_REST_Request $request Request object.
+	 * @return WP_REST_Response|WP_Error
 	 */
 	public function request( $request ) {
 		$this->ai      = $this->get_ai_client( new AI() );
@@ -132,12 +135,12 @@ abstract class Route implements Router {
 	 * @since 1.0.0
 	 *
 	 * @param string $message Error Msg.
-	 * @return \WP_Error
+	 * @return WP_Error
 	 */
-	public function get_400_response( $message ): \WP_Error {
+	public function get_400_response( $message ): WP_Error {
 		$args = $this->request->get_json_params();
 
-		return new \WP_Error(
+		return new WP_Error(
 			'ai-plus-block-editor-bad-request',
 			sprintf(
 				'Fatal Error: Bad Request, %s',
@@ -155,14 +158,14 @@ abstract class Route implements Router {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param \WP_REST_Request $request Request Object.
-	 * @return bool|\WP_Error
+	 * @param WP_REST_Request $request Request Object.
+	 * @return bool|WP_Error
 	 */
 	public function is_user_permissible( $request ) {
 		$http_error = rest_authorization_required_code();
 
 		if ( ! current_user_can( 'administrator' ) ) {
-			return new \WP_Error(
+			return new WP_Error(
 				'apbe-rest-forbidden',
 				sprintf( 'Invalid User. Error: %s', $http_error ),
 				[ 'status' => $http_error ]
@@ -170,7 +173,7 @@ abstract class Route implements Router {
 		}
 
 		if ( ! wp_verify_nonce( $request->get_header( 'X-WP-Nonce' ), 'wp_rest' ) ) {
-			return new \WP_Error(
+			return new WP_Error(
 				'apbe-rest-forbidden',
 				sprintf( 'Invalid Nonce. Error: %s', $http_error ),
 				[ 'status' => $http_error ]

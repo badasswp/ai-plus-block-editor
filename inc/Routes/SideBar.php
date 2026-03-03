@@ -10,6 +10,9 @@
 
 namespace AiPlusBlockEditor\Routes;
 
+use WP_Error;
+use WP_REST_Request;
+use WP_REST_Response;
 use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Abstracts\Route;
 use AiPlusBlockEditor\Interfaces\Router;
@@ -41,16 +44,16 @@ class SideBar extends Route implements Router {
 	 *
 	 * @since 1.1.0
 	 *
-	 * @var \WP_REST_Request
+	 * @var WP_REST_Request
 	 */
-	public \WP_REST_Request $request;
+	public WP_REST_Request $request;
 
 	/**
 	 * Response Callback.
 	 *
 	 * @since 1.1.0
 	 *
-	 * @return \WP_REST_Response|\WP_Error
+	 * @return WP_REST_Response|WP_Error
 	 */
 	public function response() {
 		$this->args = $this->request->get_json_params();
@@ -77,7 +80,7 @@ class SideBar extends Route implements Router {
 	 * @since 1.1.0
 	 * @since 1.5.0 Add Social prompt.
 	 *
-	 * @return \WP_REST_Response|\WP_Error
+	 * @return WP_REST_Response|WP_Error
 	 */
 	protected function get_response() {
 		// Get Args.

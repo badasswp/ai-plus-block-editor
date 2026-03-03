@@ -10,6 +10,9 @@
 
 namespace AiPlusBlockEditor\Routes;
 
+use WP_Error;
+use WP_REST_Request;
+use WP_REST_Response;
 use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Admin\Options;
 use AiPlusBlockEditor\Abstracts\Route;
@@ -42,16 +45,16 @@ class Switcher extends Route implements Router {
 	 *
 	 * @since 1.5.0
 	 *
-	 * @var \WP_REST_Request
+	 * @var WP_REST_Request
 	 */
-	public \WP_REST_Request $request;
+	public WP_REST_Request $request;
 
 	/**
 	 * Response Callback.
 	 *
 	 * @since 1.5.0
 	 *
-	 * @return \WP_REST_Response|\WP_Error
+	 * @return WP_REST_Response|WP_Error
 	 */
 	public function response() {
 		$args = $this->request->get_json_params();

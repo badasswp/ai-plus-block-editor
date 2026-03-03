@@ -11,14 +11,18 @@
 
 namespace AiPlusBlockEditor\Interfaces;
 
+use WP_Error;
+use WP_REST_Request;
+use WP_REST_Response;
+
 interface Router {
 	/**
 	 * Request Callback.
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param \WP_REST_Request $request Request object.
-	 * @return \WP_REST_Response|\WP_Error
+	 * @param WP_REST_Request $request Request object.
+	 * @return WP_REST_Response|WP_Error
 	 */
 	public function request( $request );
 
@@ -27,7 +31,7 @@ interface Router {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return \WP_REST_Response|\WP_Error
+	 * @return WP_REST_Response|WP_Error
 	 */
 	public function response();
 
@@ -36,8 +40,8 @@ interface Router {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param \WP_REST_Request $request Request Object.
-	 * @return bool|\WP_Error
+	 * @param WP_REST_Request $request Request Object.
+	 * @return bool|WP_Error
 	 */
 	public function is_user_permissible( $request );
 }

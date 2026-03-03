@@ -10,6 +10,7 @@
 
 namespace AiPlusBlockEditor\Providers;
 
+use WP_Error;
 use AiPlusBlockEditor\Admin\Options;
 use AiPlusBlockEditor\Abstracts\Provider;
 use AiPlusBlockEditor\Interfaces\Provider as ProviderInterface;
@@ -81,7 +82,7 @@ class Grok extends Provider implements ProviderInterface {
 	 * @since 1.7.0
 	 *
 	 * @param mixed[] $payload JSON Payload.
-	 * @return string|\WP_Error
+	 * @return string|WP_Error
 	 */
 	public function run( $payload ) {
 		$api_key = get_option( Options::get_page_option(), [] )['grok_token'] ?? '';

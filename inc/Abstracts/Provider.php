@@ -10,6 +10,7 @@
 
 namespace AiPlusBlockEditor\Abstracts;
 
+use WP_Error;
 use AiPlusBlockEditor\Interfaces\Provider as ProviderInterface;
 
 /**
@@ -46,7 +47,7 @@ abstract class Provider implements ProviderInterface {
 	 * @since 1.8.0
 	 *
 	 * @param mixed[] $payload JSON Payload.
-	 * @return string|\WP_Error
+	 * @return string|WP_Error
 	 */
 	abstract public function run( $payload );
 
@@ -130,9 +131,9 @@ abstract class Provider implements ProviderInterface {
 	 * @param string  $error Error Message.
 	 * @param mixed[] $body  JSON payload.
 	 *
-	 * @return \WP_Error
+	 * @return WP_Error
 	 */
-	protected function get_json_error( $error, $body = [] ): \WP_Error {
+	protected function get_json_error( $error, $body = [] ): WP_Error {
 		// Get Payload.
 		$payload = wp_json_encode( $body );
 
@@ -166,7 +167,7 @@ abstract class Provider implements ProviderInterface {
 		 */
 		do_action( 'apbe_ai_provider_fail_call', $error, $payload, $provider );
 
-		return new \WP_Error(
+		return new WP_Error(
 			'ai-plus-block-editor-json-error',
 			$error,
 			[ 'status' => 500 ]

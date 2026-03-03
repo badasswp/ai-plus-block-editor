@@ -10,6 +10,7 @@
 
 namespace AiPlusBlockEditor\Core;
 
+use WP_Error;
 use AiPlusBlockEditor\Providers\OpenAI;
 use AiPlusBlockEditor\Providers\Gemini;
 use AiPlusBlockEditor\Providers\DeepSeek;
@@ -87,7 +88,7 @@ class AI implements Provider {
 	 * @since 1.0.0
 	 *
 	 * @param mixed[] $payload JSON Payload.
-	 * @return string|\WP_Error
+	 * @return string|WP_Error
 	 */
 	public function run( $payload ) {
 		// Sanitize Prompt.
@@ -101,7 +102,7 @@ class AI implements Provider {
 		try {
 			return $this->get_provider()->run( $payload );
 		} catch ( \Exception $e ) {
-			return new \WP_Error(
+			return new WP_Error(
 				'apbe-run-error',
 				sprintf( 'Server Error: %s', $e->getMessage() ),
 				[ 'status' => 500 ]
