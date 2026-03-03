@@ -54,7 +54,7 @@ class Switcher extends Route implements Router {
 	 *
 	 * @since 1.5.0
 	 *
-	 * @return WP_REST_Response|WP_Error
+	 * @return \WP_REST_Response|\WP_Error
 	 */
 	public function response() {
 		$args = $this->request->get_json_params();
