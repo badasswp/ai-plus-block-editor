@@ -31,7 +31,7 @@ interface Router {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return WP_REST_Response|WP_Error
+	 * @return \WP_REST_Response|\WP_Error
 	 */
 	public function response();
 
