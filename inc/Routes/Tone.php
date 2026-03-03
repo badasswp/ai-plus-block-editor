@@ -79,7 +79,7 @@ class Tone extends Route implements Router {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return WP_REST_Response|WP_Error
+	 * @return \WP_REST_Response|\WP_Error
 	 */
 	protected function get_response() {
 		// Get Args.
