@@ -12,7 +12,6 @@ namespace AiPlusBlockEditor\Abstracts;
 
 use WP_Error;
 use WP_REST_Request;
-use WP_REST_Response;
 use AiPlusBlockEditor\Interfaces\Router;
 use AiPlusBlockEditor\Interfaces\Provider;
 use AiPlusBlockEditor\Core\AI;
@@ -139,7 +138,7 @@ abstract class Route implements Router {
 	 *
 	 * @return \WP_Error
 	 */
-	public function get_error_response( $message, $code = 400 ): \WP_Error {
+	public function get_error_response( $message, $code = 400 ): WP_Error {
 		$args = $this->request->get_json_params();
 
 		return new WP_Error(
