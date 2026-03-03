@@ -85,8 +85,8 @@ abstract class Route implements Router {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param WP_REST_Request $request Request object.
-	 * @return WP_REST_Response|WP_Error
+	 * @param \WP_REST_Request $request Request object.
+	 * @return \WP_REST_Response|\WP_Error
 	 */
 	public function request( $request ) {
 		$this->ai      = $this->get_ai_client( new AI() );
