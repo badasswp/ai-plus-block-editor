@@ -80,7 +80,7 @@ class SideBar extends Route implements Router {
 	 * @since 1.1.0
 	 * @since 1.5.0 Add Social prompt.
 	 *
-	 * @return WP_REST_Response|WP_Error
+	 * @return \WP_REST_Response|\WP_Error
 	 */
 	protected function get_response() {
 		// Get Args.
