@@ -143,16 +143,25 @@ const Summary = (): JSX.Element => {
 				<strong>{ __( 'Summary', 'ai-plus-block-editor' ) }</strong>
 			</p>
 			<TextareaControl
+				data-testid="summary"
 				rows={ 4 }
 				value={ summary }
 				onChange={ ( text ) => setSummary( text ) }
 				__nextHasNoMarginBottom
 			/>
 			<div className="apbe-button-group">
-				<Button variant="primary" onClick={ handleClick }>
+				<Button
+					variant="primary"
+					onClick={ handleClick }
+					data-testid="summary-btn"
+				>
 					{ __( 'Generate', 'ai-plus-block-editor' ) }
 				</Button>
-				<Button variant="secondary" onClick={ handleSelection }>
+				<Button
+					variant="secondary"
+					onClick={ handleSelection }
+					data-testid="summary-check"
+				>
 					<Icon icon={ check } />
 				</Button>
 			</div>

@@ -144,16 +144,25 @@ const SEO = (): JSX.Element => {
 				</strong>
 			</p>
 			<TextareaControl
+				data-testid="seo"
 				rows={ 7 }
 				value={ keywords }
 				onChange={ ( text ) => setKeywords( text ) }
 				__nextHasNoMarginBottom
 			/>
 			<div className="apbe-button-group">
-				<Button variant="primary" onClick={ handleClick }>
+				<Button
+					variant="primary"
+					onClick={ handleClick }
+					data-testid="seo-btn"
+				>
 					{ __( 'Generate', 'ai-plus-block-editor' ) }
 				</Button>
-				<Button variant="secondary" onClick={ handleSelection }>
+				<Button
+					variant="secondary"
+					onClick={ handleSelection }
+					data-testid="seo-check"
+				>
 					<Icon icon={ check } />
 				</Button>
 			</div>

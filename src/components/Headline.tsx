@@ -169,16 +169,25 @@ const Headline = (): JSX.Element => {
 				<strong>{ __( 'Headline', 'ai-plus-block-editor' ) }</strong>
 			</p>
 			<TextareaControl
+				data-testid="headline"
 				rows={ 4 }
 				value={ headline }
 				onChange={ ( text ) => setHeadline( text ) }
 				__nextHasNoMarginBottom
 			/>
 			<div className="apbe-button-group">
-				<Button variant="primary" onClick={ handleClick }>
+				<Button
+					variant="primary"
+					onClick={ handleClick }
+					data-testid="headline-btn"
+				>
 					{ __( 'Generate', 'ai-plus-block-editor' ) }
 				</Button>
-				<Button variant="secondary" onClick={ handleSelection }>
+				<Button
+					variant="secondary"
+					onClick={ handleSelection }
+					data-testid="headline-check"
+				>
 					<Icon icon={ check } />
 				</Button>
 			</div>
