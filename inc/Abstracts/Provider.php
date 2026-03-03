@@ -131,7 +131,7 @@ abstract class Provider implements ProviderInterface {
 	 * @param string  $error Error Message.
 	 * @param mixed[] $body  JSON payload.
 	 *
-	 * @return WP_Error
+	 * @return \WP_Error
 	 */
 	protected function get_json_error( $error, $body = [] ): WP_Error {
 		// Get Payload.
