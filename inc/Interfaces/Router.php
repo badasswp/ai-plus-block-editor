@@ -40,8 +40,8 @@ interface Router {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param WP_REST_Request $request Request Object.
-	 * @return bool|WP_Error
+	 * @param \WP_REST_Request $request Request Object.
+	 * @return bool|\WP_Error
 	 */
 	public function is_user_permissible( $request );
 }
