@@ -53,7 +53,7 @@ class Tone extends Route implements Router {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return WP_REST_Response|WP_Error
+	 * @return \WP_REST_Response|\WP_Error
 	 */
 	public function response() {
 		$this->args = $this->request->get_json_params();
