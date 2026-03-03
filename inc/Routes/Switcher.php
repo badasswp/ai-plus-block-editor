@@ -10,9 +10,7 @@
 
 namespace AiPlusBlockEditor\Routes;
 
-use WP_Error;
 use WP_REST_Request;
-use WP_REST_Response;
 use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Admin\Options;
 use AiPlusBlockEditor\Abstracts\Route;

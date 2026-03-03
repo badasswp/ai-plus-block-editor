@@ -10,7 +10,6 @@
 
 namespace AiPlusBlockEditor\Providers;
 
-use WP_Error;
 use AiPlusBlockEditor\Admin\Options;
 use AiPlusBlockEditor\Abstracts\Provider;
 use AiPlusBlockEditor\Interfaces\Provider as ProviderInterface;

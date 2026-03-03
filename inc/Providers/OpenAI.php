@@ -10,7 +10,6 @@
 
 namespace AiPlusBlockEditor\Providers;
 
-use WP_Error;
 use Orhanerday\OpenAi\OpenAi as ChatGPT;
 
 use AiPlusBlockEditor\Admin\Options;

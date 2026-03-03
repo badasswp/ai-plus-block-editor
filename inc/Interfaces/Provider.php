@@ -10,8 +10,6 @@
 
 namespace AiPlusBlockEditor\Interfaces;
 
-use WP_Error;
-
 interface Provider {
 	/**
 	 * Run AI Prompt.
