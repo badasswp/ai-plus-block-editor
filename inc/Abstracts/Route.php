@@ -60,7 +60,7 @@ abstract class Route implements Router {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var WP_REST_Request
+	 * @var \WP_REST_Request
 	 */
 	public WP_REST_Request $request;
 
