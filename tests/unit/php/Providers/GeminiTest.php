@@ -6,7 +6,9 @@ use WP_Mock;
 use Mockery;
 use WP_Error;
 use Badasswp\WPMockTC\WPMockTestCase;
+
 use AiPlusBlockEditor\Providers\Gemini;
+use AiPlusBlockEditor\Tests\PluginTest;
 
 /**
  * @covers \AiPlusBlockEditor\Providers\Gemini::run
@@ -106,6 +108,8 @@ class GeminiTest extends WPMockTestCase {
 	}
 
 	public function test_run_fails_if_missing_api_keys_and_returns_wp_error() {
+		PluginTest::mock_llm_options();
+
 		$gemini = Mockery::mock( Gemini::class )->makePartial();
 		$gemini->shouldAllowMockingProtectedMethods();
 
@@ -140,6 +144,8 @@ class GeminiTest extends WPMockTestCase {
 	}
 
 	public function test_run_fails_if_missing_prompt_text_and_returns_wp_error() {
+		PluginTest::mock_llm_options();
+
 		$gemini = Mockery::mock( Gemini::class )->makePartial();
 		$gemini->shouldAllowMockingProtectedMethods();
 
@@ -174,6 +180,8 @@ class GeminiTest extends WPMockTestCase {
 	}
 
 	public function test_run_fails_returns_wp_error_if_malformed_JSON_is_returned() {
+		PluginTest::mock_llm_options();
+
 		$gemini = Mockery::mock( Gemini::class )->makePartial();
 		$gemini->shouldAllowMockingProtectedMethods();
 
@@ -230,6 +238,8 @@ class GeminiTest extends WPMockTestCase {
 	}
 
 	public function test_run() {
+		PluginTest::mock_llm_options();
+
 		$gemini = Mockery::mock( Gemini::class )->makePartial();
 		$gemini->shouldAllowMockingProtectedMethods();
 

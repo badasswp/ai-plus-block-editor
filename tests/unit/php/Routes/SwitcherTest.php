@@ -8,8 +8,10 @@ use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_Mock\Tools\TestCase;
+
 use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Routes\Switcher;
+use AiPlusBlockEditor\Tests\PluginTest;
 
 /**
  * @covers \AiPlusBlockEditor\Routes\Switcher::response
@@ -70,6 +72,8 @@ class SwitcherTest extends TestCase {
 	}
 
 	public function test_provider_is_updated_and_returns_rest_response() {
+		PluginTest::mock_llm_options();
+
 		$switcher = Mockery::mock( Switcher::class )->makePartial();
 		$switcher->shouldAllowMockingProtectedMethods();
 
