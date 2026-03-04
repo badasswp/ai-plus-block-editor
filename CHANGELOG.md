@@ -1,7 +1,10 @@
 # Changelog
 
 ## 1.9.0
-* Refactor: Replace get_400_response with get_error_response.
+* Refactor: Replace `get_400_response` with `get_error_response`.
+* Refactor: Replace fully qualified class paths with their use counterparts.
+* Test: Add e2e tests for plugin codebase.
+* Tested up to WP 6.9.
 
 ## 1.8.1
 * Specify `wordpress-plugin` as Composer package type.
