@@ -20,6 +20,11 @@ use AiPlusBlockEditor\Abstracts\Service;
  * @covers \AiPlusBlockEditor\Admin\Options::init
  * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
  * @covers \AiPlusBlockEditor\Services\Boot::get_providers
+ * @covers \AiPlusBlockEditor\Providers\Claude::get_options
+ * @covers \AiPlusBlockEditor\Providers\DeepSeek::get_options
+ * @covers \AiPlusBlockEditor\Providers\Gemini::get_options
+ * @covers \AiPlusBlockEditor\Providers\Grok::get_options
+ * @covers \AiPlusBlockEditor\Providers\OpenAI::get_options
  */
 class BootTest extends WPMockTestCase {
 	public Boot $boot;

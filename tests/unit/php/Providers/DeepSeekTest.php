@@ -21,6 +21,11 @@ use AiPlusBlockEditor\Providers\DeepSeek;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_submit
  * @covers \AiPlusBlockEditor\Admin\Options::init
  * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
+ * @covers \AiPlusBlockEditor\Providers\Claude::get_options
+ * @covers \AiPlusBlockEditor\Providers\DeepSeek::get_options
+ * @covers \AiPlusBlockEditor\Providers\Gemini::get_options
+ * @covers \AiPlusBlockEditor\Providers\Grok::get_options
+ * @covers \AiPlusBlockEditor\Providers\OpenAI::get_options
  */
 class DeepSeekTest extends WPMockTestCase {
 	public DeepSeek $deepseek;
@@ -60,7 +65,9 @@ class DeepSeekTest extends WPMockTestCase {
 		$reflection = new \ReflectionClass( $this->deepseek );
 		$method     = $reflection->getMethod( 'get_default_args' );
 
-		$method->setAccessible( true );
+		if ( method_exists( $method, 'setAccessible' ) ) {
+			$method->setAccessible( true );
+		}
 		$args = $method->invoke( $this->deepseek );
 
 		$this->assertSame(

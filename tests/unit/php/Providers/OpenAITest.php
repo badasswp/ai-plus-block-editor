@@ -22,6 +22,11 @@ use Orhanerday\OpenAi\OpenAi as ChatGPT;
  * @covers \AiPlusBlockEditor\Admin\Options::init
  * @covers \AiPlusBlockEditor\Providers\OpenAI::get_client
  * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
+ * @covers \AiPlusBlockEditor\Providers\Claude::get_options
+ * @covers \AiPlusBlockEditor\Providers\DeepSeek::get_options
+ * @covers \AiPlusBlockEditor\Providers\Gemini::get_options
+ * @covers \AiPlusBlockEditor\Providers\Grok::get_options
+ * @covers \AiPlusBlockEditor\Providers\OpenAI::get_options
  */
 class OpenAITest extends WPMockTestCase {
 	public OpenAI $open_ai;
@@ -60,7 +65,9 @@ class OpenAITest extends WPMockTestCase {
 		$reflection = new \ReflectionClass( $this->open_ai );
 		$method     = $reflection->getMethod( 'get_default_args' );
 
-		$method->setAccessible( true );
+		if ( method_exists( $method, 'setAccessible' ) ) {
+			$method->setAccessible( true );
+		}
 		$args = $method->invoke( $this->open_ai );
 
 		$this->assertSame(
