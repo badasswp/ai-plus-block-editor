@@ -4,8 +4,10 @@ namespace AiPlusBlockEditor\Tests\Admin;
 
 use WP_Mock;
 use Mockery;
-use AiPlusBlockEditor\Admin\Options;
 use Badasswp\WPMockTC\WPMockTestCase;
+
+use AiPlusBlockEditor\Admin\Options;
+use AiPlusBlockEditor\Tests\PluginTest;
 
 /**
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_page
@@ -72,6 +74,8 @@ class OptionsTest extends WPMockTestCase {
 	}
 
 	public function test_get_form_fields() {
+		PluginTest::mock_llm_options();
+
 		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$form_fields = Options::get_form_fields();

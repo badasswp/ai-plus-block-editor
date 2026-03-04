@@ -6,7 +6,7 @@
 	"autoload": {
 		"psr-4": {
 			"AiPlusBlockEditor\\": "inc/",
-			"AiPlusBlockEditor\\Tests\\": "tests/"
+			"AiPlusBlockEditor\\Tests\\": "tests/unit/php"
 		}
 	},
 	"authors": [

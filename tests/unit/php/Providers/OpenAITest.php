@@ -6,8 +6,10 @@ use WP_Mock;
 use Mockery;
 use WP_Error;
 use Badasswp\WPMockTC\WPMockTestCase;
-use AiPlusBlockEditor\Providers\OpenAI;
 use Orhanerday\OpenAi\OpenAi as ChatGPT;
+
+use AiPlusBlockEditor\Providers\OpenAI;
+use AiPlusBlockEditor\Tests\PluginTest;
 
 /**
  * @covers \AiPlusBlockEditor\Providers\OpenAI::run
@@ -83,6 +85,8 @@ class OpenAITest extends WPMockTestCase {
 	}
 
 	public function test_get_client() {
+		PluginTest::mock_llm_options();
+
 		$open_ai = Mockery::mock( OpenAI::class )->makePartial();
 		$open_ai->shouldAllowMockingProtectedMethods();
 
@@ -100,6 +104,8 @@ class OpenAITest extends WPMockTestCase {
 	}
 
 	public function test_run_fails_if_missing_api_keys_and_returns_wp_error() {
+		PluginTest::mock_llm_options();
+
 		$open_ai = Mockery::mock( OpenAI::class )->makePartial();
 		$open_ai->shouldAllowMockingProtectedMethods();
 
@@ -134,6 +140,8 @@ class OpenAITest extends WPMockTestCase {
 	}
 
 	public function test_run_fails_if_missing_prompt_text_and_returns_wp_error() {
+		PluginTest::mock_llm_options();
+
 		$open_ai = Mockery::mock( OpenAI::class )->makePartial();
 		$open_ai->shouldAllowMockingProtectedMethods();
 
@@ -174,6 +182,8 @@ class OpenAITest extends WPMockTestCase {
 	 * mock the 3rd party OpenAI class.
 	 */
 	public function test_run() {
+		PluginTest::mock_llm_options();
+
 		$open_ai = Mockery::mock( OpenAI::class )->makePartial();
 		$open_ai->shouldAllowMockingProtectedMethods();
 

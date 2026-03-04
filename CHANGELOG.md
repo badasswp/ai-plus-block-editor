@@ -1,6 +1,7 @@
 # Changelog
 
 ## 1.9.0
+* Feat: Add custom filters for LLM options `apbe_open_ai_options`, `apbe_gemini_options`, `apbe_deepseek_options`, `apbe_grok_options`, `apbe_claude_options`.
 * Refactor: Replace `get_400_response` with `get_error_response`.
 * Refactor: Replace fully qualified class paths with their use counterparts.
 * Refactor: Move admin page options to the various provider classes respectively.

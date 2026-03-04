@@ -5,8 +5,10 @@ namespace AiPlusBlockEditor\Tests\Services;
 use WP_Mock;
 use Mockery;
 use Badasswp\WPMockTC\WPMockTestCase;
+
 use AiPlusBlockEditor\Services\Boot;
 use AiPlusBlockEditor\Abstracts\Service;
+use AiPlusBlockEditor\Tests\PluginTest;
 
 /**
  * @covers \AiPlusBlockEditor\Services\Boot::register
@@ -58,6 +60,8 @@ class BootTest extends WPMockTestCase {
 	}
 
 	public function test_register_scripts() {
+		PluginTest::mock_llm_options();
+
 		$boot = new \ReflectionClass( Boot::class );
 
 		$mock_boot = Mockery::mock( Boot::class )->makePartial();
@@ -165,6 +169,8 @@ class BootTest extends WPMockTestCase {
 	}
 
 	public function test_register_translation() {
+		PluginTest::mock_llm_options();
+
 		$boot = new \ReflectionClass( Boot::class );
 
 		WP_Mock::userFunction( 'plugin_basename' )

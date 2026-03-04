@@ -186,6 +186,6 @@ class Claude extends Provider implements ProviderInterface {
 			],
 		];
 
-		return $options;
+		return apply_filters( 'apbe_claude_options', $options );
 	}
 }

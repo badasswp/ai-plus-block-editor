@@ -6,7 +6,9 @@ use WP_Mock;
 use Mockery;
 use WP_Error;
 use Badasswp\WPMockTC\WPMockTestCase;
+
 use AiPlusBlockEditor\Providers\Claude;
+use AiPlusBlockEditor\Tests\PluginTest;
 
 /**
  * @covers \AiPlusBlockEditor\Providers\Claude::get_default_args
@@ -91,6 +93,8 @@ class ClaudeTest extends WPMockTestCase {
 	}
 
 	public function test_run_fails_if_missing_api_keys_and_returns_wp_error() {
+		PluginTest::mock_llm_options();
+
 		$claude = Mockery::mock( Claude::class )->makePartial();
 		$claude->shouldAllowMockingProtectedMethods();
 
@@ -125,6 +129,8 @@ class ClaudeTest extends WPMockTestCase {
 	}
 
 	public function test_run_fails_if_missing_prompt_text_and_returns_wp_error() {
+		PluginTest::mock_llm_options();
+
 		$claude = Mockery::mock( Claude::class )->makePartial();
 		$claude->shouldAllowMockingProtectedMethods();
 
@@ -159,6 +165,8 @@ class ClaudeTest extends WPMockTestCase {
 	}
 
 	public function test_run_fails_returns_wp_error_if_malformed_JSON_is_returned() {
+		PluginTest::mock_llm_options();
+
 		$claude = Mockery::mock( Claude::class )->makePartial();
 		$claude->shouldAllowMockingProtectedMethods();
 
@@ -216,6 +224,8 @@ class ClaudeTest extends WPMockTestCase {
 	}
 
 	public function test_run() {
+		PluginTest::mock_llm_options();
+
 		$claude = Mockery::mock( Claude::class )->makePartial();
 		$claude->shouldAllowMockingProtectedMethods();
 

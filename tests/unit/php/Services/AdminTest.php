@@ -6,7 +6,9 @@ use WP_Mock;
 use Mockery;
 use WP_Screen;
 use Badasswp\WPMockTC\WPMockTestCase;
+
 use AiPlusBlockEditor\Services\Admin;
+use AiPlusBlockEditor\Tests\PluginTest;
 
 /**
  * @covers \AiPlusBlockEditor\Services\Admin::register
@@ -63,6 +65,8 @@ class AdminTest extends WPMockTestCase {
 	}
 
 	public function test_register_options_menu() {
+		PluginTest::mock_llm_options();
+
 		WP_Mock::userFunction( 'add_menu_page' )
 			->once()
 			->with(
@@ -85,6 +89,8 @@ class AdminTest extends WPMockTestCase {
 	}
 
 	public function test_register_options_init_bails_out_if_any_nonce_settings_is_missing() {
+		PluginTest::mock_llm_options();
+
 		WP_Mock::expectFilter( 'apbe_ai_providers', $this->providers );
 
 		$_POST = [
@@ -98,6 +104,8 @@ class AdminTest extends WPMockTestCase {
 	}
 
 	public function test_register_options_init_bails_out_if_nonce_verification_fails() {
+		PluginTest::mock_llm_options();
+
 		$_POST = [
 			'ai_plus_block_editor_save_settings'  => true,
 			'ai_plus_block_editor_settings_nonce' => 'a8vbq3cg3sa',
@@ -127,6 +135,8 @@ class AdminTest extends WPMockTestCase {
 	}
 
 	public function test_register_options_init_passes() {
+		PluginTest::mock_llm_options();
+
 		$_POST = [
 			'ai_plus_block_editor_save_settings'  => true,
 			'ai_plus_block_editor_settings_nonce' => 'a8vbq3cg3sa',
@@ -182,6 +192,8 @@ class AdminTest extends WPMockTestCase {
 	}
 
 	public function test_register_options_styles_passes() {
+		PluginTest::mock_llm_options();
+
 		$screen = Mockery::mock( WP_Screen::class )->makePartial();
 		$screen->shouldAllowMockingProtectedMethods();
 		$screen->id = 'toplevel_page_ai-plus-block-editor';
