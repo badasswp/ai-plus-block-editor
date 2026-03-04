@@ -47,7 +47,7 @@ abstract class Provider implements ProviderInterface {
 	 * @since 1.8.0
 	 *
 	 * @param mixed[] $payload JSON Payload.
-	 * @return string|WP_Error
+	 * @return string|\WP_Error
 	 */
 	abstract public function run( $payload );
 
