@@ -24,6 +24,11 @@ use AiPlusBlockEditor\Tests\PluginTest;
  * @covers \AiPlusBlockEditor\Admin\Options::init
  * @covers \AiPlusBlockEditor\Providers\OpenAI::get_client
  * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
+ * @covers \AiPlusBlockEditor\Providers\Claude::get_options
+ * @covers \AiPlusBlockEditor\Providers\DeepSeek::get_options
+ * @covers \AiPlusBlockEditor\Providers\Gemini::get_options
+ * @covers \AiPlusBlockEditor\Providers\Grok::get_options
+ * @covers \AiPlusBlockEditor\Providers\OpenAI::get_options
  */
 class OpenAITest extends WPMockTestCase {
 	public OpenAI $open_ai;

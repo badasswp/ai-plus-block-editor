@@ -15,6 +15,11 @@ use AiPlusBlockEditor\Tests\PluginTest;
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_notice
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields
  * @covers \AiPlusBlockEditor\Abstracts\Provider::get_providers
+ * @covers \AiPlusBlockEditor\Providers\Claude::get_options
+ * @covers \AiPlusBlockEditor\Providers\DeepSeek::get_options
+ * @covers \AiPlusBlockEditor\Providers\Gemini::get_options
+ * @covers \AiPlusBlockEditor\Providers\Grok::get_options
+ * @covers \AiPlusBlockEditor\Providers\OpenAI::get_options
  */
 class OptionsTest extends WPMockTestCase {
 	public $providers;
