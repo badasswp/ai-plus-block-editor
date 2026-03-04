@@ -35,7 +35,9 @@ class FormTest extends TestCase {
 
 		$reflection = new \ReflectionClass( $this->form );
 		$property   = $reflection->getProperty( 'options' );
-		$property->setAccessible( true );
+		if ( method_exists( $property, 'setAccessible' ) ) {
+			$property->setAccessible( true );
+		}
 		$property->setValue(
 			$this->form,
 			[

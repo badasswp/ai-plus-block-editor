@@ -63,7 +63,9 @@ class ClaudeTest extends WPMockTestCase {
 		$reflection = new \ReflectionClass( $this->claude );
 		$method     = $reflection->getMethod( 'get_default_args' );
 
-		$method->setAccessible( true );
+		if ( method_exists( $method, 'setAccessible' ) ) {
+			$method->setAccessible( true );
+		}
 		$args = $method->invoke( $this->claude );
 
 		$this->assertSame(
