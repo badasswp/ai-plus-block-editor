@@ -4,6 +4,8 @@ namespace AiPlusBlockEditor\Tests\Routes;
 
 use WP_Mock;
 use Mockery;
+use WP_Error;
+use WP_REST_Request;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Routes\Tone;
@@ -35,7 +37,7 @@ class ToneTest extends TestCase {
 		$tone = Mockery::mock( Tone::class )->makePartial();
 		$tone->shouldAllowMockingProtectedMethods();
 
-		$request = Mockery::mock( \WP_REST_Request::class )->makePartial();
+		$request = Mockery::mock( WP_REST_Request::class )->makePartial();
 		$request->shouldAllowMockingProtectedMethods();
 
 		$request->shouldReceive( 'get_json_params' )
@@ -47,7 +49,7 @@ class ToneTest extends TestCase {
 
 		$tone->request = $request;
 
-		$this->assertInstanceOf( \WP_Error::class, $tone->response() );
+		$this->assertInstanceOf( WP_Error::class, $tone->response() );
 		$this->assertConditionsMet();
 	}
 
@@ -55,7 +57,7 @@ class ToneTest extends TestCase {
 		$tone = Mockery::mock( Tone::class )->makePartial();
 		$tone->shouldAllowMockingProtectedMethods();
 
-		$request = Mockery::mock( \WP_REST_Request::class )->makePartial();
+		$request = Mockery::mock( WP_REST_Request::class )->makePartial();
 		$request->shouldAllowMockingProtectedMethods();
 
 		$request->shouldReceive( 'get_json_params' )

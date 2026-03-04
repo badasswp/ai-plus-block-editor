@@ -10,6 +10,7 @@
 
 namespace AiPlusBlockEditor\Routes;
 
+use WP_REST_Request;
 use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Admin\Options;
 use AiPlusBlockEditor\Abstracts\Route;
@@ -44,7 +45,7 @@ class Switcher extends Route implements Router {
 	 *
 	 * @var \WP_REST_Request
 	 */
-	public \WP_REST_Request $request;
+	public WP_REST_Request $request;
 
 	/**
 	 * Response Callback.

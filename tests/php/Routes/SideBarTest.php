@@ -4,6 +4,8 @@ namespace AiPlusBlockEditor\Tests\Routes;
 
 use WP_Mock;
 use Mockery;
+use WP_Error;
+use WP_REST_Request;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Routes\SideBar;
@@ -35,7 +37,7 @@ class SideBarTest extends TestCase {
 		$sidebar = Mockery::mock( SideBar::class )->makePartial();
 		$sidebar->shouldAllowMockingProtectedMethods();
 
-		$request = Mockery::mock( \WP_REST_Request::class )->makePartial();
+		$request = Mockery::mock( WP_REST_Request::class )->makePartial();
 		$request->shouldAllowMockingProtectedMethods();
 
 		$request->shouldReceive( 'get_json_params' )
@@ -47,7 +49,7 @@ class SideBarTest extends TestCase {
 
 		$sidebar->request = $request;
 
-		$this->assertInstanceOf( \WP_Error::class, $sidebar->response() );
+		$this->assertInstanceOf( WP_Error::class, $sidebar->response() );
 		$this->assertConditionsMet();
 	}
 
@@ -55,7 +57,7 @@ class SideBarTest extends TestCase {
 		$sidebar = Mockery::mock( SideBar::class )->makePartial();
 		$sidebar->shouldAllowMockingProtectedMethods();
 
-		$request = Mockery::mock( \WP_REST_Request::class )->makePartial();
+		$request = Mockery::mock( WP_REST_Request::class )->makePartial();
 		$request->shouldAllowMockingProtectedMethods();
 
 		$request->shouldReceive( 'get_json_params' )

@@ -4,6 +4,7 @@ namespace AiPlusBlockEditor\Tests\Providers;
 
 use WP_Mock;
 use Mockery;
+use WP_Error;
 use Badasswp\WPMockTC\WPMockTestCase;
 use AiPlusBlockEditor\Providers\OpenAI;
 use Orhanerday\OpenAi\OpenAi as ChatGPT;
@@ -95,7 +96,7 @@ class OpenAITest extends WPMockTestCase {
 		$open_ai = Mockery::mock( OpenAI::class )->makePartial();
 		$open_ai->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::userFunction( 'get_option' )
@@ -121,7 +122,7 @@ class OpenAITest extends WPMockTestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 
@@ -129,7 +130,7 @@ class OpenAITest extends WPMockTestCase {
 		$open_ai = Mockery::mock( OpenAI::class )->makePartial();
 		$open_ai->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::userFunction( 'get_option' )
@@ -155,7 +156,7 @@ class OpenAITest extends WPMockTestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 
@@ -172,7 +173,7 @@ class OpenAITest extends WPMockTestCase {
 		$chat_gpt = Mockery::mock( ChatGPT::class )->makePartial();
 		$chat_gpt->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		$open_ai->shouldReceive( 'get_client' )
@@ -235,7 +236,7 @@ class OpenAITest extends WPMockTestCase {
 		$open_ai = Mockery::mock( OpenAI::class )->makePartial();
 		$open_ai->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::expectAction(
@@ -247,7 +248,7 @@ class OpenAITest extends WPMockTestCase {
 
 		$response = $open_ai->get_json_error( 'API Error...' );
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 }

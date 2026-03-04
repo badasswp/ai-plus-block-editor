@@ -4,6 +4,7 @@ namespace AiPlusBlockEditor\Tests\Abstracts;
 
 use WP_Mock;
 use Mockery;
+use WP_Error;
 use Badasswp\WPMockTC\WPMockTestCase;
 use AiPlusBlockEditor\Abstracts\Provider;
 
@@ -66,7 +67,7 @@ class ProviderTest extends WPMockTestCase {
 	}
 
 	public function test_get_json_error() {
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::expectAction(
@@ -78,7 +79,7 @@ class ProviderTest extends WPMockTestCase {
 
 		$response = $this->provider->get_json_error( 'API Error...' );
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 

@@ -4,6 +4,7 @@ namespace AiPlusBlockEditor\Tests\Interfaces;
 
 use WP_Mock;
 use Mockery;
+use WP_REST_Request;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Interfaces\Router;
 
@@ -38,7 +39,7 @@ class RouterTest extends TestCase {
 		$this->router->expects( $this->once() )
 			->method( 'request' );
 
-		$request = Mockery::mock( \WP_REST_Request::class )->makePartial();
+		$request = Mockery::mock( WP_REST_Request::class )->makePartial();
 
 		$this->router->request( $request );
 
@@ -49,7 +50,7 @@ class RouterTest extends TestCase {
 		$this->router->expects( $this->once() )
 			->method( 'is_user_permissible' );
 
-		$request = Mockery::mock( \WP_REST_Request::class )->makePartial();
+		$request = Mockery::mock( WP_REST_Request::class )->makePartial();
 
 		$this->router->is_user_permissible( $request );
 

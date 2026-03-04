@@ -10,6 +10,8 @@
 
 namespace AiPlusBlockEditor\Abstracts;
 
+use WP_Error;
+use WP_REST_Request;
 use AiPlusBlockEditor\Interfaces\Router;
 use AiPlusBlockEditor\Interfaces\Provider;
 use AiPlusBlockEditor\Core\AI;
@@ -59,7 +61,7 @@ abstract class Route implements Router {
 	 *
 	 * @var \WP_REST_Request
 	 */
-	public \WP_REST_Request $request;
+	public WP_REST_Request $request;
 
 	/**
 	 * Response Callback.
@@ -136,10 +138,10 @@ abstract class Route implements Router {
 	 *
 	 * @return \WP_Error
 	 */
-	public function get_error_response( $message, $code = 400 ): \WP_Error {
+	public function get_error_response( $message, $code = 400 ): WP_Error {
 		$args = $this->request->get_json_params();
 
-		return new \WP_Error(
+		return new WP_Error(
 			'ai-plus-block-editor-bad-request',
 			sprintf(
 				'Fatal Error: %s',
@@ -164,7 +166,7 @@ abstract class Route implements Router {
 		$http_error = rest_authorization_required_code();
 
 		if ( ! current_user_can( 'administrator' ) ) {
-			return new \WP_Error(
+			return new WP_Error(
 				'apbe-rest-forbidden',
 				sprintf( 'Invalid User. Error: %s', $http_error ),
 				[ 'status' => $http_error ]
@@ -172,7 +174,7 @@ abstract class Route implements Router {
 		}
 
 		if ( ! wp_verify_nonce( $request->get_header( 'X-WP-Nonce' ), 'wp_rest' ) ) {
-			return new \WP_Error(
+			return new WP_Error(
 				'apbe-rest-forbidden',
 				sprintf( 'Invalid Nonce. Error: %s', $http_error ),
 				[ 'status' => $http_error ]
