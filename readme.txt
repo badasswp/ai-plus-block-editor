@@ -71,6 +71,7 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 = 1.9.0 =
 * Refactor: Replace `get_400_response` with `get_error_response`.
 * Refactor: Replace fully qualified class paths with their use counterparts.
+* Refactor: Move admin page options to the various provider classes respectively.
 * Test: Add e2e tests for plugin codebase.
 * Tested up to WP 6.9.
 
