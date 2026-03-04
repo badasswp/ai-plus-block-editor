@@ -189,6 +189,6 @@ class DeepSeek extends Provider implements ProviderInterface {
 			],
 		];
 
-		return $options;
+		return apply_filters( 'apbe_deepseek_options', $options );
 	}
 }

@@ -180,6 +180,6 @@ class Gemini extends Provider implements ProviderInterface {
 			],
 		];
 
-		return $options;
+		return apply_filters( 'apbe_gemini_options', $options );
 	}
 }

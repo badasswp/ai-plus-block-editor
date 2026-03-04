@@ -188,6 +188,6 @@ class OpenAI extends Provider implements ProviderInterface {
 			],
 		];
 
-		return $options;
+		return apply_filters( 'apbe_open_ai_options', $options );
 	}
 }

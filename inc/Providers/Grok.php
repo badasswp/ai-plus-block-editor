@@ -185,6 +185,6 @@ class Grok extends Provider implements ProviderInterface {
 			],
 		];
 
-		return $options;
+		return apply_filters( 'apbe_grok_options', $options );
 	}
 }
