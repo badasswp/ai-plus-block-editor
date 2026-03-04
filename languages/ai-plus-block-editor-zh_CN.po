@@ -4,14 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2025-04-16 01:06+0100\n"
+"PO-Revision-Date: 2026-03-04 20:54+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 "X-Domain: ai-plus-block-editor\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -27,7 +27,7 @@ msgstr ""
 #: ai-plus-block-editor.php:32
 #, php-format
 msgid "Fatal Error: Composer not setup in %s"
-msgstr "致命错误：%s 中未设置 Composer"
+msgstr "致命错误：Composer 未在 %s 中设置"
 
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
@@ -37,7 +37,7 @@ msgstr "AI+区块编辑器"
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
 msgid "Add AI Capabilities to the WP Block Editor."
-msgstr "向 WP 块编辑器添加 AI 功能。"
+msgstr "为WordPress区块编辑器添加AI功能。"
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
@@ -57,15 +57,15 @@ msgstr "人工智能提供商"
 
 #: inc/Admin/Options.php:144
 msgid "Open AI"
-msgstr "人工智能提供商"
+msgstr "Open AI"
 
 #: inc/Admin/Options.php:148
 msgid "Enable Open AI"
-msgstr "启用开放人工智能"
+msgstr "启用 OpenAI"
 
 #: inc/Admin/Options.php:149
 msgid "Use Chat GPT capabilities in Block Editor"
-msgstr "在块编辑器中使用聊天 GPT 功能"
+msgstr "在区块编辑器中使用 ChatGPT 功能"
 
 #: inc/Admin/Options.php:154 inc/Admin/Options.php:170
 msgid "Token"
@@ -77,7 +77,7 @@ msgstr "例如 ae2kgch7i"
 
 #: inc/Admin/Options.php:160
 msgid "Google Gemini"
-msgstr "谷歌双子座"
+msgstr "Google Gemini"
 
 #: inc/Admin/Options.php:164
 msgid "Enable Google Gemini"
@@ -85,9 +85,45 @@ msgstr "启用 Google 双子座"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr "在块编辑器中使用 Google Gemini 功能"
+msgstr "在区块编辑器中使用 Google Gemini 功能"
 
-#: inc/Admin/Options.php:190
+#: inc/Admin/Options.php:173
+msgid "Deepseek"
+msgstr "Deepseek"
+
+#: inc/Admin/Options.php:177
+msgid "Enable DeepSeek"
+msgstr "启用 DeepSeek"
+
+#: inc/Admin/Options.php:178
+msgid "Use DeepSeek capabilities in Block Editor"
+msgstr "在块编辑器中使用 DeepSeek 功能"
+
+#: inc/Admin/Options.php:189
+msgid "Grok"
+msgstr "Grok"
+
+#: inc/Admin/Options.php:193
+msgid "Enable Grok"
+msgstr "启用 Grok"
+
+#: inc/Admin/Options.php:194
+msgid "Use Grok capabilities in Block Editor"
+msgstr "在块编辑器中使用 Grok 功能"
+
+#: inc/Admin/Options.php:205
+msgid "Claude"
+msgstr "Claude"
+
+#: inc/Admin/Options.php:209
+msgid "Enable Claude"
+msgstr "启用克劳德"
+
+#: inc/Admin/Options.php:210
+msgid "Use Claude capabilities in Block Editor"
+msgstr "在块编辑器中使用 Claude 功能"
+
+#: inc/Admin/Options.php:235
 msgid "Settings Saved."
 msgstr "设置已保存。"
 
