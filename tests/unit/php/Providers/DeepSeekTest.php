@@ -65,7 +65,9 @@ class DeepSeekTest extends WPMockTestCase {
 		$reflection = new \ReflectionClass( $this->deepseek );
 		$method     = $reflection->getMethod( 'get_default_args' );
 
-		$method->setAccessible( true );
+		if ( method_exists( $method, 'setAccessible' ) ) {
+			$method->setAccessible( true );
+		}
 		$args = $method->invoke( $this->deepseek );
 
 		$this->assertSame(

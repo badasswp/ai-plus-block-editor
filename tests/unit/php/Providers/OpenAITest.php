@@ -65,7 +65,9 @@ class OpenAITest extends WPMockTestCase {
 		$reflection = new \ReflectionClass( $this->open_ai );
 		$method     = $reflection->getMethod( 'get_default_args' );
 
-		$method->setAccessible( true );
+		if ( method_exists( $method, 'setAccessible' ) ) {
+			$method->setAccessible( true );
+		}
 		$args = $method->invoke( $this->open_ai );
 
 		$this->assertSame(
