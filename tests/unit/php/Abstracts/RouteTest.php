@@ -4,6 +4,9 @@ namespace AiPlusBlockEditor\Tests\Abstracts;
 
 use WP_Mock;
 use Mockery;
+use WP_Error;
+use WP_REST_Request;
+use WP_REST_Response;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Abstracts\Route;
@@ -36,10 +39,10 @@ class RouteTest extends TestCase {
 		$ai = Mockery::mock( AI::class )->makePartial();
 		$ai->shouldAllowMockingProtectedMethods();
 
-		$request = Mockery::mock( \WP_REST_Request::class )->makePartial();
+		$request = Mockery::mock( WP_REST_Request::class )->makePartial();
 		$request->shouldAllowMockingProtectedMethods();
 
-		$wp_response = Mockery::mock( \WP_REST_Response::class )->makePartial();
+		$wp_response = Mockery::mock( WP_REST_Response::class )->makePartial();
 		$wp_response->shouldAllowMockingProtectedMethods();
 
 		$route->shouldReceive( 'get_ai_client' )
@@ -54,7 +57,7 @@ class RouteTest extends TestCase {
 
 		$this->assertConditionsMet();
 		$this->assertInstanceOf( AI::class, $route->ai );
-		$this->assertInstanceOf( \WP_REST_Response::class, $response );
+		$this->assertInstanceOf( WP_REST_Response::class, $response );
 	}
 
 	public function test_get_ai_client() {
@@ -102,7 +105,7 @@ class RouteTest extends TestCase {
 
 		$this->route->request = $request;
 
-		$error = Mockery::mock( \WP_Error::class )->makePartial();
+		$error = Mockery::mock( WP_Error::class )->makePartial();
 		$error->shouldAllowMockingProtectedMethods();
 
 		$error->shouldReceive( '__construct' )
@@ -119,7 +122,7 @@ class RouteTest extends TestCase {
 
 		$error_response = $this->route->get_error_response( 'Something went terribly wrong...' );
 
-		$this->assertInstanceOf( \WP_Error::class, $error_response );
+		$this->assertInstanceOf( WP_Error::class, $error_response );
 		$this->assertConditionsMet();
 	}
 
@@ -131,13 +134,13 @@ class RouteTest extends TestCase {
 			->with( 'administrator' )
 			->andReturn( false );
 
-		$request = Mockery::mock( \WP_REST_Request::class )->makePartial();
+		$request = Mockery::mock( WP_REST_Request::class )->makePartial();
 		$request->shouldAllowMockingProtectedMethods();
 
-		Mockery::mock( \WP_Error::class )->makePartial();
+		Mockery::mock( WP_Error::class )->makePartial();
 
 		$this->assertInstanceOf(
-			\WP_Error::class,
+			WP_Error::class,
 			$this->route->is_user_permissible( $request )
 		);
 		$this->assertConditionsMet();
@@ -155,17 +158,17 @@ class RouteTest extends TestCase {
 			->with( 'a8ceg59jeqwvk', 'wp_rest' )
 			->andReturn( false );
 
-		$request = Mockery::mock( \WP_REST_Request::class )->makePartial();
+		$request = Mockery::mock( WP_REST_Request::class )->makePartial();
 		$request->shouldAllowMockingProtectedMethods();
 
 		$request->shouldReceive( 'get_header' )
 			->with( 'X-WP-Nonce' )
 			->andReturn( 'a8ceg59jeqwvk' );
 
-		Mockery::mock( \WP_Error::class )->makePartial();
+		Mockery::mock( WP_Error::class )->makePartial();
 
 		$this->assertInstanceOf(
-			\WP_Error::class,
+			WP_Error::class,
 			$this->route->is_user_permissible( $request )
 		);
 		$this->assertConditionsMet();
@@ -179,7 +182,7 @@ class RouteTest extends TestCase {
 			->with( 'administrator' )
 			->andReturn( true );
 
-		$request = Mockery::mock( \WP_REST_Request::class )->makePartial();
+		$request = Mockery::mock( WP_REST_Request::class )->makePartial();
 		$request->shouldAllowMockingProtectedMethods();
 
 		$request->shouldReceive( 'get_header' )

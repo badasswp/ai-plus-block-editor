@@ -4,6 +4,7 @@ namespace AiPlusBlockEditor\Tests\Core;
 
 use WP_Mock;
 use Mockery;
+use WP_Error;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Providers\OpenAI;
@@ -136,7 +137,7 @@ class AITest extends TestCase {
 
 		$wp_error = $ai->run( [ 'content' => 'Do nothing...' ] );
 
-		$this->assertInstanceOf( \WP_Error::class, $wp_error );
+		$this->assertInstanceOf( WP_Error::class, $wp_error );
 		$this->assertConditionsMet();
 	}
 }

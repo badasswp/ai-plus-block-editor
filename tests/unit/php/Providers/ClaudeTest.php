@@ -4,6 +4,7 @@ namespace AiPlusBlockEditor\Tests\Providers;
 
 use WP_Mock;
 use Mockery;
+use WP_Error;
 use Badasswp\WPMockTC\WPMockTestCase;
 use AiPlusBlockEditor\Providers\Claude;
 
@@ -86,7 +87,7 @@ class ClaudeTest extends WPMockTestCase {
 		$claude = Mockery::mock( Claude::class )->makePartial();
 		$claude->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::userFunction( 'get_option' )
@@ -112,7 +113,7 @@ class ClaudeTest extends WPMockTestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 
@@ -120,7 +121,7 @@ class ClaudeTest extends WPMockTestCase {
 		$claude = Mockery::mock( Claude::class )->makePartial();
 		$claude->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::userFunction( 'get_option' )
@@ -146,7 +147,7 @@ class ClaudeTest extends WPMockTestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 
@@ -154,7 +155,7 @@ class ClaudeTest extends WPMockTestCase {
 		$claude = Mockery::mock( Claude::class )->makePartial();
 		$claude->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		$claude->shouldReceive( 'get_default_args' )
@@ -203,7 +204,7 @@ class ClaudeTest extends WPMockTestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 
@@ -211,7 +212,7 @@ class ClaudeTest extends WPMockTestCase {
 		$claude = Mockery::mock( Claude::class )->makePartial();
 		$claude->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		$claude->shouldReceive( 'get_default_args' )
@@ -274,7 +275,7 @@ class ClaudeTest extends WPMockTestCase {
 		$claude = Mockery::mock( Claude::class )->makePartial();
 		$claude->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::expectAction(
@@ -286,7 +287,7 @@ class ClaudeTest extends WPMockTestCase {
 
 		$response = $claude->get_json_error( 'API Error...' );
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 }

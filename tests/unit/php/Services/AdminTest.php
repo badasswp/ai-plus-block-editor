@@ -4,6 +4,7 @@ namespace AiPlusBlockEditor\Tests\Services;
 
 use WP_Mock;
 use Mockery;
+use WP_Screen;
 use Badasswp\WPMockTC\WPMockTestCase;
 use AiPlusBlockEditor\Services\Admin;
 
@@ -176,7 +177,7 @@ class AdminTest extends WPMockTestCase {
 	}
 
 	public function test_register_options_styles_passes() {
-		$screen = Mockery::mock( \WP_Screen::class )->makePartial();
+		$screen = Mockery::mock( WP_Screen::class )->makePartial();
 		$screen->shouldAllowMockingProtectedMethods();
 		$screen->id = 'toplevel_page_ai-plus-block-editor';
 

@@ -4,6 +4,7 @@ namespace AiPlusBlockEditor\Tests\Providers;
 
 use WP_Mock;
 use Mockery;
+use WP_Error;
 use Badasswp\WPMockTC\WPMockTestCase;
 use AiPlusBlockEditor\Providers\Grok;
 
@@ -86,7 +87,7 @@ class GrokTest extends WPMockTestCase {
 		$grok = Mockery::mock( Grok::class )->makePartial();
 		$grok->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::userFunction( 'get_option' )
@@ -112,7 +113,7 @@ class GrokTest extends WPMockTestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 
@@ -120,7 +121,7 @@ class GrokTest extends WPMockTestCase {
 		$grok = Mockery::mock( Grok::class )->makePartial();
 		$grok->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::userFunction( 'get_option' )
@@ -146,7 +147,7 @@ class GrokTest extends WPMockTestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 
@@ -154,7 +155,7 @@ class GrokTest extends WPMockTestCase {
 		$grok = Mockery::mock( Grok::class )->makePartial();
 		$grok->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		$grok->shouldReceive( 'get_default_args' )
@@ -203,7 +204,7 @@ class GrokTest extends WPMockTestCase {
 			]
 		);
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 
@@ -211,7 +212,7 @@ class GrokTest extends WPMockTestCase {
 		$grok = Mockery::mock( Grok::class )->makePartial();
 		$grok->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		$grok->shouldReceive( 'get_default_args' )
@@ -274,7 +275,7 @@ class GrokTest extends WPMockTestCase {
 		$grok = Mockery::mock( Grok::class )->makePartial();
 		$grok->shouldAllowMockingProtectedMethods();
 
-		$wp_error = Mockery::mock( \WP_Error::class )->makePartial();
+		$wp_error = Mockery::mock( WP_Error::class )->makePartial();
 		$wp_error->shouldAllowMockingProtectedMethods();
 
 		WP_Mock::expectAction(
@@ -286,7 +287,7 @@ class GrokTest extends WPMockTestCase {
 
 		$response = $grok->get_json_error( 'API Error...' );
 
-		$this->assertInstanceOf( \WP_Error::class, $response );
+		$this->assertInstanceOf( WP_Error::class, $response );
 		$this->assertConditionsMet();
 	}
 }

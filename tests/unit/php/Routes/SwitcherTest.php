@@ -4,6 +4,9 @@ namespace AiPlusBlockEditor\Tests\Routes;
 
 use WP_Mock;
 use Mockery;
+use WP_Error;
+use WP_REST_Request;
+use WP_REST_Response;
 use WP_Mock\Tools\TestCase;
 use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Routes\Switcher;
@@ -50,7 +53,7 @@ class SwitcherTest extends TestCase {
 		$switcher = Mockery::mock( Switcher::class )->makePartial();
 		$switcher->shouldAllowMockingProtectedMethods();
 
-		$request = Mockery::mock( \WP_REST_Request::class )->makePartial();
+		$request = Mockery::mock( WP_REST_Request::class )->makePartial();
 		$request->shouldAllowMockingProtectedMethods();
 
 		$request->shouldReceive( 'get_json_params' )
@@ -62,7 +65,7 @@ class SwitcherTest extends TestCase {
 
 		$switcher->request = $request;
 
-		$this->assertInstanceOf( \WP_Error::class, $switcher->response() );
+		$this->assertInstanceOf( WP_Error::class, $switcher->response() );
 		$this->assertConditionsMet();
 	}
 
@@ -70,7 +73,7 @@ class SwitcherTest extends TestCase {
 		$switcher = Mockery::mock( Switcher::class )->makePartial();
 		$switcher->shouldAllowMockingProtectedMethods();
 
-		$request = Mockery::mock( \WP_REST_Request::class )->makePartial();
+		$request = Mockery::mock( WP_REST_Request::class )->makePartial();
 		$request->shouldAllowMockingProtectedMethods();
 
 		$request->shouldReceive( 'get_json_params' )
@@ -139,19 +142,19 @@ class SwitcherTest extends TestCase {
 		WP_Mock::userFunction( 'rest_ensure_response' )
 			->andReturnUsing(
 				function ( $arg ) {
-					if ( $arg instanceof \WP_Error ) {
+					if ( $arg instanceof WP_Error ) {
 						return $arg;
 					}
 
 					if ( is_array( $arg ) ) {
-						return Mockery::mock( \WP_REST_Response::class )->makePartial();
+						return Mockery::mock( WP_REST_Response::class )->makePartial();
 					}
 
 					return null;
 				}
 			);
 
-		$this->assertInstanceOf( \WP_REST_Response::class, $switcher->response() );
+		$this->assertInstanceOf( WP_REST_Response::class, $switcher->response() );
 		$this->assertConditionsMet();
 	}
 }
