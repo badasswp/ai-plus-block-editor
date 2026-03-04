@@ -4,7 +4,7 @@ import { act, render, fireEvent, waitFor } from '@testing-library/react';
 import apiFetch from '@wordpress/api-fetch';
 import { useSelect, useDispatch } from '@wordpress/data';
 
-import Summary from '../../src/components/Summary';
+import Social from '../../../src/components/Social';
 
 jest.mock( '@wordpress/i18n', () => ( {
 	__: jest.fn( ( arg ) => arg ),
@@ -34,31 +34,25 @@ jest.mock( '@wordpress/components', () => ( {
 		return <>Icon</>;
 	} ),
 
-	TextareaControl: jest.fn(
-		( { rows, value, onChange, __nextHasNoMarginBottom = true } ) => {
-			return (
-				__nextHasNoMarginBottom && (
-					<>
-						<textarea
-							rows={ rows }
-							onChange={ onChange }
-							value={ value }
-						/>
-					</>
-				)
-			);
-		}
-	),
+	TextareaControl: jest.fn( ( { rows, value, onChange } ) => {
+		return (
+			<textarea
+				rows={ rows }
+				onChange={ ( e ) => onChange( e.target.value ) }
+				value={ value }
+			/>
+		);
+	} ),
 } ) );
 
 jest.mock( '@wordpress/api-fetch', () => jest.fn() );
 
-describe( 'Summary', () => {
+describe( 'Social', () => {
 	beforeEach( () => {
 		( useSelect as jest.Mock ).mockReturnValue( {
 			postId: 1,
 			postContent: 'Hello World',
-			postSummary: 'AI generated summary...',
+			postSocial: '#hello, #world',
 			notices: [],
 		} );
 
@@ -76,13 +70,13 @@ describe( 'Summary', () => {
 		jest.clearAllMocks();
 	} );
 
-	it( 'renders Summary component', () => {
-		const { container, getByText, getByRole } = render( <Summary /> );
+	it( 'renders Social component', () => {
+		const { container, getByText, getByRole } = render( <Social /> );
 
 		expect( container ).toMatchSnapshot();
 
-		expect( getByText( 'AI generated summary...' ) ).toBeInTheDocument();
-		expect( getByText( 'Summary' ) ).toBeVisible();
+		expect( getByText( '#hello, #world' ) ).toBeInTheDocument();
+		expect( getByText( 'Social Media Hashtags' ) ).toBeVisible();
 		expect( getByRole( 'button', { name: 'Icon' } ) ).toBeVisible();
 		expect( getByRole( 'button', { name: 'Icon' } ) ).toHaveClass(
 			'secondary'
@@ -106,13 +100,13 @@ describe( 'Summary', () => {
 
 		( apiFetch as unknown as jest.Mock ).mockImplementation(
 			jest.fn( () =>
-				Promise.resolve( 'It is such a wonderful world, we live in...' )
+				Promise.resolve( '#what, #beautiful, #wonderful, #world' )
 			)
 		);
 
-		const { getByText, getByRole } = render( <Summary /> );
+		const { getByText, getByRole } = render( <Social /> );
 
-		expect( getByText( 'AI generated summary...' ) ).toBeInTheDocument();
+		expect( getByText( '#hello, #world' ) ).toBeInTheDocument();
 
 		const button = getByRole( 'button', { name: 'Generate' } );
 		await act( async () => {
@@ -120,9 +114,9 @@ describe( 'Summary', () => {
 		} );
 
 		await waitFor( () => {
-			expect( mockEditPost ).toHaveBeenCalledTimes( 2 );
+			expect( mockEditPost ).toHaveBeenCalledTimes( 1 );
 			expect(
-				getByText( 'It is such a wonderful world, we live in...' )
+				getByText( '#what, #beautiful, #wonderful, #world' )
 			).toBeInTheDocument();
 		} );
 	} );
@@ -142,9 +136,9 @@ describe( 'Summary', () => {
 			new Error( 'AI LLM down...' )
 		);
 
-		const { getByText, getByRole } = render( <Summary /> );
+		const { getByText, getByRole } = render( <Social /> );
 
-		expect( getByText( 'AI generated summary...' ) ).toBeInTheDocument();
+		expect( getByText( '#hello, #world' ) ).toBeInTheDocument();
 
 		const button = getByRole( 'button', { name: 'Generate' } );
 		await act( async () => {
@@ -153,13 +147,11 @@ describe( 'Summary', () => {
 
 		await waitFor( () => {
 			expect( mockCreateErrorNotice ).toHaveBeenCalledTimes( 1 );
-			expect(
-				getByText( 'AI generated summary...' )
-			).toBeInTheDocument();
+			expect( getByText( '#hello, #world' ) ).toBeInTheDocument();
 		} );
 	} );
 
-	it( 'saves the selected AI Summary', async () => {
+	it( 'saves the selected AI Hashtags', async () => {
 		const mockEditPost = jest.fn();
 		const mockSavePost = jest.fn();
 		const mockCreateNotice = jest.fn();
@@ -176,13 +168,13 @@ describe( 'Summary', () => {
 
 		( apiFetch as unknown as jest.Mock ).mockImplementation(
 			jest.fn( () =>
-				Promise.resolve( 'It is such a wonderful world, we live in...' )
+				Promise.resolve( '#what, #beautiful, #wonderful, #world' )
 			)
 		);
 
-		const { getByText, getByRole } = render( <Summary /> );
+		const { getByText, getByRole } = render( <Social /> );
 
-		expect( getByText( 'AI generated summary...' ) ).toBeInTheDocument();
+		expect( getByText( '#hello, #world' ) ).toBeInTheDocument();
 
 		const button = getByRole( 'button', { name: 'Generate' } );
 		await act( async () => {
@@ -190,8 +182,9 @@ describe( 'Summary', () => {
 		} );
 
 		await waitFor( () => {
+			expect( mockEditPost ).toHaveBeenCalledTimes( 1 );
 			expect(
-				getByText( 'It is such a wonderful world, we live in...' )
+				getByText( '#what, #beautiful, #wonderful, #world' )
 			).toBeInTheDocument();
 		} );
 
@@ -201,7 +194,7 @@ describe( 'Summary', () => {
 		} );
 
 		await waitFor( () => {
-			expect( mockEditPost ).toHaveBeenCalledTimes( 4 );
+			expect( mockEditPost ).toHaveBeenCalledTimes( 2 );
 			expect( mockSavePost ).toHaveBeenCalledTimes( 1 );
 		} );
 	} );

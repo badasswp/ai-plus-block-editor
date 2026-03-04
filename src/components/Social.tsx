@@ -143,16 +143,25 @@ const Social = (): JSX.Element => {
 				</strong>
 			</p>
 			<TextareaControl
+				data-testid="social"
 				rows={ 4 }
 				value={ social }
 				onChange={ ( text ) => setSocial( text ) }
 				__nextHasNoMarginBottom
 			/>
 			<div className="apbe-button-group">
-				<Button variant="primary" onClick={ handleClick }>
+				<Button
+					variant="primary"
+					onClick={ handleClick }
+					data-testid="social-btn"
+				>
 					{ __( 'Generate', 'ai-plus-block-editor' ) }
 				</Button>
-				<Button variant="secondary" onClick={ handleSelection }>
+				<Button
+					variant="secondary"
+					onClick={ handleSelection }
+					data-testid="social-check"
+				>
 					<Icon icon={ check } />
 				</Button>
 			</div>

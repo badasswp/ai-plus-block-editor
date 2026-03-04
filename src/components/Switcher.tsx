@@ -69,6 +69,7 @@ const Switcher = (): JSX.Element => {
 				</strong>
 			</p>
 			<SelectControl
+				data-testid="switcher"
 				label={ null }
 				value={ provider }
 				options={ apbe?.providers || [] }

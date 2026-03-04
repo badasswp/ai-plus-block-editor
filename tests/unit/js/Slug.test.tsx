@@ -4,7 +4,7 @@ import { act, render, fireEvent, waitFor } from '@testing-library/react';
 import apiFetch from '@wordpress/api-fetch';
 import { useSelect, useDispatch } from '@wordpress/data';
 
-import SEO from '../../src/components/SEO';
+import Slug from '../../../src/components/Slug';
 
 jest.mock( '@wordpress/i18n', () => ( {
 	__: jest.fn( ( arg ) => arg ),
@@ -34,11 +34,11 @@ jest.mock( '@wordpress/components', () => ( {
 		return <>Icon</>;
 	} ),
 
-	TextareaControl: jest.fn( ( { rows, value, onChange } ) => {
+	TextControl: jest.fn( ( { placeholder, value, onChange } ) => {
 		return (
 			<>
-				<textarea
-					rows={ rows }
+				<input
+					placeholder={ placeholder }
 					onChange={ ( e ) => onChange( e.target.value ) }
 					value={ value }
 				/>
@@ -49,12 +49,12 @@ jest.mock( '@wordpress/components', () => ( {
 
 jest.mock( '@wordpress/api-fetch', () => jest.fn() );
 
-describe( 'SEO', () => {
+describe( 'Slug', () => {
 	beforeEach( () => {
 		( useSelect as jest.Mock ).mockReturnValue( {
 			postId: 1,
 			postContent: 'Hello World',
-			postKeywords: 'AI generated SEO...',
+			postSlug: 'ai-generated-slug',
 			notices: [],
 		} );
 
@@ -72,13 +72,16 @@ describe( 'SEO', () => {
 		jest.clearAllMocks();
 	} );
 
-	it( 'renders SEO Keywords component', () => {
-		const { container, getByText, getByRole } = render( <SEO /> );
+	it( 'renders Slug component', () => {
+		const { container, getByRole, getByText } = render( <Slug /> );
 
 		expect( container ).toMatchSnapshot();
 
-		expect( getByText( 'AI generated SEO...' ) ).toBeInTheDocument();
-		expect( getByText( 'SEO Keywords' ) ).toBeVisible();
+		expect( getByRole( 'textbox', { name: '' } ) ).toBeInTheDocument();
+		expect( getByRole( 'textbox', { name: '' } ) ).toHaveValue(
+			'ai-generated-slug'
+		);
+		expect( getByText( 'Slug' ) ).toBeVisible();
 		expect( getByRole( 'button', { name: 'Icon' } ) ).toBeVisible();
 		expect( getByRole( 'button', { name: 'Icon' } ) ).toHaveClass(
 			'secondary'
@@ -101,12 +104,15 @@ describe( 'SEO', () => {
 		} );
 
 		( apiFetch as unknown as jest.Mock ).mockImplementation(
-			jest.fn( () => Promise.resolve( 'hello, world, beautiful' ) )
+			jest.fn( () => Promise.resolve( 'new-ai-generated-slug' ) )
 		);
 
-		const { getByText, getByRole } = render( <SEO /> );
+		const { getByRole } = render( <Slug /> );
 
-		expect( getByText( 'AI generated SEO...' ) ).toBeInTheDocument();
+		expect( getByRole( 'textbox', { name: '' } ) ).toBeInTheDocument();
+		expect( getByRole( 'textbox', { name: '' } ) ).toHaveValue(
+			'ai-generated-slug'
+		);
 
 		const button = getByRole( 'button', { name: 'Generate' } );
 		await act( async () => {
@@ -114,10 +120,11 @@ describe( 'SEO', () => {
 		} );
 
 		await waitFor( () => {
-			expect( mockEditPost ).toHaveBeenCalledTimes( 1 );
-			expect(
-				getByText( 'hello, world, beautiful' )
-			).toBeInTheDocument();
+			expect( mockEditPost ).toHaveBeenCalledTimes( 2 );
+			expect( getByRole( 'textbox', { name: '' } ) ).toBeInTheDocument();
+			expect( getByRole( 'textbox', { name: '' } ) ).toHaveValue(
+				'new-ai-generated-slug'
+			);
 		} );
 	} );
 
@@ -136,9 +143,12 @@ describe( 'SEO', () => {
 			new Error( 'AI LLM down...' )
 		);
 
-		const { getByText, getByRole } = render( <SEO /> );
+		const { getByRole } = render( <Slug /> );
 
-		expect( getByText( 'AI generated SEO...' ) ).toBeInTheDocument();
+		expect( getByRole( 'textbox', { name: '' } ) ).toBeInTheDocument();
+		expect( getByRole( 'textbox', { name: '' } ) ).toHaveValue(
+			'ai-generated-slug'
+		);
 
 		const button = getByRole( 'button', { name: 'Generate' } );
 		await act( async () => {
@@ -147,11 +157,14 @@ describe( 'SEO', () => {
 
 		await waitFor( () => {
 			expect( mockCreateErrorNotice ).toHaveBeenCalledTimes( 1 );
-			expect( getByText( 'AI generated SEO...' ) ).toBeInTheDocument();
+			expect( getByRole( 'textbox', { name: '' } ) ).toBeInTheDocument();
+			expect( getByRole( 'textbox', { name: '' } ) ).toHaveValue(
+				'ai-generated-slug'
+			);
 		} );
 	} );
 
-	it( 'saves the selected AI SEO Keywords', async () => {
+	it( 'saves the selected AI Slug', async () => {
 		const mockEditPost = jest.fn();
 		const mockSavePost = jest.fn();
 		const mockCreateNotice = jest.fn();
@@ -167,12 +180,15 @@ describe( 'SEO', () => {
 		} );
 
 		( apiFetch as unknown as jest.Mock ).mockImplementation(
-			jest.fn( () => Promise.resolve( 'hello, world, beautiful' ) )
+			jest.fn( () => Promise.resolve( 'new-ai-generated-slug' ) )
 		);
 
-		const { getByText, getByRole } = render( <SEO /> );
+		const { getByRole } = render( <Slug /> );
 
-		expect( getByText( 'AI generated SEO...' ) ).toBeInTheDocument();
+		expect( getByRole( 'textbox', { name: '' } ) ).toBeInTheDocument();
+		expect( getByRole( 'textbox', { name: '' } ) ).toHaveValue(
+			'ai-generated-slug'
+		);
 
 		const button = getByRole( 'button', { name: 'Generate' } );
 		await act( async () => {
@@ -180,10 +196,11 @@ describe( 'SEO', () => {
 		} );
 
 		await waitFor( () => {
-			expect( mockEditPost ).toHaveBeenCalledTimes( 1 );
-			expect(
-				getByText( 'hello, world, beautiful' )
-			).toBeInTheDocument();
+			expect( mockEditPost ).toHaveBeenCalledTimes( 2 );
+			expect( getByRole( 'textbox', { name: '' } ) ).toBeInTheDocument();
+			expect( getByRole( 'textbox', { name: '' } ) ).toHaveValue(
+				'new-ai-generated-slug'
+			);
 		} );
 
 		const icon = getByRole( 'button', { name: 'Icon' } );
@@ -192,7 +209,7 @@ describe( 'SEO', () => {
 		} );
 
 		await waitFor( () => {
-			expect( mockEditPost ).toHaveBeenCalledTimes( 2 );
+			expect( mockEditPost ).toHaveBeenCalledTimes( 4 );
 			expect( mockSavePost ).toHaveBeenCalledTimes( 1 );
 		} );
 	} );

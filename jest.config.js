@@ -11,4 +11,5 @@ module.exports = {
 	moduleNameMapper: {
 		uuid: require.resolve( 'uuid' ),
 	},
+	testPathIgnorePatterns: [ '/node_modules/', '/tests/e2e/' ],
 };

@@ -143,6 +143,7 @@ const Slug = (): JSX.Element => {
 				<strong>{ __( 'Slug', 'ai-plus-block-editor' ) }</strong>
 			</p>
 			<TextControl
+				data-testid="slug"
 				placeholder="your-article-slug"
 				value={ slug }
 				onChange={ ( text ) => setSlug( text ) }
@@ -150,10 +151,18 @@ const Slug = (): JSX.Element => {
 				__next40pxDefaultSize
 			/>
 			<div className="apbe-button-group">
-				<Button variant="primary" onClick={ handleClick }>
+				<Button
+					variant="primary"
+					onClick={ handleClick }
+					data-testid="slug-btn"
+				>
 					{ __( 'Generate', 'ai-plus-block-editor' ) }
 				</Button>
-				<Button variant="secondary" onClick={ handleSelection }>
+				<Button
+					variant="secondary"
+					onClick={ handleSelection }
+					data-testid="slug-check"
+				>
 					<Icon icon={ check } />
 				</Button>
 			</div>

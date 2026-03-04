@@ -4,7 +4,7 @@ import { act, render, fireEvent, waitFor } from '@testing-library/react';
 import apiFetch from '@wordpress/api-fetch';
 import { useSelect, useDispatch } from '@wordpress/data';
 
-import Social from '../../src/components/Social';
+import SEO from '../../../src/components/SEO';
 
 jest.mock( '@wordpress/i18n', () => ( {
 	__: jest.fn( ( arg ) => arg ),
@@ -36,23 +36,25 @@ jest.mock( '@wordpress/components', () => ( {
 
 	TextareaControl: jest.fn( ( { rows, value, onChange } ) => {
 		return (
-			<textarea
-				rows={ rows }
-				onChange={ ( e ) => onChange( e.target.value ) }
-				value={ value }
-			/>
+			<>
+				<textarea
+					rows={ rows }
+					onChange={ ( e ) => onChange( e.target.value ) }
+					value={ value }
+				/>
+			</>
 		);
 	} ),
 } ) );
 
 jest.mock( '@wordpress/api-fetch', () => jest.fn() );
 
-describe( 'Social', () => {
+describe( 'SEO', () => {
 	beforeEach( () => {
 		( useSelect as jest.Mock ).mockReturnValue( {
 			postId: 1,
 			postContent: 'Hello World',
-			postSocial: '#hello, #world',
+			postKeywords: 'AI generated SEO...',
 			notices: [],
 		} );
 
@@ -70,13 +72,13 @@ describe( 'Social', () => {
 		jest.clearAllMocks();
 	} );
 
-	it( 'renders Social component', () => {
-		const { container, getByText, getByRole } = render( <Social /> );
+	it( 'renders SEO Keywords component', () => {
+		const { container, getByText, getByRole } = render( <SEO /> );
 
 		expect( container ).toMatchSnapshot();
 
-		expect( getByText( '#hello, #world' ) ).toBeInTheDocument();
-		expect( getByText( 'Social Media Hashtags' ) ).toBeVisible();
+		expect( getByText( 'AI generated SEO...' ) ).toBeInTheDocument();
+		expect( getByText( 'SEO Keywords' ) ).toBeVisible();
 		expect( getByRole( 'button', { name: 'Icon' } ) ).toBeVisible();
 		expect( getByRole( 'button', { name: 'Icon' } ) ).toHaveClass(
 			'secondary'
@@ -99,14 +101,12 @@ describe( 'Social', () => {
 		} );
 
 		( apiFetch as unknown as jest.Mock ).mockImplementation(
-			jest.fn( () =>
-				Promise.resolve( '#what, #beautiful, #wonderful, #world' )
-			)
+			jest.fn( () => Promise.resolve( 'hello, world, beautiful' ) )
 		);
 
-		const { getByText, getByRole } = render( <Social /> );
+		const { getByText, getByRole } = render( <SEO /> );
 
-		expect( getByText( '#hello, #world' ) ).toBeInTheDocument();
+		expect( getByText( 'AI generated SEO...' ) ).toBeInTheDocument();
 
 		const button = getByRole( 'button', { name: 'Generate' } );
 		await act( async () => {
@@ -116,7 +116,7 @@ describe( 'Social', () => {
 		await waitFor( () => {
 			expect( mockEditPost ).toHaveBeenCalledTimes( 1 );
 			expect(
-				getByText( '#what, #beautiful, #wonderful, #world' )
+				getByText( 'hello, world, beautiful' )
 			).toBeInTheDocument();
 		} );
 	} );
@@ -136,9 +136,9 @@ describe( 'Social', () => {
 			new Error( 'AI LLM down...' )
 		);
 
-		const { getByText, getByRole } = render( <Social /> );
+		const { getByText, getByRole } = render( <SEO /> );
 
-		expect( getByText( '#hello, #world' ) ).toBeInTheDocument();
+		expect( getByText( 'AI generated SEO...' ) ).toBeInTheDocument();
 
 		const button = getByRole( 'button', { name: 'Generate' } );
 		await act( async () => {
@@ -147,11 +147,11 @@ describe( 'Social', () => {
 
 		await waitFor( () => {
 			expect( mockCreateErrorNotice ).toHaveBeenCalledTimes( 1 );
-			expect( getByText( '#hello, #world' ) ).toBeInTheDocument();
+			expect( getByText( 'AI generated SEO...' ) ).toBeInTheDocument();
 		} );
 	} );
 
-	it( 'saves the selected AI Hashtags', async () => {
+	it( 'saves the selected AI SEO Keywords', async () => {
 		const mockEditPost = jest.fn();
 		const mockSavePost = jest.fn();
 		const mockCreateNotice = jest.fn();
@@ -167,14 +167,12 @@ describe( 'Social', () => {
 		} );
 
 		( apiFetch as unknown as jest.Mock ).mockImplementation(
-			jest.fn( () =>
-				Promise.resolve( '#what, #beautiful, #wonderful, #world' )
-			)
+			jest.fn( () => Promise.resolve( 'hello, world, beautiful' ) )
 		);
 
-		const { getByText, getByRole } = render( <Social /> );
+		const { getByText, getByRole } = render( <SEO /> );
 
-		expect( getByText( '#hello, #world' ) ).toBeInTheDocument();
+		expect( getByText( 'AI generated SEO...' ) ).toBeInTheDocument();
 
 		const button = getByRole( 'button', { name: 'Generate' } );
 		await act( async () => {
@@ -184,7 +182,7 @@ describe( 'Social', () => {
 		await waitFor( () => {
 			expect( mockEditPost ).toHaveBeenCalledTimes( 1 );
 			expect(
-				getByText( '#what, #beautiful, #wonderful, #world' )
+				getByText( 'hello, world, beautiful' )
 			).toBeInTheDocument();
 		} );
 
