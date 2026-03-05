@@ -27,7 +27,7 @@ msgstr ""
 #: ai-plus-block-editor.php:32
 #, php-format
 msgid "Fatal Error: Composer not setup in %s"
-msgstr "Критическая ошибка: Композитор не настроен в %s"
+msgstr "Фатальная ошибка: Composer не настроен в %s"
 
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
