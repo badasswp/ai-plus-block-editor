@@ -117,7 +117,7 @@ msgstr "Claude"
 
 #: inc/Admin/Options.php:209
 msgid "Enable Claude"
-msgstr "Включить Клода"
+msgstr "Включить Claude"
 
 #: inc/Admin/Options.php:210
 msgid "Use Claude capabilities in Block Editor"
