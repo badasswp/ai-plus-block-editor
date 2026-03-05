@@ -37,7 +37,7 @@ msgstr "AI+区块编辑器"
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
 msgid "Add AI Capabilities to the WP Block Editor."
-msgstr "为WordPress区块编辑器添加AI功能。"
+msgstr "向 WP 块编辑器添加 AI 功能。"
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
