@@ -121,7 +121,7 @@ msgstr "Omogući Claude"
 
 #: inc/Admin/Options.php:210
 msgid "Use Claude capabilities in Block Editor"
-msgstr "Koristite Claudeove mogućnosti u Block Editoru"
+msgstr "Koristite Claude mogućnosti u Block Editoru"
 
 #: inc/Admin/Options.php:235
 msgid "Settings Saved."
