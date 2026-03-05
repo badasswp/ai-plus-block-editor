@@ -32,7 +32,7 @@ msgstr "Schwerwiegender Fehler: Composer ist in %s nicht eingerichtet."
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
 msgid "AI + Block Editor"
-msgstr "KI + Blockeditor"
+msgstr "AI + Blokeditor"
 
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
