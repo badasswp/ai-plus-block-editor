@@ -4,14 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2025-04-15 09:08+0100\n"
+"PO-Revision-Date: 2026-03-04 17:53+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 "X-Domain: ai-plus-block-editor\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -27,7 +27,7 @@ msgstr ""
 #: ai-plus-block-editor.php:32
 #, php-format
 msgid "Fatal Error: Composer not setup in %s"
-msgstr "Erreur fatale : le compositeur n'est pas configuré dans %s"
+msgstr "Erreur fatale : Composer n'est pas configuré dans %s"
 
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
@@ -37,7 +37,7 @@ msgstr "AI + éditeur de blocs"
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
 msgid "Add AI Capabilities to the WP Block Editor."
-msgstr "Ajoutez des fonctionnalités d’IA à l’éditeur de blocs WP."
+msgstr "Ajouter des fonctionnalités d'AI à l'éditeur de blocs WP."
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
@@ -65,7 +65,7 @@ msgstr "Activer Open AI"
 
 #: inc/Admin/Options.php:149
 msgid "Use Chat GPT capabilities in Block Editor"
-msgstr "Utiliser les fonctionnalités de Chat GPT dans l'éditeur de blocs"
+msgstr "Utilisez les fonctionnalités GPT de Chat dans l'éditeur de blocs"
 
 #: inc/Admin/Options.php:154 inc/Admin/Options.php:170
 msgid "Token"
@@ -73,7 +73,7 @@ msgstr "Jeton"
 
 #: inc/Admin/Options.php:155 inc/Admin/Options.php:171
 msgid "e.g. ae2kgch7i"
-msgstr "e.g. ae2kgch7i"
+msgstr "par exemple ae2kgch7i"
 
 #: inc/Admin/Options.php:160
 msgid "Google Gemini"
@@ -85,9 +85,45 @@ msgstr "Activer Google Gemini"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr "Utiliser les fonctionnalités de Google Gemini dans l'éditeur de blocs"
+msgstr "Utilisez les fonctionnalités de Google Gemini dans l'éditeur de blocs"
 
-#: inc/Admin/Options.php:190
+#: inc/Admin/Options.php:173
+msgid "Deepseek"
+msgstr "Deepseek"
+
+#: inc/Admin/Options.php:177
+msgid "Enable DeepSeek"
+msgstr "Activer DeepSeek"
+
+#: inc/Admin/Options.php:178
+msgid "Use DeepSeek capabilities in Block Editor"
+msgstr "Utilisez les fonctionnalités de DeepSeek dans l'éditeur de blocs"
+
+#: inc/Admin/Options.php:189
+msgid "Grok"
+msgstr "Grok"
+
+#: inc/Admin/Options.php:193
+msgid "Enable Grok"
+msgstr "Activer Grok"
+
+#: inc/Admin/Options.php:194
+msgid "Use Grok capabilities in Block Editor"
+msgstr "Utilisez les fonctionnalités de Grok dans l'éditeur de blocs"
+
+#: inc/Admin/Options.php:205
+msgid "Claude"
+msgstr "Claude"
+
+#: inc/Admin/Options.php:209
+msgid "Enable Claude"
+msgstr "Activer Claude"
+
+#: inc/Admin/Options.php:210
+msgid "Use Claude capabilities in Block Editor"
+msgstr "Utilisez les fonctionnalités de Claude dans l'éditeur de blocs"
+
+#: inc/Admin/Options.php:235
 msgid "Settings Saved."
 msgstr "Paramètres enregistrés."
 

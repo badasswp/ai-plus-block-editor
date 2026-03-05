@@ -4,14 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2025-04-15 23:21+0100\n"
+"PO-Revision-Date: 2026-03-04 20:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 "X-Domain: ai-plus-block-editor\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -32,12 +32,12 @@ msgstr "Фатальная ошибка: Composer не настроен в %s"
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
 msgid "AI + Block Editor"
-msgstr "AI + редактор блоков"
+msgstr "AI + Редактор блоков"
 
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
 msgid "Add AI Capabilities to the WP Block Editor."
-msgstr "Добавьте возможности искусственного интеллекта в редактор блоков WP."
+msgstr "Добавьте возможности искусственного интеллекта в редактор блоков WordPress."
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
@@ -49,7 +49,7 @@ msgstr "Сохранить изменения"
 
 #: inc/Admin/Options.php:128
 msgid "General Options"
-msgstr "Общие настройки"
+msgstr "Общие параметры"
 
 #: inc/Admin/Options.php:132
 msgid "AI Provider"
@@ -57,15 +57,15 @@ msgstr "Поставщик ИИ"
 
 #: inc/Admin/Options.php:144
 msgid "Open AI"
-msgstr "Открытый ИИ"
+msgstr "Open AI"
 
 #: inc/Admin/Options.php:148
 msgid "Enable Open AI"
-msgstr "Включить открытый ИИ"
+msgstr "Включить OpenAI"
 
 #: inc/Admin/Options.php:149
 msgid "Use Chat GPT capabilities in Block Editor"
-msgstr "Использование возможностей Chat GPT в редакторе блоков"
+msgstr "Используйте возможности ChatGPT в блочном редакторе."
 
 #: inc/Admin/Options.php:154 inc/Admin/Options.php:170
 msgid "Token"
@@ -73,21 +73,57 @@ msgstr "Токен"
 
 #: inc/Admin/Options.php:155 inc/Admin/Options.php:171
 msgid "e.g. ae2kgch7i"
-msgstr "например ae2kgch7i"
+msgstr "например, ae2kgch7i"
 
 #: inc/Admin/Options.php:160
 msgid "Google Gemini"
-msgstr "Гугл Близнецы"
+msgstr "Google Gemini"
 
 #: inc/Admin/Options.php:164
 msgid "Enable Google Gemini"
-msgstr "Включить Google Близнецы"
+msgstr "Включить Google Gemini"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr "Используйте возможности Google Gemini в редакторе блоков"
+msgstr "Используйте возможности Google Gemini в блочном редакторе."
 
-#: inc/Admin/Options.php:190
+#: inc/Admin/Options.php:173
+msgid "Deepseek"
+msgstr "Deepseek"
+
+#: inc/Admin/Options.php:177
+msgid "Enable DeepSeek"
+msgstr "Включить DeepSeek"
+
+#: inc/Admin/Options.php:178
+msgid "Use DeepSeek capabilities in Block Editor"
+msgstr "Используйте возможности DeepSeek в блочном редакторе."
+
+#: inc/Admin/Options.php:189
+msgid "Grok"
+msgstr "Grok"
+
+#: inc/Admin/Options.php:193
+msgid "Enable Grok"
+msgstr "Включить Grok"
+
+#: inc/Admin/Options.php:194
+msgid "Use Grok capabilities in Block Editor"
+msgstr "Используйте возможности Grok в блочном редакторе."
+
+#: inc/Admin/Options.php:205
+msgid "Claude"
+msgstr "Claude"
+
+#: inc/Admin/Options.php:209
+msgid "Enable Claude"
+msgstr "Включить Claude"
+
+#: inc/Admin/Options.php:210
+msgid "Use Claude capabilities in Block Editor"
+msgstr "Используйте возможности Claude в блочном редакторе."
+
+#: inc/Admin/Options.php:235
 msgid "Settings Saved."
 msgstr "Настройки сохранены."
 
