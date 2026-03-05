@@ -37,7 +37,7 @@ msgstr "AI + éditeur de blocs"
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
 msgid "Add AI Capabilities to the WP Block Editor."
-msgstr "Ajouter des fonctionnalités d'IA à l'éditeur de blocs WP."
+msgstr "Ajouter des fonctionnalités d'AI à l'éditeur de blocs WP."
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
