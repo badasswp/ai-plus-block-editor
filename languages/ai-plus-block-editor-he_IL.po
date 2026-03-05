@@ -85,7 +85,7 @@ msgstr "הפעל את Google Gemini"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr "השתמש ביכולות של גוגל ג'מיני בעורך הבלוקים"
+msgstr "השתמש ביכולות של Google Gemini ב-Block Editor"
 
 #: inc/Admin/Options.php:173
 msgid "Deepseek"
