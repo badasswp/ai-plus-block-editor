@@ -93,7 +93,7 @@ msgstr "Deepseek"
 
 #: inc/Admin/Options.php:177
 msgid "Enable DeepSeek"
-msgstr "डीपसीक को सक्षम करें"
+msgstr "सक्षम DeepSeek"
 
 #: inc/Admin/Options.php:178
 msgid "Use DeepSeek capabilities in Block Editor"
