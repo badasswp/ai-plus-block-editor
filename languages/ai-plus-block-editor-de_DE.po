@@ -53,7 +53,7 @@ msgstr "Allgemeine Optionen"
 
 #: inc/Admin/Options.php:132
 msgid "AI Provider"
-msgstr "KI-Anbieter"
+msgstr "AI-Anbieter"
 
 #: inc/Admin/Options.php:144
 msgid "Open AI"
