@@ -1,0 +1,102 @@
+{
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "pt_BR\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"AI + Editor de blocos"
+			],
+			"Headline": [
+				"Título"
+			],
+			"Slug": [
+				"Lesma"
+			],
+			"SEO Keywords": [
+				"Palavras-chave SEO"
+			],
+			"Summary": [
+				"Resumo"
+			],
+			"Use Casual Tone": [
+				"Utilize tom casual"
+			],
+			"Use Official Tone": [
+				"Utilize tom oficial"
+			],
+			"Use Descriptive Tone": [
+				"Utilize um tom descritivo."
+			],
+			"Use Narrative Tone": [
+				"Utilize um tom narrativo."
+			],
+			"Use Aggressive Tone": [
+				"Utilize um tom agressivo."
+			],
+			"Generate": [
+				"Gerar"
+			],
+			"AI is generating text, please hold on for a bit.": [
+				"A AI está gerando texto, aguarde um momento."
+			],
+			"Switch AI Provider": [
+				"Mudar de provedor de AI"
+			],
+			"Social Media Hashtags": [
+				"Hashtags de mídias sociais"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"Sucesso! O provedor de AI migrou com êxito para a OpenAI."
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"Sucesso! O provedor de AI migrou com êxito para a Gemini."
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"Sucesso! O provedor de AI migrou com êxito para a DeepSeek."
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"Sucesso! O provedor de AI migrou com êxito para a ChatGPT."
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"Sucesso! O provedor de AI foi alterado com sucesso."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"Erro! Falha ao trocar o provedor de AI."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"Erro! Falha ao obter o título. Verifique seus registros de erro ou o console para obter mais informações."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"Erro! Falha ao obter o slug. Verifique seus registros de erro ou o console para obter mais informações."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"Erro! Falha ao buscar palavras-chave de SEO. Verifique seus registros de erros ou o console para obter mais informações."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"Erro! Falha ao obter o resumo. Verifique seus registros de erro ou o console para obter mais informações."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"Erro! Falha ao buscar as hashtags. Verifique seus registros de erro ou o console para obter mais informações."
+			]
+		}
+	}
+}
