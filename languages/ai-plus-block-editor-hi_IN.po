@@ -109,7 +109,7 @@ msgstr "सक्षम Grok""
 
 #: inc/Admin/Options.php:194
 msgid "Use Grok capabilities in Block Editor"
-msgstr "ब्लॉक एडिटर में ग्रोक की क्षमताओं का उपयोग करें"
+msgstr "ब्लॉक एडिटर में Grok की सुविधाओं का उपयोग करें"
 
 #: inc/Admin/Options.php:205
 msgid "Claude"
