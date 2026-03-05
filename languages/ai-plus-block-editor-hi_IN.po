@@ -97,7 +97,7 @@ msgstr "सक्षम DeepSeek"
 
 #: inc/Admin/Options.php:178
 msgid "Use DeepSeek capabilities in Block Editor"
-msgstr "ब्लॉक एडिटर में डीपसीक क्षमताओं का उपयोग करें"
+msgstr "ब्लॉक एडिटर में DeepSeek की सुविधाओं का उपयोग करें"
 
 #: inc/Admin/Options.php:189
 msgid "Grok"
