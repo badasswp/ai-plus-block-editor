@@ -41,7 +41,7 @@ msgstr "Añade capacidades de IA al editor de bloques de WP."
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
-msgstr "Comportamiento"
+msgstr "Acciones"
 
 #: inc/Admin/Options.php:106
 msgid "Save Changes"
