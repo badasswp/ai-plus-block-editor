@@ -105,7 +105,7 @@ msgstr "Grok"
 
 #: inc/Admin/Options.php:193
 msgid "Enable Grok"
-msgstr "Включить Грока"
+msgstr "Включить Grok"
 
 #: inc/Admin/Options.php:194
 msgid "Use Grok capabilities in Block Editor"
