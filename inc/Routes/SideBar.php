@@ -10,8 +10,8 @@
 
 namespace AiPlusBlockEditor\Routes;
 
+use WP_REST_Server;
 use WP_REST_Request;
-use AiPlusBlockEditor\Core\AI;
 use AiPlusBlockEditor\Abstracts\Route;
 use AiPlusBlockEditor\Interfaces\Router;
 
@@ -26,7 +26,7 @@ class SideBar extends Route implements Router {
 	 *
 	 * @var string
 	 */
-	public string $method = 'POST';
+	public string $method = WP_REST_Server::CREATABLE;
 
 	/**
 	 * WP REST Endpoint e.g. /wp-json/ai-plus-block-editor/v1/sidebar.
