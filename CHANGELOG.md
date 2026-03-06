@@ -1,6 +1,7 @@
 # Changelog
 
 ## 1.9.0
+* Feat: Add language translations for Japanese, Indonesia, Turkish, Polish, Dutch, Brazil, Portuguese.
 * Feat: Add custom filters for LLM options `apbe_open_ai_options`, `apbe_gemini_options`, `apbe_deepseek_options`, `apbe_grok_options`, `apbe_claude_options`.
 * Refactor: Replace `get_400_response` with `get_error_response`.
 * Refactor: Replace repeated mocks using WPMockTestCase library.

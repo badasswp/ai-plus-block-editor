@@ -1,0 +1,102 @@
+{
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "nl_NL\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"AI + Blok-editor"
+			],
+			"Headline": [
+				"Kop"
+			],
+			"Slug": [
+				"Naaktslak"
+			],
+			"SEO Keywords": [
+				"SEO-trefwoorden"
+			],
+			"Summary": [
+				"Samenvatting"
+			],
+			"Use Casual Tone": [
+				"Gebruik een informele toon"
+			],
+			"Use Official Tone": [
+				"Gebruik de officiële toon"
+			],
+			"Use Descriptive Tone": [
+				"Gebruik een beschrijvende toon."
+			],
+			"Use Narrative Tone": [
+				"Gebruik een verhalende toon."
+			],
+			"Use Aggressive Tone": [
+				"Gebruik een agressieve toon."
+			],
+			"Generate": [
+				"Genereer"
+			],
+			"AI is generating text, please hold on for a bit.": [
+				"De AI genereert de tekst, even geduld alstublieft."
+			],
+			"Switch AI Provider": [
+				"Schakel over naar een AI-provider"
+			],
+			"Social Media Hashtags": [
+				"Sociale media hashtags"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"Succes! AI-aanbieder is succesvol overgestapt naar OpenAI."
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"Succes! AI-aanbieder is succesvol overgestapt naar Gemini."
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"Succes! AI-aanbieder is succesvol overgestapt naar DeepSeek."
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"Succes! AI-aanbieder is succesvol overgestapt naar ChatGPT."
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"Gelukt! AI-provider succesvol overgeschakeld."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"Fout! Het wisselen van AI-provider is mislukt."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"Fout! Het ophalen van de kop is mislukt. Raadpleeg uw foutenlogboeken of de console voor meer informatie."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"Fout! Het ophalen van de slug is mislukt. Raadpleeg uw foutenlogboeken of de console voor meer informatie."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"Fout! Het ophalen van SEO-zoekwoorden is mislukt. Raadpleeg uw foutenlogboeken of de console voor meer informatie."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"Fout! Het ophalen van de samenvatting is mislukt. Raadpleeg uw foutenlogboeken of de console voor meer informatie."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"Fout! Het ophalen van hashtags is mislukt. Raadpleeg uw foutenlogboeken of de console voor meer informatie."
+			]
+		}
+	}
+}

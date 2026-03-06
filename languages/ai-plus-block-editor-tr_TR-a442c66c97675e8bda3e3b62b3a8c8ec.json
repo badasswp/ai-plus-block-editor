@@ -1,0 +1,102 @@
+{
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "tr_TR\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"AI + Blok Düzenleyici"
+			],
+			"Headline": [
+				"Başlık"
+			],
+			"Slug": [
+				"Sümüklüböcek"
+			],
+			"SEO Keywords": [
+				"SEO Anahtar Kelimeleri"
+			],
+			"Summary": [
+				"Özet"
+			],
+			"Use Casual Tone": [
+				"Gündelik Ton Kullan"
+			],
+			"Use Official Tone": [
+				"Resmi Tonu Kullan"
+			],
+			"Use Descriptive Tone": [
+				"Tanımlayıcı Tonu Kullan"
+			],
+			"Use Narrative Tone": [
+				"Anlatı Tonu Kullan"
+			],
+			"Use Aggressive Tone": [
+				"Agresif Tonu Kullan"
+			],
+			"Generate": [
+				"Oluştur"
+			],
+			"AI is generating text, please hold on for a bit.": [
+				"AI metin oluşturuyor, lütfen biraz bekleyin."
+			],
+			"Switch AI Provider": [
+				"AI Sağlayıcıyı Değiştir"
+			],
+			"Social Media Hashtags": [
+				"Sosyal Medya Etiketleri"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"Başarılı! AI sağlayıcısı OpenAI'ye başarıyla geçiş yaptı."
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"Başarılı! AI Sağlayıcısı Gemini'ye başarıyla geçiş yaptı"
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"Başarılı! Yapay Zeka Sağlayıcısı DeepSeek'ye başarıyla geçiş yaptı"
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"Başarılı! Yapay Zeka Sağlayıcısı ChatGPT'ye başarıyla geçiş yaptı"
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"Başarılı! AI sağlayıcısı başarıyla değiştirildi."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"Hata! AI Sağlayıcısı değiştirilemedi."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"Hata! Başlık alınamadı. Daha fazla bilgi için lütfen hata günlüklerinizi veya konsolu kontrol edin."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"Hata! Slug alınamadı. Daha fazla bilgi için lütfen hata günlüklerinizi veya konsolu kontrol edin."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"Hata! SEO anahtar kelimeleri alınamadı. Daha fazla bilgi için lütfen hata günlüklerinizi veya konsolu kontrol edin."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"Hata! Özet alınamadı. Daha fazla bilgi için lütfen hata günlüklerinizi veya konsolu kontrol edin."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"Hata! Hashtag'ler alınamadı. Daha fazla bilgi için lütfen hata günlüklerinizi veya konsolu kontrol edin."
+			]
+		}
+	}
+}
