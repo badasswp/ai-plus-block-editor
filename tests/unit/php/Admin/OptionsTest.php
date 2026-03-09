@@ -98,6 +98,11 @@ class OptionsTest extends WPMockTestCase {
 								'Claude'   => 'Claude',
 							],
 						],
+						'animation_enable' => [
+							'control' => 'checkbox',
+							'label'   => esc_html__( 'Enable Animation', 'ai-plus-block-editor' ),
+							'summary' => esc_html__( 'Enable animations in the block editor.', 'ai-plus-block-editor' ),
+						],
 					],
 				],
 				'open_ai_options'       => [
