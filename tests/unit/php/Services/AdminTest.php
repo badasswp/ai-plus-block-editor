@@ -181,7 +181,7 @@ class AdminTest extends WPMockTestCase {
 					'open_ai_enable'       => '',
 					'open_ai_token'        => '',
 					'ai_provider'          => '',
-					'animation_enable'          => '',
+					'animation_enable'     => '',
 				]
 			)
 			->andReturn( null );

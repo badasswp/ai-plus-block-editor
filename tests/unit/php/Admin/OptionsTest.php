@@ -86,7 +86,7 @@ class OptionsTest extends WPMockTestCase {
 				'general_options'       => [
 					'heading'  => 'General Options',
 					'controls' => [
-						'ai_provider' => [
+						'ai_provider'      => [
 							'control' => 'select',
 							'label'   => 'AI Provider',
 							'summary' => 'e.g. Open AI (Chat GPT)',
