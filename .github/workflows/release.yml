@@ -72,6 +72,9 @@ jobs:
           echo "BUILT_BRANCH=$BUILT_BRANCH" >> $GITHUB_ENV
           git checkout -B "$BUILT_BRANCH"
 
+      - name: Clear Yarn cache
+        run: yarn cache clean
+
       - name: Build Dist folder
         run: |
           yarn install && yarn build
