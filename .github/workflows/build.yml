@@ -33,6 +33,9 @@ jobs:
         with:
           node-version: 20.x
 
+      - name: Clear Yarn cache
+        run: yarn cache clean
+
       - name: Build Dist folder
         run: |
           yarn install && yarn build
