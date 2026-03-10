@@ -138,7 +138,7 @@ class Options {
 					'ai_provider'      => [
 						'control' => esc_attr( 'select' ),
 						'label'   => esc_html__( 'AI Provider', 'ai-plus-block-editor' ),
-						'summary' => 'e.g. Open AI (Chat GPT)',
+						'summary' => esc_html__( 'e.g. Open AI (Chat GPT)', 'ai-plus-block-editor' ),
 						'options' => Provider::get_providers(),
 					],
 					'animation_enable' => [
