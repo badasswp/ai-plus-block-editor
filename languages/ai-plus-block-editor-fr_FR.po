@@ -54,7 +54,7 @@ msgstr "Options générales"
 
 #: inc/Admin/Options.php:132
 msgid "AI Provider"
-msgstr "Fournisseur d'IA"
+msgstr "Fournisseur d'AI"
 
 #: inc/Admin/Options.php:141
 msgid "e.g. Open AI (Chat GPT)"
