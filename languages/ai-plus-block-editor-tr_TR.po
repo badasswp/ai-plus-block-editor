@@ -4,13 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2026-03-05 11:19+0100\n"
+"PO-Revision-Date: 2026-03-10 17:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.8\n"
 "X-Domain: ai-plus-block-editor\n"
 "X-Poedit-Basepath: ..\n"
@@ -27,7 +28,7 @@ msgstr ""
 #: ai-plus-block-editor.php:32
 #, php-format
 msgid "Fatal Error: Composer not setup in %s"
-msgstr "Önemli Hata: Composer %s dizininde kurulu değil"
+msgstr "Önemli Hata: Composer %s içinde kurulmamış"
 
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
@@ -37,11 +38,11 @@ msgstr "AI + Blok Düzenleyici"
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
 msgid "Add AI Capabilities to the WP Block Editor."
-msgstr "WordPress Blok Düzenleyicisine AI Özellikleri Ekleyin"
+msgstr "WP Blok Düzenleyiciye AI özellikleri ekleyin."
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
-msgstr "Eylemler"
+msgstr "İşlemler"
 
 #: inc/Admin/Options.php:106
 msgid "Save Changes"
@@ -53,7 +54,19 @@ msgstr "Genel Seçenekler"
 
 #: inc/Admin/Options.php:132
 msgid "AI Provider"
-msgstr "AI Sağlayıcı"
+msgstr "AI Sağlayıcısı"
+
+#: inc/Admin/Options.php:141
+msgid "e.g. Open AI (Chat GPT)"
+msgstr "örn. Open AI (Chat GPT)"
+
+#: inc/Admin/Options.php:146
+msgid "Enable Animation"
+msgstr "Animasyonu Etkinleştir"
+
+#: inc/Admin/Options.php:147
+msgid "Use Animation when rendering AI content."
+msgstr "AI içeriği oluşturulurken animasyon kullanın."
 
 #: inc/Admin/Options.php:144
 msgid "Open AI"
@@ -61,19 +74,19 @@ msgstr "Open AI"
 
 #: inc/Admin/Options.php:148
 msgid "Enable Open AI"
-msgstr "Open AI'yi etkinleştir"
+msgstr "Open AI'yı Etkinleştir"
 
 #: inc/Admin/Options.php:149
 msgid "Use Chat GPT capabilities in Block Editor"
-msgstr "Blok Düzenleyici'de ChatGPT özelliklerini kullanın"
+msgstr "Blok Düzenleyicide Chat GPT özelliklerini kullanın"
 
 #: inc/Admin/Options.php:154 inc/Admin/Options.php:170
 msgid "Token"
-msgstr "Jeton"
+msgstr "Belirteç"
 
 #: inc/Admin/Options.php:155 inc/Admin/Options.php:171
 msgid "e.g. ae2kgch7i"
-msgstr "örneğin ae2kgch7i"
+msgstr "örn. ae2kgch7i"
 
 #: inc/Admin/Options.php:160
 msgid "Google Gemini"
@@ -81,11 +94,11 @@ msgstr "Google Gemini"
 
 #: inc/Admin/Options.php:164
 msgid "Enable Google Gemini"
-msgstr "Google Gemini'yi etkinleştirin"
+msgstr "Google Gemini'yi Etkinleştir"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr "Blok Düzenleyicisinde Google Gemini özelliklerini kullanın."
+msgstr "Blok Düzenleyicide Google Gemini özelliklerini kullanın"
 
 #: inc/Admin/Options.php:173
 msgid "Deepseek"
@@ -93,11 +106,11 @@ msgstr "Deepseek"
 
 #: inc/Admin/Options.php:177
 msgid "Enable DeepSeek"
-msgstr "DeepSeek'i etkinleştir"
+msgstr "DeepSeek'i Etkinleştir"
 
 #: inc/Admin/Options.php:178
 msgid "Use DeepSeek capabilities in Block Editor"
-msgstr "Blok Düzenleyicisinde DeepSeek özelliklerini kullanın."
+msgstr "Blok Düzenleyicide DeepSeek özelliklerini kullanın"
 
 #: inc/Admin/Options.php:189
 msgid "Grok"
@@ -105,11 +118,11 @@ msgstr "Grok"
 
 #: inc/Admin/Options.php:193
 msgid "Enable Grok"
-msgstr "Grok'u etkinleştir"
+msgstr "Grok'u Etkinleştir"
 
 #: inc/Admin/Options.php:194
 msgid "Use Grok capabilities in Block Editor"
-msgstr "Blok Düzenleyicisinde Grok özelliklerini kullanın."
+msgstr "Blok Düzenleyicide Grok özelliklerini kullanın"
 
 #: inc/Admin/Options.php:205
 msgid "Claude"
@@ -117,11 +130,11 @@ msgstr "Claude"
 
 #: inc/Admin/Options.php:209
 msgid "Enable Claude"
-msgstr "Claude'u etkinleştir"
+msgstr "Claude'u Etkinleştir"
 
 #: inc/Admin/Options.php:210
 msgid "Use Claude capabilities in Block Editor"
-msgstr "Blok Düzenleyicisinde Claude özelliklerini kullanın."
+msgstr "Blok Düzenleyicide Claude özelliklerini kullanın"
 
 #: inc/Admin/Options.php:235
 msgid "Settings Saved."

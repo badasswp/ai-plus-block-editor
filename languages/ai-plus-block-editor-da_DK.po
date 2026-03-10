@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2026-03-04 17:35+0100\n"
+"PO-Revision-Date: 2026-03-10 11:54+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: da_DK\n"
@@ -55,6 +55,18 @@ msgstr "Generelle muligheder"
 msgid "AI Provider"
 msgstr "AI udbyder"
 
+#: inc/Admin/Options.php:141
+msgid "e.g. Open AI (Chat GPT)"
+msgstr "f.eks. Åben AI (Chat GPT)"
+
+#: inc/Admin/Options.php:146
+msgid "Enable Animation"
+msgstr "Aktiver animation"
+
+#: inc/Admin/Options.php:147
+msgid "Use Animation when rendering AI content."
+msgstr "Brug animation, når du gengiver AI-indhold."
+
 #: inc/Admin/Options.php:144
 msgid "Open AI"
 msgstr "Open AI"
@@ -65,7 +77,7 @@ msgstr "Aktiver Open AI"
 
 #: inc/Admin/Options.php:149
 msgid "Use Chat GPT capabilities in Block Editor"
-msgstr "Brug Chat GPT-funktioner i Block Editor"
+msgstr "Brug Chat GPT funktioner i Block Editor"
 
 #: inc/Admin/Options.php:154 inc/Admin/Options.php:170
 msgid "Token"
@@ -85,7 +97,7 @@ msgstr "Aktiver Google Gemini"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr "Brug Google Gemini-funktioner i Block Editor"
+msgstr "Brug Google Gemini funktioner i Block Editor"
 
 #: inc/Admin/Options.php:173
 msgid "Deepseek"
@@ -97,7 +109,7 @@ msgstr "Aktiver DeepSeek"
 
 #: inc/Admin/Options.php:178
 msgid "Use DeepSeek capabilities in Block Editor"
-msgstr "Brug DeepSeek-funktioner i Block Editor"
+msgstr "Brug DeepSeek funktioner i Block Editor"
 
 #: inc/Admin/Options.php:189
 msgid "Grok"
@@ -109,7 +121,7 @@ msgstr "Aktiver Grok"
 
 #: inc/Admin/Options.php:194
 msgid "Use Grok capabilities in Block Editor"
-msgstr "Brug Grok-funktioner i Block Editor"
+msgstr "Brug Grok funktioner i Block Editor"
 
 #: inc/Admin/Options.php:205
 msgid "Claude"

@@ -4,13 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2026-03-05 11:26+0100\n"
+"PO-Revision-Date: 2026-03-10 17:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? 1 : ((n % 10 == 0 || (n % 10 >= 5 && n % 10 <= 9) || (n % 100 >= 10 && n % 100 <= 19)) ? 2 : 3));\n"
 "X-Generator: Poedit 3.8\n"
 "X-Domain: ai-plus-block-editor\n"
 "X-Poedit-Basepath: ..\n"
@@ -27,7 +28,7 @@ msgstr ""
 #: ai-plus-block-editor.php:32
 #, php-format
 msgid "Fatal Error: Composer not setup in %s"
-msgstr "Błąd krytyczny: Kompozytor nie został skonfigurowany w %s"
+msgstr "Błąd krytyczny: Composer nie jest skonfigurowany w %s"
 
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
@@ -37,7 +38,7 @@ msgstr "AI + Edytor bloków"
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
 msgid "Add AI Capabilities to the WP Block Editor."
-msgstr "Dodaj funkcje AI do edytora bloków WP."
+msgstr "Dodaj możliwości AI do edytora bloków WP."
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
@@ -55,21 +56,33 @@ msgstr "Opcje ogólne"
 msgid "AI Provider"
 msgstr "Dostawca AI"
 
+#: inc/Admin/Options.php:141
+msgid "e.g. Open AI (Chat GPT)"
+msgstr "np. Open AI (Chat GPT)"
+
+#: inc/Admin/Options.php:146
+msgid "Enable Animation"
+msgstr "Włącz animację"
+
+#: inc/Admin/Options.php:147
+msgid "Use Animation when rendering AI content."
+msgstr "Używaj animacji podczas renderowania treści AI."
+
 #: inc/Admin/Options.php:144
 msgid "Open AI"
 msgstr "Open AI"
 
 #: inc/Admin/Options.php:148
 msgid "Enable Open AI"
-msgstr "Włącz OpenAI"
+msgstr "Włącz Open AI"
 
 #: inc/Admin/Options.php:149
 msgid "Use Chat GPT capabilities in Block Editor"
-msgstr "Użyj możliwości Chat GPT w Edytorze bloków"
+msgstr "Używaj możliwości Chat GPT w edytorze bloków"
 
 #: inc/Admin/Options.php:154 inc/Admin/Options.php:170
 msgid "Token"
-msgstr "Znak"
+msgstr "Token"
 
 #: inc/Admin/Options.php:155 inc/Admin/Options.php:171
 msgid "e.g. ae2kgch7i"
@@ -85,7 +98,7 @@ msgstr "Włącz Google Gemini"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr "Wykorzystaj możliwości Google Gemini w Edytorze bloków"
+msgstr "Używaj możliwości Google Gemini w edytorze bloków"
 
 #: inc/Admin/Options.php:173
 msgid "Deepseek"
@@ -97,7 +110,7 @@ msgstr "Włącz DeepSeek"
 
 #: inc/Admin/Options.php:178
 msgid "Use DeepSeek capabilities in Block Editor"
-msgstr "Użyj możliwości DeepSeek w Edytorze bloków"
+msgstr "Używaj możliwości DeepSeek w edytorze bloków"
 
 #: inc/Admin/Options.php:189
 msgid "Grok"
@@ -109,7 +122,7 @@ msgstr "Włącz Grok"
 
 #: inc/Admin/Options.php:194
 msgid "Use Grok capabilities in Block Editor"
-msgstr "Wykorzystaj możliwości Grok w Edytorze Bloków"
+msgstr "Używaj możliwości Grok w edytorze bloków"
 
 #: inc/Admin/Options.php:205
 msgid "Claude"
@@ -121,7 +134,7 @@ msgstr "Włącz Claude"
 
 #: inc/Admin/Options.php:210
 msgid "Use Claude capabilities in Block Editor"
-msgstr "Użyj możliwości Claude w Edytorze bloków"
+msgstr "Używaj możliwości Claude w edytorze bloków"
 
 #: inc/Admin/Options.php:235
 msgid "Settings Saved."

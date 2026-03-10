@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2026-03-04 17:41+0100\n"
+"PO-Revision-Date: 2026-03-10 17:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -32,12 +32,12 @@ msgstr "Schwerwiegender Fehler: Composer ist in %s nicht eingerichtet."
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
 msgid "AI + Block Editor"
-msgstr "AI + Blokeditor"
+msgstr "AI + Blockeditor"
 
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
 msgid "Add AI Capabilities to the WP Block Editor."
-msgstr "Füge dem WP Block Editor KI-Funktionen hinzu."
+msgstr "Füge dem WP Block Editor AI-Funktionen hinzu."
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
@@ -55,13 +55,25 @@ msgstr "Allgemeine Optionen"
 msgid "AI Provider"
 msgstr "AI-Anbieter"
 
+#: inc/Admin/Options.php:141
+msgid "e.g. Open AI (Chat GPT)"
+msgstr "z.B. Open AI (Chat GPT)"
+
+#: inc/Admin/Options.php:146
+msgid "Enable Animation"
+msgstr "Animation aktivieren"
+
+#: inc/Admin/Options.php:147
+msgid "Use Animation when rendering AI content."
+msgstr "Verwenden Sie Animationen beim Rendern von AI-Inhalten."
+
 #: inc/Admin/Options.php:144
 msgid "Open AI"
 msgstr "Open AI"
 
 #: inc/Admin/Options.php:148
 msgid "Enable Open AI"
-msgstr "Aktivieren Sie Open AI"
+msgstr "Aktivieren Sie OpenAI"
 
 #: inc/Admin/Options.php:149
 msgid "Use Chat GPT capabilities in Block Editor"
@@ -85,7 +97,7 @@ msgstr "Aktivieren Sie Google Gemini"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr "Nutzen Sie die Funktionen von Google Gemini im Block-Editor."
+msgstr "Nutzen Sie die Google Gemini-Funktionen im Block-Editor."
 
 #: inc/Admin/Options.php:173
 msgid "Deepseek"
@@ -97,7 +109,7 @@ msgstr "Aktivieren Sie DeepSeek"
 
 #: inc/Admin/Options.php:178
 msgid "Use DeepSeek capabilities in Block Editor"
-msgstr "Nutzen Sie die DeepSeek-Funktionen im Blockeditor."
+msgstr "Nutzen Sie die DeepSeek-Funktionen im Block-Editor."
 
 #: inc/Admin/Options.php:189
 msgid "Grok"
@@ -109,7 +121,7 @@ msgstr "Aktivieren Sie Grok"
 
 #: inc/Admin/Options.php:194
 msgid "Use Grok capabilities in Block Editor"
-msgstr "Nutzen Sie die Grok-Funktionen im Blockeditor."
+msgstr "Nutzen Sie die Grok-Funktionen im Block-Editor."
 
 #: inc/Admin/Options.php:205
 msgid "Claude"
@@ -121,7 +133,7 @@ msgstr "Aktivieren Sie Claude"
 
 #: inc/Admin/Options.php:210
 msgid "Use Claude capabilities in Block Editor"
-msgstr "Nutzen Sie die Claude-Funktionen im Blockeditor."
+msgstr "Nutzen Sie die Claude-Funktionen im Block-Editor."
 
 #: inc/Admin/Options.php:235
 msgid "Settings Saved."

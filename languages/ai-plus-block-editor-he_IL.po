@@ -4,13 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2026-03-04 17:58+0100\n"
+"PO-Revision-Date: 2026-03-10 17:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he_IL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && n % 10 == 0) ? 2 : 3));\n"
 "X-Generator: Poedit 3.8\n"
 "X-Domain: ai-plus-block-editor\n"
 "X-Poedit-Basepath: ..\n"
@@ -27,17 +28,17 @@ msgstr ""
 #: ai-plus-block-editor.php:32
 #, php-format
 msgid "Fatal Error: Composer not setup in %s"
-msgstr "שגיאה חמורה: המלחין לא הוגדר ב-%s"
+msgstr "שגיאה קריטית: Composer אינו מוגדר ב-%s"
 
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
 msgid "AI + Block Editor"
-msgstr "AI + עורך בלוק"
+msgstr "AI + עורך הבלוקים"
 
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
 msgid "Add AI Capabilities to the WP Block Editor."
-msgstr "הוסף יכולות בינה מלאכותית לעורך הבלוקים של WP."
+msgstr "הוסף יכולות AI לעורך הבלוקים של WP."
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
@@ -55,25 +56,37 @@ msgstr "אפשרויות כלליות"
 msgid "AI Provider"
 msgstr "ספק AI"
 
+#: inc/Admin/Options.php:141
+msgid "e.g. Open AI (Chat GPT)"
+msgstr "לדוגמה: Open AI (Chat GPT)"
+
+#: inc/Admin/Options.php:146
+msgid "Enable Animation"
+msgstr "הפעל אנימציה"
+
+#: inc/Admin/Options.php:147
+msgid "Use Animation when rendering AI content."
+msgstr "השתמש באנימציה בעת עיבוד תוכן AI."
+
 #: inc/Admin/Options.php:144
 msgid "Open AI"
 msgstr "Open AI"
 
 #: inc/Admin/Options.php:148
 msgid "Enable Open AI"
-msgstr "אפשר Open AI"
+msgstr "הפעל Open AI"
 
 #: inc/Admin/Options.php:149
 msgid "Use Chat GPT capabilities in Block Editor"
-msgstr "השתמש ביכולות GPT של צ'אט בעורך הבלוקים"
+msgstr "השתמש ביכולות Chat GPT בעורך הבלוקים"
 
 #: inc/Admin/Options.php:154 inc/Admin/Options.php:170
 msgid "Token"
-msgstr "אֲסִימוֹן"
+msgstr "אסימון"
 
 #: inc/Admin/Options.php:155 inc/Admin/Options.php:171
 msgid "e.g. ae2kgch7i"
-msgstr "לדוגמה ae2kgch7i"
+msgstr "לדוגמה: ae2kgch7i"
 
 #: inc/Admin/Options.php:160
 msgid "Google Gemini"
@@ -81,11 +94,11 @@ msgstr "Google Gemini"
 
 #: inc/Admin/Options.php:164
 msgid "Enable Google Gemini"
-msgstr "הפעל את Google Gemini"
+msgstr "הפעל Google Gemini"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr "השתמש ביכולות של Google Gemini ב-Block Editor"
+msgstr "השתמש ביכולות Google Gemini בעורך הבלוקים"
 
 #: inc/Admin/Options.php:173
 msgid "Deepseek"
@@ -93,7 +106,7 @@ msgstr "Deepseek"
 
 #: inc/Admin/Options.php:177
 msgid "Enable DeepSeek"
-msgstr "אפשר DeepSeek"
+msgstr "הפעל DeepSeek"
 
 #: inc/Admin/Options.php:178
 msgid "Use DeepSeek capabilities in Block Editor"
@@ -105,7 +118,7 @@ msgstr "Grok"
 
 #: inc/Admin/Options.php:193
 msgid "Enable Grok"
-msgstr "אפשר Grok"
+msgstr "הפעל Grok"
 
 #: inc/Admin/Options.php:194
 msgid "Use Grok capabilities in Block Editor"
@@ -117,7 +130,7 @@ msgstr "Claude"
 
 #: inc/Admin/Options.php:209
 msgid "Enable Claude"
-msgstr "אפשר Claude"
+msgstr "הפעל Claude"
 
 #: inc/Admin/Options.php:210
 msgid "Use Claude capabilities in Block Editor"

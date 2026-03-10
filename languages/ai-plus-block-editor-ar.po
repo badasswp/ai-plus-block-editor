@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2026-03-04 17:27+0100\n"
+"PO-Revision-Date: 2026-03-10 10:38+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -32,12 +32,12 @@ msgstr "خطأ فادح: لم يتم إعداد Composer في %s"
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
 msgid "AI + Block Editor"
-msgstr "الذكاء الاصطناعي + محرر الكتل"
+msgstr "AI + محرر الكتل"
 
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
 msgid "Add AI Capabilities to the WP Block Editor."
-msgstr "أضف إمكانيات الذكاء الاصطناعي إلى محرر كتل ووردبريس."
+msgstr "أضف إمكانيات AI إلى محرر كتل ووردبريس."
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
@@ -53,7 +53,19 @@ msgstr "خيارات عامة"
 
 #: inc/Admin/Options.php:132
 msgid "AI Provider"
-msgstr "مزود الذكاء الاصطناعي"
+msgstr "مزود AI"
+
+#: inc/Admin/Options.php:141
+msgid "e.g. Open AI (Chat GPT)"
+msgstr "مثال: Open AI (Chat GPT)"
+
+#: inc/Admin/Options.php:146
+msgid "Enable Animation"
+msgstr "تمكين الرسوم المتحركة"
+
+#: inc/Admin/Options.php:147
+msgid "Use Animation when rendering AI content."
+msgstr "استخدم الرسوم المتحركة عند عرض محتوى AI"
 
 #: inc/Admin/Options.php:144
 msgid "Open AI"
@@ -65,7 +77,7 @@ msgstr "تمكين Open AI"
 
 #: inc/Admin/Options.php:149
 msgid "Use Chat GPT capabilities in Block Editor"
-msgstr "استخدم إمكانياتChat GPT في محرر الكتل"
+msgstr "استخدم إمكانيات ChatGPT في محرر الكتل"
 
 #: inc/Admin/Options.php:154 inc/Admin/Options.php:170
 msgid "Token"
@@ -81,7 +93,7 @@ msgstr "Google Gemini"
 
 #: inc/Admin/Options.php:164
 msgid "Enable Google Gemini"
-msgstr "تفعيل Google Gemini"
+msgstr "تمكين Google Gemini"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
@@ -93,7 +105,7 @@ msgstr "Deepseek"
 
 #: inc/Admin/Options.php:177
 msgid "Enable DeepSeek"
-msgstr "تفعيل Deepseek"
+msgstr "تمكين DeepSeek"
 
 #: inc/Admin/Options.php:178
 msgid "Use DeepSeek capabilities in Block Editor"

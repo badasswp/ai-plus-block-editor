@@ -57,6 +57,18 @@ msgstr ""
 msgid "AI Provider"
 msgstr ""
 
+#: inc/Admin/Options.php:141
+msgid "e.g. Open AI (Chat GPT)"
+msgstr ""
+
+#: inc/Admin/Options.php:146
+msgid "Enable Animation"
+msgstr ""
+
+#: inc/Admin/Options.php:147
+msgid "Use Animation when rendering AI content."
+msgstr ""
+
 #: inc/Admin/Options.php:144
 msgid "Open AI"
 msgstr ""
