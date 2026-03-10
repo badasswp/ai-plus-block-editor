@@ -4,13 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2026-03-05 10:51+0100\n"
+"PO-Revision-Date: 2026-03-10 17:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: id_ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.8\n"
 "X-Domain: ai-plus-block-editor\n"
 "X-Poedit-Basepath: ..\n"
@@ -27,7 +28,7 @@ msgstr ""
 #: ai-plus-block-editor.php:32
 #, php-format
 msgid "Fatal Error: Composer not setup in %s"
-msgstr "Kesalahan Fatal: Composer belum diatur di %s"
+msgstr "Kesalahan Fatal: Composer tidak dikonfigurasi di %s"
 
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
@@ -55,6 +56,18 @@ msgstr "Opsi Umum"
 msgid "AI Provider"
 msgstr "Penyedia AI"
 
+#: inc/Admin/Options.php:141
+msgid "e.g. Open AI (Chat GPT)"
+msgstr "mis. Open AI (Chat GPT)"
+
+#: inc/Admin/Options.php:146
+msgid "Enable Animation"
+msgstr "Aktifkan Animasi"
+
+#: inc/Admin/Options.php:147
+msgid "Use Animation when rendering AI content."
+msgstr "Gunakan Animasi saat merender konten AI."
+
 #: inc/Admin/Options.php:144
 msgid "Open AI"
 msgstr "Open AI"
@@ -73,7 +86,7 @@ msgstr "Token"
 
 #: inc/Admin/Options.php:155 inc/Admin/Options.php:171
 msgid "e.g. ae2kgch7i"
-msgstr "misalnya ae2kgch7i"
+msgstr "mis. ae2kgch7i"
 
 #: inc/Admin/Options.php:160
 msgid "Google Gemini"
@@ -85,7 +98,7 @@ msgstr "Aktifkan Google Gemini"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr "Manfaatkan kemampuan Google Gemini di Block Editor"
+msgstr "Gunakan kemampuan Google Gemini di Editor Blok"
 
 #: inc/Admin/Options.php:173
 msgid "Deepseek"
@@ -97,7 +110,7 @@ msgstr "Aktifkan DeepSeek"
 
 #: inc/Admin/Options.php:178
 msgid "Use DeepSeek capabilities in Block Editor"
-msgstr "Gunakan kemampuan DeepSeek di Block Editor"
+msgstr "Gunakan kemampuan DeepSeek di Editor Blok"
 
 #: inc/Admin/Options.php:189
 msgid "Grok"
@@ -121,7 +134,7 @@ msgstr "Aktifkan Claude"
 
 #: inc/Admin/Options.php:210
 msgid "Use Claude capabilities in Block Editor"
-msgstr "Manfaatkan kemampuan Claude di Editor Blok"
+msgstr "Gunakan kemampuan Claude di Editor Blok"
 
 #: inc/Admin/Options.php:235
 msgid "Settings Saved."

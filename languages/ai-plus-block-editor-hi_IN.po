@@ -4,13 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2026-03-04 19:28+0100\n"
+"PO-Revision-Date: 2026-03-10 17:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.8\n"
 "X-Domain: ai-plus-block-editor\n"
 "X-Poedit-Basepath: ..\n"
@@ -27,33 +28,45 @@ msgstr ""
 #: ai-plus-block-editor.php:32
 #, php-format
 msgid "Fatal Error: Composer not setup in %s"
-msgstr "गंभीर त्रुटि: %s में कंपोज़र सेटअप नहीं है"
+msgstr "गंभीर त्रुटि: Composer %s में सेटअप नहीं है"
 
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
 msgid "AI + Block Editor"
-msgstr "एआई + ब्लॉक एडिटर"
+msgstr "AI + ब्लॉक संपादक"
 
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
 msgid "Add AI Capabilities to the WP Block Editor."
-msgstr "WP ब्लॉक एडिटर में AI क्षमताएं जोड़ें।"
+msgstr "WP ब्लॉक संपादक में AI क्षमताएँ जोड़ें।"
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
-msgstr "कार्रवाई"
+msgstr "क्रियाएँ"
 
 #: inc/Admin/Options.php:106
 msgid "Save Changes"
-msgstr "परिवर्तनों को सुरक्षित करें"
+msgstr "परिवर्तन सहेजें"
 
 #: inc/Admin/Options.php:128
 msgid "General Options"
-msgstr "आम विकल्प"
+msgstr "सामान्य विकल्प"
 
 #: inc/Admin/Options.php:132
 msgid "AI Provider"
-msgstr "एआई प्रदाता"
+msgstr "AI प्रदाता"
+
+#: inc/Admin/Options.php:141
+msgid "e.g. Open AI (Chat GPT)"
+msgstr "उदा. Open AI (Chat GPT)"
+
+#: inc/Admin/Options.php:146
+msgid "Enable Animation"
+msgstr "एनिमेशन सक्षम करें"
+
+#: inc/Admin/Options.php:147
+msgid "Use Animation when rendering AI content."
+msgstr "AI सामग्री प्रस्तुत करते समय एनिमेशन का उपयोग करें।"
 
 #: inc/Admin/Options.php:144
 msgid "Open AI"
@@ -61,11 +74,11 @@ msgstr "Open AI"
 
 #: inc/Admin/Options.php:148
 msgid "Enable Open AI"
-msgstr "ओपनाई सक्षम करें"
+msgstr "Open AI सक्षम करें"
 
 #: inc/Admin/Options.php:149
 msgid "Use Chat GPT capabilities in Block Editor"
-msgstr "ब्लॉक एडिटर में ChatGPT की सुविधाओं का उपयोग करें"
+msgstr "ब्लॉक संपादक में Chat GPT की क्षमताओं का उपयोग करें"
 
 #: inc/Admin/Options.php:154 inc/Admin/Options.php:170
 msgid "Token"
@@ -73,7 +86,7 @@ msgstr "टोकन"
 
 #: inc/Admin/Options.php:155 inc/Admin/Options.php:171
 msgid "e.g. ae2kgch7i"
-msgstr "उदाहरण के लिए ae2kgch7i"
+msgstr "उदा. ae2kgch7i"
 
 #: inc/Admin/Options.php:160
 msgid "Google Gemini"
@@ -81,11 +94,11 @@ msgstr "Google Gemini"
 
 #: inc/Admin/Options.php:164
 msgid "Enable Google Gemini"
-msgstr "Google Gemini को सक्षम करें"
+msgstr "Google Gemini सक्षम करें"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr "ब्लॉक एडिटर में Google Gemini की क्षमताओं का उपयोग करें"
+msgstr "ब्लॉक संपादक में Google Gemini की क्षमताओं का उपयोग करें"
 
 #: inc/Admin/Options.php:173
 msgid "Deepseek"
@@ -93,11 +106,11 @@ msgstr "Deepseek"
 
 #: inc/Admin/Options.php:177
 msgid "Enable DeepSeek"
-msgstr "सक्षम DeepSeek"
+msgstr "DeepSeek सक्षम करें"
 
 #: inc/Admin/Options.php:178
 msgid "Use DeepSeek capabilities in Block Editor"
-msgstr "ब्लॉक एडिटर में DeepSeek की सुविधाओं का उपयोग करें"
+msgstr "ब्लॉक संपादक में DeepSeek की क्षमताओं का उपयोग करें"
 
 #: inc/Admin/Options.php:189
 msgid "Grok"
@@ -105,11 +118,11 @@ msgstr "Grok"
 
 #: inc/Admin/Options.php:193
 msgid "Enable Grok"
-msgstr "सक्षम Grok""
+msgstr "Grok सक्षम करें"
 
 #: inc/Admin/Options.php:194
 msgid "Use Grok capabilities in Block Editor"
-msgstr "ब्लॉक एडिटर में Grok की सुविधाओं का उपयोग करें"
+msgstr "ब्लॉक संपादक में Grok की क्षमताओं का उपयोग करें"
 
 #: inc/Admin/Options.php:205
 msgid "Claude"
@@ -117,15 +130,15 @@ msgstr "Claude"
 
 #: inc/Admin/Options.php:209
 msgid "Enable Claude"
-msgstr "सक्षम Claude"
+msgstr "Claude सक्षम करें"
 
 #: inc/Admin/Options.php:210
 msgid "Use Claude capabilities in Block Editor"
-msgstr "ब्लॉक एडिटर में Claude की सुविधाओं का उपयोग करें"
+msgstr "ब्लॉक संपादक में Claude की क्षमताओं का उपयोग करें"
 
 #: inc/Admin/Options.php:235
 msgid "Settings Saved."
-msgstr "सेटिंग्स को सहेजा गया।"
+msgstr "सेटिंग्स सहेजी गईं।"
 
 #. Plugin URI of the plugin/theme
 msgid "https://github.com/badasswp/ai-plus-block-editor"

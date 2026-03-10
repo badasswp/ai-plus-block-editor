@@ -4,13 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2026-03-04 20:43+0100\n"
+"PO-Revision-Date: 2026-03-10 17:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.8\n"
 "X-Domain: ai-plus-block-editor\n"
 "X-Poedit-Basepath: ..\n"
@@ -27,17 +28,17 @@ msgstr ""
 #: ai-plus-block-editor.php:32
 #, php-format
 msgid "Fatal Error: Composer not setup in %s"
-msgstr "Errore fatale: Composer non configurato in %s"
+msgstr "Errore fatale: Composer non è configurato in %s"
 
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
 msgid "AI + Block Editor"
-msgstr "AI + Editor blocchi"
+msgstr "AI + Editor di blocchi"
 
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
 msgid "Add AI Capabilities to the WP Block Editor."
-msgstr "Aggiungi funzionalità AI all'editor a blocchi WP."
+msgstr "Aggiungi funzionalità AI all'editor di blocchi di WP."
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
@@ -53,7 +54,19 @@ msgstr "Opzioni generali"
 
 #: inc/Admin/Options.php:132
 msgid "AI Provider"
-msgstr "Fornitore di intelligenza artificiale"
+msgstr "Fornitore AI"
+
+#: inc/Admin/Options.php:141
+msgid "e.g. Open AI (Chat GPT)"
+msgstr "es. Open AI (Chat GPT)"
+
+#: inc/Admin/Options.php:146
+msgid "Enable Animation"
+msgstr "Abilita animazione"
+
+#: inc/Admin/Options.php:147
+msgid "Use Animation when rendering AI content."
+msgstr "Usa l'animazione durante il rendering del contenuto AI."
 
 #: inc/Admin/Options.php:144
 msgid "Open AI"
@@ -61,19 +74,19 @@ msgstr "Open AI"
 
 #: inc/Admin/Options.php:148
 msgid "Enable Open AI"
-msgstr "Abilita OpenAI"
+msgstr "Abilita Open AI"
 
 #: inc/Admin/Options.php:149
 msgid "Use Chat GPT capabilities in Block Editor"
-msgstr "Utilizzare le funzionalità di ChatGPT nell'editor a blocchi"
+msgstr "Usa le funzionalità di Chat GPT nell'editor di blocchi"
 
 #: inc/Admin/Options.php:154 inc/Admin/Options.php:170
 msgid "Token"
-msgstr "Gettone"
+msgstr "Token"
 
 #: inc/Admin/Options.php:155 inc/Admin/Options.php:171
 msgid "e.g. ae2kgch7i"
-msgstr "ad esempio ae2kgch7i"
+msgstr "es. ae2kgch7i"
 
 #: inc/Admin/Options.php:160
 msgid "Google Gemini"
@@ -85,7 +98,7 @@ msgstr "Abilita Google Gemini"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr "Utilizza le funzionalità di Google Gemini nell'editor a blocchi"
+msgstr "Usa le funzionalità di Google Gemini nell'editor di blocchi"
 
 #: inc/Admin/Options.php:173
 msgid "Deepseek"
@@ -97,7 +110,7 @@ msgstr "Abilita DeepSeek"
 
 #: inc/Admin/Options.php:178
 msgid "Use DeepSeek capabilities in Block Editor"
-msgstr "Utilizzare le funzionalità di DeepSeek nell'editor a blocchi"
+msgstr "Usa le funzionalità di DeepSeek nell'editor di blocchi"
 
 #: inc/Admin/Options.php:189
 msgid "Grok"
@@ -109,7 +122,7 @@ msgstr "Abilita Grok"
 
 #: inc/Admin/Options.php:194
 msgid "Use Grok capabilities in Block Editor"
-msgstr "Utilizzare le funzionalità di Grok nell'editor a blocchi"
+msgstr "Usa le funzionalità di Grok nell'editor di blocchi"
 
 #: inc/Admin/Options.php:205
 msgid "Claude"
@@ -117,11 +130,11 @@ msgstr "Claude"
 
 #: inc/Admin/Options.php:209
 msgid "Enable Claude"
-msgstr "Abilita Claudio"
+msgstr "Abilita Claude"
 
 #: inc/Admin/Options.php:210
 msgid "Use Claude capabilities in Block Editor"
-msgstr "Utilizzare le funzionalità di Claude nell'editor a blocchi"
+msgstr "Usa le funzionalità di Claude nell'editor di blocchi"
 
 #: inc/Admin/Options.php:235
 msgid "Settings Saved."
