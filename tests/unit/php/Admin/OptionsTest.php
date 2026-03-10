@@ -86,7 +86,7 @@ class OptionsTest extends WPMockTestCase {
 				'general_options'       => [
 					'heading'  => 'General Options',
 					'controls' => [
-						'ai_provider' => [
+						'ai_provider'      => [
 							'control' => 'select',
 							'label'   => 'AI Provider',
 							'summary' => 'e.g. Open AI (Chat GPT)',
@@ -97,6 +97,11 @@ class OptionsTest extends WPMockTestCase {
 								'Grok'     => 'Grok',
 								'Claude'   => 'Claude',
 							],
+						],
+						'animation_enable' => [
+							'control' => 'checkbox',
+							'label'   => esc_html__( 'Enable Animation', 'ai-plus-block-editor' ),
+							'summary' => esc_html__( 'Use Animation when rendering AI content.', 'ai-plus-block-editor' ),
 						],
 					],
 				],
