@@ -7,8 +7,12 @@ import { ToolbarGroup, ToolbarDropdownMenu } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
 import { selectProps, selectBlockProps, noticeProps } from '../utils/types';
-import { getAllowedBlocks, getBlockMenuOptions } from '../utils';
 import { editorStore, noticesStore, blockEditorStore } from '../utils/store';
+import {
+	getAllowedBlocks,
+	getBlockMenuOptions,
+	isAnimationEnabled,
+} from '../utils';
 
 import '../styles/app.scss';
 
@@ -92,16 +96,22 @@ export const filterBlockTypesWithAI = ( settings: any ): object => {
 					},
 				} );
 
-				let limit = 1;
-				const displayWithEffect = setInterval( () => {
-					if ( aiTone.length === limit ) {
-						clearInterval( displayWithEffect );
-					}
+				if ( isAnimationEnabled() ) {
+					let limit = 1;
+					const displayWithEffect = setInterval( () => {
+						if ( aiTone.length === limit ) {
+							clearInterval( displayWithEffect );
+						}
+						updateBlockAttributes( blockId, {
+							content: aiTone.substring( 0, limit ),
+						} );
+						limit++;
+					}, 5 );
+				} else {
 					updateBlockAttributes( blockId, {
-						content: aiTone.substring( 0, limit ),
+						content: aiTone,
 					} );
-					limit++;
-				}, 5 );
+				}
 
 				getNotices().forEach( ( notice: any ) =>
 					removeNotice( notice.id )

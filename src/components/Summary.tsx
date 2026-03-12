@@ -8,6 +8,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
+import { isAnimationEnabled } from '../utils';
 
 /**
  * Summary.
@@ -105,10 +106,16 @@ const Summary = (): JSX.Element => {
 				} );
 			};
 
-			showAnimatedAiText().then( ( newSummary ) => {
-				editPost( { excerpt: newSummary } );
-				editPost( { meta: { apbe_summary: newSummary } } );
-			} );
+			if ( isAnimationEnabled() ) {
+				showAnimatedAiText().then( ( newSummary ) => {
+					editPost( { excerpt: newSummary } );
+					editPost( { meta: { apbe_summary: newSummary } } );
+				} );
+			} else {
+				setSummary( aiSummary );
+				editPost( { excerpt: aiSummary } );
+				editPost( { meta: { apbe_summary: aiSummary } } );
+			}
 			removeNotice( 'apbe-info' );
 		} catch ( e ) {
 			removeNotice( 'apbe-info' );

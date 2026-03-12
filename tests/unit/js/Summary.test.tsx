@@ -54,6 +54,12 @@ jest.mock( '@wordpress/components', () => ( {
 jest.mock( '@wordpress/api-fetch', () => jest.fn() );
 
 describe( 'Summary', () => {
+	beforeAll( () => {
+		( global as unknown as { apbe: any } ).apbe = {
+			isAnimationEnabled: true,
+		};
+	} );
+
 	beforeEach( () => {
 		( useSelect as jest.Mock ).mockReturnValue( {
 			postId: 1,

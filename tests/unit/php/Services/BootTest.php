@@ -118,7 +118,8 @@ class BootTest extends WPMockTestCase {
 		WP_Mock::userFunction( 'get_option' )
 			->andReturn(
 				[
-					'ai_provider' => 'AI Provider',
+					'ai_provider'      => 'AI Provider',
+					'animation_enable' => 'on',
 				]
 			);
 
@@ -127,8 +128,9 @@ class BootTest extends WPMockTestCase {
 				'ai-plus-block-editor',
 				'apbe',
 				[
-					'provider'  => 'AI Provider',
-					'providers' => [
+					'isAnimationEnabled' => 'on',
+					'provider'           => 'AI Provider',
+					'providers'          => [
 						[
 							'label' => 'ChatGPT',
 							'value' => 'OpenAI',

@@ -8,6 +8,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
+import { isAnimationEnabled } from '../utils';
 
 /**
  * Social.
@@ -105,9 +106,14 @@ const Social = (): JSX.Element => {
 				} );
 			};
 
-			showAnimatedAiText().then( ( newSocial ) => {
-				editPost( { meta: { apbe_social: newSocial } } );
-			} );
+			if ( isAnimationEnabled() ) {
+				showAnimatedAiText().then( ( newSocial ) => {
+					editPost( { meta: { apbe_social: newSocial } } );
+				} );
+			} else {
+				setSocial( aiSocial );
+				editPost( { meta: { apbe_social: aiSocial } } );
+			}
 			removeNotice( 'apbe-info' );
 		} catch ( e ) {
 			removeNotice( 'apbe-info' );

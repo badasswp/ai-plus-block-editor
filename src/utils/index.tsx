@@ -7,6 +7,26 @@ type DropdownOption = {
 };
 
 /**
+ * Is Animation Enabled.
+ *
+ * Check to see if Animation is enabled
+ * for plugin.
+ *
+ * @since 1.9.0
+ *
+ * @return {boolean} Is Animation enabled.
+ */
+export const isAnimationEnabled = (): boolean => {
+	const { isAnimationEnabled: isPluginAnimationEnabled } = apbe;
+
+	if ( isPluginAnimationEnabled || null === isPluginAnimationEnabled ) {
+		return true;
+	}
+
+	return false;
+};
+
+/**
  * Get Options.
  *
  * This function filters the Block Menu AI Options

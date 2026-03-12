@@ -176,8 +176,6 @@ class OpenAITest extends WPMockTestCase {
 	}
 
 	/**
-	 * @runInSeparateProcess
-	 *
 	 * This test is flaky because we cannot accurately
 	 * mock the 3rd party OpenAI class.
 	 */
