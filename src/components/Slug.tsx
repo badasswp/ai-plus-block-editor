@@ -108,7 +108,6 @@ const Slug = (): JSX.Element => {
 
 			if ( isAnimationEnabled() ) {
 				showAnimatedAiText().then( ( newSlug ) => {
-					setSlug( aiSlug );
 					editPost( { slug: newSlug } );
 					editPost( { meta: { apbe_slug: newSlug } } );
 				} );
