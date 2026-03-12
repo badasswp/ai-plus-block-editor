@@ -8,6 +8,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
+import { isAnimationEnabled } from '../utils';
 
 /**
  * SEO.
@@ -106,9 +107,14 @@ const SEO = (): JSX.Element => {
 				} );
 			};
 
-			showAnimatedAiText().then( ( newKeywords ) => {
-				editPost( { meta: { apbe_seo_keywords: newKeywords } } );
-			} );
+			if ( isAnimationEnabled() ) {
+				showAnimatedAiText().then( ( newKeywords ) => {
+					editPost( { meta: { apbe_seo_keywords: newKeywords } } );
+				} );
+			} else {
+				setKeywords( aiKeywords );
+				editPost( { meta: { apbe_seo_keywords: aiKeywords } } );
+			}
 			removeNotice( 'apbe-info' );
 		} catch ( e ) {
 			removeNotice( 'apbe-info' );

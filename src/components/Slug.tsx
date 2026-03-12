@@ -8,6 +8,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
+import { isAnimationEnabled } from '../utils';
 
 /**
  * Slug.
@@ -105,10 +106,16 @@ const Slug = (): JSX.Element => {
 				} );
 			};
 
-			showAnimatedAiText().then( ( newSlug ) => {
-				editPost( { slug: newSlug } );
-				editPost( { meta: { apbe_slug: newSlug } } );
-			} );
+			if ( isAnimationEnabled() ) {
+				showAnimatedAiText().then( ( newSlug ) => {
+					setSlug( aiSlug );
+					editPost( { slug: newSlug } );
+					editPost( { meta: { apbe_slug: newSlug } } );
+				} );
+			} else {
+				editPost( { slug: aiSlug } );
+				editPost( { meta: { apbe_slug: aiSlug } } );
+			}
 			removeNotice( 'apbe-info' );
 		} catch ( e ) {
 			removeNotice( 'apbe-info' );

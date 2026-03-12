@@ -8,6 +8,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
+import { isAnimationEnabled } from '../utils';
 
 /**
  * Headline.
@@ -107,9 +108,14 @@ const Headline = (): JSX.Element => {
 				} );
 			};
 
-			showAnimatedAiText().then( ( newHeadline ) => {
-				editPost( { meta: { apbe_headline: newHeadline } } );
-			} );
+			if ( isAnimationEnabled() ) {
+				showAnimatedAiText().then( ( newHeadline ) => {
+					editPost( { meta: { apbe_headline: newHeadline } } );
+				} );
+			} else {
+				setHeadline( aiHeadline );
+				editPost( { meta: { apbe_headline: aiHeadline } } );
+			}
 			removeNotice( 'apbe-info' );
 		} catch ( e ) {
 			removeNotice( 'apbe-info' );
@@ -132,7 +138,7 @@ const Headline = (): JSX.Element => {
 	 *
 	 * @return { void }
 	 */
-	const handleSelection = (): void => {
+	const handleSelection = async (): Promise< void > => {
 		let limit = 1;
 
 		/**
@@ -157,10 +163,14 @@ const Headline = (): JSX.Element => {
 			} );
 		};
 
-		showAnimatedAiText().then( ( newHeadline ) => {
-			editPost( { meta: { apbe_headline: newHeadline } } );
-			savePost();
-		} );
+		if ( isAnimationEnabled() ) {
+			await showAnimatedAiText();
+		} else {
+			editPost( { title: headline } );
+		}
+
+		editPost( { meta: { apbe_headline: headline } } );
+		savePost();
 	};
 
 	return (
