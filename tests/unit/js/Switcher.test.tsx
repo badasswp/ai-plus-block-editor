@@ -55,6 +55,12 @@ jest.mock( '@wordpress/components', () => ( {
 jest.mock( '@wordpress/api-fetch', () => jest.fn() );
 
 describe( 'Switcher', () => {
+	beforeAll( () => {
+		( global as unknown as { apbe: any } ).apbe = {
+			isAnimationEnabled: true,
+		};
+	} );
+
 	beforeEach( () => {
 		( useDispatch as jest.Mock ).mockReturnValue( {
 			createNotice: jest.fn(),
