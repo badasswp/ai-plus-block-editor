@@ -8,7 +8,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
-import { isAnimationEnabled } from '../utils';
+import { isAnimationEnabled, showAnimatedAiText } from '../utils';
 
 /**
  * Headline.
@@ -84,38 +84,12 @@ const Headline = (): JSX.Element => {
 
 			const aiHeadline = response.trim().replace( /^"|"$/g, '' );
 
-			/**
-			 * This function returns a promise that resolves
-			 * to the AI generated headline when the Animation
-			 * responsible for showing same is completed.
-			 *
-			 * @since 1.2.0
-			 *
-			 * @return { Promise<string> } Animated text.
-			 */
-			const showAnimatedAiText = (): Promise< string > => {
-				let limit = 1;
-
-				return new Promise( ( resolve ) => {
-					const animatedTextInterval = setInterval( () => {
-						if ( aiHeadline.length === limit ) {
-							clearInterval( animatedTextInterval );
-							resolve( aiHeadline );
-						}
-						setHeadline( aiHeadline.substring( 0, limit ) );
-						limit++;
-					}, 5 );
-				} );
-			};
-
 			if ( isAnimationEnabled() ) {
-				showAnimatedAiText().then( ( newHeadline ) => {
-					editPost( { meta: { apbe_headline: newHeadline } } );
-				} );
+				await showAnimatedAiText( aiHeadline, setHeadline );
 			} else {
 				setHeadline( aiHeadline );
-				editPost( { meta: { apbe_headline: aiHeadline } } );
 			}
+			editPost( { meta: { apbe_headline: aiHeadline } } );
 			removeNotice( 'apbe-info' );
 		} catch ( e ) {
 			removeNotice( 'apbe-info' );
@@ -139,32 +113,10 @@ const Headline = (): JSX.Element => {
 	 * @return { void }
 	 */
 	const handleSelection = async (): Promise< void > => {
-		let limit = 1;
-
-		/**
-		 * This function returns a promise that
-		 * resolves to the headline when the Animation responsible
-		 * for showing the headline is completed.
-		 *
-		 * @since 1.2.0
-		 *
-		 * @return { Promise<string> } Animated text.
-		 */
-		const showAnimatedAiText = (): Promise< string > => {
-			return new Promise( ( resolve ) => {
-				const animatedTextInterval = setInterval( () => {
-					if ( limit === headline.length ) {
-						clearInterval( animatedTextInterval );
-						resolve( headline );
-					}
-					editPost( { title: headline.substring( 0, limit ) } );
-					limit++;
-				}, 5 );
-			} );
-		};
-
 		if ( isAnimationEnabled() ) {
-			await showAnimatedAiText();
+			await showAnimatedAiText( headline, ( title ) =>
+				editPost( { title } )
+			);
 		} else {
 			editPost( { title: headline } );
 		}

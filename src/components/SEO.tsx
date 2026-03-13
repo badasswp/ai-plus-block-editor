@@ -8,7 +8,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
-import { isAnimationEnabled } from '../utils';
+import { isAnimationEnabled, showAnimatedAiText } from '../utils';
 
 /**
  * SEO.
@@ -83,38 +83,12 @@ const SEO = (): JSX.Element => {
 				},
 			} );
 
-			/**
-			 * This function returns a promise that resolves
-			 * to the AI generated SEO keywords when the Animation
-			 * responsible for showing same is completed.
-			 *
-			 * @since 1.2.0
-			 *
-			 * @return { Promise<string> } Animated text.
-			 */
-			const showAnimatedAiText = (): Promise< string > => {
-				let limit = 1;
-
-				return new Promise( ( resolve ) => {
-					const animatedTextInterval = setInterval( () => {
-						if ( aiKeywords.length === limit ) {
-							clearInterval( animatedTextInterval );
-							resolve( aiKeywords );
-						}
-						setKeywords( aiKeywords.substring( 0, limit ) );
-						limit++;
-					}, 5 );
-				} );
-			};
-
 			if ( isAnimationEnabled() ) {
-				showAnimatedAiText().then( ( newKeywords ) => {
-					editPost( { meta: { apbe_seo_keywords: newKeywords } } );
-				} );
+				await showAnimatedAiText( aiKeywords, setKeywords );
 			} else {
 				setKeywords( aiKeywords );
-				editPost( { meta: { apbe_seo_keywords: aiKeywords } } );
 			}
+			editPost( { meta: { apbe_seo_keywords: aiKeywords } } );
 			removeNotice( 'apbe-info' );
 		} catch ( e ) {
 			removeNotice( 'apbe-info' );

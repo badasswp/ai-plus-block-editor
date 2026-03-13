@@ -8,7 +8,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
-import { isAnimationEnabled } from '../utils';
+import { isAnimationEnabled, showAnimatedAiText } from '../utils';
 
 /**
  * Slug.
@@ -82,39 +82,13 @@ const Slug = (): JSX.Element => {
 				},
 			} );
 
-			/**
-			 * This function returns a promise that resolves
-			 * to the AI generated slug when the Animation responsible
-			 * for showing same is completed.
-			 *
-			 * @since 1.2.0
-			 *
-			 * @return { Promise<string> } Animated text.
-			 */
-			const showAnimatedAiText = (): Promise< string > => {
-				let limit = 1;
-
-				return new Promise( ( resolve ) => {
-					const animatedTextInterval = setInterval( () => {
-						if ( aiSlug.length === limit ) {
-							clearInterval( animatedTextInterval );
-							resolve( aiSlug );
-						}
-						setSlug( aiSlug.substring( 0, limit ) );
-						limit++;
-					}, 5 );
-				} );
-			};
-
 			if ( isAnimationEnabled() ) {
-				showAnimatedAiText().then( ( newSlug ) => {
-					editPost( { slug: newSlug } );
-					editPost( { meta: { apbe_slug: newSlug } } );
-				} );
+				await showAnimatedAiText( aiSlug, setSlug );
 			} else {
-				editPost( { slug: aiSlug } );
-				editPost( { meta: { apbe_slug: aiSlug } } );
+				setSlug( aiSlug );
 			}
+			editPost( { slug: aiSlug } );
+			editPost( { meta: { apbe_slug: aiSlug } } );
 			removeNotice( 'apbe-info' );
 		} catch ( e ) {
 			removeNotice( 'apbe-info' );
