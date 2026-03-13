@@ -33,6 +33,8 @@ export const isAnimationEnabled = (): boolean => {
  * to the AI generated text when the Animation
  * responsible for showing same is completed.
  *
+ * @since 1.9.0
+ *
  * @param {string}   text     AI genereated Text.
  * @param {Function} callback Callback function.
  *
