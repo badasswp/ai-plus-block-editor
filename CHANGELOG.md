@@ -7,6 +7,7 @@
 * Refactor: Replace repeated mocks using WPMockTestCase library.
 * Refactor: Replace fully qualified class paths with their use counterparts.
 * Refactor: Move admin page options to the various provider classes respectively.
+* Refactor: Make `showAnimatedAiText` function reusable.
 * Test: Add e2e tests for plugin codebase.
 * Tested up to WP 6.9.
 
