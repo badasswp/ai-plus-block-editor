@@ -8,7 +8,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
-import { isAnimationEnabled } from '../utils';
+import { isAnimationEnabled, showAnimatedAiText } from '../utils';
 
 /**
  * Summary.
@@ -82,40 +82,13 @@ const Summary = (): JSX.Element => {
 				},
 			} );
 
-			/**
-			 * This function returns a promise that resolves
-			 * to the AI generated summary when the Animation
-			 * responsible for showing same is completed.
-			 *
-			 * @since 1.2.0
-			 *
-			 * @return { Promise<string> } Animated text.
-			 */
-			const showAnimatedAiText = (): Promise< string > => {
-				let limit = 1;
-
-				return new Promise( ( resolve ) => {
-					const animatedTextInterval = setInterval( () => {
-						if ( aiSummary.length === limit ) {
-							clearInterval( animatedTextInterval );
-							resolve( aiSummary );
-						}
-						setSummary( aiSummary.substring( 0, limit ) );
-						limit++;
-					}, 5 );
-				} );
-			};
-
 			if ( isAnimationEnabled() ) {
-				showAnimatedAiText().then( ( newSummary ) => {
-					editPost( { excerpt: newSummary } );
-					editPost( { meta: { apbe_summary: newSummary } } );
-				} );
+				await showAnimatedAiText( aiSummary, setSummary );
 			} else {
 				setSummary( aiSummary );
-				editPost( { excerpt: aiSummary } );
-				editPost( { meta: { apbe_summary: aiSummary } } );
 			}
+			editPost( { excerpt: aiSummary } );
+			editPost( { meta: { apbe_summary: aiSummary } } );
 			removeNotice( 'apbe-info' );
 		} catch ( e ) {
 			removeNotice( 'apbe-info' );

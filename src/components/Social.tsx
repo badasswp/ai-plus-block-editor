@@ -8,7 +8,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
-import { isAnimationEnabled } from '../utils';
+import { isAnimationEnabled, showAnimatedAiText } from '../utils';
 
 /**
  * Social.
@@ -82,38 +82,12 @@ const Social = (): JSX.Element => {
 				},
 			} );
 
-			/**
-			 * This function returns a promise that resolves
-			 * to the AI generated social media hashtags and keywords
-			 * when the Animation responsible for showing same is completed.
-			 *
-			 * @since 1.5.0
-			 *
-			 * @return { Promise<string> } Animated text.
-			 */
-			const showAnimatedAiText = (): Promise< string > => {
-				let limit = 1;
-
-				return new Promise( ( resolve ) => {
-					const animatedTextInterval = setInterval( () => {
-						if ( aiSocial.length === limit ) {
-							clearInterval( animatedTextInterval );
-							resolve( aiSocial );
-						}
-						setSocial( aiSocial.substring( 0, limit ) );
-						limit++;
-					}, 5 );
-				} );
-			};
-
 			if ( isAnimationEnabled() ) {
-				showAnimatedAiText().then( ( newSocial ) => {
-					editPost( { meta: { apbe_social: newSocial } } );
-				} );
+				await showAnimatedAiText( aiSocial, setSocial );
 			} else {
 				setSocial( aiSocial );
-				editPost( { meta: { apbe_social: aiSocial } } );
 			}
+			editPost( { meta: { apbe_social: aiSocial } } );
 			removeNotice( 'apbe-info' );
 		} catch ( e ) {
 			removeNotice( 'apbe-info' );
