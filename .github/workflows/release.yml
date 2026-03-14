@@ -46,7 +46,7 @@ jobs:
 
       - name: Start wp-env
         run: |
-          yarn wp-env start
+          chmod +x bin/setup.sh && yarn wp-env start && bin/setup.sh
 
       - name: Wait for WP
         run: |
@@ -54,7 +54,7 @@ jobs:
 
       - name: Run e2e tests
         run: |
-          chmod +x bin/setup.sh && yarn test:e2e
+          yarn test:e2e
 
       - name: Set up PHP v8.2
         uses: shivammathur/setup-php@v2
