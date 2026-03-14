@@ -46,7 +46,7 @@ jobs:
 
       - name: Start wp-env
         run: |
-          chmod +x bin/setup.sh && yarn wp-env start && bin/setup.sh
+          chmod +x bin/ci.sh && yarn wp-env start && bin/ci.sh
 
       - name: Wait for WP
         run: |
