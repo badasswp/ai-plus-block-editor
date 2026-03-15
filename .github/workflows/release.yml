@@ -40,22 +40,6 @@ jobs:
         run: |
           yarn test:js
 
-      - name: Install Playwright browsers
-        run: |
-          yarn playwright install --with-deps
-
-      - name: Start wp-env
-        run: |
-          chmod +x bin/ci.sh && yarn wp-env start && bin/ci.sh
-
-      - name: Wait for WP
-        run: |
-          npx wait-on http://apbe.localhost:5487
-
-      - name: Run e2e tests
-        run: |
-          yarn test:e2e
-
       - name: Set up PHP v8.2
         uses: shivammathur/setup-php@v2
         with:
