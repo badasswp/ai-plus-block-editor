@@ -1,9 +1,9 @@
 === AI + Block Editor ===
-Contributors: badasswp
+Contributors: badasswp, activist507
 Tags: ai, block, editor, chat-gpt, assistant.
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 1.8.1
+Stable tag: 1.9.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -67,6 +67,17 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 4. Sidebar Icon - Locate AI Sidebar feature on the top-right corner of screen.
 
 == Changelog ==
+
+= 1.9.0 =
+* Feat: Add custom filters for LLM options `apbe_open_ai_options`, `apbe_gemini_options`, `apbe_deepseek_options`, `apbe_grok_options`, `apbe_claude_options`.
+* Feat: Add language translations for Japanese, Indonesia, Turkish, Polish, Dutch, Brazil, Portuguese.
+* Refactor: Replace `get_400_response` with `get_error_response`.
+* Refactor: Replace repeated mocks using WPMockTestCase library.
+* Refactor: Replace fully qualified class paths with their use counterparts.
+* Refactor: Move admin page options to the various provider classes respectively.
+* Refactor: Make `showAnimatedAiText` function reusable.
+* Test: Add e2e tests for plugin codebase.
+* Tested up to WP 6.9.
 
 = 1.8.1 =
 * Specify `wordpress-plugin` as Composer package type.

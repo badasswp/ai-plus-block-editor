@@ -47,12 +47,15 @@ class Boot extends Service implements Kernel {
 			false,
 		);
 
+		$apbe = get_option( Options::get_page_option(), [] );
+
 		wp_localize_script(
 			Options::get_page_slug(),
 			'apbe',
 			[
-				'provider'  => get_option( Options::get_page_option(), [] )['ai_provider'] ?? '',
-				'providers' => $this->get_providers(),
+				'isAnimationEnabled' => $apbe['animation_enable'] ?? null,
+				'provider'           => $apbe['ai_provider'] ?? '',
+				'providers'          => $this->get_providers(),
 			]
 		);
 

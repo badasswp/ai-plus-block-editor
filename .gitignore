@@ -62,3 +62,8 @@ Thumbs.db
 #################
 .codekit-cache
 .sass-cache
+
+# Test files #
+##############
+tests/e2e/storage
+tests/e2e/test-results

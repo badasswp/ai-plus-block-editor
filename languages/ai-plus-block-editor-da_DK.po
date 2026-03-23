@@ -4,19 +4,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AI + Block Editor\n"
 "POT-Creation-Date: 2025-01-11 11:40+0100\n"
-"PO-Revision-Date: 2025-04-15 07:41+0100\n"
+"PO-Revision-Date: 2026-03-10 11:54+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: da_DK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
 "X-Domain: ai-plus-block-editor\n"
-"X-Generator: Poedit 3.6\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: ai-plus-block-editor.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
@@ -26,7 +27,7 @@ msgstr ""
 #: ai-plus-block-editor.php:32
 #, php-format
 msgid "Fatal Error: Composer not setup in %s"
-msgstr "Fatal fejl: Komponist ikke konfigureret i %s"
+msgstr "Fatal fejl: Composer ikke konfigureret i %s"
 
 #. Plugin Name of the plugin/theme
 #: inc/Admin/Options.php:79
@@ -36,7 +37,7 @@ msgstr "AI + Block Editor"
 #. Description of the plugin/theme
 #: inc/Admin/Options.php:83
 msgid "Add AI Capabilities to the WP Block Editor."
-msgstr "Tilføj AI-egenskaber til WP Block Editor."
+msgstr "Tilføj AI-funktioner til WP Block Editor."
 
 #: inc/Admin/Options.php:103
 msgid "Actions"
@@ -48,11 +49,23 @@ msgstr "Gem ændringer"
 
 #: inc/Admin/Options.php:128
 msgid "General Options"
-msgstr "Generelle indstillinger"
+msgstr "Generelle muligheder"
 
 #: inc/Admin/Options.php:132
 msgid "AI Provider"
-msgstr "AI Udbyder"
+msgstr "AI udbyder"
+
+#: inc/Admin/Options.php:141
+msgid "e.g. Open AI (Chat GPT)"
+msgstr "f.eks. Åben AI (Chat GPT)"
+
+#: inc/Admin/Options.php:146
+msgid "Enable Animation"
+msgstr "Aktiver animation"
+
+#: inc/Admin/Options.php:147
+msgid "Use Animation when rendering AI content."
+msgstr "Brug animation, når du gengiver AI-indhold."
 
 #: inc/Admin/Options.php:144
 msgid "Open AI"
@@ -64,7 +77,7 @@ msgstr "Aktiver Open AI"
 
 #: inc/Admin/Options.php:149
 msgid "Use Chat GPT capabilities in Block Editor"
-msgstr "Brug Chat GPT-funktioner i Block Editor"
+msgstr "Brug Chat GPT funktioner i Block Editor"
 
 #: inc/Admin/Options.php:154 inc/Admin/Options.php:170
 msgid "Token"
@@ -72,7 +85,7 @@ msgstr "Token"
 
 #: inc/Admin/Options.php:155 inc/Admin/Options.php:171
 msgid "e.g. ae2kgch7i"
-msgstr "e.g. ae2kgch7i"
+msgstr "f.eks. ae2kgch7i"
 
 #: inc/Admin/Options.php:160
 msgid "Google Gemini"
@@ -84,9 +97,45 @@ msgstr "Aktiver Google Gemini"
 
 #: inc/Admin/Options.php:165
 msgid "Use Google Gemini capabilities in Block Editor"
-msgstr "Brug Google Gemini-funktioner i Block Editor"
+msgstr "Brug Google Gemini funktioner i Block Editor"
 
-#: inc/Admin/Options.php:190
+#: inc/Admin/Options.php:173
+msgid "Deepseek"
+msgstr "Deepseek"
+
+#: inc/Admin/Options.php:177
+msgid "Enable DeepSeek"
+msgstr "Aktiver DeepSeek"
+
+#: inc/Admin/Options.php:178
+msgid "Use DeepSeek capabilities in Block Editor"
+msgstr "Brug DeepSeek funktioner i Block Editor"
+
+#: inc/Admin/Options.php:189
+msgid "Grok"
+msgstr "Grok"
+
+#: inc/Admin/Options.php:193
+msgid "Enable Grok"
+msgstr "Aktiver Grok"
+
+#: inc/Admin/Options.php:194
+msgid "Use Grok capabilities in Block Editor"
+msgstr "Brug Grok funktioner i Block Editor"
+
+#: inc/Admin/Options.php:205
+msgid "Claude"
+msgstr "Claude"
+
+#: inc/Admin/Options.php:209
+msgid "Enable Claude"
+msgstr "Aktiver Claude"
+
+#: inc/Admin/Options.php:210
+msgid "Use Claude capabilities in Block Editor"
+msgstr "Brug Claudes funktioner i Block Editor"
+
+#: inc/Admin/Options.php:235
 msgid "Settings Saved."
 msgstr "Indstillinger gemt."
 
@@ -101,23 +150,3 @@ msgstr "badasswp"
 #. Author URI of the plugin/theme
 msgid "https://github.com/badasswp"
 msgstr "https://github.com/badasswp"
-
-#. dist/app.js
-msgid "Headline"
-msgstr "Overskrift"
-
-#. dist/app.js
-msgid "Slug"
-msgstr "Snegl"
-
-#. dist/app.js
-msgid "SEO Keywords"
-msgstr "SEO søgeord"
-
-#. dist/app.js
-msgid "Summary"
-msgstr "Oversigt"
-
-#. dist/app.js
-msgid "Use Casual Tone"
-msgstr "Brug afslappet tone"

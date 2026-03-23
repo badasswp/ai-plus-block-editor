@@ -10,7 +10,8 @@
 
 namespace AiPlusBlockEditor\Routes;
 
-use AiPlusBlockEditor\Core\AI;
+use WP_REST_Server;
+use WP_REST_Request;
 use AiPlusBlockEditor\Abstracts\Route;
 use AiPlusBlockEditor\Interfaces\Router;
 
@@ -25,7 +26,7 @@ class SideBar extends Route implements Router {
 	 *
 	 * @var string
 	 */
-	public string $method = 'POST';
+	public string $method = WP_REST_Server::CREATABLE;
 
 	/**
 	 * WP REST Endpoint e.g. /wp-json/ai-plus-block-editor/v1/sidebar.
@@ -43,7 +44,7 @@ class SideBar extends Route implements Router {
 	 *
 	 * @var \WP_REST_Request
 	 */
-	public \WP_REST_Request $request;
+	public WP_REST_Request $request;
 
 	/**
 	 * Response Callback.
@@ -57,7 +58,7 @@ class SideBar extends Route implements Router {
 
 		// Bail out, if it does NOT exists.
 		if ( empty( $this->args['text'] ?? '' ) ) {
-			return $this->get_400_response(
+			return $this->get_error_response(
 				sprintf(
 					'API Request does not contain a text. Post ID: %s',
 					$this->args['id'] ?? ''

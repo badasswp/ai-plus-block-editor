@@ -1,0 +1,102 @@
+{
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "ja\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"AI+ブロックエディター"
+			],
+			"Headline": [
+				"見出し"
+			],
+			"Slug": [
+				"ナメクジ"
+			],
+			"SEO Keywords": [
+				"SEOキーワード"
+			],
+			"Summary": [
+				"まとめ"
+			],
+			"Use Casual Tone": [
+				"カジュアルなトーンを使用する"
+			],
+			"Use Official Tone": [
+				"公式口調を使用する"
+			],
+			"Use Descriptive Tone": [
+				"説明的な口調を使う"
+			],
+			"Use Narrative Tone": [
+				"物語的な口調を使う"
+			],
+			"Use Aggressive Tone": [
+				"攻撃的な口調を使う"
+			],
+			"Generate": [
+				"生成する"
+			],
+			"AI is generating text, please hold on for a bit.": [
+				"AIがテキストを生成しています。しばらくお待ちください。"
+			],
+			"Switch AI Provider": [
+				"AIプロバイダーの切り替え"
+			],
+			"Social Media Hashtags": [
+				"ソーシャルメディアのハッシュタグ"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"成功！AIプロバイダーがOpenAIに切り替えました"
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"成功！AIプロバイダーはGeminiに正常に切り替えられました"
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"成功！AIプロバイダーがDeepSeekに切り替えました"
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"成功！AIプロバイダーはChatGPTに正常に切り替えられました"
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"成功しました。AI プロバイダーが正常に切り替えられました。"
+			],
+			"Error! Failed to switch AI Provider.": [
+				"エラー! AI プロバイダーの切り替えに失敗しました。"
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"エラー！ヘッドラインの取得に失敗しました。詳細については、エラーログまたはコンソールをご確認ください。"
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"エラー！スラッグの取得に失敗しました。詳細については、エラーログまたはコンソールをご確認ください。"
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"エラー！SEOキーワードの取得に失敗しました。詳細はエラーログまたはコンソールをご確認ください。"
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"エラー！概要の取得に失敗しました。詳細については、エラーログまたはコンソールをご確認ください。"
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"エラー！ハッシュタグの取得に失敗しました。詳細はエラーログまたはコンソールをご確認ください。"
+			]
+		}
+	}
+}

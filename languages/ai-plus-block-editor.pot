@@ -57,6 +57,18 @@ msgstr ""
 msgid "AI Provider"
 msgstr ""
 
+#: inc/Admin/Options.php:141
+msgid "e.g. Open AI (Chat GPT)"
+msgstr ""
+
+#: inc/Admin/Options.php:146
+msgid "Enable Animation"
+msgstr ""
+
+#: inc/Admin/Options.php:147
+msgid "Use Animation when rendering AI content."
+msgstr ""
+
 #: inc/Admin/Options.php:144
 msgid "Open AI"
 msgstr ""
@@ -89,7 +101,43 @@ msgstr ""
 msgid "Use Google Gemini capabilities in Block Editor"
 msgstr ""
 
-#: inc/Admin/Options.php:190
+#: inc/Admin/Options.php:173
+msgid "Deepseek"
+msgstr ""
+
+#: inc/Admin/Options.php:177
+msgid "Enable DeepSeek"
+msgstr ""
+
+#: inc/Admin/Options.php:178
+msgid "Use DeepSeek capabilities in Block Editor"
+msgstr ""
+
+#: inc/Admin/Options.php:189
+msgid "Grok"
+msgstr ""
+
+#: inc/Admin/Options.php:193
+msgid "Enable Grok"
+msgstr ""
+
+#: inc/Admin/Options.php:194
+msgid "Use Grok capabilities in Block Editor"
+msgstr ""
+
+#: inc/Admin/Options.php:205
+msgid "Claude"
+msgstr ""
+
+#: inc/Admin/Options.php:209
+msgid "Enable Claude"
+msgstr ""
+
+#: inc/Admin/Options.php:210
+msgid "Use Claude capabilities in Block Editor"
+msgstr ""
+
+#: inc/Admin/Options.php:235
 msgid "Settings Saved."
 msgstr ""
 

@@ -1,0 +1,102 @@
+{
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "id_ID\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"AI + Editor Blok"
+			],
+			"Headline": [
+				"Judul"
+			],
+			"Slug": [
+				"Siput"
+			],
+			"SEO Keywords": [
+				"Kata Kunci SEO"
+			],
+			"Summary": [
+				"Ringkasan"
+			],
+			"Use Casual Tone": [
+				"Gunakan Nada Santai"
+			],
+			"Use Official Tone": [
+				"Gunakan Nada Resmi"
+			],
+			"Use Descriptive Tone": [
+				"Gunakan Nada Deskriptif"
+			],
+			"Use Narrative Tone": [
+				"Gunakan Nada Naratif"
+			],
+			"Use Aggressive Tone": [
+				"Gunakan Nada Agresif"
+			],
+			"Generate": [
+				"Menghasilkan"
+			],
+			"AI is generating text, please hold on for a bit.": [
+				"AI sedang menghasilkan teks, mohon tunggu sebentar."
+			],
+			"Switch AI Provider": [
+				"Ganti Penyedia AI"
+			],
+			"Social Media Hashtags": [
+				"Tagar Media Sosial"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"Berhasil! Penyedia AI berhasil beralih ke OpenAI"
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"Berhasil! Penyedia AI berhasil beralih ke Gemini."
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"Berhasil! Penyedia AI berhasil beralih ke DeepSeek."
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"Berhasil! Penyedia AI berhasil beralih ke ChatGPT."
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"Berhasil! Penyedia AI berhasil dialihkan."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"Terjadi kesalahan! Gagal mengganti Penyedia AI."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"Terjadi kesalahan! Gagal mengambil Headline. Silakan periksa log kesalahan atau konsol Anda untuk informasi lebih lanjut."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"Terjadi kesalahan! Gagal mengambil Slug. Silakan periksa log kesalahan atau konsol Anda untuk informasi lebih lanjut."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"Terjadi kesalahan! Gagal mengambil kata kunci SEO. Silakan periksa log kesalahan atau konsol Anda untuk informasi lebih lanjut."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"Terjadi kesalahan! Gagal mengambil Ringkasan. Silakan periksa log kesalahan atau konsol Anda untuk informasi lebih lanjut."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"Terjadi kesalahan! Gagal mengambil tagar. Silakan periksa log kesalahan atau konsol Anda untuk informasi lebih lanjut."
+			]
+		}
+	}
+}

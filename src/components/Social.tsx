@@ -8,6 +8,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
+import { isAnimationEnabled, showAnimatedAiText } from '../utils';
 
 /**
  * Social.
@@ -81,33 +82,12 @@ const Social = (): JSX.Element => {
 				},
 			} );
 
-			/**
-			 * This function returns a promise that resolves
-			 * to the AI generated social media hashtags and keywords
-			 * when the Animation responsible for showing same is completed.
-			 *
-			 * @since 1.5.0
-			 *
-			 * @return { Promise<string> } Animated text.
-			 */
-			const showAnimatedAiText = (): Promise< string > => {
-				let limit = 1;
-
-				return new Promise( ( resolve ) => {
-					const animatedTextInterval = setInterval( () => {
-						if ( aiSocial.length === limit ) {
-							clearInterval( animatedTextInterval );
-							resolve( aiSocial );
-						}
-						setSocial( aiSocial.substring( 0, limit ) );
-						limit++;
-					}, 5 );
-				} );
-			};
-
-			showAnimatedAiText().then( ( newSocial ) => {
-				editPost( { meta: { apbe_social: newSocial } } );
-			} );
+			if ( isAnimationEnabled() ) {
+				await showAnimatedAiText( aiSocial, setSocial );
+			} else {
+				setSocial( aiSocial );
+			}
+			editPost( { meta: { apbe_social: aiSocial } } );
 			removeNotice( 'apbe-info' );
 		} catch ( e ) {
 			removeNotice( 'apbe-info' );
@@ -143,16 +123,25 @@ const Social = (): JSX.Element => {
 				</strong>
 			</p>
 			<TextareaControl
+				data-testid="social"
 				rows={ 4 }
 				value={ social }
 				onChange={ ( text ) => setSocial( text ) }
 				__nextHasNoMarginBottom
 			/>
 			<div className="apbe-button-group">
-				<Button variant="primary" onClick={ handleClick }>
+				<Button
+					variant="primary"
+					onClick={ handleClick }
+					data-testid="social-btn"
+				>
 					{ __( 'Generate', 'ai-plus-block-editor' ) }
 				</Button>
-				<Button variant="secondary" onClick={ handleSelection }>
+				<Button
+					variant="secondary"
+					onClick={ handleSelection }
+					data-testid="social-check"
+				>
 					<Icon icon={ check } />
 				</Button>
 			</div>

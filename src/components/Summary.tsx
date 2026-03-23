@@ -8,6 +8,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
+import { isAnimationEnabled, showAnimatedAiText } from '../utils';
 
 /**
  * Summary.
@@ -81,34 +82,13 @@ const Summary = (): JSX.Element => {
 				},
 			} );
 
-			/**
-			 * This function returns a promise that resolves
-			 * to the AI generated summary when the Animation
-			 * responsible for showing same is completed.
-			 *
-			 * @since 1.2.0
-			 *
-			 * @return { Promise<string> } Animated text.
-			 */
-			const showAnimatedAiText = (): Promise< string > => {
-				let limit = 1;
-
-				return new Promise( ( resolve ) => {
-					const animatedTextInterval = setInterval( () => {
-						if ( aiSummary.length === limit ) {
-							clearInterval( animatedTextInterval );
-							resolve( aiSummary );
-						}
-						setSummary( aiSummary.substring( 0, limit ) );
-						limit++;
-					}, 5 );
-				} );
-			};
-
-			showAnimatedAiText().then( ( newSummary ) => {
-				editPost( { excerpt: newSummary } );
-				editPost( { meta: { apbe_summary: newSummary } } );
-			} );
+			if ( isAnimationEnabled() ) {
+				await showAnimatedAiText( aiSummary, setSummary );
+			} else {
+				setSummary( aiSummary );
+			}
+			editPost( { excerpt: aiSummary } );
+			editPost( { meta: { apbe_summary: aiSummary } } );
 			removeNotice( 'apbe-info' );
 		} catch ( e ) {
 			removeNotice( 'apbe-info' );
@@ -143,16 +123,25 @@ const Summary = (): JSX.Element => {
 				<strong>{ __( 'Summary', 'ai-plus-block-editor' ) }</strong>
 			</p>
 			<TextareaControl
+				data-testid="summary"
 				rows={ 4 }
 				value={ summary }
 				onChange={ ( text ) => setSummary( text ) }
 				__nextHasNoMarginBottom
 			/>
 			<div className="apbe-button-group">
-				<Button variant="primary" onClick={ handleClick }>
+				<Button
+					variant="primary"
+					onClick={ handleClick }
+					data-testid="summary-btn"
+				>
 					{ __( 'Generate', 'ai-plus-block-editor' ) }
 				</Button>
-				<Button variant="secondary" onClick={ handleSelection }>
+				<Button
+					variant="secondary"
+					onClick={ handleSelection }
+					data-testid="summary-check"
+				>
 					<Icon icon={ check } />
 				</Button>
 			</div>

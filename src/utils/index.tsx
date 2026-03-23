@@ -7,6 +7,58 @@ type DropdownOption = {
 };
 
 /**
+ * Is Animation Enabled.
+ *
+ * Check to see if Animation is enabled
+ * for plugin.
+ *
+ * @since 1.9.0
+ *
+ * @return {boolean} Is Animation enabled.
+ */
+export const isAnimationEnabled = (): boolean => {
+	const { isAnimationEnabled: isPluginAnimationEnabled } = apbe;
+
+	if ( isPluginAnimationEnabled || null === isPluginAnimationEnabled ) {
+		return true;
+	}
+
+	return false;
+};
+
+/**
+ * Show Animated AI text.
+ *
+ * This function returns a promise that resolves
+ * to the AI generated text when the Animation
+ * responsible for showing same is completed.
+ *
+ * @since 1.9.0
+ *
+ * @param {string}   text     AI genereated Text.
+ * @param {Function} callback Callback function.
+ *
+ * @return {Promise<void>}
+ */
+export const showAnimatedAiText = (
+	text: string,
+	callback: ( text: string ) => void
+): Promise< string > => {
+	let limit = 1;
+
+	return new Promise( ( resolve ) => {
+		const animatedTextInterval = setInterval( () => {
+			if ( limit >= text.length ) {
+				clearInterval( animatedTextInterval );
+				resolve( text );
+			}
+			callback( text.substring( 0, limit ) );
+			limit++;
+		}, 5 );
+	} );
+};
+
+/**
  * Get Options.
  *
  * This function filters the Block Menu AI Options

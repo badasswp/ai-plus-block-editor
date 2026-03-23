@@ -156,4 +156,30 @@ class Gemini extends Provider implements ProviderInterface {
 		// Return filtered response.
 		return $this->get_provider_response( $response, wp_json_encode( $body ) );
 	}
+
+	/**
+	 * Get Options.
+	 *
+	 * @return array
+	 */
+	public static function get_options(): array {
+		$options = [
+			'heading'  => esc_html__( 'Google Gemini', 'ai-plus-block-editor' ),
+			'controls' => [
+				'google_gemini_enable' => [
+					'control' => esc_attr( 'checkbox' ),
+					'label'   => esc_html__( 'Enable Google Gemini', 'ai-plus-block-editor' ),
+					'summary' => esc_html__( 'Use Google Gemini capabilities in Block Editor', 'ai-plus-block-editor' ),
+				],
+				'google_gemini_token'  => [
+					'control'     => esc_attr( 'password' ),
+					'placeholder' => esc_attr( '' ),
+					'label'       => esc_html__( 'API Keys', 'ai-plus-block-editor' ),
+					'summary'     => esc_html__( 'e.g. ae2kgch7ib9eqcbeveq9a923nv87392av', 'ai-plus-block-editor' ),
+				],
+			],
+		];
+
+		return apply_filters( 'apbe_gemini_options', $options );
+	}
 }

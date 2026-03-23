@@ -1,0 +1,102 @@
+{
+	"translation-revision-date": "2025-01-11 11:40+0100",
+	"generator": "WP-CLI/2.6.0",
+	"source": "dist/app.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "pl_PL\\n",
+				"plural-forms": "nplurals=2; plural=(n != 1);"
+			},
+			"AI + Block Editor": [
+				"AI + Edytor bloku"
+			],
+			"Headline": [
+				"Nagłówek"
+			],
+			"Slug": [
+				"Ślimak"
+			],
+			"SEO Keywords": [
+				"Słowa kluczowe SEO"
+			],
+			"Summary": [
+				"Streszczenie"
+			],
+			"Use Casual Tone": [
+				"Użyj swobodnego tonu"
+			],
+			"Use Official Tone": [
+				"Użyj oficjalnego tonu"
+			],
+			"Use Descriptive Tone": [
+				"Użyj tonu opisowego"
+			],
+			"Use Narrative Tone": [
+				"Użyj tonu narracyjnego"
+			],
+			"Use Aggressive Tone": [
+				"Użyj agresywnego tonu"
+			],
+			"Generate": [
+				"Spowodować"
+			],
+			"AI is generating text, please hold on for a bit.": [
+				"AI generuje tekst, proszę zaczekać chwilę."
+			],
+			"Switch AI Provider": [
+				"Zmień dostawcę AI"
+			],
+			"Social Media Hashtags": [
+				"Hashtagi w mediach społecznościowych"
+			],
+			"Success! AI Provider switched successfully to OpenAI": [
+				"Sukces! Dostawca sztucznej inteligencji pomyślnie przeszedł na OpenAI"
+			],
+			"Success! AI Provider switched successfully to Gemini": [
+				"Sukces! Dostawca sztucznej inteligencji pomyślnie przeszedł na Gemini"
+			],
+			"Success! AI Provider switched successfully to DeepSeek": [
+				"Sukces! Dostawca sztucznej inteligencji pomyślnie przeszedł na DeepSeek"
+			],
+			"Success! AI Provider switched successfully to ChatGPT": [
+				"Sukces! Dostawca sztucznej inteligencji pomyślnie przeszedł na ChatGPT"
+			],
+			"OpenAI": [
+				"OpenAI"
+			],
+			"Gemini": [
+				"Gemini"
+			],
+			"DeepSeek": [
+				"DeepSeek"
+			],
+			"ChatGPT": [
+				"ChatGPT"
+			],
+			"Success! AI Provider switched successfully.": [
+				"Sukces! Zmiana dostawcy AI przebiegła pomyślnie."
+			],
+			"Error! Failed to switch AI Provider.": [
+				"Błąd! Nie udało się zmienić dostawcy AI."
+			],
+			"Error! Failed to fetch Headline. Please check your error logs or console for more info.": [
+				"Błąd! Nie udało się pobrać nagłówka. Sprawdź dzienniki błędów lub konsolę, aby uzyskać więcej informacji."
+			],
+			"Error! Failed to fetch Slug. Please check your error logs or console for more info.": [
+				"Błąd! Nie udało się pobrać Sluga. Sprawdź dzienniki błędów lub konsolę, aby uzyskać więcej informacji."
+			],
+			"Error! Failed to fetch SEO Keywords. Please check your error logs or console for more info.": [
+				"Błąd! Nie udało się pobrać słów kluczowych SEO. Sprawdź dzienniki błędów lub konsolę, aby uzyskać więcej informacji."
+			],
+			"Error! Failed to fetch Summary. Please check your error logs or console for more info.": [
+				"Błąd! Nie udało się pobrać podsumowania. Sprawdź dzienniki błędów lub konsolę, aby uzyskać więcej informacji."
+			],
+			"Error! Failed to fetch Hashtags. Please check your error logs or console for more info.": [
+				"Błąd! Nie udało się pobrać hashtagów. Sprawdź dzienniki błędów lub konsolę, aby uzyskać więcej informacji."
+			]
+		}
+	}
+}

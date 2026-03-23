@@ -10,7 +10,8 @@
 
 namespace AiPlusBlockEditor\Routes;
 
-use AiPlusBlockEditor\Core\AI;
+use WP_REST_Server;
+use WP_REST_Request;
 use AiPlusBlockEditor\Admin\Options;
 use AiPlusBlockEditor\Abstracts\Route;
 use AiPlusBlockEditor\Interfaces\Router;
@@ -26,7 +27,7 @@ class Switcher extends Route implements Router {
 	 *
 	 * @var string
 	 */
-	public string $method = 'POST';
+	public string $method = WP_REST_Server::CREATABLE;
 
 	/**
 	 * WP REST Endpoint e.g. /wp-json/ai-plus-block-editor/v1/switcher.
@@ -44,7 +45,7 @@ class Switcher extends Route implements Router {
 	 *
 	 * @var \WP_REST_Request
 	 */
-	public \WP_REST_Request $request;
+	public WP_REST_Request $request;
 
 	/**
 	 * Response Callback.
@@ -57,7 +58,7 @@ class Switcher extends Route implements Router {
 		$args = $this->request->get_json_params();
 
 		if ( empty( $args['provider'] ?? '' ) ) {
-			return $this->get_400_response(
+			return $this->get_error_response(
 				sprintf(
 					'API Request does not contain a valid AI provider. Provider: %s',
 					$args['provider'] ?? ''

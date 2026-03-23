@@ -8,6 +8,7 @@ import apiFetch from '@wordpress/api-fetch';
 
 import { selectProps } from '../utils/types';
 import { editorStore } from '../utils/store';
+import { isAnimationEnabled, showAnimatedAiText } from '../utils';
 
 /**
  * SEO.
@@ -82,33 +83,12 @@ const SEO = (): JSX.Element => {
 				},
 			} );
 
-			/**
-			 * This function returns a promise that resolves
-			 * to the AI generated SEO keywords when the Animation
-			 * responsible for showing same is completed.
-			 *
-			 * @since 1.2.0
-			 *
-			 * @return { Promise<string> } Animated text.
-			 */
-			const showAnimatedAiText = (): Promise< string > => {
-				let limit = 1;
-
-				return new Promise( ( resolve ) => {
-					const animatedTextInterval = setInterval( () => {
-						if ( aiKeywords.length === limit ) {
-							clearInterval( animatedTextInterval );
-							resolve( aiKeywords );
-						}
-						setKeywords( aiKeywords.substring( 0, limit ) );
-						limit++;
-					}, 5 );
-				} );
-			};
-
-			showAnimatedAiText().then( ( newKeywords ) => {
-				editPost( { meta: { apbe_seo_keywords: newKeywords } } );
-			} );
+			if ( isAnimationEnabled() ) {
+				await showAnimatedAiText( aiKeywords, setKeywords );
+			} else {
+				setKeywords( aiKeywords );
+			}
+			editPost( { meta: { apbe_seo_keywords: aiKeywords } } );
 			removeNotice( 'apbe-info' );
 		} catch ( e ) {
 			removeNotice( 'apbe-info' );
@@ -144,16 +124,25 @@ const SEO = (): JSX.Element => {
 				</strong>
 			</p>
 			<TextareaControl
+				data-testid="seo"
 				rows={ 7 }
 				value={ keywords }
 				onChange={ ( text ) => setKeywords( text ) }
 				__nextHasNoMarginBottom
 			/>
 			<div className="apbe-button-group">
-				<Button variant="primary" onClick={ handleClick }>
+				<Button
+					variant="primary"
+					onClick={ handleClick }
+					data-testid="seo-btn"
+				>
 					{ __( 'Generate', 'ai-plus-block-editor' ) }
 				</Button>
-				<Button variant="secondary" onClick={ handleSelection }>
+				<Button
+					variant="secondary"
+					onClick={ handleSelection }
+					data-testid="seo-check"
+				>
 					<Icon icon={ check } />
 				</Button>
 			</div>

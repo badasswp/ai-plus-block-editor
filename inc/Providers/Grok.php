@@ -161,4 +161,30 @@ class Grok extends Provider implements ProviderInterface {
 		// Return filtered response.
 		return $this->get_provider_response( $response, wp_json_encode( $body ) );
 	}
+
+	/**
+	 * Get Options.
+	 *
+	 * @return array
+	 */
+	public static function get_options(): array {
+		$options = [
+			'heading'  => esc_html__( 'Grok', 'ai-plus-block-editor' ),
+			'controls' => [
+				'grok_enable' => [
+					'control' => esc_attr( 'checkbox' ),
+					'label'   => esc_html__( 'Enable Grok', 'ai-plus-block-editor' ),
+					'summary' => esc_html__( 'Use Grok capabilities in Block Editor', 'ai-plus-block-editor' ),
+				],
+				'grok_token'  => [
+					'control'     => esc_attr( 'password' ),
+					'placeholder' => esc_attr( '' ),
+					'label'       => esc_html__( 'API Keys', 'ai-plus-block-editor' ),
+					'summary'     => esc_html__( 'e.g. ae2kgch7ib9eqcbeveq9a923nv87392av', 'ai-plus-block-editor' ),
+				],
+			],
+		];
+
+		return apply_filters( 'apbe_grok_options', $options );
+	}
 }
