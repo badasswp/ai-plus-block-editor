@@ -1,5 +1,5 @@
 === AI + Block Editor ===
-Contributors: badasswp
+Contributors: badasswp, activist507
 Tags: ai, block, editor, chat-gpt, assistant.
 Requires at least: 6.0
 Tested up to: 6.9
