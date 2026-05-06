@@ -103,10 +103,10 @@ jobs:
           git commit -m "Build from ${{ github.ref_name }}"
           git push origin "$BUILT_BRANCH" --force
 
-			- name: Deploy to Staging
-				uses: SamKirkland/FTP-Deploy-Action@v4.3.6
-				with:
-					server: ${{ secrets.FTP_HOST }}
-					username: ${{ secrets.FTP_USERNAME }}
-					password: ${{ secrets.FTP_PASSWORD }}
-					server-dir: wp-stg/wp-content/plugins/ai-plus-block-editor
+      - name: Deploy to Staging
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: wp-stg/wp-content/plugins/ai-plus-block-editor
