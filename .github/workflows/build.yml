@@ -62,3 +62,11 @@ jobs:
           git commit -m "push to master-built"
           git push origin master-built -f
           rm -rf .git
+
+      - name: Deploy to Production
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: wp-mst/wp-content/plugins/ai-plus-block-editor/
