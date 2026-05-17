@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
+    "rootDir": "./src",
     "outDir": "./build",
     "jsx": "react-jsx",
     "module": "ESNext",
-    "target": "ES2015",
-    "moduleResolution": "node",
+    "target": "ES2017",
+    "lib": ["es2017", "dom"],
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "sourceMap": true,
     "noImplicitAny": false,
@@ -14,7 +16,6 @@
     "strictBindCallApply": true,
     "strictPropertyInitialization": false,
     "noImplicitThis": true,
-    "alwaysStrict": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noImplicitReturns": false,
