@@ -1,8 +1,0 @@
-parameters:
-  level: 8
-  paths:
-    - inc/
-  bootstrapFiles:
-    - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
-  ignoreErrors:
-    - '#Unsafe usage of new static\(\)#'
