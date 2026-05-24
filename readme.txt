@@ -2,8 +2,8 @@
 Contributors: badasswp, activist507
 Tags: ai, block, editor, chat-gpt, assistant.
 Requires at least: 6.0
-Tested up to: 6.9
-Stable tag: 1.9.0
+Tested up to: 7.0
+Stable tag: 1.9.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -67,6 +67,12 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 4. Sidebar Icon - Locate AI Sidebar feature on the top-right corner of screen.
 
 == Changelog ==
+
+= 1.9.2 =
+* Tested up to WP 7.0.
+
+= 1.9.1 =
+* Chore: Update CI/CD pipeline.
 
 = 1.9.0 =
 * Feat: Add custom filters for LLM options `apbe_open_ai_options`, `apbe_gemini_options`, `apbe_deepseek_options`, `apbe_grok_options`, `apbe_claude_options`.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.9.2
+* Tested up to WP 7.0.
+
+## 1.9.1
+* Chore: Update CI/CD pipeline.
+
 ## 1.9.0
 * Feat: Add language translations for Japanese, Indonesia, Turkish, Polish, Dutch, Brazil, Portuguese.
 * Feat: Add custom filters for LLM options `apbe_open_ai_options`, `apbe_gemini_options`, `apbe_deepseek_options`, `apbe_grok_options`, `apbe_claude_options`.
