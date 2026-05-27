@@ -12,6 +12,7 @@ namespace AiPlusBlockEditor\Services;
 
 use AiPlusBlockEditor\Admin\Form;
 use AiPlusBlockEditor\Admin\Options;
+use AiPlusBlockEditor\Plugins\Page;
 use AiPlusBlockEditor\Abstracts\Service;
 use AiPlusBlockEditor\Interfaces\Kernel;
 
@@ -26,7 +27,7 @@ class Admin extends Service implements Kernel {
 	public function register(): void {
 		add_action( 'admin_init', [ $this, 'register_options_init' ] );
 		add_action( 'admin_menu', [ $this, 'register_options_menu' ] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'register_options_styles' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'register_options_scripts' ] );
 	}
 
 	/**
@@ -51,6 +52,44 @@ class Admin extends Service implements Kernel {
 				</svg>'
 			),
 			100
+		);
+
+		add_submenu_page(
+			Options::get_page_slug(),
+			__( 'More Plugins', 'ai-plus-block-editor' ),
+			__( 'More Plugins', 'ai-plus-block-editor' ),
+			'manage_options',
+			sprintf( '%s-more-plugins', Options::get_page_slug() ),
+			[ $this, 'register_more_plugins' ]
+		);
+	}
+
+	/**
+	 * Register More Plugins.
+	 *
+	 * This controls the display of the
+	 * "More Plugins" submenu page.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @return void
+	 */
+	public function register_more_plugins(): void {
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		vprintf(
+			'<section class="wrap">
+				<h1>%s</h1>
+				<p>%s</p>
+				%s
+			</section>',
+			array_map(
+				'__',
+				[
+					'More Plugins',
+					'Check out some other amazing plugin of ours...',
+					( new Page() )->get_markup(),
+				]
+			)
 		);
 	}
 
@@ -132,11 +171,11 @@ class Admin extends Service implements Kernel {
 	 *
 	 * @return void
 	 */
-	public function register_options_styles(): void {
+	public function register_options_scripts(): void {
 		$screen = get_current_screen();
 
 		// Bail out, if not plugin Admin page.
-		if ( ! is_object( $screen ) || 'toplevel_page_ai-plus-block-editor' !== $screen->id ) {
+		if ( ! is_object( $screen ) || ! str_contains( $screen->id, Options::get_page_slug() ) ) {
 			return;
 		}
 
@@ -146,6 +185,23 @@ class Admin extends Service implements Kernel {
 			[],
 			'1.0.0',
 			'all'
+		);
+
+		wp_enqueue_script(
+			Options::get_page_slug(),
+			plugin_dir_url( __FILE__ ) . '../../scripts.js',
+			[ 'jquery' ],
+			'1.0.0',
+			'all'
+		);
+
+		wp_localize_script(
+			Options::get_page_slug(),
+			'ajax_badasswp',
+			[
+				'nonce'    => wp_create_nonce( 'ajax-badasswp-nonce' ),
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+			]
 		);
 	}
 }
