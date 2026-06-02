@@ -24,6 +24,7 @@ use AiPlusBlockEditor\Plugins\Ajax;
  * @covers \AiPlusBlockEditor\Services\Routes::__construct
  * @covers \AiPlusBlockEditor\Services\PostMeta::register
  * @covers \AiPlusBlockEditor\Services\PostMeta::__construct
+ * @covers \AiPlusBlockEditor\Plugins\Ajax::register
  */
 class ContainerTest extends TestCase {
 	public Container $container;
