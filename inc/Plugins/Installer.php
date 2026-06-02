@@ -131,9 +131,11 @@ class Installer {
 	 * @since 1.10.0
 	 *
 	 * @param string $slug Plugin name.
+	 * @param string $default_label Default label for the plugin status.
+	 *
 	 * @return string
 	 */
-	public static function get_plugin_status( $slug, $default = 'Install Plugin' ): string {
+	public static function get_plugin_status( $slug, $default_label = 'Install Plugin' ): string {
 		if ( is_plugin_active( $slug . '/' . $slug . '.php' ) ) {
 			return esc_html__( 'Installed', 'ai-plus-block-editor' );
 		}
@@ -142,6 +144,6 @@ class Installer {
 			return esc_html__( 'Activate', 'ai-plus-block-editor' );
 		}
 
-		return esc_html__( $default, 'ai-plus-block-editor' );
+		return esc_html__( $default_label, 'ai-plus-block-editor' ); //phpcs:ignore WordPress.WP.I18n.NonSingularStringLiteralText
 	}
 }
