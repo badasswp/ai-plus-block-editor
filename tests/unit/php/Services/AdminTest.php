@@ -14,7 +14,7 @@ use AiPlusBlockEditor\Tests\PluginTest;
  * @covers \AiPlusBlockEditor\Services\Admin::register
  * @covers \AiPlusBlockEditor\Services\Admin::register_options_menu
  * @covers \AiPlusBlockEditor\Services\Admin::register_options_init
- * @covers \AiPlusBlockEditor\Services\Admin::register_options_styles
+ * @covers \AiPlusBlockEditor\Services\Admin::register_options_scripts
  * @covers \AiPlusBlockEditor\Admin\Options::__callStatic
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_fields
  * @covers \AiPlusBlockEditor\Admin\Options::get_form_notice
@@ -57,7 +57,7 @@ class AdminTest extends WPMockTestCase {
 	public function test_register() {
 		WP_Mock::expectActionAdded( 'admin_init', [ $this->admin, 'register_options_init' ] );
 		WP_Mock::expectActionAdded( 'admin_menu', [ $this->admin, 'register_options_menu' ] );
-		WP_Mock::expectActionAdded( 'admin_enqueue_scripts', [ $this->admin, 'register_options_styles' ] );
+		WP_Mock::expectActionAdded( 'admin_enqueue_scripts', [ $this->admin, 'register_options_scripts' ] );
 
 		$this->admin->register();
 
@@ -77,6 +77,18 @@ class AdminTest extends WPMockTestCase {
 				[ $this->admin, 'register_options_page' ],
 				'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj4KCQkJCQk8cGF0aCBkPSJNMTcuOCAybC0uOS4zYy0uMSAwLTMuNiAxLTUuMiAyLjFDMTAgNS41IDkuMyA2LjUgOC45IDcuMWMtLjYuOS0xLjcgNC43LTEuNyA2LjNsLS45IDIuM2MtLjIuNCAwIC44LjQgMSAuMSAwIC4yLjEuMy4xLjMgMCAuNi0uMi43LS41bC42LTEuNWMuMyAwIC43LS4xIDEuMi0uMi43LS4xIDEuNC0uMyAyLjItLjUuOC0uMiAxLjYtLjUgMi40LS44LjctLjMgMS40LS43IDEuOS0xLjJzLjgtMS4yIDEtMS45Yy4yLS43LjMtMS42LjQtMi40LjEtLjguMS0xLjcuMi0yLjUgMC0uOC4xLTEuNS4yLTIuMVYyem0tMS45IDUuNmMtLjEuOC0uMiAxLjUtLjMgMi4xLS4yLjYtLjQgMS0uNiAxLjMtLjMuMy0uOC42LTEuNC45LS43LjMtMS40LjUtMi4yLjgtLjYuMi0xLjMuMy0xLjguNEwxNSA3LjVjLjMtLjMuNi0uNyAxLTEuMSAwIC40IDAgLjgtLjEgMS4yek02IDIwaDh2LTEuNUg2VjIweiIgLz4KCQkJCTwvc3ZnPg==',
 				100
+			)
+			->andReturn( null );
+
+		WP_Mock::userFunction( 'add_submenu_page' )
+			->once()
+			->with(
+				'ai-plus-block-editor',
+				__( 'More Plugins', 'ai-plus-block-editor' ),
+				__( 'More Plugins', 'ai-plus-block-editor' ),
+				'manage_options',
+				sprintf( '%s-more-plugins', 'ai-plus-block-editor' ),
+				[ $this->admin, 'register_more_plugins' ]
 			)
 			->andReturn( null );
 
@@ -192,7 +204,7 @@ class AdminTest extends WPMockTestCase {
 		$this->assertConditionsMet();
 	}
 
-	public function test_register_options_styles_passes() {
+	public function test_register_options_scripts_passes() {
 		PluginTest::mock_llm_options();
 
 		$screen = Mockery::mock( WP_Screen::class )->makePartial();
@@ -220,16 +232,45 @@ class AdminTest extends WPMockTestCase {
 			)
 			->andReturn( null );
 
-		$this->admin->register_options_styles();
+		WP_Mock::userFunction( 'wp_enqueue_script' )
+			->with(
+				'ai-plus-block-editor',
+				'https://example.com/wp-content/plugins/ai-plus-block-editor/inc/Services/../../scripts.js',
+				[ 'jquery' ],
+				'1.0.0',
+				'all'
+			)
+			->andReturn( null );
+
+		WP_Mock::userFunction( 'wp_create_nonce' )
+			->with( 'ajax-badasswp-nonce' )
+			->andReturn( 'example_nonce' );
+
+		WP_Mock::userFunction( 'admin_url' )
+			->with( 'admin-ajax.php' )
+			->andReturn( 'https://example.com/wp-admin/admin-ajax.php' );
+
+		WP_Mock::userFunction( 'wp_localize_script' )
+			->with(
+				'ai-plus-block-editor',
+				'ajax_badasswp',
+				[
+					'nonce'    => 'example_nonce',
+					'ajax_url' => 'https://example.com/wp-admin/admin-ajax.php',
+				]
+			)
+			->andReturn( null );
+
+		$this->admin->register_options_scripts();
 
 		$this->assertConditionsMet();
 	}
 
-	public function test_register_options_styles_bails() {
+	public function test_register_options_scripts_bails() {
 		WP_Mock::userFunction( 'get_current_screen' )
 			->andReturn( '' );
 
-		$this->admin->register_options_styles();
+		$this->admin->register_options_scripts();
 
 		$this->assertConditionsMet();
 	}

@@ -15,6 +15,7 @@ use AiPlusBlockEditor\Services\Boot;
 use AiPlusBlockEditor\Services\PostMeta;
 use AiPlusBlockEditor\Services\Routes;
 use AiPlusBlockEditor\Interfaces\Kernel;
+use AiPlusBlockEditor\Plugins\Ajax;
 
 class Container implements Kernel {
 	/**
@@ -37,6 +38,7 @@ class Container implements Kernel {
 			Boot::class,
 			PostMeta::class,
 			Routes::class,
+			Ajax::class,
 		];
 	}
 
