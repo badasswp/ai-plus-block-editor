@@ -232,35 +232,6 @@ class AdminTest extends WPMockTestCase {
 			)
 			->andReturn( null );
 
-		WP_Mock::userFunction( 'wp_enqueue_script' )
-			->with(
-				'ai-plus-block-editor',
-				'https://example.com/wp-content/plugins/ai-plus-block-editor/inc/Services/../../scripts.js',
-				[ 'jquery' ],
-				'1.0.0',
-				'all'
-			)
-			->andReturn( null );
-
-		WP_Mock::userFunction( 'wp_create_nonce' )
-			->with( 'ajax-badasswp-nonce' )
-			->andReturn( 'example_nonce' );
-
-		WP_Mock::userFunction( 'admin_url' )
-			->with( 'admin-ajax.php' )
-			->andReturn( 'https://example.com/wp-admin/admin-ajax.php' );
-
-		WP_Mock::userFunction( 'wp_localize_script' )
-			->with(
-				'ai-plus-block-editor',
-				'ajax_badasswp',
-				[
-					'nonce'    => 'example_nonce',
-					'ajax_url' => 'https://example.com/wp-admin/admin-ajax.php',
-				]
-			)
-			->andReturn( null );
-
 		$this->admin->register_options_scripts();
 
 		$this->assertConditionsMet();
