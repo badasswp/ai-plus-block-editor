@@ -2,6 +2,7 @@
 
 ## 1.10.0
 * Feat: Add More Plugins options page.
+* Refactor: Abstract changes to Pluginate packagist monorepo.
 
 ## 1.9.2
 * Tested up to WP 7.0.
