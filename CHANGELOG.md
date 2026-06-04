@@ -2,6 +2,7 @@
 
 ## 1.10.0
 * Feat: Add More Plugins options page.
+* Fix issues with missing logos for plugins.
 
 ## 1.9.2
 * Tested up to WP 7.0.
