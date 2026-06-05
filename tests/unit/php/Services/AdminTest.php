@@ -12,6 +12,7 @@ use AiPlusBlockEditor\Tests\PluginTest;
 
 /**
  * @covers \AiPlusBlockEditor\Services\Admin::register
+ * @covers \AiPlusBlockEditor\Services\Admin::__construct
  * @covers \AiPlusBlockEditor\Services\Admin::register_options_menu
  * @covers \AiPlusBlockEditor\Services\Admin::register_options_init
  * @covers \AiPlusBlockEditor\Services\Admin::register_options_scripts
