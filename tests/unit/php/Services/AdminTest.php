@@ -58,6 +58,7 @@ class AdminTest extends WPMockTestCase {
 		WP_Mock::expectActionAdded( 'admin_init', [ $this->admin, 'register_options_init' ] );
 		WP_Mock::expectActionAdded( 'admin_menu', [ $this->admin, 'register_options_menu' ] );
 		WP_Mock::expectActionAdded( 'admin_enqueue_scripts', [ $this->admin, 'register_options_scripts' ] );
+		WP_Mock::expectActionAdded( 'admin_init', [ $this->admin->pluginate, 'init' ] );
 
 		$this->admin->register();
 

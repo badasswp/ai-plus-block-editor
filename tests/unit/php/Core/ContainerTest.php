@@ -13,6 +13,8 @@ use AiPlusBlockEditor\Services\PostMeta;
 use AiPlusBlockEditor\Services\Routes;
 use AiPlusBlockEditor\Abstracts\Service;
 
+use Pluginate\Admin as Pluginate;
+
 /**
  * @covers \AiPlusBlockEditor\Core\Container::__construct
  * @covers \AiPlusBlockEditor\Core\Container::register
@@ -110,6 +112,16 @@ class ContainerTest extends TestCase {
 			[
 				Service::$services[ Routes::class ],
 				'register_rest_routes',
+			]
+		);
+
+		$admin = Service::$services[ Admin::class ];
+
+		WP_Mock::expectActionAdded(
+			'admin_init',
+			[
+				$admin->pluginate,
+				'init',
 			]
 		);
 
