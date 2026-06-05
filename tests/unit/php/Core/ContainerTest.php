@@ -12,19 +12,20 @@ use AiPlusBlockEditor\Services\Boot;
 use AiPlusBlockEditor\Services\PostMeta;
 use AiPlusBlockEditor\Services\Routes;
 use AiPlusBlockEditor\Abstracts\Service;
-use AiPlusBlockEditor\Plugins\Ajax;
+
+use Pluginate\Admin as Pluginate;
 
 /**
  * @covers \AiPlusBlockEditor\Core\Container::__construct
  * @covers \AiPlusBlockEditor\Core\Container::register
  * @covers \AiPlusBlockEditor\Abstracts\Service::get_instance
  * @covers \AiPlusBlockEditor\Services\Admin::register
+ * @covers \AiPlusBlockEditor\Services\Admin::__construct
  * @covers \AiPlusBlockEditor\Services\Boot::register
  * @covers \AiPlusBlockEditor\Services\Routes::register
  * @covers \AiPlusBlockEditor\Services\Routes::__construct
  * @covers \AiPlusBlockEditor\Services\PostMeta::register
  * @covers \AiPlusBlockEditor\Services\PostMeta::__construct
- * @covers \AiPlusBlockEditor\Plugins\Ajax::register
  */
 class ContainerTest extends TestCase {
 	public Container $container;
@@ -44,7 +45,6 @@ class ContainerTest extends TestCase {
 		$this->assertTrue( in_array( Boot::class, Container::$services, true ) );
 		$this->assertTrue( in_array( Routes::class, Container::$services, true ) );
 		$this->assertTrue( in_array( PostMeta::class, Container::$services, true ) );
-		$this->assertTrue( in_array( Ajax::class, Container::$services, true ) );
 	}
 
 	public function test_register() {
@@ -116,12 +116,15 @@ class ContainerTest extends TestCase {
 			]
 		);
 
-		WP_Mock::expectActionAdded( 'wp_ajax_badasswp_install_plugin', [ Service::$services[ Ajax::class ], 'badasswp_install_plugin' ] );
-		WP_Mock::expectActionAdded( 'wp_ajax_nopriv_badasswp_install_plugin', [ Service::$services[ Ajax::class ], 'badasswp_install_plugin' ] );
-		WP_Mock::expectActionAdded( 'wp_ajax_badasswp_activate_plugin', [ Service::$services[ Ajax::class ], 'badasswp_activate_plugin' ] );
-		WP_Mock::expectActionAdded( 'wp_ajax_nopriv_badasswp_activate_plugin', [ Service::$services[ Ajax::class ], 'badasswp_activate_plugin' ] );
-		WP_Mock::expectActionAdded( 'wp_ajax_badasswp_deactivate_plugin', [ Service::$services[ Ajax::class ], 'badasswp_deactivate_plugin' ] );
-		WP_Mock::expectActionAdded( 'wp_ajax_nopriv_badasswp_deactivate_plugin', [ Service::$services[ Ajax::class ], 'badasswp_deactivate_plugin' ] );
+		$admin = Service::$services[ Admin::class ];
+
+		WP_Mock::expectActionAdded(
+			'admin_init',
+			[
+				$admin->pluginate,
+				'init',
+			]
+		);
 
 		$container->register();
 

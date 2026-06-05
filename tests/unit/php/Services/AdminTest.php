@@ -12,6 +12,7 @@ use AiPlusBlockEditor\Tests\PluginTest;
 
 /**
  * @covers \AiPlusBlockEditor\Services\Admin::register
+ * @covers \AiPlusBlockEditor\Services\Admin::__construct
  * @covers \AiPlusBlockEditor\Services\Admin::register_options_menu
  * @covers \AiPlusBlockEditor\Services\Admin::register_options_init
  * @covers \AiPlusBlockEditor\Services\Admin::register_options_scripts
@@ -58,6 +59,7 @@ class AdminTest extends WPMockTestCase {
 		WP_Mock::expectActionAdded( 'admin_init', [ $this->admin, 'register_options_init' ] );
 		WP_Mock::expectActionAdded( 'admin_menu', [ $this->admin, 'register_options_menu' ] );
 		WP_Mock::expectActionAdded( 'admin_enqueue_scripts', [ $this->admin, 'register_options_scripts' ] );
+		WP_Mock::expectActionAdded( 'admin_init', [ $this->admin->pluginate, 'init' ] );
 
 		$this->admin->register();
 
@@ -229,35 +231,6 @@ class AdminTest extends WPMockTestCase {
 				[],
 				true,
 				'all'
-			)
-			->andReturn( null );
-
-		WP_Mock::userFunction( 'wp_enqueue_script' )
-			->with(
-				'ai-plus-block-editor',
-				'https://example.com/wp-content/plugins/ai-plus-block-editor/inc/Services/../../scripts.js',
-				[ 'jquery' ],
-				'1.0.0',
-				'all'
-			)
-			->andReturn( null );
-
-		WP_Mock::userFunction( 'wp_create_nonce' )
-			->with( 'ajax-badasswp-nonce' )
-			->andReturn( 'example_nonce' );
-
-		WP_Mock::userFunction( 'admin_url' )
-			->with( 'admin-ajax.php' )
-			->andReturn( 'https://example.com/wp-admin/admin-ajax.php' );
-
-		WP_Mock::userFunction( 'wp_localize_script' )
-			->with(
-				'ai-plus-block-editor',
-				'ajax_badasswp',
-				[
-					'nonce'    => 'example_nonce',
-					'ajax_url' => 'https://example.com/wp-admin/admin-ajax.php',
-				]
 			)
 			->andReturn( null );
 

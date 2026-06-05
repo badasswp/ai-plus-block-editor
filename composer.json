@@ -16,7 +16,8 @@
 		}
 	],
 	"require": {
-		"orhanerday/open-ai": "^5.1"
+		"orhanerday/open-ai": "^5.1",
+		"badasswp/pluginate": "^1.0.0"
 	},
 	"require-dev": {
 		"badasswp/wp-mock-tc": "^1.0",

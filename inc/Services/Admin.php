@@ -12,11 +12,30 @@ namespace AiPlusBlockEditor\Services;
 
 use AiPlusBlockEditor\Admin\Form;
 use AiPlusBlockEditor\Admin\Options;
-use AiPlusBlockEditor\Plugins\Page;
 use AiPlusBlockEditor\Abstracts\Service;
 use AiPlusBlockEditor\Interfaces\Kernel;
 
+use Pluginate\Admin as Pluginate;
+
 class Admin extends Service implements Kernel {
+	/**
+	 * Pluginate instance.
+	 *
+	 * @since 1.10.0
+	 *
+	 * @var Pluginate
+	 */
+	public Pluginate $pluginate;
+
+	/**
+	 * Constructor.
+	 *
+	 * @since 1.0.0
+	 */
+	public function __construct() {
+		$this->pluginate = new Pluginate( 'ai-plus-block-editor' );
+	}
+
 	/**
 	 * Bind to WP.
 	 *
@@ -28,6 +47,7 @@ class Admin extends Service implements Kernel {
 		add_action( 'admin_init', [ $this, 'register_options_init' ] );
 		add_action( 'admin_menu', [ $this, 'register_options_menu' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'register_options_scripts' ] );
+		add_action( 'admin_init', [ $this->pluginate, 'init' ] );
 	}
 
 	/**
@@ -65,6 +85,30 @@ class Admin extends Service implements Kernel {
 	}
 
 	/**
+	 * Register Options Page.
+	 *
+	 * This controls the display of the menu page.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	public function register_options_page(): void {
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		vprintf(
+			'<section class="wrap">
+				<h1>%s</h1>
+				<p>%s</p>
+				%s
+			</section>',
+			array_map(
+				'__',
+				( new Form( Options::$form ) )->get_options()
+			)
+		);
+	}
+
+	/**
 	 * Register More Plugins.
 	 *
 	 * This controls the display of the
@@ -87,32 +131,8 @@ class Admin extends Service implements Kernel {
 				[
 					'More Plugins',
 					'Check out some other amazing plugin of ours...',
-					( new Page() )->get_markup(),
+					$this->pluginate->get_more_plugins(),
 				]
-			)
-		);
-	}
-
-	/**
-	 * Register Options Page.
-	 *
-	 * This controls the display of the menu page.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return void
-	 */
-	public function register_options_page(): void {
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		vprintf(
-			'<section class="wrap">
-				<h1>%s</h1>
-				<p>%s</p>
-				%s
-			</section>',
-			array_map(
-				'__',
-				( new Form( Options::$form ) )->get_options()
 			)
 		);
 	}
@@ -185,23 +205,6 @@ class Admin extends Service implements Kernel {
 			[],
 			'1.0.0',
 			'all'
-		);
-
-		wp_enqueue_script(
-			Options::get_page_slug(),
-			plugin_dir_url( __FILE__ ) . '../../scripts.js',
-			[ 'jquery' ],
-			'1.0.0',
-			'all'
-		);
-
-		wp_localize_script(
-			Options::get_page_slug(),
-			'ajax_badasswp',
-			[
-				'nonce'    => wp_create_nonce( 'ajax-badasswp-nonce' ),
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-			]
 		);
 	}
 }
