@@ -30,7 +30,7 @@ class Admin extends Service implements Kernel {
 	/**
 	 * Constructor.
 	 *
-	 * @since 1.0.0
+	 * @since 1.10.0
 	 */
 	public function __construct() {
 		$this->pluginate = new Pluginate( 'ai-plus-block-editor' );
