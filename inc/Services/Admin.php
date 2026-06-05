@@ -28,6 +28,15 @@ class Admin extends Service implements Kernel {
 	public Pluginate $pluginate;
 
 	/**
+	 * Constructor.
+	 *
+	 * @since 1.0.0
+	 */
+	public function __construct() {
+		$this->pluginate = new Pluginate( 'ai-plus-block-editor' );
+	}
+
+	/**
 	 * Bind to WP.
 	 *
 	 * @since 1.0.0
@@ -35,8 +44,6 @@ class Admin extends Service implements Kernel {
 	 * @return void
 	 */
 	public function register(): void {
-		$this->pluginate = new Pluginate( 'ai-plus-block-editor' );
-
 		add_action( 'admin_init', [ $this, 'register_options_init' ] );
 		add_action( 'admin_menu', [ $this, 'register_options_menu' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'register_options_scripts' ] );
