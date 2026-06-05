@@ -20,6 +20,7 @@ use Pluginate\Admin as Pluginate;
  * @covers \AiPlusBlockEditor\Core\Container::register
  * @covers \AiPlusBlockEditor\Abstracts\Service::get_instance
  * @covers \AiPlusBlockEditor\Services\Admin::register
+ * @covers \AiPlusBlockEditor\Services\Admin::__construct
  * @covers \AiPlusBlockEditor\Services\Boot::register
  * @covers \AiPlusBlockEditor\Services\Routes::register
  * @covers \AiPlusBlockEditor\Services\Routes::__construct
