@@ -68,6 +68,11 @@ Want to add your personal touch? All of our documentation can be found [here](ht
 
 == Changelog ==
 
+= 1.10.0 =
+* Feat: Add More Plugins options page.
+* Refactor: Abstract changes to Pluginate packagist monorepo.
+* Fix issues with missing logos for plugins.
+
 = 1.9.2 =
 * Tested up to WP 7.0.
 
