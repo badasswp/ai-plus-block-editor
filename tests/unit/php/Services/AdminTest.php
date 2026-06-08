@@ -86,10 +86,10 @@ class AdminTest extends WPMockTestCase {
 			->once()
 			->with(
 				'ai-plus-block-editor',
-				__( 'More Plugins', 'ai-plus-block-editor' ),
-				__( 'More Plugins', 'ai-plus-block-editor' ),
+				'More Plugins',
+				'More Plugins',
 				'manage_options',
-				sprintf( '%s-more-plugins', 'ai-plus-block-editor' ),
+				'ai-plus-block-editor-more-plugins',
 				[ $this->admin, 'register_more_plugins' ]
 			)
 			->andReturn( null );
