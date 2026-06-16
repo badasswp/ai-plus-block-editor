@@ -13,11 +13,14 @@ use AiPlusBlockEditor\Services\PostMeta;
 use AiPlusBlockEditor\Services\Routes;
 use AiPlusBlockEditor\Abstracts\Service;
 
+use Pluginate\Admin as Pluginate;
+
 /**
  * @covers \AiPlusBlockEditor\Core\Container::__construct
  * @covers \AiPlusBlockEditor\Core\Container::register
  * @covers \AiPlusBlockEditor\Abstracts\Service::get_instance
  * @covers \AiPlusBlockEditor\Services\Admin::register
+ * @covers \AiPlusBlockEditor\Services\Admin::__construct
  * @covers \AiPlusBlockEditor\Services\Boot::register
  * @covers \AiPlusBlockEditor\Services\Routes::register
  * @covers \AiPlusBlockEditor\Services\Routes::__construct
@@ -41,6 +44,7 @@ class ContainerTest extends TestCase {
 		$this->assertTrue( in_array( Admin::class, Container::$services, true ) );
 		$this->assertTrue( in_array( Boot::class, Container::$services, true ) );
 		$this->assertTrue( in_array( Routes::class, Container::$services, true ) );
+		$this->assertTrue( in_array( PostMeta::class, Container::$services, true ) );
 	}
 
 	public function test_register() {
@@ -76,7 +80,7 @@ class ContainerTest extends TestCase {
 			'admin_enqueue_scripts',
 			[
 				Service::$services[ Admin::class ],
-				'register_options_styles',
+				'register_options_scripts',
 			]
 		);
 
@@ -109,6 +113,16 @@ class ContainerTest extends TestCase {
 			[
 				Service::$services[ Routes::class ],
 				'register_rest_routes',
+			]
+		);
+
+		$admin = Service::$services[ Admin::class ];
+
+		WP_Mock::expectActionAdded(
+			'admin_init',
+			[
+				$admin->pluginate,
+				'init',
 			]
 		);
 
