@@ -1,0 +1,36 @@
+{
+	"name": "badasswp/pluginate",
+	"description": "Awesome tool for installing our WordPress plugins",
+	"type": "library",
+	"license": "GPL-3.0",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"require-dev": {
+		"10up/wp_mock": "^1.1",
+		"phpunit/phpunit": "^9.0",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"wp-coding-standards/wpcs": "^3.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"Pluginate\\": "src/",
+			"Pluginate\\Tests\\": "tests/"
+		}
+	},
+	"authors": [
+		{
+			"name": "badasswp",
+			"email": "badasswpdev@gmail.com"
+		}
+	],
+	"scripts": {
+		"lint": "vendor/bin/phpcs -v",
+		"lint:fix": "vendor/bin/phpcbf -v",
+		"test": "vendor/bin/phpunit --testdox"
+	}
+}

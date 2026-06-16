@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ruleset name="Pluginate">
+	<rule ref="WordPress-Core">
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+		<exclude name="WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid" />
+		<exclude name="Generic.Classes.OpeningBraceSameLine.MissingBrace" />
+		<exclude name="PSR2.Classes.ClassDeclaration.MissingBrace" />
+		<exclude name="Generic.Files.OneObjectStructurePerFile.MultipleFound" />
+	</rule>
+
+	<arg value="s" />
+	<arg name="extensions" value="php" />
+	<arg name="colors" />
+	<file>.</file>
+
+	<exclude-pattern>/vendor/</exclude-pattern>
+</ruleset>
